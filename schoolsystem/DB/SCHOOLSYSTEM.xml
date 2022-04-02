@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?><Db flnm="SCHOOLSYSTEM" nm="SCHOOLSYSTEM" ver="1.3.4">
+  <VerLbl/>
+  <VerNotes/>
+  <DefTblOpts/>
+  <DocFolder>D:\TRABAJO\Clases\Desafío Latam\Infoclub\DESARROLLO DE APLICACIONES FULL STACK JAVA TRAINEE\repositorio\FullStackJava-DesafioLatam\proyectos\schoolsystem\DB</DocFolder>
+  <Sch Cm="" nm="dbo">
+    <Tbl UsSo="1" nm="alumno">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id_alumno" nm="pkalumno"/>
+      <Cl au="1" df="nextval('dbo.alumno_id_alumno_seq'::regclass)" nm="id_alumno" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="25" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="apellido" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fecha_nac" nu="0">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="curso_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_alumno_curso" prLkCl="id_curso" upAc="3">
+        <PrTb mn="0" nm="curso" oe="1" sch="dbo" zr="0"/>
+        <CdTb mn="1" nm="alumno" oe="1" sch="dbo" zr="0"/>
+        <ClPr cdCl="curso_id" prCl="id_curso"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="asignatura">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id_asignatura" nm="pkasignatura"/>
+      <Cl au="1" df="nextval('dbo.asignatura_id_asignatura_seq'::regclass)" nm="id_asignatura" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="descripcion" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="25" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tipo_asignatura_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_asignatura_tipo_asignatura" prLkCl="id_tipo_asignatura" upAc="3">
+        <PrTb mn="0" nm="tipo_asignatura" oe="1" sch="dbo" zr="0"/>
+        <CdTb mn="1" nm="asignatura" oe="1" sch="dbo" zr="0"/>
+        <ClPr cdCl="tipo_asignatura_id" prCl="id_tipo_asignatura"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="curso">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id_curso" nm="pkcurso"/>
+      <Cl au="1" df="nextval('dbo.curso_id_curso_seq'::regclass)" nm="id_curso" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="descripcion" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="curso_asignatura">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Cl au="0" df="" nm="curso_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="asignatura_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="profesor_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_curso_asignatura_asignatura" prLkCl="id_asignatura" upAc="3">
+        <PrTb mn="0" nm="asignatura" oe="1" sch="dbo" zr="0"/>
+        <CdTb mn="1" nm="curso_asignatura" oe="1" sch="dbo" zr="0"/>
+        <ClPr cdCl="asignatura_id" prCl="id_asignatura"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_curso_asignatura_curso" prLkCl="id_curso" upAc="3">
+        <PrTb mn="0" nm="curso" oe="1" sch="dbo" zr="0"/>
+        <CdTb mn="1" nm="curso_asignatura" oe="1" sch="dbo" zr="0"/>
+        <ClPr cdCl="curso_id" prCl="id_curso"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_curso_asignatura_profesor" prLkCl="id_profesor" upAc="3">
+        <PrTb mn="0" nm="profesor" oe="1" sch="dbo" zr="0"/>
+        <CdTb mn="1" nm="curso_asignatura" oe="1" sch="dbo" zr="0"/>
+        <ClPr cdCl="profesor_id" prCl="id_profesor"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="profesor">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id_profesor" nm="pkprofesor"/>
+      <Cl au="1" df="nextval('dbo.profesor_id_profesor_seq'::regclass)" nm="id_profesor" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="25" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="apellido" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="25" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="tipo_asignatura">
+      <TblOpts>WITHOUT OIDS</TblOpts>
+      <Pk ClNs="id_tipo_asignatura" nm="pktipo_asignatura"/>
+      <Cl au="1" df="nextval('dbo.tipo_asignatura_id_tipo_asignatura_seq'::regclass)" nm="id_tipo_asignatura" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="descripcion" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="25" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Seq incr="1" nm="alumno_id_alumno_seq" start="1">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <Seq incr="1" nm="asignatura_id_asignatura_seq" start="1">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <Seq incr="1" nm="curso_id_curso_seq" start="1">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <Seq incr="1" nm="profesor_id_profesor_seq" start="1">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <Seq incr="1" nm="tipo_asignatura_id_tipo_asignatura_seq" start="1">
+      <Cm>DbWrench Autogenerated Sequence.</Cm>
+    </Seq>
+    <CustomTypes/>
+  </Sch>
+  <Dgm nm="diagramA">
+    <RnCf ClkAct="true" FtSz="12" lkStgy="RightAngleStrategy" zm="1.0">
+      <VbCfg>
+        <Fg ky="Auto Number" vl="0"/>
+        <Fg ky="Check" vl="0"/>
+        <Fg ky="Comment" vl="0"/>
+        <Fg ky="Data Type" vl="1"/>
+        <Fg ky="Default" vl="0"/>
+        <Fg ky="ENUM Values" vl="0"/>
+        <Fg ky="Length" vl="1"/>
+        <Fg ky="Name" vl="1"/>
+        <Fg ky="Nullable" vl="0"/>
+        <Fg ky="Schema Name" vl="0"/>
+        <Fg ky="Signed" vl="0"/>
+      </VbCfg>
+    </RnCf>
+    <DiaProps>
+      <Show AllCols="1" FkCols="1" FkNms="1" PkCols="1"/>
+      <ErNotation>BarkerErNotation</ErNotation>
+      <DbTableRectangleFill>HeaderFooterFill</DbTableRectangleFill>
+      <svg path=""/>
+    </DiaProps>
+    <TbGl bkCl="ff4c78ff" sch="dbo" tbl="alumno" x="962" y="0"/>
+    <TbGl bkCl="ff4c78ff" sch="dbo" tbl="profesor" x="893" y="227"/>
+    <TbGl bkCl="ff4c78ff" sch="dbo" tbl="curso" x="432" y="45"/>
+    <TbGl bkCl="ff4c78ff" sch="dbo" tbl="asignatura" x="444" y="421"/>
+    <TbGl bkCl="ff4c78ff" sch="dbo" tbl="curso_asignatura" x="437" y="240"/>
+    <TbGl bkCl="ff4c78ff" sch="dbo" tbl="tipo_asignatura" x="1021" y="419"/>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="dbo.alumno.fk_alumno_curso" parentEdge="EAST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="644" x2="962" y1="82" y2="82"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="dbo.asignatura.fk_asignatura_tipo_asignatura" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1021" x2="721" y1="472" y2="472"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="dbo.curso_asignatura.fk_curso_asignatura_asignatura" parentEdge="NORTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="505" x2="505" y1="421" y2="330"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="dbo.curso_asignatura.fk_curso_asignatura_curso" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="563" x2="563" y1="119" y2="240"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="dbo.curso_asignatura.fk_curso_asignatura_profesor" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="893" x2="652" y1="283" y2="283"/>
+      </positionableLines>
+    </FkGl>
+    <Notes/>
+    <Zones/>
+  </Dgm>
+  <RnmMgr>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="alumno" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="id" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="curso" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="id" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Schema" ParCls="Database" ParNme="SCHOOLSYSTEM" SupCls="" SupNme="">
+      <Rnm nNm="dbo" oNm="schemaA"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="asignatura" SupCls="Schema" SupNme="dbo">
+      <Rnm nNm="id_asignatura" oNm="id"/>
+      <Rnm nNm="id" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="curso_asignatura" SupCls="Schema" SupNme="dbo">
+      <Rnm nNm="id_curso_asignatura" oNm="id"/>
+      <Rnm nNm="id" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="tipo_asignatura" SupCls="Schema" SupNme="dbo">
+      <Rnm nNm="id_tipo_asignatura" oNm="id"/>
+      <Rnm nNm="id" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="alumno" SupCls="Schema" SupNme="dbo">
+      <Rnm nNm="id_alumno" oNm="id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="curso" SupCls="Schema" SupNme="dbo">
+      <Rnm nNm="id_curso" oNm="id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="profesor" SupCls="Schema" SupNme="dbo">
+      <Rnm nNm="id_profesor" oNm="Id"/>
+    </RnmCh>
+  </RnmMgr>
+  <DbDocOptionMgr>
+    <BasicOptionMgr>
+      <Name>db.doc.option.mgr</Name>
+      <BoolOpt lbl="Diagrams" nm="doc.diagrams" on="1" spl="0"/>
+      <BoolOpt lbl="Foreign Keys" nm="doc.fks" on="1" spl="0"/>
+      <BoolOpt lbl="Indexes" nm="doc.indexes" on="1" spl="0"/>
+      <BoolOpt lbl="Overwrite CSS File" nm="doc.overwrite.css" on="1" spl="0"/>
+      <BoolOpt lbl="Procedures" nm="doc.procs" on="1" spl="0"/>
+      <BoolOpt lbl="Schemas" nm="doc.schemas" on="1" spl="0"/>
+      <BoolOpt lbl="Sequences" nm="doc.sequences" on="1" spl="0"/>
+      <BoolOpt lbl="Tables" nm="doc.tables" on="1" spl="0"/>
+      <BoolOpt lbl="Triggers" nm="doc.triggers" on="1" spl="0"/>
+      <BoolOpt lbl="Views" nm="doc.views" on="1" spl="0"/>
+    </BasicOptionMgr>
+  </DbDocOptionMgr>
+  <OpenEditors>
+    <OpenEditor ClsNm="Diagram" fqn="null.diagramA" selected="1"/>
+  </OpenEditors>
+  <TreePaths>
+    <TreePath/>
+    <TreePath>/Schemas (1)</TreePath>
+    <TreePath>/Schemas (1)/dbo</TreePath>
+  </TreePaths>
+  <SqlTexts/>
+</Db>
