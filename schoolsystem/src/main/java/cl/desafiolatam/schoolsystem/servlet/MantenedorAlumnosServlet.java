@@ -34,8 +34,6 @@ public class MantenedorAlumnosServlet extends HttpServlet{
 		this.cursoFacade = new CursoFacadeImpl();
 	}
 
-
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -47,7 +45,6 @@ public class MantenedorAlumnosServlet extends HttpServlet{
 		req.setAttribute("cursoDto", this.cursoFacade.getCursos());
 		req.getServletContext().getRequestDispatcher("/mantenedoralumnos.jsp").forward(req, resp);
 	}
-
 
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
