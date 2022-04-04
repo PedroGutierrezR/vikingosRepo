@@ -1,18 +1,10 @@
-<%@page import="cl.desafiolatam.schoolsystem.dto.CursoDto"%>
-<%@page import="cl.desafiolatam.schoolsystem.dto.AlumnoDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script>
-    	let alumnoDtoJson = '<%= request.getAttribute("alumnoDtoJson") %>';
-	</script>
-
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
@@ -49,10 +41,12 @@
 <link rel="stylesheet" href="assets/css/init.css" />
 <script src="assets/js/mantenedoralumnos.js"></script>
 
-<title>Mantenedor Alumnos </title>
+
+<title>Mantenedor Profesores</title>
+
 </head>
 <body>
-	<header id="idHeader">
+<header id="idHeader">
         <nav id="menu" class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Imagen</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -108,16 +102,15 @@
         </nav>
     </header>
     <br> <br>
-
-   <div class="container mb-5 pb-3">
+ <div class="container mb-5 pb-3">
 	<table class="table table-hover" id="tblListaAlumnos">
   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
-      <th scope="col">Fecha Nacimiento</th>
       <th scope="col">Curso</th>
+      <th scope="col">Asignatura</th>
       <th scope="col">Modificar/Eliminar</th>
     </tr>
   </thead>
@@ -127,16 +120,16 @@
 </table>
 </div>
 	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalNuevoAlumno">Agregar Alumno</button>
+	<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalNuevoProfesor">Agregar Profesor</button>
 
 	<!-- Modal -->
-	<div class="modal fade" id="modalNuevoAlumno" tabindex="-1"
+	<div class="modal fade" id="modalNuevoProfesor" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Nuevo alumno</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Nuevo Profesor</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -175,14 +168,14 @@
 				            </div>
 				            <div class="col-md-4 mb-3">
 				                <div class="form-group">
-				                    <label for="idTxtFecNacimiento">F. Nacimiento</label>
+				                    <label for="idTxtAsignatura">Asigntaura</label>
 				                    <div class="form-inline">
-				                        <input type="date" class="form-control" id="idTxtFecNacimiento" placeholder="Ingrese Fecha Nacimiento" required>
+				                        <input type="text" class="form-control" id="idTxtAsignatura" placeholder="Ingrese Asigntaura" required>
 				                        <div class="valid-feedback">
                         					Correcto!
                     					</div>
 					                    <div class="invalid-feedback">
-					                        Debe ingresar una fecha válida
+					                        Debe ingresar una asignatura válida
 					                    </div>
 				                    </div>
 				                </div>
@@ -212,11 +205,12 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cerrar</button>
-					<button type="button" class="btn btn-primary" id="idBtnGuardarCurso">Guardar</button>
+					<button type="button" class="btn btn-primary" id="idBtnGuardarProfesor">Guardar</button>
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -62,7 +62,7 @@
                             Alumno
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" id="idMenuMantenedorAlumno" href="#">Mantenedor de alumnos</a>
+                            <a class="dropdown-item" id="idMenuMantenedorAlumno" href="/schoolsystem/mantenedoralumnos.srv">Mantenedor de alumnos</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
