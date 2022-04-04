@@ -44,4 +44,12 @@ public class AlumnoServiceImpl implements AlumnoService{
 		return alumnoDao.deleteById(idAlumno);
 	}
 
+
+
+	@Override
+	public int update(int idAlumno) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
