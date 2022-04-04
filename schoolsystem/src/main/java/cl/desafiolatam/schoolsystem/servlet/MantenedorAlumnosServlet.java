@@ -3,6 +3,7 @@ package cl.desafiolatam.schoolsystem.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +49,6 @@ public class MantenedorAlumnosServlet extends HttpServlet{
 	}
 
 
-
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -62,7 +62,7 @@ public class MantenedorAlumnosServlet extends HttpServlet{
 		PrintWriter out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        out.print(alumnoDto.toString());
+        out.print(alumnoDto.toString()); 
         out.flush(); 
 		
 		//req.getServletContext().getRequestDispatcher("/mantenedoralumnos.jsp").forward(req, resp);
@@ -74,12 +74,14 @@ public class MantenedorAlumnosServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String json = Utils.getJsonString(req.getInputStream());
+		System.out.println(json); 
 		
 		String[] listaStrings = json.split("=");
 		int id = Integer.parseInt(listaStrings[1]);
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
+//        resp.setContentType("application/json");
+//        resp.setCharacterEncoding("UTF-8");
 		alumnoFacade.deleteById(id);
+		req.setAttribute("alumnoDtoJson", this.alumnoFacade.getAlumnos().toString());
 		
 	}
 	

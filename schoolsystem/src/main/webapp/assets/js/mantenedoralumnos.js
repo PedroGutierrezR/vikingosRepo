@@ -124,7 +124,6 @@ $(document).ready(function() {
 		};
 		console.log("DataAlumno: ", dataAlumno);
 
-
 		if (validaFormNuevoAlumno()) {
 			$.ajax({
 				// En data puedes utilizar un objeto JSON, un array o un query string
@@ -172,31 +171,27 @@ function onClickEditar(row) {
 
 function onClickEliminar(id) {
 	console.log("Id a eliminar: " + id);
-
+	
 	$.ajax({
 		// En data puedes utilizar un objeto JSON, un array o un query string
 		data: { id },
 		//Cambiar a type: POST si necesario
 		type: "POST",
 		// Formato de datos que se espera en la respuesta
-		dataType: "json",
+		dataType: "text",
 		// URL a la que se enviará la solicitud Ajax
 		url: "/schoolsystem-1.0.0/mantenedoralumnos.srv",
-	})
 
-		//Falta arreglar esta parte, aunque sí se está eliminando el alumno
+	})
 		.done(function(data, textStatus, jqXHR) {
-			alert(data.mensajeNuevoAlumno);
-			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-			console.log("Alumnos a refrescar", data.alumnos);
-			$table.bootstrapTable('load', data.alumnos);
+			
+			alert("refrescando");
+			console.log(data);
 			$table.bootstrapTable('refresh');
 
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
 		});
-
-
 
 }
