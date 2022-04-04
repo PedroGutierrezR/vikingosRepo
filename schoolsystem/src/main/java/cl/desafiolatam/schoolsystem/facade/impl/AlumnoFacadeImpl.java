@@ -40,4 +40,9 @@ public class AlumnoFacadeImpl implements AlumnoFacade{
 		return alumnoService.deleteById(idAlumno);
 	}
 
+	@Override
+	public int update(int idAlumno) {
+		return alumnoService.update(idAlumno);
+	}
+
 }
