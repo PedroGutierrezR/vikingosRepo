@@ -15,13 +15,11 @@ public class AlumnoFacadeImpl implements AlumnoFacade{
 
 	@Override
 	public AlumnoDto getAlumnos() {
-		// TODO Auto-generated method stub
 		return this.alumnoService.getAlumnos();
 	}
 
 	@Override
 	public AlumnoDto addAlumno(AlumnoDto alumnoDto) {
-		// TODO Auto-generated method stub
 		int resultado = this.alumnoService.addAlumnos(alumnoDto);
 		AlumnoDto alumnoDtoResultado = this.alumnoService.getAlumnos();
 		if(resultado == 1) {
@@ -41,8 +39,8 @@ public class AlumnoFacadeImpl implements AlumnoFacade{
 	}
 
 	@Override
-	public int update(int idAlumno) {
-		return alumnoService.update(idAlumno);
+	public int update(AlumnoDto alumnoDto) {
+		return alumnoService.update(alumnoDto);
 	}
 
 }

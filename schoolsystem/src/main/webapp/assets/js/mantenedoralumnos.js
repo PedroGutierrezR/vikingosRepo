@@ -103,10 +103,10 @@ $(document).ready(function() {
 				console.log(JSON.stringify(row));
 				console.log($.param(row))
 				return [
-					"<a class='like' href='#' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
+					"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarAlumno' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 					"<i class='bi bi-pencil'></i>",
 					"</a>  ",
-					'<a class="remove" href="javascript:onClickEliminar(' + row.idAlumno + ')" title="Eliminar">',
+					"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarAlumno' onclick='onClickEliminar(\"" + row.idAlumno + "\");' title='Eliminar'>",
 					'<i class="fa fa-trash"></i>',
 					'</a>'
 				].join('');
@@ -127,7 +127,7 @@ $(document).ready(function() {
 		if (validaFormNuevoAlumno()) {
 			$.ajax({
 				// En data puedes utilizar un objeto JSON, un array o un query string
-				data: dataAlumno,
+				data: { dataAlumno, "accion": "crearAlumno" },
 				//Cambiar a type: POST si necesario
 				type: "PUT",
 				// Formato de datos que se espera en la respuesta
@@ -158,10 +158,18 @@ $(document).ready(function() {
 	});
 });
 
+let alumnoDto;
+
 function onClickEditar(row) {
 	//let rowObj = JSON.parse(row);
-	var alumnoDto = JSON.parse(row);
-	console.log("onClickEditar");
+	alumnoDto = JSON.parse(row);
+
+	//Limpiar campos del modal
+	$("#idTxtEditarNombre").val("");
+	$("#idTxtEditarNombre").attr("placeholder", alumnoDto.nombre);
+	$("#idTxtEditarApellido").val("")
+	$("#idTxtEditarApellido").attr("placeholder", alumnoDto.apellido);
+	$("#idTxtEditarFecNacimiento").val("")
 
 	console.log("Editar Json string:... ", row);
 	console.log("Editar Json object:... ", alumnoDto);
@@ -169,24 +177,33 @@ function onClickEditar(row) {
 
 }
 
-function onClickEliminar(id) {
-	console.log("Id a eliminar: " + id);
-	
+$("#idBtnEditarAlumno").click(function() {
+
+	var dataAlumno = {
+		"idAlumno": alumnoDto.idAlumno,
+		"nombre": $("#idTxtEditarNombre").val(),
+		"apellido": $("#idTxtEditarApellido").val(),
+		"fechaNac": $("#idTxtEditarFecNacimiento").val(),
+		"idCurso": $("#idSelEditarCurso").val()
+	};
+
+	console.log(dataAlumno.idAlumno);
+
 	$.ajax({
 		// En data puedes utilizar un objeto JSON, un array o un query string
-		data: { id },
+		data: { dataAlumno, "accion": "actualizarAlumno" },
 		//Cambiar a type: POST si necesario
-		type: "POST",
+		type: "PUT",
 		// Formato de datos que se espera en la respuesta
-		dataType: "text",
+		dataType: "json",
 		// URL a la que se enviará la solicitud Ajax
 		url: "/schoolsystem-1.0.0/mantenedoralumnos.srv",
-
 	})
 		.done(function(data, textStatus, jqXHR) {
-			
-			alert("refrescando");
-			console.log(data);
+			alert(data.mensaje);
+			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
+			console.log("Alumnos a refrescar", data.alumnos);
+			$table.bootstrapTable('load', data.alumnos);
 			$table.bootstrapTable('refresh');
 
 		})
@@ -194,4 +211,45 @@ function onClickEliminar(id) {
 			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
 		});
 
+});
+
+var dataAlumno;
+
+function onClickEliminar(id) {
+	console.log("Id a eliminar: " + id);
+
+	dataAlumno = {
+		"idAlumno": id
+	};
+
+
 }
+
+$("#idBtnEliminarAlumno").click(function() {
+
+	$.ajax({
+		// En data puedes utilizar un objeto JSON, un array o un query string
+		data: { dataAlumno, "accion": "eliminarAlumno" },
+		//Cambiar a type: POST si necesario
+		type: "PUT",
+		// Formato de datos que se espera en la respuesta
+		dataType: "json",
+		// URL a la que se enviará la solicitud Ajax
+		url: "/schoolsystem-1.0.0/mantenedoralumnos.srv",
+	})
+		.done(function(data, textStatus, jqXHR) {
+			alert(data.mensaje);
+			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
+			console.log("Alumnos a refrescar", data.alumnos);
+			$table.bootstrapTable('load', data.alumnos);
+			$table.bootstrapTable('refresh');
+
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
+		});
+
+});
+
+
+

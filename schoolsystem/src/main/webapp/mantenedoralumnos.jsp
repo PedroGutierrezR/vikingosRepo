@@ -57,7 +57,7 @@
 	<!-- Button trigger modal -->
 	<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalNuevoAlumno">Agregar Alumno</button>
 
-	<!-- Modal -->
+	<!-- Modal Agregar Alumno-->
 	<div class="modal fade" id="modalNuevoAlumno" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
@@ -145,6 +145,121 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal Editar Alumno-->
+	<div class="modal fade" id="modalEditarAlumno" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Editar alumno</h5>
+					<h3 id="ponerIdAlumno"></h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form class="needs-validation" novalidate>
+						<div class=form-row>
+				            <div class="col-md-4 mb-3">
+				                <div class="form-group">
+				                    <label for="idTxtEditarNombre">Nombre</label>
+				                    <div class="form-inline">
+				                        <input type="text" class="form-control" id="idTxtEditarNombre" placeholder="Ingrese Nombre" required>
+				                        <input type="text" class="d-none form-control" id="idTxtEditarId" required>				        
+				                        <div class="valid-feedback">
+                        					Correcto!
+                    					</div>
+					                    <div class="invalid-feedback">
+					                        Debe ingresar un nombre válido
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="col-md-4 mb-3">
+				                <div class="form-group">
+				                    <label for="idTxtEditarApellido">Apellido</label>
+				                    <div class="form-inline">
+				                        <input type="text" class="form-control" id="idTxtEditarApellido" placeholder="Ingrese Apellido" required>
+				                        <div class="valid-feedback">
+                        					Correcto!
+                    					</div>
+					                    <div class="invalid-feedback">
+					                        Debe ingresar un apellido válido
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="col-md-4 mb-3">
+				                <div class="form-group">
+				                    <label for="idTxtEditarFecNacimiento">F. Nacimiento</label>
+				                    <div class="form-inline">
+				                        <input type="date" class="form-control" id="idTxtEditarFecNacimiento" placeholder="Ingrese Fecha Nacimiento" required>
+				                        <div class="valid-feedback">
+                        					Correcto!
+                    					</div>
+					                    <div class="invalid-feedback">
+					                        Debe ingresar una fecha válida
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				         </div>
+				         <div class="form-row">
+				            <div class="col-md-4 mb-3">
+				                <div class="form-group">
+				                    <label for="idSelEditarCurso">Curso</label>
+				                    <select class="form-control" id="idSelEditarCurso">
+				                    	<option value="-1">-Seleccione Curso-</option>
+				                    	<c:forEach var="curso" items="${cursoDto.cursos}">
+				                    		<option value="<c:out value='${curso.idCurso}' />"><c:out value="${curso.descripcion}" /> </option>
+				                    	</c:forEach>
+				                    </select>
+				                    <div class="valid-feedback">
+                        					Correcto!
+                    					</div>
+					                    <div class="invalid-feedback">
+					                        Debe ingresar un curso válido
+					                    </div>
+				                </div>
+				            </div>
+				         </div>
+			    	</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" id=idBtnEditarAlumno>Enviar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<!-- Modal Eliminar Alumno-->
+	<div class="modal fade" id="modalEliminarAlumno" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body text-center">
+					<h2>¿Está seguro de eliminar al alumno?</h2>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" id=idBtnEliminarAlumno>Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>
