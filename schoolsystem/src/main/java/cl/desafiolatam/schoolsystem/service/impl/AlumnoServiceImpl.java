@@ -46,9 +46,16 @@ public class AlumnoServiceImpl implements AlumnoService{
 
 
 	@Override
-	public int update(int idAlumno) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(AlumnoDto alumnoDto) {
+		Alumno alumno = new Alumno();
+		
+		alumno.setIdAlumno(alumnoDto.getAlumnos().get(0).getIdAlumno());
+		alumno.setNombre(alumnoDto.getAlumnos().get(0).getNombre());
+		alumno.setApellido(alumnoDto.getAlumnos().get(0).getApellido());
+		alumno.setFechaNac(alumnoDto.getAlumnos().get(0).getFechaNac());
+		alumno.setCurso(alumnoDto.getAlumnos().get(0).getCurso());
+		
+		return this.alumnoDao.update(alumno);
 	}
 
 }

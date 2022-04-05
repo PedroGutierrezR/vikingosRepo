@@ -39,8 +39,8 @@ public class AlumnoFacadeImpl implements AlumnoFacade{
 	}
 
 	@Override
-	public int update(int idAlumno) {
-		return alumnoService.update(idAlumno);
+	public int update(AlumnoDto alumnoDto) {
+		return alumnoService.update(alumnoDto);
 	}
 
 }

@@ -41,6 +41,20 @@ public class AlumnoDto {
 		
 		this.alumnos.add(alumno);
 	}
+	
+	public void setEditarAlumnoFromJson(String json) {
+		Alumno alumno = new Alumno();
+		Curso curso = new Curso();
+		String dataSplit[] = json.split("&");
+		alumno.setIdAlumno(Integer.parseInt(dataSplit[0].split("=")[1]));
+		alumno.setNombre(dataSplit[1].split("=")[1]);
+		alumno.setApellido(dataSplit[2].split("=")[1]);
+		alumno.setFechaNac(dataSplit[3].split("=")[1]);
+		curso.setIdCurso(Integer.parseInt(dataSplit[4].split("=")[1]));
+		alumno.setCurso(curso);
+		
+		this.alumnos.add(alumno);
+	}
 
 	@Override
 	public String toString() {

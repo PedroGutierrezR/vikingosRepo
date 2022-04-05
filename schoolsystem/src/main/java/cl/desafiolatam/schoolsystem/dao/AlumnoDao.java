@@ -8,6 +8,6 @@ public interface AlumnoDao {
 	public int add(Alumno alumno);
 	public List<Alumno> getAll();
 	public Alumno getById(int idalumno);
-	public int update(int idAlumno);
+	public int update(Alumno alumno);
 	public int deleteById(int idAlumno);
 }
