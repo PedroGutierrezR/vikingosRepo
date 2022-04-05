@@ -127,7 +127,7 @@ $(document).ready(function() {
 		if (validaFormNuevoAlumno()) {
 			$.ajax({
 				// En data puedes utilizar un objeto JSON, un array o un query string
-				data: dataAlumno,
+				data: {dataAlumno,"accion" : "crearAlumno"},
 				//Cambiar a type: POST si necesario
 				type: "PUT",
 				// Formato de datos que se espera en la respuesta
@@ -171,22 +171,27 @@ function onClickEditar(row) {
 
 function onClickEliminar(id) {
 	console.log("Id a eliminar: " + id);
-	
+
+	var dataAlumno = {
+		"idAlumno":id
+	};
+	console.log("despues");
+	console.log(dataAlumno);
 	$.ajax({
 		// En data puedes utilizar un objeto JSON, un array o un query string
-		data: { id },
+		data: { dataAlumno, "accion": "eliminarAlumno" },
 		//Cambiar a type: POST si necesario
-		type: "POST",
+		type: "PUT",
 		// Formato de datos que se espera en la respuesta
-		dataType: "text",
+		dataType: "json",
 		// URL a la que se enviará la solicitud Ajax
 		url: "/schoolsystem-1.0.0/mantenedoralumnos.srv",
-
 	})
 		.done(function(data, textStatus, jqXHR) {
-			
-			alert("refrescando");
-			console.log(data);
+			alert(data.mensaje);
+			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
+			console.log("Alumnos a refrescar", data.alumnos);
+			$table.bootstrapTable('load', data.alumnos);
 			$table.bootstrapTable('refresh');
 
 		})

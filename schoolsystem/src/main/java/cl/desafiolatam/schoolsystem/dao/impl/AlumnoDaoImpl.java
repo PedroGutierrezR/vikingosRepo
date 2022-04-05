@@ -68,7 +68,7 @@ public class AlumnoDaoImpl implements AlumnoDao{
 			cn = ConnectionUtil.getConnection();
 			Statement st = cn.createStatement();
 			ResultSet rset = st.executeQuery("SELECT a.id_alumno, a.nombre, a.apellido, a.fecha_nac, a.curso_id, c.descripcion\r\n"
-					+ "	FROM alumno a, curso c where a.curso_id = c.id_curso");
+					+ "	FROM alumno a, curso c where a.curso_id = c.id_curso ORDER BY a.id_alumno");
 			alumnos = new ArrayList<Alumno>();
 			while(rset.next()) {
 				Alumno alumno = new Alumno();

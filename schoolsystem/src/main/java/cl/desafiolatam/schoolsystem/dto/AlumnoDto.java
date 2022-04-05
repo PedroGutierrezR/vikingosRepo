@@ -11,9 +11,8 @@ import cl.desafiolatam.schoolsystem.dao.model.Curso;
 public class AlumnoDto {
 	private List<Alumno> alumnos;
 	private String mensajeNuevoAlumno;
+	private String mensaje;
 	
-	
-
 	public AlumnoDto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -56,6 +55,14 @@ public class AlumnoDto {
 
 	public void setMensajeNuevoAlumno(String mensajeNuevoAlumno) {
 		this.mensajeNuevoAlumno = mensajeNuevoAlumno;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 
 }

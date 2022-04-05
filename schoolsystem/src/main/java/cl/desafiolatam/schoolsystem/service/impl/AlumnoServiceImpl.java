@@ -31,7 +31,6 @@ public class AlumnoServiceImpl implements AlumnoService{
 
 	@Override
 	public int addAlumnos(AlumnoDto alumnoDto) {
-		// TODO Auto-generated method stub
 		Alumno alumno = new Alumno();
 		alumno = alumnoDto.getAlumnos().get(0);
 		return this.alumnoDao.add(alumno);
