@@ -100,7 +100,7 @@
         </nav>
     </header>
     <div id="idContenido" class="container">
-        Pagina de inicio
+        <h1 class="text-center mt-4">Bienvenidos a SchoolSystem</h1>
     </div>
     <footer id="idFooter">
         pie de página

@@ -3,6 +3,7 @@ package cl.desafiolatam.schoolsystem.dao.model;
 import java.util.List;
 
 public class Curso {
+	
 	private int idCurso;
 	private String descripcion;
 	private List<Alumno> alumnos;

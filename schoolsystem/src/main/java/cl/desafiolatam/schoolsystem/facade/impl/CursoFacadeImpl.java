@@ -12,7 +12,6 @@ public class CursoFacadeImpl implements CursoFacade{
 	
 	public CursoFacadeImpl() {
 		super();
-		// TODO Auto-generated constructor stub
 		this.cursoService = new CursoServiceImpl();
 	}
 
@@ -20,7 +19,6 @@ public class CursoFacadeImpl implements CursoFacade{
 
 	@Override
 	public CursoDto getCursos() {
-		// TODO Auto-generated method stub
 		return this.cursoService.getCursos();
 	}
 
