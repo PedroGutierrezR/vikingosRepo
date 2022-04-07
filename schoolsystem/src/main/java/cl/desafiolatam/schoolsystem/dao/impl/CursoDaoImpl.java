@@ -54,15 +54,12 @@ public class CursoDaoImpl implements CursoDao{
 		
 		Connection cn = null;
 		List<Curso> cursos = null;
-//		List<Alumno> alumnos = null;
 		
 		try {
 			cn = ConnectionUtil.getConnection();
 			Statement st = cn.createStatement();
-			ResultSet rset = st.executeQuery("SELECT c.id_curso, c.descripcion FROM curso c");
+			ResultSet rset = st.executeQuery("SELECT c.id_curso, c.descripcion FROM curso c ORDER BY c.id_curso");
 			cursos = new ArrayList<Curso>();
-//			alumnos = new ArrayList<Alumno>();
-			
 			
 			while(rset.next()) {
 
@@ -91,7 +88,6 @@ public class CursoDaoImpl implements CursoDao{
 
 	@Override
 	public Alumno getById(int idCurso) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
