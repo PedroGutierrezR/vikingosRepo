@@ -34,7 +34,7 @@ public class ProfesorDaoImpl implements ProfesorDao{
 		int resultado = 0;
 		try {
 			cn = ConnectionUtil.getConnection();
-			PreparedStatement st = cn.prepareStatement("INSERT INTO profesor(id_profesor, nombre, apellido,) VALUES (?, ?, ?)");
+			PreparedStatement st = cn.prepareStatement("INSERT INTO profesor(id_profesor, nombre, apellido) VALUES (?, ?, ?)");
 			
 			//Al cambiar el componente del modal a date, la fecha ya l envía en el formato corecto - YYYY-MM-DD
 			//String fechaDb = Utils.getFechaDB(alumno.getFechaNac());

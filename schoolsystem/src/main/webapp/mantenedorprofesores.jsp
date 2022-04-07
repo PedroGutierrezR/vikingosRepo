@@ -47,7 +47,7 @@
 <script
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
 <link rel="stylesheet" href="assets/css/init.css" />
-<script src="assets/js/mantenedoralumnos.js"></script>
+<script src="assets/js/mantenedorprofesores.js"></script>
 
 <title>Mantenedor profesores</title>
 </head>

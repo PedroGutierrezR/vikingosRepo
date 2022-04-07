@@ -38,8 +38,8 @@ public class ProfesorFacadeImpl implements ProfesorFacade{
 	}
 
 	@Override
-	public int deleteById(int idProfesor) {	
-		return profesorService.deleteById(idProfesor);
+	public int deleteById(int id_profesor) {	
+		return profesorService.deleteById(id_profesor);
 	}
 
 	@Override

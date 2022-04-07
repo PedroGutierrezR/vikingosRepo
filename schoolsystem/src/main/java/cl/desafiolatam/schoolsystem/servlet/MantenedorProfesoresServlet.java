@@ -75,6 +75,10 @@ public class MantenedorProfesoresServlet extends HttpServlet{
         out.print(profesorDto.toString()); 
         out.flush(); 
 	
+        //req.setAttribute("profesorDtoJson", this.profesorFacade.getProfesores().toString());
+		//req.setAttribute("cursoDto", this.cursoFacade.getCursos());
+		//req.getServletContext().getRequestDispatcher("/mantenedorprofesores.jsp").forward(req, resp);
+        
 	}
 
 	@Override
