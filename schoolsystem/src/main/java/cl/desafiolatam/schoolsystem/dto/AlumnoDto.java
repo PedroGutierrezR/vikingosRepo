@@ -9,6 +9,7 @@ import cl.desafiolatam.schoolsystem.dao.model.Alumno;
 import cl.desafiolatam.schoolsystem.dao.model.Curso;
 
 public class AlumnoDto {
+	
 	private List<Alumno> alumnos;
 	private String mensajeNuevoAlumno;
 	private String mensaje;
@@ -58,7 +59,6 @@ public class AlumnoDto {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub}
 		Gson gson = new Gson();
 		return gson.toJson(this);
 	}
