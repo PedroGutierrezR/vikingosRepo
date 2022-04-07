@@ -8,11 +8,11 @@ $(document).ready(function() {
 		if ($("#idTxtDescipcion").val().length == 0) {
 			$("#idTxtDescipcion").addClass("is-invalid");
 			$("#idTxtDescipcion").removeClass("is-valid");
-			txtNombre = false;
+			txtDescripcion = false;
 		} else {
 			$("#idTxtDescipcion").removeClass("is-invalid");
 			$("#idTxtDescipcion").addClass("is-valid");
-			txtNombre = true;
+			txtDescripcion = true;
 		}
 
 		return txtDescripcion;
@@ -33,7 +33,7 @@ $(document).ready(function() {
 			title: 'ID',
 			width: '40px'
 		}, {
-			field: 'descipcion',
+			field: 'descripcion',
 			title: 'Descripcion',
 			width: '180px'
 		}, {
@@ -60,8 +60,9 @@ $(document).ready(function() {
 	});
 
 	$("#idBtnGuardarCurso").click(function() {
+		
 		var dataCurso = {
-			"descripcion": $("#idTxtDescipcion").val()
+			"descripcion": $("#idTxtEditarDescipcion").val()
 		};
 		console.log("DataCurso: ", dataCurso);
 
@@ -77,7 +78,7 @@ $(document).ready(function() {
 				url: "/schoolsystem-1.0.0/mantenedoracurso.srv",
 			})
 				.done(function(data, textStatus, jqXHR) {
-					alert(data.mensajeNuevoCurso);
+					alert(data.mensaje);
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 					console.log("Cursos a refrescar", data.cursos);
 					$table.bootstrapTable('load', data.cursos);
@@ -91,12 +92,12 @@ $(document).ready(function() {
 
 	});
 
-	$("#idTxtDescipcion").bind('keypress', function(e) {
+/* 	$("#idTxtDescipcion").bind('keypress', function(e) {
 		var keyCode = (e.which) ? e.which : e.keyCode
 		console.log(keyCode);
 		//return !(keyCode > 31 && (keyCode < 48 || keyCode > 90) && (keyCode < 97 || keyCode > 122));
 		return (keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || keyCode === 180;
-	});
+	}); */
 });
 
 let cursoDto;
@@ -119,7 +120,9 @@ $("#idBtnEditarCurso").click(function() {
 
 	var dataCurso = {
 		"idCurso": cursoDto.idCurso,
-		"descripcion": $("#idTxtEditarDescipcion").val()
+		"numeroNivel": $("#idTxtNumeroNivel").val(),
+		"nivel": $("#idTxtNivel").val(),
+		"ABC": $("#idTxtABC").val()
 	};
 
 	console.log(dataCurso);
@@ -135,6 +138,7 @@ $("#idBtnEditarCurso").click(function() {
 		url: "/schoolsystem-1.0.0/mantenedorcurso.srv",
 	})
 		.done(function(data, textStatus, jqXHR) {
+			console.log("Data: " + data.mensaje);
 			alert(data.mensaje);
 			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 			console.log("Cursos a refrescar", data.cursos);

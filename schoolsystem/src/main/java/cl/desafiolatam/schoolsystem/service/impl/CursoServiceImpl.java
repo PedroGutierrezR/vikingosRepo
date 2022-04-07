@@ -20,4 +20,9 @@ public class CursoServiceImpl implements CursoService{
 		return cursoDto;
 	}
 
+	@Override
+	public int updateCurso(CursoDto cursoDto) {
+		return cursoDao.update(cursoDto.getCursos().get(0));
+	}
+
 }

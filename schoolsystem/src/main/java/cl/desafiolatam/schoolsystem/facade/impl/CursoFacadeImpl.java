@@ -6,20 +6,22 @@ import cl.desafiolatam.schoolsystem.service.CursoService;
 import cl.desafiolatam.schoolsystem.service.impl.CursoServiceImpl;
 
 public class CursoFacadeImpl implements CursoFacade{
+	
 	CursoService cursoService = null;
-	
-	
 	
 	public CursoFacadeImpl() {
 		super();
 		this.cursoService = new CursoServiceImpl();
 	}
 
-
-
 	@Override
 	public CursoDto getCursos() {
 		return this.cursoService.getCursos();
+	}
+
+	@Override
+	public int update(CursoDto cursoDto) {
+		return cursoService.updateCurso(cursoDto);
 	}
 
 }

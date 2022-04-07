@@ -9,6 +9,7 @@ import cl.desafiolatam.schoolsystem.dao.model.Alumno;
 import cl.desafiolatam.schoolsystem.dao.model.Curso;
 
 public class AlumnoDto {
+	
 	private List<Alumno> alumnos;
 	private String mensajeNuevoAlumno;
 	private String mensaje;
