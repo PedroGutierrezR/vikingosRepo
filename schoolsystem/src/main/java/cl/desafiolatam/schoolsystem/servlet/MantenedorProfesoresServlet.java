@@ -15,14 +15,14 @@ import cl.desafiolatam.schoolsystem.facade.ProfesorFacade;
 import cl.desafiolatam.schoolsystem.facade.impl.ProfesorFacadeImpl;
 import cl.desafiolatam.schoolsystem.genericUtils.Utils;
 
-@WebServlet("/mantenedorprofesor.srv")
+@WebServlet("/mantenedorprofesores.srv")
 public class MantenedorProfesoresServlet extends HttpServlet{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ProfesorFacade profesorFacade;
+	private ProfesorFacade profesorFacade = null;
 	
 	@Override
 	public void init() throws ServletException{
@@ -40,7 +40,7 @@ public class MantenedorProfesoresServlet extends HttpServlet{
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doPost(req, resp);
 		
@@ -82,7 +82,7 @@ public class MantenedorProfesoresServlet extends HttpServlet{
 	}
 
 	@Override
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doPut(req, resp);
 	}

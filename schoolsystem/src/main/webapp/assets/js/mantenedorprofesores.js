@@ -62,7 +62,7 @@ $(document).ready(function() {
 		pageList: [5, 10],
 		locale: "es-ES",
 		columns: [{
-			field: 'id_rofesor',
+			field: 'id_profesor',
 			title: 'ID',
 			width: '40px'
 		}, {
@@ -107,7 +107,7 @@ $(document).ready(function() {
 					"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarProfesor' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 					"<i class='bi bi-pencil'></i>",
 					"</a>  ",
-					"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarProfesor' onclick='onClickEliminar(\"" + row.idProfesor + "\");' title='Eliminar'>",
+					"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarProfesor' onclick='onClickEliminar(\"" + row.id_profesor + "\");' title='Eliminar'>",
 					'<i class="fa fa-trash"></i>',
 					'</a>'
 				].join('');
@@ -181,14 +181,14 @@ function onClickEditar(row) {
 $("#idBtnEditarProfesor").click(function() {
 
 	var dataProfesor = {
-		"idProfesor": profesorDto.idProfesor,
+		"id_profesor": profesorDto.id_profesor,
 		"nombre": $("#idTxtEditarNombre").val(),
 		"apellido": $("#idTxtEditarApellido").val(),
 		//"fechaNac": $("#idTxtEditarFecNacimiento").val(),
 		//"idCurso": $("#idSelEditarCurso").val()
 	};
 
-	console.log(dataProfesor.idProfesor);
+	console.log(dataProfesor.id_profesor);
 
 	$.ajax({
 		// En data puedes utilizar un objeto JSON, un array o un query string
@@ -220,11 +220,12 @@ function onClickEliminar(id) {
 	console.log("Id a eliminar: " + id);
 
 	dataProfesor = {
-		"idProfesor": id
+		"id_profesor": id
 	};
 
 
 }
+
 
 $("#idBtnEliminarProfesor").click(function() {
 

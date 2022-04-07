@@ -2,7 +2,7 @@ package cl.desafiolatam.schoolsystem.dao;
 
 import java.util.List;
 
-import cl.desafiolatam.schoolsystem.dao.model.Alumno;
+
 
 //import java.util.List;
 
@@ -16,9 +16,9 @@ public interface ProfesorDao {
 	
 	public int add(Profesor profesor);
 	public List<Profesor> getAll();
-	public Profesor getById(int idProfesor);
+	public Profesor getById(int id_profesor);
 	public int update(Profesor profesor);
-	public int delete(int idProfesor);
+	public int delete(int id_profesor);
 	
 
 }

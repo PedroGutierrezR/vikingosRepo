@@ -102,7 +102,7 @@ public class ProfesorDaoImpl implements ProfesorDao{
 	
 
 	@Override
-	public Profesor getById(int idProfesor) {
+	public Profesor getById(int id_profesor) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -112,7 +112,7 @@ public class ProfesorDaoImpl implements ProfesorDao{
 		// TODO Auto-generated method stub
 		//return 0;
 		
-		String sql = "UPDATE profesor SET nombre = ?, apellido = ?, WHERE id_profesor = ?";
+		String sql = "UPDATE profesor SET nombre = ?, apellido = ? WHERE id_profesor = ?";
 		
 		Connection cn = null;
 		int resultado = 0;
@@ -122,9 +122,8 @@ public class ProfesorDaoImpl implements ProfesorDao{
 			
 			st.setString(1, profesor.getNombre());
 			st.setString(2, profesor.getApellido());
-			st.setInt(5, profesor.getId_profesor());
-
-				
+			st.setInt(3, profesor.getId_profesor());
+	
 			resultado = st.executeUpdate();
 			
 			st.close();
@@ -150,7 +149,7 @@ public class ProfesorDaoImpl implements ProfesorDao{
 	}
 
 	@Override
-	public int delete(int idProfesor) {
+	public int delete(int id_profesor) {
 		// TODO Auto-generated method stub
 		//return 0;
 		
@@ -162,7 +161,7 @@ public class ProfesorDaoImpl implements ProfesorDao{
 			cn = ConnectionUtil.getConnection();
 			PreparedStatement st = cn.prepareStatement(sql);
 	
-			st.setInt(1, idProfesor);
+			st.setInt(1, id_profesor);
 			
 			resultado = st.executeUpdate();
 			

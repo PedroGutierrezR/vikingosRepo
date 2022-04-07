@@ -101,40 +101,6 @@
 				                    </div>
 				                </div>
 				            </div>
-				            <%--<div class="col-md-4 mb-3">
-				                <div class="form-group">
-				                    <label for="idTxtFecNacimiento">F. Nacimiento</label>
-				                    <div class="form-inline">
-				                        <input type="date" class="form-control" id="idTxtFecNacimiento" placeholder="Ingrese Fecha Nacimiento" required>
-				                        <div class="valid-feedback">
-                        					Correcto!
-                    					</div>
-					                    <div class="invalid-feedback">
-					                        Debe ingresar una fecha válida
-					                    </div>
-				                    </div>
-				                </div>
-				            </div>
-				         </div>-->
-				         <div class="form-row">
-				            <div class="col-md-4 mb-3">
-				                <div class="form-group">
-				                    <label for="idSelCurso">Curso</label>
-				                    <select class="form-control" id="idSelCurso">
-				                    	<option value="-1">-Seleccione Curso-</option>
-				                    	<c:forEach var="curso" items="${cursoDto.cursos}">
-				                    		<option value="<c:out value='${curso.idCurso}' />"><c:out value="${curso.descripcion}" /> </option>
-				                    	</c:forEach>
-				                    </select>
-				                    <div class="valid-feedback">
-                        					Correcto!
-                    					</div>
-					                    <div class="invalid-feedback">
-					                        Debe ingresar un curso válido
-					                    </div>
-				                </div>
-				            </div>
-				         </div>--%>
 			    	</form>
 				</div>
 				<div class="modal-footer">
@@ -154,7 +120,6 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLongTitle">Editar profesor</h5>
-					<h3 id="ponerIdProfesor"></h3>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -192,40 +157,7 @@
 				                    </div>
 				                </div>
 				            </div>
-				           <%--<div class="col-md-4 mb-3">
-				                <div class="form-group">
-				                    <label for="idTxtEditarFecNacimiento">F. Nacimiento</label>
-				                    <div class="form-inline">
-				                        <input type="date" class="form-control" id="idTxtEditarFecNacimiento" placeholder="Ingrese Fecha Nacimiento" required>
-				                        <div class="valid-feedback">
-                        					Correcto!
-                    					</div>
-					                    <div class="invalid-feedback">
-					                        Debe ingresar una fecha válida
-					                    </div>
-				                    </div>
-				                </div>
-				            </div>
 				         </div>
-				         <div class="form-row">
-				            <div class="col-md-4 mb-3">
-				                <div class="form-group">
-				                    <label for="idSelEditarCurso">Curso</label>
-				                    <select class="form-control" id="idSelEditarCurso">
-				                    	<option value="-1">-Seleccione Curso-</option>
-				                    	<c:forEach var="curso" items="${cursoDto.cursos}">
-				                    		<option value="<c:out value='${curso.idCurso}' />"><c:out value="${curso.descripcion}" /> </option>
-				                    	</c:forEach>
-				                    </select>
-				                    <div class="valid-feedback">
-                        					Correcto!
-                    					</div>
-					                    <div class="invalid-feedback">
-					                        Debe ingresar un curso válido
-					                    </div>
-				                </div>
-				            </div>
-				         </div>--%> 
 			    	</form>
 				</div>
 				<div class="modal-footer">
