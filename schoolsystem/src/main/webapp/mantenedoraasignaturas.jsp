@@ -139,37 +139,34 @@
 						<div class=form-row>
 							<div class="col-md-4 mb-3">
 								<div class="form-group">
-									<label for="idTxtNumeroNivel">Número Nivel</label>
+									<label for="idTxtActualizarDescripcion">Descripcion</label>
 									<div class="form-inline">
-										<input type="number" class="form-control" id="idTxtNumeroNivel"
+										<input type="text" class="form-control" id="idTxtActualizarDescripcion"
 											placeholder="Ingrese Descripcion" required>
 										<div class="valid-feedback">Correcto!</div>
 										<div class="invalid-feedback">Debe ingresar un número</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-4 mb-3">
-								<div class="form-group">
-									<label for="idTxtNivel">Básico | Media</label>
-									<div class="form-inline">
-										<input type="text" class="form-control" id="idTxtNivel"
-											placeholder="Ingrese Descripcion" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar un nivel válido</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 mb-3">
-								<div class="form-group">
-									<label for="idTxtABC">A | B | C</label>
-									<div class="form-inline">
-										<input type="text" class="form-control" id="idTxtABC"
-											placeholder="Ingrese Descripcion" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar un valor válido</div>
-									</div>
-								</div>
-							</div>
+				            <div class="col-md-6 mb-3">
+				                <div class="form-group">
+				                    <label for="idSelActualizarAsignatura">Tipo</label>
+				                    <div class="form-inline">
+				                    <select class="form-control" id="idSelActualizarAsignatura">
+				                    	<option value="-1">-Seleccione Tipo-</option>
+				                    	<c:forEach var="tipoAsignatura" items="${tipoAsignaturaDto.tipoAsignaturas}">
+				                    		<option value="<c:out value='${tipoAsignatura.idTipoAsignatura}' />"><c:out value="${tipoAsignatura.descripcion}" /> </option>
+				                    	</c:forEach>
+				                    </select>
+				                    <div class="valid-feedback">
+                        					Correcto!
+                    			    </div>
+					                <div class="invalid-feedback">
+					                        Debe ingresar una asignatura válida
+					                </div>
+					                </div>
+				                </div>
+				            </div>
 						</div>
 					</form>
 				</div>
@@ -177,7 +174,7 @@
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cerrar</button>
 					<button type="button" class="btn btn-primary"
-						id="idBtnEditarCurso">Guardar</button>
+						id="idBtnActualizarAsignatura">Guardar</button>
 				</div>
 			</div>
 		</div>

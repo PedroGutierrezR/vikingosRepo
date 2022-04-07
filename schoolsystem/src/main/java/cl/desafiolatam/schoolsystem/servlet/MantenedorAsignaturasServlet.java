@@ -35,15 +35,12 @@ public class MantenedorAsignaturasServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setAttribute("asignaturaDtoJson", this.asignaturaFacade.getAsignaturas().toString());
-		System.out.println(this.tipoAsignaturaFacade.getAll().toString());
 		req.setAttribute("tipoAsignaturaDto", this.tipoAsignaturaFacade.getAll());
 		req.getServletContext().getRequestDispatcher("/mantenedoraasignaturas.jsp").forward(req, resp);
 	}
 
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		System.out.println("Hola put de asignatura");
 
 		String json = Utils.getJsonString(req.getInputStream());
 
@@ -57,7 +54,7 @@ public class MantenedorAsignaturasServlet extends HttpServlet {
 		AsignaturaDto asignaturaDto = new AsignaturaDto();
 
 		int resultado = 0;
-		System.out.println(json);
+		
 		if(accion.equalsIgnoreCase("crearAsignatura")) {
 			asignaturaDto.setAsignaturaFromJsonAgregar(json);
 			resultado = this.asignaturaFacade.addAsignatura(asignaturaDto);
@@ -66,14 +63,21 @@ public class MantenedorAsignaturasServlet extends HttpServlet {
 				asignaturaDto.setMensaje("Agregado Correctamente");
 			}
 			
+		} else if(accion.equalsIgnoreCase("actualizarAsignatura")) {
+			
+			asignaturaDto.setAsignaturaFromJsonActualizar(json);
+			resultado = this.asignaturaFacade.updateAsignatura(asignaturaDto);
+
+			if(resultado == 1) {
+				asignaturaDto = this.asignaturaFacade.getAsignaturas();
+				asignaturaDto.setMensaje("Actualizado Correctamente");
+			}
 		}
-		
 		PrintWriter out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         out.print(asignaturaDto.toString()); 
         out.flush(); 
-		
 	}
 
 }

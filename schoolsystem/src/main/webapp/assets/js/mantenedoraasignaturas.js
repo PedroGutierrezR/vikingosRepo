@@ -122,10 +122,10 @@ function onClickEditar(row) {
 	//let rowObj = JSON.parse(row);
 	asignaturaDto = JSON.parse(row);
 	//Limpiar campos del modal
-	$("#idTxtDescripcionAsignatura").val("");
-	$("#idTxtDescripcionAsignatura").attr("placeholder", "Campo actual: ");
-	$("#idTxtDescripcionAsignatura").removeClass("is-valid");
-
+	$("#idTxtActualizarDescripcion").val("");
+	$("#idTxtActualizarDescripcion").attr("placeholder", "Campo actual: " + asignaturaDto.descripcion);
+	$("#idTxtActualizarDescripcion").removeClass("is-valid");
+	$("#idSelActualizarAsignatura").removeClass("is-valid");
 
 	console.log("Editar Json string:... ", row);
 	console.log("Editar Json object:... ", asignaturaDto);
@@ -133,40 +133,41 @@ function onClickEditar(row) {
 
 }
 
-$("#idBtnEditarAsignatura").click(function() {
+$("#idBtnActualizarAsignatura").click(function() {
 
 	const validaFormEditarAsignatura = () => {
 
-		var idTxtDescripcionAsignatura = false;
-		var idSelAgregarAsignatura = false;
+		var idTxtActualizarDescripcion = false;
+		var idSelActualizarAsignatura = false;
 		
-		if ($("#idTxtDescripcionAsignatura").val().length == 0) {
-			$("#idTxtDescripcionAsignatura").addClass("is-invalid");
-			$("#idTxtDescripcionAsignatura").removeClass("is-valid");
-			idTxtDescripcionAsignatura = false;
+		if ($("#idTxtActualizarDescripcion").val().length == 0) {
+			$("#idTxtActualizarDescripcion").addClass("is-invalid");
+			$("#idTxtActualizarDescripcion").removeClass("is-valid");
+			idTxtActualizarDescripcion = false;
 		} else {
-			$("#idTxtDescripcionAsignatura").removeClass("is-invalid");
-			$("#idTxtDescripcionAsignatura").addClass("is-valid");
-			idTxtDescripcionAsignatura = true;
+			$("#idTxtActualizarDescripcion").removeClass("is-invalid");
+			$("#idTxtActualizarDescripcion").addClass("is-valid");
+			idTxtActualizarDescripcion = true;
 		}
 
-		if ($("#idSelAgregarAsignatura").val().length == 0) {
-			$("#idSelAgregarAsignatura").addClass("is-invalid");
-			$("#idSelAgregarAsignatura").removeClass("is-valid");
-			idSelAgregarAsignatura = false;
+		if ($("#idSelActualizarAsignatura").val().length == 0) {
+			$("#idSelActualizarAsignatura").addClass("is-invalid");
+			$("#idSelActualizarAsignatura").removeClass("is-valid");
+			idSelActualizarAsignatura = false;
 		} else {
-			$("#idSelAgregarAsignatura").removeClass("is-invalid");
-			$("#idSelAgregarAsignatura").addClass("is-valid");
-			idSelAgregarAsignatura = true;
+			$("#idSelActualizarAsignatura").removeClass("is-invalid");
+			$("#idSelActualizarAsignatura").addClass("is-valid");
+			idSelActualizarAsignatura = true;
 		}
 
-		return idTxtDescripcionAsignatura && idSelAgregarAsignatura;
+		return idTxtActualizarDescripcion && idSelActualizarAsignatura;
 	}
 
 
 		var dataAsignatura = {
-			"descripcion": $("#idTxtDescripcionAsignatura").val(),
-			"idTipoAsignatura": $("#idSelAgregarAsignatura").val()
+			"idAsignatura": asignaturaDto.idAsignatura,
+			"descripcion": $("#idTxtActualizarDescripcion").val(),
+			"idTipoAsignatura": $("#idSelActualizarAsignatura").val()
 		};
 
 	console.log(dataAsignatura);

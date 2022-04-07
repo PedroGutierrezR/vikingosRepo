@@ -23,7 +23,9 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 
 	@Override
 	public int updateAsignatura(AsignaturaDto asignaturaDto) {
-		return 0;
+		Asignatura asignatura = new Asignatura();
+		asignatura = asignaturaDto.getAsignaturas().get(0);
+		return asignaturaDao.update(asignatura);
 	}
 
 	@Override

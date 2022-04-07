@@ -100,7 +100,38 @@ public class AsignaturaDaoImpl implements AsignaturaDao {
 
 	@Override
 	public int update(Asignatura asignatura) {
-		return 0;
+		
+		String sql = "UPDATE asignatura SET descripcion = ?, tipo_asignatura_id = ? WHERE id_asignatura = ?";
+		
+		Connection cn = null;
+		int resultado = 0;
+		try {
+			cn = ConnectionUtil.getConnection();
+			PreparedStatement st = cn.prepareStatement(sql);
+			
+			st.setString(1, asignatura.getDescripcion());
+			st.setInt(2, asignatura.getTipoAsignatura().getIdTipoAsignatura());
+			st.setInt(3, asignatura.getIdAsignatura());
+				
+			resultado = st.executeUpdate();
+			
+			st.close();
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				ConnectionUtil.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return resultado;
 	}
 	
 	public int getLastId() {

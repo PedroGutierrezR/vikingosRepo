@@ -20,7 +20,7 @@ public class AsignaturaFacadeImpl implements AsignaturaFacade {
 
 	@Override
 	public int updateAsignatura(AsignaturaDto asignaturaDto) {
-		return 0;
+		return asignaturaService.updateAsignatura(asignaturaDto);
 	}
 
 	@Override

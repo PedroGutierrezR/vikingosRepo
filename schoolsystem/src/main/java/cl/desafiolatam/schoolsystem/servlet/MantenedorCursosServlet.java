@@ -34,10 +34,6 @@ public class MantenedorCursosServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("entre a get");
-		
-		//String cursoDto = this.cursoFacade.getCursos().toString();
-		//System.out.println(cursoDto);
 
 		req.setAttribute("cursoDtoJson", this.cursoFacade.getCursos().toString());
 		req.getServletContext().getRequestDispatcher("/mantenedoracursos.jsp").forward(req, resp);
@@ -46,8 +42,6 @@ public class MantenedorCursosServlet extends HttpServlet {
 
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		System.out.println("Hola put de curso");
 		
 		String json = Utils.getJsonString(req.getInputStream());
 		
@@ -75,35 +69,19 @@ public class MantenedorCursosServlet extends HttpServlet {
 		} else if(accion.equalsIgnoreCase("crearCurso")) {
 			cursoDto.setCursoFromJsonAgregar(json);
 			resultado = this.cursoFacade.addCurso(cursoDto);
-			System.out.println("antes de entrar");
 			if(resultado == 1) {
-				System.out.println("entré");
 				cursoDto = this.cursoFacade.getCursos();
 				cursoDto.setMensaje("Agregado Correctamente");
 			}
 			
 		}
-//		else if(accion.equalsIgnoreCase("crearAlumno")) {
-//			alumnoDto.setAlumnoFromJson(json);	
-//			alumnoDto = this.alumnoFacade.addAlumno(alumnoDto);
-//		} else if(accion.equalsIgnoreCase("actualizarAlumno")) {
-//			
-//			alumnoDto.setEditarAlumnoFromJson(json);
-//			this.alumnoFacade.update(alumnoDto);
-//			alumnoDto = this.alumnoFacade.getAlumnos();
-//			alumnoDto.setMensaje("Actualizado Correctamente");
-//		} 
-//		
+	
 		PrintWriter out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         out.print(cursoDto.toString()); 
         out.flush(); 
-	
-		
 		
 	}
-	
-	
-	
+		
 }

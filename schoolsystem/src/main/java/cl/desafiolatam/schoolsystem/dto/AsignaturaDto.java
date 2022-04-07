@@ -28,6 +28,20 @@ public class AsignaturaDto {
 		
 	}
 	
+	public void setAsignaturaFromJsonActualizar(String json) {
+		
+		Asignatura asignatura = new Asignatura();
+		TipoAsignatura tipoAsignatura = new TipoAsignatura();
+		
+		String dataSplit[] = json.split("&");	
+		asignatura.setIdAsignatura(Integer.parseInt(dataSplit[0].split("=")[1]));
+		asignatura.setDescripcion(dataSplit[1].split("=")[1]);
+		tipoAsignatura.setIdTipoAsignatura(Integer.parseInt(dataSplit[2].split("=")[1]));
+		asignatura.setTipoAsignatura(tipoAsignatura);
+		this.asignaturas.add(asignatura);
+	
+	}
+	
 	public List<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
