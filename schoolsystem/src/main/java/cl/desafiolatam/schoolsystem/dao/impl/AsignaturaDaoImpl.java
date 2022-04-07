@@ -1,6 +1,7 @@
 package cl.desafiolatam.schoolsystem.dao.impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,7 +19,37 @@ public class AsignaturaDaoImpl implements AsignaturaDao {
 
 	@Override
 	public int add(Asignatura asignatura) {
-		return 0;
+		Connection cn = null;
+		int resultado = 0;
+		try {
+			cn = ConnectionUtil.getConnection();
+			PreparedStatement st = cn.prepareStatement("INSERT INTO asignatura(id_asignatura, descripcion, tipo_asignatura_id) VALUES (?, ?, ?)");
+				
+			int lastId = getLastId();
+			
+			st.setInt(1, (lastId + 1));
+			st.setString(2, asignatura.getDescripcion());
+			System.out.println(asignatura.getTipoAsignatura().getIdTipoAsignatura());
+			st.setInt(3, asignatura.getTipoAsignatura().getIdTipoAsignatura());
+			resultado = st.executeUpdate();
+			
+			st.close();
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				ConnectionUtil.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return resultado;
 	}
 
 	@Override
@@ -70,6 +101,35 @@ public class AsignaturaDaoImpl implements AsignaturaDao {
 	@Override
 	public int update(Asignatura asignatura) {
 		return 0;
+	}
+	
+	public int getLastId() {
+		
+		Connection cn = null;
+		int lastId = 0;
+		try {
+			cn = ConnectionUtil.getConnection();
+			PreparedStatement pt = cn.prepareStatement("SELECT MAX(id_asignatura) AS max FROM asignatura");
+			ResultSet rset = pt.executeQuery();
+			
+			if(rset.next()) {
+				lastId = rset.getInt("max");
+			}
+			 
+			rset.close();
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				ConnectionUtil.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+		return lastId;
 	}
 
 }

@@ -55,17 +55,17 @@
 	</table>
 	<!-- Button trigger modal -->
 	<button type="button" class="btn btn-dark" data-toggle="modal"
-		data-target="#modalNuevoCurso">Agregar Curso</button>
+		data-target="#modalNuevaAsignatura">Agregar Asignatura</button>
 
-	<!-- Modal Agregar Curso-->
-	<div class="modal fade" id="modalNuevoCurso" tabindex="-1"
+	<!-- Modal Agregar Tipo Asignatura-->
+	<div class="modal fade" id="modalNuevaAsignatura" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered modal-lg"
 			role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Nuevo Curso</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Nueva Asignatura</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -74,11 +74,11 @@
 				<div class="modal-body">
 					<form class="needs-validation" novalidate>
 						<div class=form-row>
-							<div class="col-md-4 mb-3">
+							<div class="col-md-6 mb-3">
 								<div class="form-group">
-									<label for="idTxtAgregarNumeroNivel">Número Nivel</label>
+									<label for="idTxtDescripcionAsignatura">Descripción</label>
 									<div class="form-inline">
-										<input type="number" class="form-control" id="idTxtAgregarNumeroNivel"
+										<input type="text" class="form-control" id="idTxtDescripcionAsignatura"
 											placeholder="Ingrese Descripcion" required>
 										<div class="valid-feedback">Correcto!</div>
 										<div class="invalid-feedback">Debe ingresar una
@@ -86,30 +86,27 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-4 mb-3">
-								<div class="form-group">
-									<label for="idTxtAgregarNivel">Básico | Media</label>
-									<div class="form-inline">
-										<input type="text" class="form-control" id="idTxtAgregarNivel"
-											placeholder="Ingrese Descripcion" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una
-											descripción válida</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 mb-3">
-								<div class="form-group">
-									<label for="idTxtAgregarABC">A | B | C</label>
-									<div class="form-inline">
-										<input type="text" class="form-control" id="idTxtAgregarABC"
-											placeholder="Ingrese Descripcion" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una
-											descripción válida</div>
-									</div>
-								</div>
-							</div>
+							<div class="form-row">
+				            <div class="col-md-6 mb-3">
+				                <div class="form-group">
+				                    <label for="idSelAgregarAsignatura">Tipo</label>
+				                    <div class="form-inline">
+				                    <select class="form-control" id="idSelAgregarAsignatura">
+				                    	<option value="-1">-Seleccione Tipo-</option>
+				                    	<c:forEach var="tipoAsignatura" items="${tipoAsignaturaDto.tipoAsignaturas}">
+				                    		<option value="<c:out value='${tipoAsignatura.idTipoAsignatura}' />"><c:out value="${tipoAsignatura.descripcion}" /> </option>
+				                    	</c:forEach>
+				                    </select>
+				                    <div class="valid-feedback">
+                        					Correcto!
+                    			    </div>
+					                <div class="invalid-feedback">
+					                        Debe ingresar una asignatura válida
+					                </div>
+					                </div>
+				                </div>
+				            </div>
+				         </div>
 						</div>
 					</form>
 				</div>
@@ -117,13 +114,13 @@
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cerrar</button>
 					<button type="button" class="btn btn-primary"
-						id="idBtnGuardarCurso">Guardar</button>
+						id="idBtnGuardarAsignatura">Guardar</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Modal Editar Curso-->
+	<!-- Modal Editar Tipo Asignatura-->
 	<div class="modal fade" id="modalEditarCurso" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">

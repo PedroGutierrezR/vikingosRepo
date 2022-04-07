@@ -3,45 +3,35 @@ var $table = $('#tblListaAsignaturas')
 $(document).ready(function() {
 	const validaFormNuevoCurso = () => {
 
-		var idTxtAgregarNumeroNivel = false;
-		var idTxtAgregarNivel = false;
-		var idTxtAgregarABC = false;
+		var idTxtDescripcionAsignatura = false;
+		var idSelAgregarAsignatura = false;
 		
-		if ($("#idTxtAgregarNumeroNivel").val().length == 0) {
-			$("#idTxtAgregarNumeroNivel").addClass("is-invalid");
-			$("#idTxtAgregarNumeroNivel").removeClass("is-valid");
-			idTxtAgregarNumeroNivel = false;
+		if ($("#idTxtDescripcionAsignatura").val().length == 0) {
+			$("#idTxtDescripcionAsignatura").addClass("is-invalid");
+			$("#idTxtDescripcionAsignatura").removeClass("is-valid");
+			idTxtDescripcionAsignatura = false;
 		} else {
-			$("#idTxtAgregarNumeroNivel").removeClass("is-invalid");
-			$("#idTxtAgregarNumeroNivel").addClass("is-valid");
-			idTxtAgregarNumeroNivel = true;
+			$("#idTxtDescripcionAsignatura").removeClass("is-invalid");
+			$("#idTxtDescripcionAsignatura").addClass("is-valid");
+			idTxtDescripcionAsignatura = true;
 		}
 
-		if ($("#idTxtAgregarNivel").val().length == 0) {
-			$("#idTxtAgregarNivel").addClass("is-invalid");
-			$("#idTxtAgregarNivel").removeClass("is-valid");
-			idTxtAgregarNivel = false;
+		if ($("#idSelAgregarAsignatura").val().length == 0) {
+			$("#idSelAgregarAsignatura").addClass("is-invalid");
+			$("#idSelAgregarAsignatura").removeClass("is-valid");
+			idSelAgregarAsignatura = false;
 		} else {
-			$("#idTxtAgregarNivel").removeClass("is-invalid");
-			$("#idTxtAgregarNivel").addClass("is-valid");
-			idTxtAgregarNivel = true;
+			$("#idSelAgregarAsignatura").removeClass("is-invalid");
+			$("#idSelAgregarAsignatura").addClass("is-valid");
+			idSelAgregarAsignatura = true;
 		}
 
-		if ($("#idTxtAgregarABC").val().length == 0) {
-			$("#idTxtAgregarABC").addClass("is-invalid");
-			$("#idTxtAgregarABC").removeClass("is-valid");
-			idTxtAgregarABC = false;
-		} else {
-			$("#idTxtAgregarABC").removeClass("is-invalid");
-			$("#idTxtAgregarABC").addClass("is-valid");
-			idTxtAgregarABC = true;
-		}
-		return idTxtAgregarNumeroNivel && idTxtAgregarNivel && idTxtAgregarABC;
+		return idTxtDescripcionAsignatura && idSelAgregarAsignatura;
 	}
 
 
-	console.log("ready!", asignaturaDtoJson);
-
+	console.log("ready! ", asignaturaDtoJson);
+	
 	$table.bootstrapTable({
 		data: JSON.parse(asignaturaDtoJson).asignaturas,
 		pagination: true,
@@ -84,31 +74,30 @@ $(document).ready(function() {
 		]
 	});
 
-	$("#idBtnGuardarCurso").click(function() {
+	$("#idBtnGuardarAsignatura").click(function() {
 
-		var dataCurso = {
-			"numeroNivel": $("#idTxtAgregarNumeroNivel").val(),
-			"nivel": $("#idTxtAgregarNivel").val(),
-			"ABC": $("#idTxtAgregarABC").val()
+		var dataAsignatura = {
+			"descripcion": $("#idTxtDescripcionAsignatura").val(),
+			"idTipoAsignatura": $("#idSelAgregarAsignatura").val()
 		};
-		console.log("DataCurso: ", dataCurso);
+		console.log("DataAsignatura: ", dataAsignatura);
 
 		if (validaFormNuevoCurso()) {
 			$.ajax({
 				// En data puedes utilizar un objeto JSON, un array o un query string
-				data: { dataCurso, "accion": "crearCurso" },
+				data: { dataAsignatura, "accion": "crearAsignatura" },
 				//Cambiar a type: POST si necesario
 				type: "PUT",
 				// Formato de datos que se espera en la respuesta
 				dataType: "json",
 				// URL a la que se enviará la solicitud Ajax
-				url: "/schoolsystem-1.0.0/mantenedorcurso.srv",
+				url: "/schoolsystem-1.0.0/mantenedorasignatura.srv",
 			})
 				.done(function(data, textStatus, jqXHR) {
 					alert(data.mensaje);
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-					console.log("Cursos a refrescar", data.cursos);
-					$table.bootstrapTable('load', data.cursos);
+					console.log("Asignaturas a refrescar", data.asignaturas);
+					$table.bootstrapTable('load', data.asignaturas);
 					$table.bootstrapTable('refresh');
 
 				})
@@ -127,95 +116,78 @@ $(document).ready(function() {
 		}); */
 });
 
-let cursoDto;
+let asignaturaDto;
 
 function onClickEditar(row) {
 	//let rowObj = JSON.parse(row);
-	cursoDto = JSON.parse(row);
-	let split = cursoDto.descripcion.split(" ");
-	console.log(split);
+	asignaturaDto = JSON.parse(row);
 	//Limpiar campos del modal
-	$("#idTxtNumeroNivel").val("");
-	$("#idTxtNumeroNivel").attr("placeholder", "Campo actual: " + split[0]);
-	$("#idTxtNumeroNivel").removeClass("is-valid");
-	$("#idTxtNivel").val("");
-	$("#idTxtNivel").attr("placeholder", "Campo actual: " +  split[1]);
-	$("#idTxtNivel").removeClass("is-valid");
-	$("#idTxtABC").val("");
-	$("#idTxtABC").attr("placeholder", "Campo actual: " + split[2]);
-	$("#idTxtABC").removeClass("is-valid");
+	$("#idTxtDescripcionAsignatura").val("");
+	$("#idTxtDescripcionAsignatura").attr("placeholder", "Campo actual: ");
+	$("#idTxtDescripcionAsignatura").removeClass("is-valid");
+
 
 	console.log("Editar Json string:... ", row);
-	console.log("Editar Json object:... ", cursoDto);
+	console.log("Editar Json object:... ", asignaturaDto);
 	//console.log(rowObj.orden_id);
 
 }
 
-$("#idBtnEditarCurso").click(function() {
+$("#idBtnEditarAsignatura").click(function() {
 
-	const validaFormEditarCurso = () => {
+	const validaFormEditarAsignatura = () => {
 
-		var idTxtNumeroNivel = false;
-		var idTxtNivel = false;
-		var idTxtABC = false;
+		var idTxtDescripcionAsignatura = false;
+		var idSelAgregarAsignatura = false;
 		
-		if ($("#idTxtNumeroNivel").val().length == 0) {
-			$("#idTxtNumeroNivel").addClass("is-invalid");
-			$("#idTxtNumeroNivel").removeClass("is-valid");
-			idTxtNumeroNivel = false;
+		if ($("#idTxtDescripcionAsignatura").val().length == 0) {
+			$("#idTxtDescripcionAsignatura").addClass("is-invalid");
+			$("#idTxtDescripcionAsignatura").removeClass("is-valid");
+			idTxtDescripcionAsignatura = false;
 		} else {
-			$("#idTxtNumeroNivel").removeClass("is-invalid");
-			$("#idTxtNumeroNivel").addClass("is-valid");
-			idTxtNumeroNivel = true;
+			$("#idTxtDescripcionAsignatura").removeClass("is-invalid");
+			$("#idTxtDescripcionAsignatura").addClass("is-valid");
+			idTxtDescripcionAsignatura = true;
 		}
 
-		if ($("#idTxtNivel").val().length == 0) {
-			$("#idTxtNivel").addClass("is-invalid");
-			$("#idTxtNivel").removeClass("is-valid");
-			idTxtNivel = false;
+		if ($("#idSelAgregarAsignatura").val().length == 0) {
+			$("#idSelAgregarAsignatura").addClass("is-invalid");
+			$("#idSelAgregarAsignatura").removeClass("is-valid");
+			idSelAgregarAsignatura = false;
 		} else {
-			$("#idTxtNivel").removeClass("is-invalid");
-			$("#idTxtNivel").addClass("is-valid");
-			idTxtNivel = true;
+			$("#idSelAgregarAsignatura").removeClass("is-invalid");
+			$("#idSelAgregarAsignatura").addClass("is-valid");
+			idSelAgregarAsignatura = true;
 		}
 
-		if ($("#idTxtABC").val().length == 0) {
-			$("#idTxtABC").addClass("is-invalid");
-			$("#idTxtABC").removeClass("is-valid");
-			idTxtABC = false;
-		} else {
-			$("#idTxtABC").removeClass("is-invalid");
-			$("#idTxtABC").addClass("is-valid");
-			idTxtABC = true;
-		}
-		return idTxtNumeroNivel && idTxtNivel && idTxtABC;
+		return idTxtDescripcionAsignatura && idSelAgregarAsignatura;
 	}
 
-	var dataCurso = {
-		"idCurso": cursoDto.idCurso,
-		"numeroNivel": $("#idTxtNumeroNivel").val(),
-		"nivel": $("#idTxtNivel").val(),
-		"ABC": $("#idTxtABC").val()
-	};
 
-	console.log(dataCurso);
-	if (validaFormEditarCurso()) {
+		var dataAsignatura = {
+			"descripcion": $("#idTxtDescripcionAsignatura").val(),
+			"idTipoAsignatura": $("#idSelAgregarAsignatura").val()
+		};
+
+	console.log(dataAsignatura);
+	
+	if (validaFormEditarAsignatura()) {
 		$.ajax({
 			// En data puedes utilizar un objeto JSON, un array o un query string
-			data: { dataCurso, "accion": "actualizarCurso" },
+			data: { dataAsignatura, "accion": "actualizarAsignatura" },
 			//Cambiar a type: POST si necesario
 			type: "PUT",
 			// Formato de datos que se espera en la respuesta
 			dataType: "json",
 			// URL a la que se enviará la solicitud Ajax
-			url: "/schoolsystem-1.0.0/mantenedorcurso.srv",
+			url: "/schoolsystem-1.0.0/mantenedorasignatura.srv",
 		})
 			.done(function(data, textStatus, jqXHR) {
 				console.log("Data: " + data.mensaje);
 				alert(data.mensaje);
 				console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-				console.log("Cursos a refrescar", data.cursos);
-				$table.bootstrapTable('load', data.cursos);
+				console.log("Cursos a refrescar", data.asignaturas);
+				$table.bootstrapTable('load', data.asignaturas);
 				$table.bootstrapTable('refresh');
 
 			})

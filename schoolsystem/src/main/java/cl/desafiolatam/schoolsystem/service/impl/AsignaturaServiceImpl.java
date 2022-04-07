@@ -2,6 +2,7 @@ package cl.desafiolatam.schoolsystem.service.impl;
 
 import cl.desafiolatam.schoolsystem.dao.AsignaturaDao;
 import cl.desafiolatam.schoolsystem.dao.impl.AsignaturaDaoImpl;
+import cl.desafiolatam.schoolsystem.dao.model.Asignatura;
 import cl.desafiolatam.schoolsystem.dto.AsignaturaDto;
 import cl.desafiolatam.schoolsystem.service.AsignaturaService;
 
@@ -27,7 +28,9 @@ public class AsignaturaServiceImpl implements AsignaturaService {
 
 	@Override
 	public int addAsignatura(AsignaturaDto asignaturaDto) {
-		return 0;
+		Asignatura asignatura = new Asignatura();
+		asignatura = asignaturaDto.getAsignaturas().get(0);
+		return asignaturaDao.add(asignatura);
 	}
 
 }
