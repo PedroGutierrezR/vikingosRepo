@@ -6,22 +6,27 @@ import cl.desafiolatam.schoolsystem.service.CursoService;
 import cl.desafiolatam.schoolsystem.service.impl.CursoServiceImpl;
 
 public class CursoFacadeImpl implements CursoFacade{
+	
 	CursoService cursoService = null;
-	
-	
 	
 	public CursoFacadeImpl() {
 		super();
-		// TODO Auto-generated constructor stub
 		this.cursoService = new CursoServiceImpl();
 	}
 
-
-
 	@Override
 	public CursoDto getCursos() {
-		// TODO Auto-generated method stub
 		return this.cursoService.getCursos();
+	}
+
+	@Override
+	public int updateCurso(CursoDto cursoDto) {
+		return cursoService.updateCurso(cursoDto);
+	}
+
+	@Override
+	public int addCurso(CursoDto cursoDto) {
+		return cursoService.addCurso(cursoDto);
 	}
 
 }

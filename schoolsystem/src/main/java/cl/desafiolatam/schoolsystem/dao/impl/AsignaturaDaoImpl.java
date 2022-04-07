@@ -9,25 +9,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.NamingException;
-import cl.desafiolatam.schoolsystem.dao.CursoDao;
-import cl.desafiolatam.schoolsystem.dao.model.Alumno;
-import cl.desafiolatam.schoolsystem.dao.model.Curso;
+
+import cl.desafiolatam.schoolsystem.dao.AsignaturaDao;
+import cl.desafiolatam.schoolsystem.dao.model.Asignatura;
+import cl.desafiolatam.schoolsystem.dao.model.TipoAsignatura;
 import cl.desafiolatam.schoolsystem.dao.utils.ConnectionUtil;
 
-public class CursoDaoImpl implements CursoDao{
+public class AsignaturaDaoImpl implements AsignaturaDao {
 
 	@Override
-	public int add(Curso curso) {
+	public int add(Asignatura asignatura) {
 		Connection cn = null;
 		int resultado = 0;
 		try {
 			cn = ConnectionUtil.getConnection();
-			PreparedStatement st = cn.prepareStatement("INSERT INTO curso(id_curso, descripcion) VALUES (?, ?)");
+			PreparedStatement st = cn.prepareStatement("INSERT INTO asignatura(id_asignatura, descripcion, tipo_asignatura_id) VALUES (?, ?, ?)");
 				
 			int lastId = getLastId();
 			
 			st.setInt(1, (lastId + 1));
-			st.setString(2, curso.getDescripcion());
+			st.setString(2, asignatura.getDescripcion());
+			System.out.println(asignatura.getTipoAsignatura().getIdTipoAsignatura());
+			st.setInt(3, asignatura.getTipoAsignatura().getIdTipoAsignatura());
 			resultado = st.executeUpdate();
 			
 			st.close();
@@ -50,51 +53,55 @@ public class CursoDaoImpl implements CursoDao{
 	}
 
 	@Override
-	public List<Curso> getAll() {
-		
+	public List<Asignatura> getAll() {
 		Connection cn = null;
-		List<Curso> cursos = null;
-		
+		List<Asignatura> asignaturas = null;
+
 		try {
 			cn = ConnectionUtil.getConnection();
 			Statement st = cn.createStatement();
-			ResultSet rset = st.executeQuery("SELECT c.id_curso, c.descripcion FROM curso c ORDER BY c.id_curso");
-			cursos = new ArrayList<Curso>();
-			
-			while(rset.next()) {
+			ResultSet rset = st.executeQuery("SELECT a.id_asignatura, a.descripcion, a.tipo_asignatura_id, t.descripcion FROM asignatura a INNER JOIN tipo_asignatura t ON t.id_tipo_asignatura = a.tipo_asignatura_id ORDER BY a.id_asignatura");
+			asignaturas = new ArrayList<Asignatura>();
 
-				Curso curso = new Curso();
-				curso.setIdCurso(rset.getInt("id_curso"));
-				curso.setDescripcion(rset.getString("descripcion"));
-				cursos.add(curso);
-				
+			while (rset.next()) {
+
+				Asignatura asignatura = new Asignatura();
+				TipoAsignatura tipoAsignatura = new TipoAsignatura();
+				asignatura.setIdAsignatura(rset.getInt(1));
+				asignatura.setDescripcion(rset.getString(2));
+				tipoAsignatura.setIdTipoAsignatura(rset.getInt(3));
+				tipoAsignatura.setDescripcion(rset.getString(4));
+				asignatura.setTipoAsignatura(tipoAsignatura);
+				asignaturas.add(asignatura);
+
 			}
-			
+
 			rset.close();
-			
+
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				ConnectionUtil.closeConnection();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		return cursos;
+		return asignaturas;
+
 	}
 
 	@Override
-	public Alumno getById(int idCurso) {
+	public Asignatura getById(int idAsignatura) {
 		return null;
 	}
 
 	@Override
-	public int update(Curso curso) {
+	public int update(Asignatura asignatura) {
 		
-		String sql = "UPDATE curso SET descripcion = ? WHERE id_curso = ?";
+		String sql = "UPDATE asignatura SET descripcion = ?, tipo_asignatura_id = ? WHERE id_asignatura = ?";
 		
 		Connection cn = null;
 		int resultado = 0;
@@ -102,8 +109,9 @@ public class CursoDaoImpl implements CursoDao{
 			cn = ConnectionUtil.getConnection();
 			PreparedStatement st = cn.prepareStatement(sql);
 			
-			st.setString(1, curso.getDescripcion());
-			st.setInt(2, curso.getIdCurso());
+			st.setString(1, asignatura.getDescripcion());
+			st.setInt(2, asignatura.getTipoAsignatura().getIdTipoAsignatura());
+			st.setInt(3, asignatura.getIdAsignatura());
 				
 			resultado = st.executeUpdate();
 			
@@ -124,22 +132,15 @@ public class CursoDaoImpl implements CursoDao{
 		}
 
 		return resultado;
-		
 	}
-
-	@Override
-	public int deleteById(int idCurso) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	public int getLastId() {
 		
 		Connection cn = null;
 		int lastId = 0;
 		try {
 			cn = ConnectionUtil.getConnection();
-			PreparedStatement pt = cn.prepareStatement("SELECT MAX(id_curso) AS max FROM curso");
+			PreparedStatement pt = cn.prepareStatement("SELECT MAX(id_asignatura) AS max FROM asignatura");
 			ResultSet rset = pt.executeQuery();
 			
 			if(rset.next()) {
@@ -161,5 +162,5 @@ public class CursoDaoImpl implements CursoDao{
 		}	
 		return lastId;
 	}
-	
+
 }
