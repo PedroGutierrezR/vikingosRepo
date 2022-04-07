@@ -58,6 +58,10 @@ $(document).ready(function() {
 			title: 'Descripcion',
 			width: '180px'
 		}, {
+			field: 'tipoAsignatura.descripcion',
+			title: 'Tipo de asignatura',
+			width: '180px'
+		}, {
 			field: '',
 			title: 'Acción',
 			align: 'center',

@@ -3,8 +3,9 @@ package cl.desafiolatam.schoolsystem.dao.model;
 public class Asignatura {
 
 	private int idAsignatura;
-	private String decripcion;
-
+	private String descripcion;
+	private TipoAsignatura tipoAsignatura;
+	
 	public int getIdAsignatura() {
 		return idAsignatura;
 	}
@@ -13,12 +14,20 @@ public class Asignatura {
 		this.idAsignatura = idAsignatura;
 	}
 
-	public String getDecripcion() {
-		return decripcion;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setDecripcion(String decripcion) {
-		this.decripcion = decripcion;
+	public void setDescripcion(String decripcion) {
+		this.descripcion = decripcion;
+	}
+
+	public TipoAsignatura getTipoAsignatura() {
+		return tipoAsignatura;
+	}
+
+	public void setTipoAsignatura(TipoAsignatura tipoAsignatura) {
+		this.tipoAsignatura = tipoAsignatura;
 	}
 
 }

@@ -11,6 +11,7 @@ import javax.naming.NamingException;
 
 import cl.desafiolatam.schoolsystem.dao.AsignaturaDao;
 import cl.desafiolatam.schoolsystem.dao.model.Asignatura;
+import cl.desafiolatam.schoolsystem.dao.model.TipoAsignatura;
 import cl.desafiolatam.schoolsystem.dao.utils.ConnectionUtil;
 
 public class AsignaturaDaoImpl implements AsignaturaDao {
@@ -28,14 +29,18 @@ public class AsignaturaDaoImpl implements AsignaturaDao {
 		try {
 			cn = ConnectionUtil.getConnection();
 			Statement st = cn.createStatement();
-			ResultSet rset = st.executeQuery("SELECT id_asignatura, descripcion FROM asignatura ORDER BY c.id_asignatura");
+			ResultSet rset = st.executeQuery("SELECT a.id_asignatura, a.descripcion, a.tipo_asignatura_id, t.descripcion FROM asignatura a INNER JOIN tipo_asignatura t ON t.id_tipo_asignatura = a.tipo_asignatura_id ORDER BY a.id_asignatura");
 			asignaturas = new ArrayList<Asignatura>();
 
 			while (rset.next()) {
 
 				Asignatura asignatura = new Asignatura();
-				asignatura.setIdAsignatura(rset.getInt("id_asignatura"));
-				asignatura.setDecripcion(rset.getString("descripcion"));
+				TipoAsignatura tipoAsignatura = new TipoAsignatura();
+				asignatura.setIdAsignatura(rset.getInt(1));
+				asignatura.setDescripcion(rset.getString(2));
+				tipoAsignatura.setIdTipoAsignatura(rset.getInt(3));
+				tipoAsignatura.setDescripcion(rset.getString(4));
+				asignatura.setTipoAsignatura(tipoAsignatura);
 				asignaturas.add(asignatura);
 
 			}
