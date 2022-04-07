@@ -1,4 +1,4 @@
-var $table = $('#tblListaCursos')
+var $table = $('#tblListaAsignaturas')
 
 $(document).ready(function() {
 	const validaFormNuevoCurso = () => {
@@ -40,17 +40,17 @@ $(document).ready(function() {
 	}
 
 
-	console.log("ready!", cursoDtoJson);
+	console.log("ready!", asignaturaDtoJson);
 
 	$table.bootstrapTable({
-		data: JSON.parse(cursoDtoJson).cursos,
+		data: JSON.parse(asignaturaDtoJson).asignaturas,
 		pagination: true,
 		search: true,
 		pageSize: 5,
 		pageList: [5, 10],
 		locale: "es-ES",
 		columns: [{
-			field: 'idCurso',
+			field: 'idAsignatura',
 			title: 'ID',
 			width: '40px'
 		}, {

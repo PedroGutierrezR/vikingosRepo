@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-    	let cursoDtoJson = '<%=request.getAttribute("cursoDtoJson")%>';
+    	let asignaturaDtoJson = '<%=request.getAttribute("asignaturaDtoJson")%>';
 </script>
 
 <link rel="stylesheet"
@@ -46,12 +46,12 @@
 <script
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
 <link rel="stylesheet" href="assets/css/init.css" />
-<script src="assets/js/mantenedoracursos.js"></script>
+<script src="assets/js/mantenedoraasignaturas.js"></script>
 
 <title>Insert title here</title>
 </head>
 <body>
-	<table class="table table-hover" id="tblListaCursos">
+	<table class="table table-hover" id="tblListaAsignaturas">
 	</table>
 	<!-- Button trigger modal -->
 	<button type="button" class="btn btn-dark" data-toggle="modal"

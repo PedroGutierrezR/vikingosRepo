@@ -1,8 +1,5 @@
 package cl.desafiolatam.schoolsystem.dao.model;
 
-import java.util.Date;
-import java.util.List;
-
 public class Alumno {
 	private int idAlumno;
 	private String nombre;
