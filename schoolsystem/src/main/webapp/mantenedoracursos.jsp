@@ -76,9 +76,33 @@
 						<div class=form-row>
 							<div class="col-md-4 mb-3">
 								<div class="form-group">
-									<label for="idTxtDescipcion">Descripción</label>
+									<label for="idTxtAgregarNumeroNivel">Número Nivel</label>
 									<div class="form-inline">
-										<input type="text" class="form-control" id="idTxtDescipcion"
+										<input type="number" class="form-control" id="idTxtAgregarNumeroNivel"
+											placeholder="Ingrese Descripcion" required>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar una
+											descripción válida</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-3">
+								<div class="form-group">
+									<label for="idTxtAgregarNivel">Básico | Media</label>
+									<div class="form-inline">
+										<input type="text" class="form-control" id="idTxtAgregarNivel"
+											placeholder="Ingrese Descripcion" required>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar una
+											descripción válida</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-3">
+								<div class="form-group">
+									<label for="idTxtAgregarABC">A | B | C</label>
+									<div class="form-inline">
+										<input type="text" class="form-control" id="idTxtAgregarABC"
 											placeholder="Ingrese Descripcion" required>
 										<div class="valid-feedback">Correcto!</div>
 										<div class="invalid-feedback">Debe ingresar una

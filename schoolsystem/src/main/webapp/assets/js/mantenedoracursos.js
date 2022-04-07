@@ -3,19 +3,39 @@ var $table = $('#tblListaCursos')
 $(document).ready(function() {
 	const validaFormNuevoCurso = () => {
 
-		var txtDescripcion = false;
+		var idTxtAgregarNumeroNivel = false;
+		var idTxtAgregarNivel = false;
 
-		if ($("#idTxtDescipcion").val().length == 0) {
-			$("#idTxtDescipcion").addClass("is-invalid");
-			$("#idTxtDescipcion").removeClass("is-valid");
-			txtDescripcion = false;
+		if ($("#idTxtAgregarNumeroNivel").val().length == 0) {
+			$("#idTxtAgregarNumeroNivel").addClass("is-invalid");
+			$("#idTxtAgregarNumeroNivel").removeClass("is-valid");
+			idTxtAgregarNumeroNivel = false;
 		} else {
-			$("#idTxtDescipcion").removeClass("is-invalid");
-			$("#idTxtDescipcion").addClass("is-valid");
-			txtDescripcion = true;
+			$("#idTxtAgregarNumeroNivel").removeClass("is-invalid");
+			$("#idTxtAgregarNumeroNivel").addClass("is-valid");
+			idTxtAgregarNumeroNivel = true;
 		}
 
-		return txtDescripcion;
+		if ($("#idTxtAgregarNivel").val().length == 0) {
+			$("#idTxtAgregarNivel").addClass("is-invalid");
+			$("#idTxtAgregarNivel").removeClass("is-valid");
+			idTxtAgregarNivel = false;
+		} else {
+			$("#idTxtAgregarNivel").removeClass("is-invalid");
+			$("#idTxtAgregarNivel").addClass("is-valid");
+			idTxtAgregarNivel = true;
+		}
+
+		if ($("#idTxtAgregarABC").val().length == 0) {
+			$("#idTxtAgregarABC").addClass("is-invalid");
+			$("#idTxtAgregarABC").removeClass("is-valid");
+			idTxtAgregarABC = false;
+		} else {
+			$("#idTxtAgregarABC").removeClass("is-invalid");
+			$("#idTxtAgregarABC").addClass("is-valid");
+			idTxtAgregarABC = true;
+		}
+		return idTxtAgregarNumeroNivel && idTxtAgregarNivel && idTxtAgregarABC;
 	}
 
 
@@ -60,9 +80,11 @@ $(document).ready(function() {
 	});
 
 	$("#idBtnGuardarCurso").click(function() {
-		
+
 		var dataCurso = {
-			"descripcion": $("#idTxtEditarDescipcion").val()
+			"numeroNivel": $("#idTxtAgregarNumeroNivel").val(),
+			"nivel": $("#idTxtAgregarNivel").val(),
+			"ABC": $("#idTxtAgregarABC").val()
 		};
 		console.log("DataCurso: ", dataCurso);
 
@@ -75,7 +97,7 @@ $(document).ready(function() {
 				// Formato de datos que se espera en la respuesta
 				dataType: "json",
 				// URL a la que se enviará la solicitud Ajax
-				url: "/schoolsystem-1.0.0/mantenedoracurso.srv",
+				url: "/schoolsystem-1.0.0/mantenedorcurso.srv",
 			})
 				.done(function(data, textStatus, jqXHR) {
 					alert(data.mensaje);
@@ -92,12 +114,12 @@ $(document).ready(function() {
 
 	});
 
-/* 	$("#idTxtDescipcion").bind('keypress', function(e) {
-		var keyCode = (e.which) ? e.which : e.keyCode
-		console.log(keyCode);
-		//return !(keyCode > 31 && (keyCode < 48 || keyCode > 90) && (keyCode < 97 || keyCode > 122));
-		return (keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || keyCode === 180;
-	}); */
+	/* 	$("#idTxtDescipcion").bind('keypress', function(e) {
+			var keyCode = (e.which) ? e.which : e.keyCode
+			console.log(keyCode);
+			//return !(keyCode > 31 && (keyCode < 48 || keyCode > 90) && (keyCode < 97 || keyCode > 122));
+			return (keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || keyCode === 180;
+		}); */
 });
 
 let cursoDto;

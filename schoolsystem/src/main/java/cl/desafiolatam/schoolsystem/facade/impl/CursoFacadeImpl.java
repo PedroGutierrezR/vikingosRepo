@@ -20,8 +20,13 @@ public class CursoFacadeImpl implements CursoFacade{
 	}
 
 	@Override
-	public int update(CursoDto cursoDto) {
+	public int updateCurso(CursoDto cursoDto) {
 		return cursoService.updateCurso(cursoDto);
+	}
+
+	@Override
+	public int addCurso(CursoDto cursoDto) {
+		return cursoService.addCurso(cursoDto);
 	}
 
 }

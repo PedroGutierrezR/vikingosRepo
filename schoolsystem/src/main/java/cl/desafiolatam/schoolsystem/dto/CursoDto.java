@@ -3,8 +3,6 @@ package cl.desafiolatam.schoolsystem.dto;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
-
-import cl.desafiolatam.schoolsystem.dao.model.Alumno;
 import cl.desafiolatam.schoolsystem.dao.model.Curso;
 
 public class CursoDto {
@@ -26,6 +24,14 @@ public class CursoDto {
 		this.cursos.add(curso);
 	}
 
+	public void setCursoFromJsonAgregar(String json) {
+		
+		Curso curso = new Curso();
+		String dataSplit[] = json.split("&");
+		curso.setDescripcion(dataSplit[0].split("=")[1] + " " + dataSplit[1].split("=")[1] + " " + dataSplit[2].split("=")[1]);
+		this.cursos.add(curso);
+	}
+	
 	public List<Curso> getCursos() {
 		return cursos;
 	}

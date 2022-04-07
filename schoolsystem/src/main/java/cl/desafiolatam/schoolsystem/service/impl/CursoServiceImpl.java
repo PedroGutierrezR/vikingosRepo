@@ -2,6 +2,7 @@ package cl.desafiolatam.schoolsystem.service.impl;
 
 import cl.desafiolatam.schoolsystem.dao.CursoDao;
 import cl.desafiolatam.schoolsystem.dao.impl.CursoDaoImpl;
+import cl.desafiolatam.schoolsystem.dao.model.Curso;
 import cl.desafiolatam.schoolsystem.dto.CursoDto;
 import cl.desafiolatam.schoolsystem.service.CursoService;
 
@@ -23,6 +24,13 @@ public class CursoServiceImpl implements CursoService{
 	@Override
 	public int updateCurso(CursoDto cursoDto) {
 		return cursoDao.update(cursoDto.getCursos().get(0));
+	}
+
+	@Override
+	public int addCurso(CursoDto cursoDto) {
+		Curso curso = new Curso();
+		curso = cursoDto.getCursos().get(0);
+		return cursoDao.add(curso);
 	}
 
 }

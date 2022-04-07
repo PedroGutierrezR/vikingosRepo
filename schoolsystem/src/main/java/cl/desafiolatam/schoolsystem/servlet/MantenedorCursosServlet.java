@@ -59,18 +59,30 @@ public class MantenedorCursosServlet extends HttpServlet {
 		
 		CursoDto cursoDto = new CursoDto();
 		
+		int resultado = 0;
+		
+		System.out.println(accion);
+		
 		if(accion.equalsIgnoreCase("actualizarCurso")) {
 			
 			cursoDto.setCursoFromJson(json);
-			int resultado = this.cursoFacade.update(cursoDto);
-			System.out.println(resultado);
+			resultado = this.cursoFacade.updateCurso(cursoDto);
+
 			if(resultado == 1) {
 				cursoDto = this.cursoFacade.getCursos();
-				System.out.println("Estoy dentro");
 				cursoDto.setMensaje("Actualizado Correctamente");
 			}
-
-		} 
+		} else if(accion.equalsIgnoreCase("crearCurso")) {
+			cursoDto.setCursoFromJsonAgregar(json);
+			resultado = this.cursoFacade.addCurso(cursoDto);
+			System.out.println("antes de entrar");
+			if(resultado == 1) {
+				System.out.println("entré");
+				cursoDto = this.cursoFacade.getCursos();
+				cursoDto.setMensaje("Agregado Correctamente");
+			}
+			
+		}
 //		else if(accion.equalsIgnoreCase("crearAlumno")) {
 //			alumnoDto.setAlumnoFromJson(json);	
 //			alumnoDto = this.alumnoFacade.addAlumno(alumnoDto);
