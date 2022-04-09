@@ -21,8 +21,8 @@ public class MantenedorAlumnosServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private AlumnoFacade alumnoFacade = null;
-	private CursoFacade cursoFacade = null;
+	private AlumnoFacade alumnoFacade = new AlumnoFacadeImpl();
+	private CursoFacade cursoFacade = new CursoFacadeImpl();
 	
 	
 	@Override
