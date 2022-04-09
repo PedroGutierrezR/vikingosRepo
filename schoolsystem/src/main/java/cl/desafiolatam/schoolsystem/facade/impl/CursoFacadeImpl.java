@@ -1,5 +1,6 @@
 package cl.desafiolatam.schoolsystem.facade.impl;
 
+import cl.desafiolatam.schoolsystem.dto.AlumnoDto;
 import cl.desafiolatam.schoolsystem.dto.CursoDto;
 import cl.desafiolatam.schoolsystem.facade.CursoFacade;
 import cl.desafiolatam.schoolsystem.service.CursoService;
@@ -22,6 +23,14 @@ public class CursoFacadeImpl implements CursoFacade{
 	public CursoDto getCursos() {
 		// TODO Auto-generated method stub
 		return this.cursoService.getCursos();
+	}
+
+
+
+	@Override
+	public int update(AlumnoDto alumnoDto) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

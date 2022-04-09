@@ -49,87 +49,16 @@
 <link rel="stylesheet" href="assets/css/init.css" />
 <script src="assets/js/mantenedoralumnos.js"></script>
 
-<title>Mantenedor Alumnos </title>
+<title>Insert title here</title>
 </head>
 <body>
-	<header id="idHeader">
-        <nav id="menu" class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Imagen</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Alumno
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" id="idMenuMantenedorAlumno" href="/schoolsystem/mantenedoralumnos.srv">Mantenedor de alumnos</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Profesores
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" id="idMenuMantenedorProfesores" href="#">Mantenedor de profesores</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            General
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" id="idMenuMantenedorCursos" href="#">Mantenedor de cursos</a>
-                            <a class="dropdown-item" id="idMenuMantenedorAsignaturas" href="#">Mantenedor de asignaturas</a>
-                        </div>
-                        
-                    </li>
-                </ul>
-            </div>
-            <!-- <span class="navbar-text logOutData">
-                Usuario Conectado
-            </span>
-            <span class="navbar-text">
-                <form class="form-inline">
-                    <button class="btn btn-outline-primary" type="button">
-                        <span class="bi bi-arrow-bar-right" >
-                    </button>
-                </form>
-            </span> -->
-        </nav>
-    </header>
-    <br> <br>
 
-   <div class="container mb-5 pb-3">
 	<table class="table table-hover" id="tblListaAlumnos">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellido</th>
-      <th scope="col">Fecha Nacimiento</th>
-      <th scope="col">Curso</th>
-      <th scope="col">Modificar/Eliminar</th>
-    </tr>
-  </thead>
-  <c:forEach items="${alumnos}" var="alumno">
-		
-		</c:forEach>
-</table>
-</div>
+	</table>
 	<!-- Button trigger modal -->
 	<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalNuevoAlumno">Agregar Alumno</button>
 
-	<!-- Modal -->
+	<!-- Modal Agregar Alumno-->
 	<div class="modal fade" id="modalNuevoAlumno" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
@@ -217,6 +146,121 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal Editar Alumno-->
+	<div class="modal fade" id="modalEditarAlumno" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Editar alumno</h5>
+					<h3 id="ponerIdAlumno"></h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form class="needs-validation" novalidate>
+						<div class=form-row>
+				            <div class="col-md-4 mb-3">
+				                <div class="form-group">
+				                    <label for="idTxtEditarNombre">Nombre</label>
+				                    <div class="form-inline">
+				                        <input type="text" class="form-control" id="idTxtEditarNombre" placeholder="Ingrese Nombre" required>
+				                        <input type="text" class="d-none form-control" id="idTxtEditarId" required>				        
+				                        <div class="valid-feedback">
+                        					Correcto!
+                    					</div>
+					                    <div class="invalid-feedback">
+					                        Debe ingresar un nombre válido
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="col-md-4 mb-3">
+				                <div class="form-group">
+				                    <label for="idTxtEditarApellido">Apellido</label>
+				                    <div class="form-inline">
+				                        <input type="text" class="form-control" id="idTxtEditarApellido" placeholder="Ingrese Apellido" required>
+				                        <div class="valid-feedback">
+                        					Correcto!
+                    					</div>
+					                    <div class="invalid-feedback">
+					                        Debe ingresar un apellido válido
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="col-md-4 mb-3">
+				                <div class="form-group">
+				                    <label for="idTxtEditarFecNacimiento">F. Nacimiento</label>
+				                    <div class="form-inline">
+				                        <input type="date" class="form-control" id="idTxtEditarFecNacimiento" placeholder="Ingrese Fecha Nacimiento" required>
+				                        <div class="valid-feedback">
+                        					Correcto!
+                    					</div>
+					                    <div class="invalid-feedback">
+					                        Debe ingresar una fecha válida
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>
+				         </div>
+				         <div class="form-row">
+				            <div class="col-md-4 mb-3">
+				                <div class="form-group">
+				                    <label for="idSelEditarCurso">Curso</label>
+				                    <select class="form-control" id="idSelEditarCurso">
+				                    	<option value="-1">-Seleccione Curso-</option>
+				                    	<c:forEach var="curso" items="${cursoDto.cursos}">
+				                    		<option value="<c:out value='${curso.idCurso}' />"><c:out value="${curso.descripcion}" /> </option>
+				                    	</c:forEach>
+				                    </select>
+				                    <div class="valid-feedback">
+                        					Correcto!
+                    					</div>
+					                    <div class="invalid-feedback">
+					                        Debe ingresar un curso válido
+					                    </div>
+				                </div>
+				            </div>
+				         </div>
+			    	</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" id=idBtnEditarAlumno>Enviar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<!-- Modal Eliminar Alumno-->
+	<div class="modal fade" id="modalEliminarAlumno" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body text-center">
+					<h2>¿Está seguro de eliminar al alumno?</h2>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" id=idBtnEliminarAlumno>Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>

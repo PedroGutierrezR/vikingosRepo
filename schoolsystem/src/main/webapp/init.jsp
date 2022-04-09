@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%> 
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -62,7 +62,7 @@
                             Alumno
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" id="idMenuMantenedorAlumno" href="/schoolsystem/mantenedoralumnos.srv">Mantenedor de alumnos</a>
+                            <a class="dropdown-item" id="idMenuMantenedorAlumno" href="">Mantenedor de alumnos</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -80,23 +80,14 @@
                             General
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" id="idMenuMantenedorCursos" href="#">Mantenedor de cursos</a>
+                            <a class="dropdown-item" id="idMenuMantenedorCursos" href="/schoolsystem/mantenedorcursos.srv">Mantenedor de cursos</a>
                             <a class="dropdown-item" id="idMenuMantenedorAsignaturas" href="#">Mantenedor de asignaturas</a>
                         </div>
                         
                     </li>
                 </ul>
             </div>
-            <!-- <span class="navbar-text logOutData">
-                Usuario Conectado
-            </span>
-            <span class="navbar-text">
-                <form class="form-inline">
-                    <button class="btn btn-outline-primary" type="button">
-                        <span class="bi bi-arrow-bar-right" >
-                    </button>
-                </form>
-            </span> -->
+           
         </nav>
     </header>
     <div id="idContenido" class="container">

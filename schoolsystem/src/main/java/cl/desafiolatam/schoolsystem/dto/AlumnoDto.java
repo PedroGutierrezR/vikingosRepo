@@ -11,9 +11,8 @@ import cl.desafiolatam.schoolsystem.dao.model.Curso;
 public class AlumnoDto {
 	private List<Alumno> alumnos;
 	private String mensajeNuevoAlumno;
+	private String mensaje;
 	
-	
-
 	public AlumnoDto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -42,6 +41,20 @@ public class AlumnoDto {
 		
 		this.alumnos.add(alumno);
 	}
+	
+	public void setEditarAlumnoFromJson(String json) {
+		Alumno alumno = new Alumno();
+		Curso curso = new Curso();
+		String dataSplit[] = json.split("&");
+		alumno.setIdAlumno(Integer.parseInt(dataSplit[0].split("=")[1]));
+		alumno.setNombre(dataSplit[1].split("=")[1]);
+		alumno.setApellido(dataSplit[2].split("=")[1]);
+		alumno.setFechaNac(dataSplit[3].split("=")[1]);
+		curso.setIdCurso(Integer.parseInt(dataSplit[4].split("=")[1]));
+		alumno.setCurso(curso);
+		
+		this.alumnos.add(alumno);
+	}
 
 	@Override
 	public String toString() {
@@ -56,6 +69,14 @@ public class AlumnoDto {
 
 	public void setMensajeNuevoAlumno(String mensajeNuevoAlumno) {
 		this.mensajeNuevoAlumno = mensajeNuevoAlumno;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 
 }

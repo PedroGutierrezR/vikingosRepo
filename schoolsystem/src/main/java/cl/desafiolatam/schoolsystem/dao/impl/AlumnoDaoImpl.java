@@ -68,7 +68,7 @@ public class AlumnoDaoImpl implements AlumnoDao{
 			cn = ConnectionUtil.getConnection();
 			Statement st = cn.createStatement();
 			ResultSet rset = st.executeQuery("SELECT a.id_alumno, a.nombre, a.apellido, a.fecha_nac, a.curso_id, c.descripcion\r\n"
-					+ "	FROM alumno a, curso c where a.curso_id = c.id_curso");
+					+ "	FROM alumno a, curso c where a.curso_id = c.id_curso ORDER BY a.id_alumno");
 			alumnos = new ArrayList<Alumno>();
 			while(rset.next()) {
 				Alumno alumno = new Alumno();
@@ -114,7 +114,42 @@ public class AlumnoDaoImpl implements AlumnoDao{
 	@Override
 	public int update(Alumno alumno) {
 		// TODO Auto-generated method stub
-		return 0;
+		//return 0;
+		String sql = "UPDATE alumno SET nombre = ?, apellido = ?, fecha_nac = ?, curso_id = ? WHERE id_alumno = ?";
+		
+		Connection cn = null;
+		int resultado = 0;
+		try {
+			cn = ConnectionUtil.getConnection();
+			PreparedStatement st = cn.prepareStatement(sql);
+			
+			st.setString(1, alumno.getNombre());
+			st.setString(2, alumno.getApellido());
+			st.setDate(3, Date.valueOf(alumno.getFechaNac()));
+			st.setInt(4, alumno.getCurso().getIdCurso());
+			st.setInt(5, alumno.getIdAlumno());
+				
+			resultado = st.executeUpdate();
+			
+			st.close();
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				ConnectionUtil.closeConnection();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return resultado;
+		
 	}
 
 	@Override
