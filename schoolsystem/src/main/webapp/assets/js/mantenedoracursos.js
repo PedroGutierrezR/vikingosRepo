@@ -1,4 +1,5 @@
 var $table = $('#tblListaCursos')
+const baseUrl = $("#baseUrl").val();
 
 $(document).ready(function() {
 	const validaFormNuevoCurso = () => {
@@ -98,7 +99,7 @@ $(document).ready(function() {
 				// Formato de datos que se espera en la respuesta
 				dataType: "json",
 				// URL a la que se enviará la solicitud Ajax
-				url: "/schoolsystem-1.0.0/mantenedorcurso.srv",
+				url: `${baseUrl}/mantenedorcurso.srv`,
 			})
 				.done(function(data, textStatus, jqXHR) {
 					alert(data.mensaje);
@@ -204,7 +205,7 @@ $("#idBtnEditarCurso").click(function() {
 			// Formato de datos que se espera en la respuesta
 			dataType: "json",
 			// URL a la que se enviará la solicitud Ajax
-			url: "/schoolsystem-1.0.0/mantenedorcurso.srv",
+			url: `${baseUrl}/mantenedorcurso.srv`,
 		})
 			.done(function(data, textStatus, jqXHR) {
 				console.log("Data: " + data.mensaje);

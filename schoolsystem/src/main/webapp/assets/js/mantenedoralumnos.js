@@ -1,4 +1,5 @@
 var $table = $('#tblListaAlumnos')
+const baseUrl = $("#baseUrl").val();
 
 $(document).ready(function() {
 	const validaFormNuevoAlumno = () => {
@@ -133,7 +134,7 @@ $(document).ready(function() {
 				// Formato de datos que se espera en la respuesta
 				dataType: "json",
 				// URL a la que se enviará la solicitud Ajax
-				url: "/schoolsystem-1.0.0/mantenedoralumnos.srv",
+				url: `${baseUrl}/mantenedoralumnos.srv`,
 			})
 				.done(function(data, textStatus, jqXHR) {
 					alert(data.mensajeNuevoAlumno);
@@ -197,7 +198,7 @@ $("#idBtnEditarAlumno").click(function() {
 		// Formato de datos que se espera en la respuesta
 		dataType: "json",
 		// URL a la que se enviará la solicitud Ajax
-		url: "/schoolsystem-1.0.0/mantenedoralumnos.srv",
+		url: `${baseUrl}/mantenedoralumnos.srv`,
 	})
 		.done(function(data, textStatus, jqXHR) {
 			alert(data.mensaje);
@@ -235,7 +236,7 @@ $("#idBtnEliminarAlumno").click(function() {
 		// Formato de datos que se espera en la respuesta
 		dataType: "json",
 		// URL a la que se enviará la solicitud Ajax
-		url: "/schoolsystem-1.0.0/mantenedoralumnos.srv",
+		url: `${baseUrl}/mantenedoralumnos.srv`,
 	})
 		.done(function(data, textStatus, jqXHR) {
 			alert(data.mensaje);

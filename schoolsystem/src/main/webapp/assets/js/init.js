@@ -1,8 +1,27 @@
 $(document).ready(function() {
+	const baseUrl = $("#baseUrl").val();
+
+	let asignaturasLoaded = false;
+	let cursosLoaded = false;
+	let alumnosLoaded = false;
+	let profesoresLoaded = false;
+
+	const reset = () => {
+		$("#home").hide();
+		$("#asignaturas").hide();
+		$("#cursos").hide();
+		$("#profesores").hide();
+		$("#alumnos").hide();
+	}
 
 	// Load Mantenedor Alumno
 	const loadMantenedorAlumno = () => {
-		$("#idContenido").load('/schoolsystem-1.0.0/mantenedoralumnos.srv');
+		reset();
+		if (!alumnosLoaded) {
+			alumnosLoaded = true;
+			$("#alumnos").load(`${baseUrl}/mantenedoralumnos.srv`);
+		}
+		$("#alumnos").show();
 	}
 
 	$("#idMenuMantenedorAlumno").click(function(event) {
@@ -12,7 +31,12 @@ $(document).ready(function() {
 
 	// Load Mantenedor Profesor
 	const loadMantenedorProfesor = () => {
-		$("#idContenido").load('/schoolsystem-1.0.0/mantenedorprofesor.srv');
+		reset();
+		if (!profesoresLoaded) {
+			profesoresLoaded = true;
+			$("#profesores").load(`${baseUrl}/mantenedorprofesor.srv`);
+		}
+		$("#profesores").show();
 	}
 
 	$("#idMenuMantenedorProfesores").click(function(event) {
@@ -22,7 +46,12 @@ $(document).ready(function() {
 
 	// Load Mantenedor Curso
 	const loadMantenedorCurso = () => {
-		$("#idContenido").load('/schoolsystem-1.0.0/mantenedorcurso.srv');
+		reset();
+		if (!cursosLoaded) {
+			cursosLoaded = true;
+			$("#cursos").load(`${baseUrl}/mantenedorcurso.srv`);
+		}
+		$("#cursos").show();
 	}
 
 	$("#idMenuMantenedorCursos").click(function(event) {
@@ -32,7 +61,12 @@ $(document).ready(function() {
 
 	// Load Mantenedor Asignatura
 	const loadMantenedorAsignatura = () => {
-		$("#idContenido").load('/schoolsystem-1.0.0/mantenedorasignatura.srv');
+		reset();
+		if (!asignaturasLoaded) {
+			asignaturasLoaded = true;
+			$("#asignaturas").load(`${baseUrl}/mantenedorasignatura.srv`);
+		}
+		$("#asignaturas").show();
 	}
 
 	$("#idMenuMantenedorAsignaturas").click(function(event) {

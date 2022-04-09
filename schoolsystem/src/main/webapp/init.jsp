@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +45,7 @@
 </head>
 <body>
 	<header id="idHeader">
+	   	<input type="hidden" id="baseUrl" value="${pageContext.request.contextPath}" />
 		<nav id="menu" class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#">Imagen</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -100,10 +101,12 @@
             </span> -->
 		</nav>
 	</header>
-	<div id="idContenido" class="container">
+	<div id="home" class="container">
 		<h1 class="text-center mt-4">Bienvenidos a SchoolSystem</h1>
 	</div>
-
-	<footer id="idFooter"> pie de página </footer>
+	<div id="asignaturas" class="container"></div>
+	<div id="cursos" class="container"></div>
+	<div id="alumnos" class="container"></div>
+	<div id="profesores" class="container"></div>
 </body>
 </html>
