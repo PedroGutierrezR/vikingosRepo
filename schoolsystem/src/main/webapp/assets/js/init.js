@@ -12,7 +12,7 @@ $(document).ready(function() {
 
 	// Load Mantenedor Profesor
 	const loadMantenedorProfesor = () => {
-		$("#idContenido").load('/schoolsystem-1.0.0/mantenedorprofesor.srv');
+		$("#idContenido").load('/schoolsystem-1.0.0/mantenedorprofesores.srv');
 	}
 
 	$("#idMenuMantenedorProfesores").click(function(event) {
