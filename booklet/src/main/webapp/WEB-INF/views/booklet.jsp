@@ -52,8 +52,8 @@
 			<span class="navbar-brand mb-0 h1">Booklet</span>
 		</div>
 	</nav>
-	<main class="my-5">
-		<section class="container my-5">
+	<main class="my-3">
+		<section class="container">
 			<table id="myTable" class="table table-hover">
 			</table>
 			<!-- Button trigger modal -->
