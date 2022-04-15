@@ -17,9 +17,8 @@ public class BookletServiceImpl implements BookletService {
 	private LibroDto libroDto;
 	
 	@Override
-	public int createBook() {
-		
-		return 0;
+	public int createBook(Libro libro) {
+		return bookletDao.createBook(libro);
 	}
 
 	@Override

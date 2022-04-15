@@ -136,9 +136,34 @@ $(document).ready(function() {
 
 		if (validaFormNuevoLibro()) {
 			console.log("Todo bien");
+
+			$.ajax({
+				// En data puedes utilizar un objeto JSON, un array o un query string
+				data: JSON.stringify(dataLibro),
+				//Cambiar a type: POST si necesario
+				type: "PUT",
+				// Formato de datos que se espera en la respuesta
+				dataType: "json",
+				// URL a la que se enviará la solicitud Ajax
+				url: "/addBook",
+				contentType: 'application/json'
+			})
+				.done(function(data, textStatus, jqXHR) {
+					alert(data.mensaje);
+					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
+					console.log("Cursos a refrescar", data.listaLibros);
+					$table.bootstrapTable('load', data.listaLibros);
+					$table.bootstrapTable('refresh');
+
+				})
+				.fail(function(jqXHR, textStatus, errorThrown) {
+					console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
+				});
+
 		} else {
 			console.log("Nada");
 		}
+
 	});
 
 });
