@@ -149,7 +149,10 @@ $(document).ready(function() {
 				contentType: 'application/json'
 			})
 				.done(function(data, textStatus, jqXHR) {
-					alert(data.mensaje);
+					swal({
+						text: data.mensaje,
+						icon: "success"
+					});
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 					console.log("Cursos a refrescar", data.listaLibros);
 					table.bootstrapTable('load', data.listaLibros);
