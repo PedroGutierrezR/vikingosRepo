@@ -5,7 +5,7 @@ import com.vikingos.booklet.dto.LibroDto;
 
 public interface BookletService {
 
-	public int createBook();
+	public int createBook(Libro libro);
 	public LibroDto getAllBooks();
 	public LibroDto getBook(Libro libro);
 	public int updateBook(Libro libro);

@@ -10,11 +10,11 @@ import com.vikingos.booklet.dao.mapper.LibroMapper;
 import com.vikingos.booklet.dao.model.Libro;
 
 @Repository("bookletDao")
-public class BookletDaoImpl implements BookletDao{
+public class BookletDaoImpl implements BookletDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Override
 	public List<Libro> getAllBooks() {
 		String sql = "SELECT id_libro, titulo, anio, autor, imprenta, disponibilidad FROM libro";
@@ -23,7 +23,9 @@ public class BookletDaoImpl implements BookletDao{
 
 	@Override
 	public int createBook(Libro libro) {
-		return 0;
+		String sql = "INSERT INTO libro (id_libro,titulo,anio,autor,imprenta,disponibilidad) VALUES (?,?,?,?,?,?)";
+		int lastId = getLastId() + 1;
+		return jdbcTemplate.update(sql, lastId, libro.getTitulo(), libro.getAnio(), libro.getAutor(), libro.getImprenta(), libro.getDisponibilidad());
 	}
 
 	@Override
@@ -40,14 +42,16 @@ public class BookletDaoImpl implements BookletDao{
 	public int updateDisponibilidad(Libro libro) {
 		return 0;
 	}
-	
+
 	@Override
 	public int deleteBook(int idLibro) {
 		return 0;
 	}
 
+	private int getLastId() {
+		String sql = "SELECT id_libro, titulo, anio, autor, imprenta, disponibilidad FROM libro";
+		List<Libro> listaLibros = jdbcTemplate.query(sql, new LibroMapper());
+		return listaLibros.get(listaLibros.size() -1 ).getId();
+	}
 
-
-	
-	
 }
