@@ -152,8 +152,8 @@ $(document).ready(function() {
 					alert(data.mensaje);
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 					console.log("Cursos a refrescar", data.listaLibros);
-					$table.bootstrapTable('load', data.listaLibros);
-					$table.bootstrapTable('refresh');
+					table.bootstrapTable('load', data.listaLibros);
+					table.bootstrapTable('refresh');
 
 				})
 				.fail(function(jqXHR, textStatus, errorThrown) {
@@ -164,6 +164,28 @@ $(document).ready(function() {
 			console.log("Nada");
 		}
 
+	});
+
+	$('#modalNuevoLibro').on('show.bs.modal', function() {
+		$("#idTxtAgregarTitulo").val("");
+		$("#idTxtAgregarTitulo").removeClass("is-valid");
+		$("#idTxtAgregarTitulo").removeClass("is-invalid");
+
+		$("#idTxtAgregarAnio").val("");
+		$("#idTxtAgregarAnio").removeClass("is-valid");
+		$("#idTxtAgregarAnio").removeClass("is-invalid");
+
+		$("#idTxtAgregarAutor").val("");
+		$("#idTxtAgregarAutor").removeClass("is-valid");
+		$("#idTxtAgregarAutor").removeClass("is-invalid");
+
+		$("#idTxtAgregarImprenta").val("");
+		$("#idTxtAgregarImprenta").removeClass("is-valid");
+		$("#idTxtAgregarImprenta").removeClass("is-invalid");
+
+		$("#idTxtAgregarDisponibilidad").val("");
+		$("#idTxtAgregarDisponibilidad").removeClass("is-valid");
+		$("#idTxtAgregarDisponibilidad").removeClass("is-invalid");
 	});
 
 });

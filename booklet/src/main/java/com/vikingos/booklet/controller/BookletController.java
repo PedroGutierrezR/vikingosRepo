@@ -1,6 +1,9 @@
 package com.vikingos.booklet.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,16 +28,22 @@ public class BookletController {
 	}
 
 	@RequestMapping(value = "/addBook", method = { RequestMethod.PUT })
-	public String addBook(ModelMap model, @RequestBody Libro libro) {
+	public String addBook(ModelMap model, @RequestBody Libro libro, HttpServletResponse response) throws IOException {
+		
+		int resultado = bookletDelegate.createBook(libro);
+		if(resultado == 1) {
+	        bookletDelegate.getAllBooks().setMensaje("Agregado Correctamente");
+		} else {
+			  bookletDelegate.getAllBooks().setMensaje("Error al agregar");
+		}
 
-		bookletDelegate.createBook(libro);
-//		PrintWriter out = resp.getWriter();
-//        resp.setContentType("application/json");
-//        resp.setCharacterEncoding("UTF-8");
-//        out.print(cursoDto.toString()); 
-//        out.flush(); 
-		System.out.println("Hola Put");
-		return "forward:/getAllBooks";
+		PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        out.print(bookletDelegate.getAllBooks().toString()); 
+        out.flush(); 
+		
+		return "booklet";
 	}
 	
 }
