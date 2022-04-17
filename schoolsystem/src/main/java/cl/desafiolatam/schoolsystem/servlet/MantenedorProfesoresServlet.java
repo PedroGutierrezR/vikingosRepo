@@ -1,10 +1,7 @@
 package cl.desafiolatam.schoolsystem.servlet;
 
 import java.io.IOException;
-<<<<<<< HEAD
-=======
 import java.io.PrintWriter;
->>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,12 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
-import cl.desafiolatam.schoolsystem.facade.ProfesorFacade;
-import cl.desafiolatam.schoolsystem.facade.impl.ProfesorFacadeImpl;
-
-@WebServlet("/mantenedorprofesor.srv")
-=======
 //import cl.desafiolatam.schoolsystem.dto.AlumnoDto;
 import cl.desafiolatam.schoolsystem.dto.ProfesorDto;
 import cl.desafiolatam.schoolsystem.facade.ProfesorFacade;
@@ -25,18 +16,13 @@ import cl.desafiolatam.schoolsystem.facade.impl.ProfesorFacadeImpl;
 import cl.desafiolatam.schoolsystem.genericUtils.Utils;
 
 @WebServlet("/mantenedorprofesores.srv")
->>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
 public class MantenedorProfesoresServlet extends HttpServlet{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
-	private ProfesorFacade profesorFacade;
-=======
 	private ProfesorFacade profesorFacade = null;
->>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
 	
 	@Override
 	public void init() throws ServletException{
@@ -46,29 +32,16 @@ public class MantenedorProfesoresServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-<<<<<<< HEAD
-		System.out.println("Hola get");
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
-=======
 		//System.out.println("Hola get");
 		
 		req.setAttribute("profesorDtoJson", this.profesorFacade.getProfesores().toString());
 		//req.setAttribute("cursoDto", this.cursoFacade.getCursos());
 		req.getServletContext().getRequestDispatcher("/mantenedorprofesores.jsp").forward(req, resp);
->>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
 	}
 
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-		super.doPut(req, resp);
-=======
 		//super.doPost(req, resp);
 		
 		String json = Utils.getJsonString(req.getInputStream());
@@ -112,17 +85,12 @@ public class MantenedorProfesoresServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doPut(req, resp);
->>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
 	}
 
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-		super.doDelete(req, resp);
-=======
 		//super.doDelete(req, resp);
->>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
 	}
 
 	

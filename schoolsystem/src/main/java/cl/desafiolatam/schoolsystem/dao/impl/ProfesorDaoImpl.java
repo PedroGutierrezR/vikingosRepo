@@ -1,11 +1,5 @@
 package cl.desafiolatam.schoolsystem.dao.impl;
 
-<<<<<<< HEAD
-import cl.desafiolatam.schoolsystem.dao.ProfesorDao;
-
-public class ProfesorDaoImpl implements ProfesorDao{
-
-=======
 import java.sql.Connection;
 //import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -239,5 +233,4 @@ public class ProfesorDaoImpl implements ProfesorDao{
 	}
 
 
->>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
 }

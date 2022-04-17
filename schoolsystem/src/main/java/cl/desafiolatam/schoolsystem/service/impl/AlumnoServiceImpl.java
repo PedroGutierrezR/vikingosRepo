@@ -31,7 +31,6 @@ public class AlumnoServiceImpl implements AlumnoService{
 
 	@Override
 	public int addAlumnos(AlumnoDto alumnoDto) {
-		// TODO Auto-generated method stub
 		Alumno alumno = new Alumno();
 		alumno = alumnoDto.getAlumnos().get(0);
 		return this.alumnoDao.add(alumno);
@@ -42,6 +41,21 @@ public class AlumnoServiceImpl implements AlumnoService{
 	@Override
 	public int deleteById(int idAlumno) {
 		return alumnoDao.deleteById(idAlumno);
+	}
+
+
+
+	@Override
+	public int update(AlumnoDto alumnoDto) {
+		Alumno alumno = new Alumno();
+		
+		alumno.setIdAlumno(alumnoDto.getAlumnos().get(0).getIdAlumno());
+		alumno.setNombre(alumnoDto.getAlumnos().get(0).getNombre());
+		alumno.setApellido(alumnoDto.getAlumnos().get(0).getApellido());
+		alumno.setFechaNac(alumnoDto.getAlumnos().get(0).getFechaNac());
+		alumno.setCurso(alumnoDto.getAlumnos().get(0).getCurso());
+		
+		return this.alumnoDao.update(alumno);
 	}
 
 }

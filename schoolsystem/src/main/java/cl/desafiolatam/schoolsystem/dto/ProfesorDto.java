@@ -1,9 +1,5 @@
 package cl.desafiolatam.schoolsystem.dto;
 
-<<<<<<< HEAD
-public class ProfesorDto {
-
-=======
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,5 +81,4 @@ public class ProfesorDto {
 	}
 	
 	
->>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
 }

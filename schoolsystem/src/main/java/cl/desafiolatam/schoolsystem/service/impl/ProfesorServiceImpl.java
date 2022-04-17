@@ -1,7 +1,5 @@
 package cl.desafiolatam.schoolsystem.service.impl;
 
-<<<<<<< HEAD
-=======
 //import cl.desafiolatam.schoolsystem.dao.AlumnoDao;
 import cl.desafiolatam.schoolsystem.dao.ProfesorDao;
 //import cl.desafiolatam.schoolsystem.dao.impl.AlumnoDaoImpl;
@@ -10,13 +8,10 @@ import cl.desafiolatam.schoolsystem.dao.impl.ProfesorDaoImpl;
 import cl.desafiolatam.schoolsystem.dao.model.Profesor;
 //import cl.desafiolatam.schoolsystem.dto.AlumnoDto;
 import cl.desafiolatam.schoolsystem.dto.ProfesorDto;
->>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
 import cl.desafiolatam.schoolsystem.service.ProfesorService;
 
 public class ProfesorServiceImpl implements ProfesorService{
 
-<<<<<<< HEAD
-=======
 	private ProfesorDao profesorDao = null;
 	//private Object profesorDao;
 		
@@ -60,5 +55,4 @@ public class ProfesorServiceImpl implements ProfesorService{
 	}
 	
 	
->>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
 }

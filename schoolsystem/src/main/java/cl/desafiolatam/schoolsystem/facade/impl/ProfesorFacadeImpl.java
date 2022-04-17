@@ -1,11 +1,5 @@
 package cl.desafiolatam.schoolsystem.facade.impl;
 
-<<<<<<< HEAD
-import cl.desafiolatam.schoolsystem.facade.ProfesorFacade;
-
-public class ProfesorFacadeImpl implements ProfesorFacade{
-
-=======
 //import cl.desafiolatam.schoolsystem.dto.AlumnoDto;
 import cl.desafiolatam.schoolsystem.dto.ProfesorDto;
 import cl.desafiolatam.schoolsystem.facade.ProfesorFacade;
@@ -53,5 +47,4 @@ public class ProfesorFacadeImpl implements ProfesorFacade{
 		return profesorService.update(profesorDto);
 	}
 
->>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
 }
