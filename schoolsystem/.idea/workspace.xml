@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="4258d827-6799-4624-8eb3-289467468b63" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/cl/desafiolatam/schoolsystem/dao/ProfesorDao.java" afterDir="false" />
@@ -30,6 +31,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/init.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/init.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/mantenedoralumnos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/mantenedoralumnos.jsp" afterDir="false" />
     </list>
+=======
+    <list default="true" id="4258d827-6799-4624-8eb3-289467468b63" name="Changes" comment="" />
+>>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +54,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ListarInscripciones" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> ff4cdbbcbfa9bc2e3220adb87e5f870fec4366e8
   </component>
   <component name="RunManager">
     <configuration name="tomcat7" type="MavenRunConfiguration" factoryName="Maven">
