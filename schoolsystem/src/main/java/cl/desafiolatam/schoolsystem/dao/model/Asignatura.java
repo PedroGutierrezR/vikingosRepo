@@ -1,11 +1,14 @@
 package cl.desafiolatam.schoolsystem.dao.model;
 
-public class Asignatura {
+import java.util.List;
 
+public class Asignatura {
 	private int idAsignatura;
-	private String descripcion;
-	private TipoAsignatura tipoAsignatura;
-	
+	private String decripcion;
+	private List<Curso> cursos;
+	private List<Asignatura> asignaturas;
+	private List<Profesor> profesores;
+
 	public int getIdAsignatura() {
 		return idAsignatura;
 	}
@@ -14,20 +17,36 @@ public class Asignatura {
 		this.idAsignatura = idAsignatura;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getDecripcion() {
+		return decripcion;
 	}
 
-	public void setDescripcion(String decripcion) {
-		this.descripcion = decripcion;
+	public void setDecripcion(String decripcion) {
+		this.decripcion = decripcion;
 	}
 
-	public TipoAsignatura getTipoAsignatura() {
-		return tipoAsignatura;
+	public List<Curso> getCursos() {
+		return cursos;
 	}
 
-	public void setTipoAsignatura(TipoAsignatura tipoAsignatura) {
-		this.tipoAsignatura = tipoAsignatura;
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
+	public List<Asignatura> getAsignaturas() {
+		return asignaturas;
+	}
+
+	public void setAsignaturas(List<Asignatura> asignaturas) {
+		this.asignaturas = asignaturas;
+	}
+
+	public List<Profesor> getProfesores() {
+		return profesores;
+	}
+
+	public void setProfesores(List<Profesor> profesores) {
+		this.profesores = profesores;
 	}
 
 }

@@ -1,18 +1,12 @@
 package cl.desafiolatam.schoolsystem.dao.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Curso {
-	
 	private int idCurso;
 	private String descripcion;
-//	private List<Alumno> alumnos;
-//
-//	public Curso() {
-//		this.alumnos = new ArrayList<Alumno>();
-//	}
-	
+	private List<Alumno> alumnos;
+
 	public int getIdCurso() {
 		return idCurso;
 	}
@@ -29,12 +23,12 @@ public class Curso {
 		this.descripcion = descripcion;
 	}
 
-//	public List<Alumno> getAlumnos() {
-//		return alumnos;
-//	}
-//
-//	public void setAlumnos(List<Alumno> alumnos) {
-//		this.alumnos = alumnos;
-//	}
+	public List<Alumno> getAlumnos() {
+		return alumnos;
+	}
+
+	public void setAlumnos(List<Alumno> alumnos) {
+		this.alumnos = alumnos;
+	}
 
 }
