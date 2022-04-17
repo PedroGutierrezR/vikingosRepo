@@ -46,11 +46,8 @@ public class BookletServiceImpl implements BookletService {
 	}
 
 	@Override
-	public int deleteBook(int idLibro) {
-		return bookletDao.deleteBook(idLibro);
-
-
-
+	public void deleteBook(int idLibro) {
+		bookletDao.deleteBook(idLibro);
 
 	}
 

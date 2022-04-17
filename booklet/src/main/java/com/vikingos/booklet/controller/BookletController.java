@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vikingos.booklet.dao.model.Libro;
 import com.vikingos.booklet.delegate.BookletDelegate;
@@ -24,10 +25,6 @@ public class BookletController {
 
 	@Autowired
 	private BookletDelegate bookletDelegate;
-
-	@Autowired
-	@Qualifier("listaLibros")
-	private List<Libro> listaLibros;
 
 	@RequestMapping(value = "/getAllBooks", method = { RequestMethod.GET, RequestMethod.PUT })
 	public String getAllBooks(ModelMap model) {
@@ -55,15 +52,9 @@ public class BookletController {
 	}
 
 	@RequestMapping(value = "/deleteBook", method = { RequestMethod.POST })
-	public String deleteBook(ModelMap model, @ModelAttribute("libro") Libro libro) {
-		for (int i = 0; i < listaLibros.size(); i++) {
-			if (listaLibros.get(i).getId() == libro.getId()) {
-				listaLibros.remove(i);
-
-			}
-		}
+	public String deleteBook(ModelMap model, @RequestParam int idLibro) {
+		bookletDelegate.deleteBook(idLibro);
 		return "booklet";
-
 	}
 
 }

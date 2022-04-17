@@ -171,6 +171,7 @@
 				</div>
 				<div class="modal-body text-center">
 					<h2>¿Está seguro de eliminar el libro?</h2>
+					<input type="hidden" id="idEliminar" value="">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"

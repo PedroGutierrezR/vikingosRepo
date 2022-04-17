@@ -55,7 +55,7 @@ $(document).ready(function() {
 					"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarCurso' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 					"<i class='bi bi-pencil'></i>",
 					"</a>  ",
-					"<a class='remove' href='#'data-toggle='modal' data-target='#idBtnEliminarLibro' onclick='onClickEliminar(\"" + row.id + "\");' title='Eliminar'>",
+					"<a class='remove btnEliminar' href='#' data-toggle='modal' data-target='#modalEliminarLibro' data-id='" + row.id + "' title='Eliminar'>",
 					'<i class="fa fa-trash"></i>',
 					"</a>"
 				].join('');
@@ -63,7 +63,6 @@ $(document).ready(function() {
 		}
 		]
 	});
-
 
 	$("#idBtnGuardarLibro").click(function() {
 
@@ -171,6 +170,12 @@ $(document).ready(function() {
 		}
 
 	});
+	
+	$('a.btnEliminar').on('click', function() {
+		console.log('showing delete modal');
+		console.log($(this).data('id'))
+		$('#idEliminar').val($(this).data('id'));
+	});
 
 	$('#modalNuevoLibro').on('show.bs.modal', function() {
 		$("#idTxtAgregarTitulo").val("");
@@ -200,24 +205,16 @@ $(document).ready(function() {
 
 
   $("#idBtnEliminarLibro").click(function() {
-
+	const idLibro = parseInt($('#idEliminar').val());
+	console.log('id to delete: ' + idLibro);
 	$.ajax({
-		// En data puedes utilizar un objeto JSON, un array o un query string
-		data: JSON.stringify(dataLibro),
 		//Cambiar a type: POST si necesario
-		type: "PUT",
-		// Formato de datos que se espera en la respuesta
-		dataType: "json",
+		type: "POST",
 		// URL a la que se enviará la solicitud Ajax
-		url: " /deleteBook",
+		url: " /deleteBook?idLibro=" + idLibro,
 	})
 		.done(function(data, textStatus, jqXHR) {
-			alert(data.mensaje);
-			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-			console.log("Libros a refrescar", data.listaLibros);
-			$table.bootstrapTable('load', data.listaLibros);
-			$table.bootstrapTable('refresh');
-
+			window.location.reload();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);

@@ -45,11 +45,9 @@ public class BookletDaoImpl implements BookletDao {
 	}
 
 	@Override
-	public int deleteBook(int idLibro) {
+	public void deleteBook(int idLibro) {
 		String sql = "DELETE FROM libro where id_libro = ? " ;
-		return 1;
-
-
+		jdbcTemplate.update(sql, idLibro);
 	}
 
 	private int getLastId() {

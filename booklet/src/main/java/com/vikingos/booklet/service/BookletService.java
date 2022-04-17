@@ -10,6 +10,6 @@ public interface BookletService {
 	public LibroDto getBook(Libro libro);
 	public int updateBook(Libro libro);
 	public int updateDisponibilidad(Libro libro);
-	public int deleteBook(int  idLibro);
+	public void deleteBook(int  idLibro);
 	
 }
