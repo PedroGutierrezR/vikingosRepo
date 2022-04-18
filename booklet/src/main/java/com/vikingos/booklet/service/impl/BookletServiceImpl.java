@@ -46,9 +46,9 @@ public class BookletServiceImpl implements BookletService {
 	}
 
 	@Override
-	public int deleteBook(int idLibro) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteBook(int idLibro) {
+		bookletDao.deleteBook(idLibro);
+
 	}
 
 }

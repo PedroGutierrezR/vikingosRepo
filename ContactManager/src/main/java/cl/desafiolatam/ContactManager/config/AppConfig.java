@@ -1,20 +1,21 @@
-package com.vikingos.booklet.config;
+package cl.desafiolatam.ContactManager.config;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.vikingos.booklet.dao.model.Libro;
+import cl.desafiolatam.ContactManager.model.Contacto;
 
 @Configuration
-@ComponentScan("com.vikingos.booklet.*")
+@ComponentScan("cl.desafiolatam.contactmanager.*")
 public class AppConfig {
 
-	@Bean(name = "listaLibros")
-	public List<Libro> getBookList(){
-		return new ArrayList<Libro>();
+	@Bean(name = "listaContactos")
+	public List<Contacto> getListaContactos(){
+		return new ArrayList<Contacto>();
 	}
 	
 }

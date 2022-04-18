@@ -54,13 +54,15 @@ $(document).ready(function() {
 				return [
 					"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarCurso' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 					"<i class='bi bi-pencil'></i>",
-					"</a>  "
+					"</a>  ",
+					"<a class='remove btnEliminar' href='#' data-toggle='modal' data-target='#modalEliminarLibro' data-id='" + row.id + "' title='Eliminar'>",
+					'<i class="fa fa-trash"></i>',
+					"</a>"
 				].join('');
 			}
 		}
 		]
 	});
-
 
 	$("#idBtnGuardarLibro").click(function() {
 
@@ -168,6 +170,12 @@ $(document).ready(function() {
 		}
 
 	});
+	
+	$('a.btnEliminar').on('click', function() {
+		console.log('showing delete modal');
+		console.log($(this).data('id'))
+		$('#idEliminar').val($(this).data('id'));
+	});
 
 	$('#modalNuevoLibro').on('show.bs.modal', function() {
 		$("#idTxtAgregarTitulo").val("");
@@ -190,5 +198,26 @@ $(document).ready(function() {
 		$("#idTxtAgregarDisponibilidad").removeClass("is-valid");
 		$("#idTxtAgregarDisponibilidad").removeClass("is-invalid");
 	});
+
+});
+
+
+
+
+  $("#idBtnEliminarLibro").click(function() {
+	const idLibro = parseInt($('#idEliminar').val());
+	console.log('id to delete: ' + idLibro);
+	$.ajax({
+		//Cambiar a type: POST si necesario
+		type: "POST",
+		// URL a la que se enviará la solicitud Ajax
+		url: " /deleteBook?idLibro=" + idLibro,
+	})
+		.done(function(data, textStatus, jqXHR) {
+			window.location.reload();
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
+		});
 
 });
