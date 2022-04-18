@@ -43,6 +43,7 @@
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
 <script
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <title>Booklet</title>
 </head>
 <body>
@@ -52,8 +53,8 @@
 			<span class="navbar-brand mb-0 h1">Booklet</span>
 		</div>
 	</nav>
-	<main class="my-5">
-		<section class="container my-5">
+	<main class="my-3">
+		<section class="container">
 			<table id="myTable" class="table table-hover">
 			</table>
 			<!-- Button trigger modal -->
@@ -251,6 +252,31 @@
 			</div>
 		</section>		
 	</main>
+		<!-- Modal Eliminar Libro-->
+	<div class="modal fade" id="modalEliminarLibro" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body text-center">
+					<h2>¿Está seguro de eliminar el libro?</h2>
+					<input type="hidden" id="idEliminar" value="">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" id=idBtnEliminarLibro>Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 
 	<script type="text/javascript" src="../js/script.js"></script>
 </body>

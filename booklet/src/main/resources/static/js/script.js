@@ -54,13 +54,15 @@ $(document).ready(function() {
 				return [
 					"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarLibro' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 					"<i class='bi bi-pencil'></i>",
-					"</a>  "
+					"</a>  ",
+					"<a class='remove btnEliminar' href='#' data-toggle='modal' data-target='#modalEliminarLibro' data-id='" + row.id + "' title='Eliminar'>",
+					'<i class="fa fa-trash"></i>',
+					"</a>"
 				].join('');
 			}
 		}
 		]
 	});
-
 
 	$("#idBtnGuardarLibro").click(function() {
 
@@ -149,11 +151,20 @@ $(document).ready(function() {
 				contentType: 'application/json'
 			})
 				.done(function(data, textStatus, jqXHR) {
-					alert(data.mensaje);
+					swal({
+						text: data.mensaje,
+						icon: "success"
+					});
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
+<<<<<<< HEAD
 					console.log("libros a refrescar", data.listaLibros);
 					$table.bootstrapTable('load', data.listaLibros);
 					$table.bootstrapTable('refresh');
+=======
+					console.log("Cursos a refrescar", data.listaLibros);
+					table.bootstrapTable('load', data.listaLibros);
+					table.bootstrapTable('refresh');
+>>>>>>> 97d333899e0449666e6f675f8415cd137fe7d6be
 
 				})
 				.fail(function(jqXHR, textStatus, errorThrown) {
@@ -165,7 +176,14 @@ $(document).ready(function() {
 		}
 
 	});
+	
+	$('a.btnEliminar').on('click', function() {
+		console.log('showing delete modal');
+		console.log($(this).data('id'))
+		$('#idEliminar').val($(this).data('id'));
+	});
 
+<<<<<<< HEAD
 });
 
 let libroDto;
@@ -293,3 +311,49 @@ $("#idBtnEditarLibro").click(function() {
 	}
 });
 
+=======
+	$('#modalNuevoLibro').on('show.bs.modal', function() {
+		$("#idTxtAgregarTitulo").val("");
+		$("#idTxtAgregarTitulo").removeClass("is-valid");
+		$("#idTxtAgregarTitulo").removeClass("is-invalid");
+
+		$("#idTxtAgregarAnio").val("");
+		$("#idTxtAgregarAnio").removeClass("is-valid");
+		$("#idTxtAgregarAnio").removeClass("is-invalid");
+
+		$("#idTxtAgregarAutor").val("");
+		$("#idTxtAgregarAutor").removeClass("is-valid");
+		$("#idTxtAgregarAutor").removeClass("is-invalid");
+
+		$("#idTxtAgregarImprenta").val("");
+		$("#idTxtAgregarImprenta").removeClass("is-valid");
+		$("#idTxtAgregarImprenta").removeClass("is-invalid");
+
+		$("#idTxtAgregarDisponibilidad").val("");
+		$("#idTxtAgregarDisponibilidad").removeClass("is-valid");
+		$("#idTxtAgregarDisponibilidad").removeClass("is-invalid");
+	});
+
+});
+
+
+
+
+  $("#idBtnEliminarLibro").click(function() {
+	const idLibro = parseInt($('#idEliminar').val());
+	console.log('id to delete: ' + idLibro);
+	$.ajax({
+		//Cambiar a type: POST si necesario
+		type: "POST",
+		// URL a la que se enviará la solicitud Ajax
+		url: " /deleteBook?idLibro=" + idLibro,
+	})
+		.done(function(data, textStatus, jqXHR) {
+			window.location.reload();
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
+		});
+
+});
+>>>>>>> 97d333899e0449666e6f675f8415cd137fe7d6be

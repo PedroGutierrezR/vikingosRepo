@@ -45,9 +45,9 @@ public class BookletDelegateImpl implements BookletDelegate {
 	}
 
 	@Override
-	public int deleteBook(int idLibro) {
+	public void deleteBook(int idLibro) {
 		// TODO Auto-generated method stub
-		return 0;
+		bookletService.deleteBook(idLibro);
 	}
 
 }

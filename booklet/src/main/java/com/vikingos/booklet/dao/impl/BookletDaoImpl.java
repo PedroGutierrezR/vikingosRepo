@@ -1,5 +1,6 @@
 package com.vikingos.booklet.dao.impl;
 
+import java.sql.Connection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -52,8 +53,9 @@ public class BookletDaoImpl implements BookletDao {
 	}
 
 	@Override
-	public int deleteBook(int idLibro) {
-		return 0;
+	public void deleteBook(int idLibro) {
+		String sql = "DELETE FROM libro where id_libro = ? " ;
+		jdbcTemplate.update(sql, idLibro);
 	}
 
 	private int getLastId() {
