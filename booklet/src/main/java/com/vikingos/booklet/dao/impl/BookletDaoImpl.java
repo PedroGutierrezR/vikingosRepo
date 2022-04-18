@@ -35,12 +35,20 @@ public class BookletDaoImpl implements BookletDao {
 
 	@Override
 	public int updateBook(Libro libro) {
-		return 0;
+		//return 0;
+		
+		String sql = "UPDATE libro WHERE id_libro=?";
+		//"UPDATE curso SET descripcion = ? WHERE id_curso = ?"
+		int lastId = getLastId() + 1;
+		return jdbcTemplate.update(sql, lastId, libro.getTitulo(), libro.getAnio(), libro.getAutor(), libro.getImprenta(), libro.getDisponibilidad());
 	}
 
 	@Override
 	public int updateDisponibilidad(Libro libro) {
 		return 0;
+		//String sql = "UPDATE libro WHERE disponibilidad = ?";
+		//int lastId = getLastId() + 1;
+		//return jdbcTemplate.update(sql, lastId, libro.getTitulo(), libro.getAnio(), libro.getAutor(), libro.getImprenta(), libro.getDisponibilidad());
 	}
 
 	@Override

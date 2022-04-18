@@ -155,6 +155,101 @@
 				</div>
 			</div>
 		</section>
+		<!--modal editar libro -->
+		<section>
+		<div class="modal fade" id="modalEditarLibro" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalCenterTitle"
+				aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered modal-lg"
+					role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Editar
+								Libro</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form class="needs-validation" novalidate>
+								<div class=form-row>
+									<div class="col-md-4 mb-3">
+										<div class="form-group">
+											<label for="idTxtTitulo">Título</label>
+											<div class="form-inline">
+												<input type="text" class="form-control"
+													id="idTxtTitulo" placeholder="Ingrese Título"
+													required>
+												<div class="valid-feedback">Correcto!</div>
+												<div class="invalid-feedback">Debe ingresar una
+													descripción válida</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 mb-3">
+										<div class="form-group">
+											<label for="idTxtAnio">Año</label>
+											<div class="form-inline">
+												<input type="number" class="form-control"
+													id="idTxtAnio" placeholder="Ingrese Año" required>
+												<div class="valid-feedback">Correcto!</div>
+												<div class="invalid-feedback">Debe ingresar una
+													descripción válida</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 mb-3">
+										<div class="form-group">
+											<label for="idTxtAutor">Autor</label>
+											<div class="form-inline">
+												<input type="text" class="form-control"
+													id="idTxtAutor" placeholder="Ingrese Autor" required>
+												<div class="valid-feedback">Correcto!</div>
+												<div class="invalid-feedback">Debe ingresar una
+													descripción válida</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 mb-3">
+										<div class="form-group">
+											<label for="idTxtImprenta">Imprenta</label>
+											<div class="form-inline">
+												<input type="text" class="form-control"
+													id="idTxtImprenta" placeholder="Ingrese Imprenta"
+													required>
+												<div class="valid-feedback">Correcto!</div>
+												<div class="invalid-feedback">Debe ingresar una
+													descripción válida</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 mb-3">
+										<div class="form-group">
+											<label for="idTxtDisponibilidad">Disponibilidad</label>
+											<div class="form-inline">
+												<input type="text" class="form-control"
+													id="idTxtDisponibilidad"
+													placeholder="Ingrese Disponibilidad" required>
+												<div class="valid-feedback">Correcto!</div>
+												<div class="invalid-feedback">Debe ingresar una
+													descripción válida</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Cerrar</button>
+							<button type="button" class="btn btn-primary"
+								id="idBtnEditarLibro">Guardar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>		
 	</main>
 
 	<script type="text/javascript" src="../js/script.js"></script>

@@ -1,6 +1,6 @@
 package com.vikingos.booklet.controller;
 
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,14 +27,16 @@ public class BookletController {
 	@RequestMapping(value = "/addBook", method = { RequestMethod.PUT })
 	public String addBook(ModelMap model, @RequestBody Libro libro) {
 
-		bookletDelegate.createBook(libro);
-//		PrintWriter out = resp.getWriter();
-//        resp.setContentType("application/json");
+		//bookletDelegate.createBook(libro);
+		//PrintWriter out = resp.getWriter();
+//      resp.setContentType("application/json");
 //        resp.setCharacterEncoding("UTF-8");
 //        out.print(cursoDto.toString()); 
 //        out.flush(); 
 		System.out.println("Hola Put");
 		return "forward:/getAllBooks";
 	}
+	
+	
 	
 }

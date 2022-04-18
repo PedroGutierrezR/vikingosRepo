@@ -25,7 +25,4 @@ public class LibroMapper implements RowMapper<Libro> {
 		
 		return libro;
 	}
-
-	
-
 }

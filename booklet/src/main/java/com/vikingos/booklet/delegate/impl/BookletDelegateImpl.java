@@ -33,13 +33,15 @@ public class BookletDelegateImpl implements BookletDelegate {
 	@Override
 	public int updateBook(Libro libro) {
 		// TODO Auto-generated method stub
-		return 0;
+		//return 0;
+		return bookletService.updateBook(libro);
 	}
 
 	@Override
 	public int updateDisponibilidad(Libro libro) {
 		// TODO Auto-generated method stub
-		return 0;
+		//return 0;
+		return bookletService.updateDisponibilidad(libro);
 	}
 
 	@Override

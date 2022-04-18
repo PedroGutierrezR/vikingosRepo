@@ -36,13 +36,17 @@ public class BookletServiceImpl implements BookletService {
 	@Override
 	public int updateBook(Libro libro) {
 		// TODO Auto-generated method stub
-		return 0;
+		//return 0;
+		
+		return bookletDao.updateBook(libro);
 	}
 
 	@Override
 	public int updateDisponibilidad(Libro libro) {
 		// TODO Auto-generated method stub
-		return 0;
+		//return 0;
+		
+		return bookletDao.updateDisponibilidad(libro);
 	}
 
 	@Override
