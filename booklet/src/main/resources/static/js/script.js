@@ -52,12 +52,12 @@ $(document).ready(function() {
 				console.log(JSON.stringify(row));
 				console.log($.param(row))
 				return [
-					"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarCurso' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
+					"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarLibro' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 					"<i class='bi bi-pencil'></i>",
 					"</a>  ",
-					"<a class='remove btnEliminar' href='#' data-toggle='modal' data-target='#modalEliminarLibro' data-id='" + row.id + "' title='Eliminar'>",
+					"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarLibro' onclick='onClickEliminar(\"" + row.id + "\");' title='Eliminar'>",
 					'<i class="fa fa-trash"></i>',
-					"</a>"
+					'</a>'
 				].join('');
 			}
 		}
@@ -170,12 +170,6 @@ $(document).ready(function() {
 		}
 
 	});
-	
-	$('a.btnEliminar').on('click', function() {
-		console.log('showing delete modal');
-		console.log($(this).data('id'))
-		$('#idEliminar').val($(this).data('id'));
-	});
 
 	$('#modalNuevoLibro').on('show.bs.modal', function() {
 		$("#idTxtAgregarTitulo").val("");
@@ -201,20 +195,186 @@ $(document).ready(function() {
 
 });
 
+// Global variable
+let dataLibro;
 
+//Edit Book
+function onClickEditar(row) {
 
+	dataLibro = JSON.parse(row);
 
-  $("#idBtnEliminarLibro").click(function() {
-	const idLibro = parseInt($('#idEliminar').val());
-	console.log('id to delete: ' + idLibro);
+	//Limpiar campos del modal
+	$("#idTxtTitulo").val("");
+	$("#idTxtTitulo").attr("placeholder", "Actualizar: " + dataLibro.titulo);
+	$("#idTxtTitulo").removeClass("is-valid");
+	$("#idTxtTitulo").removeClass("is-invalid");
+
+	$("#idTxtAnio").val("");
+	$("#idTxtAnio").attr("placeholder", "Actualizar: " + dataLibro.anio);
+	$("#idTxtAnio").removeClass("is-valid");
+	$("#idTxtAnio").removeClass("is-invalid");
+
+	$("#idTxtAutor").val("");
+	$("#idTxtAutor").attr("placeholder", "Actualizar: " + dataLibro.autor);
+	$("#idTxtAutor").removeClass("is-valid");
+	$("#idTxtAutor").removeClass("is-invalid");
+
+	$("#idTxtImprenta").val("");
+	$("#idTxtImprenta").attr("placeholder", "Actualizar: " + dataLibro.imprenta);
+	$("#idTxtImprenta").removeClass("is-valid");
+	$("#idTxtImprenta").removeClass("is-invalid");
+
+	$("#idTxtDisponibilidad").val("");
+	$("#idTxtDisponibilidad").attr("placeholder", "Actualizar: " + dataLibro.disponibilidad);
+	$("#idTxtDisponibilidad").removeClass("is-valid");
+	$("#idTxtDisponibilidad").removeClass("is-invalid");
+
+	console.log(dataLibro);
+
+}
+
+$("#idBtnEditarLibro").click(function() {
+
+	const validaFormEditarLibro = () => {
+
+		var idTxtTitulo = false;
+		var idTxtAnio = false;
+		var idTxtAutor = false;
+		var idTxtImprenta = false;
+		var idTxtDisponibilidad = false;
+
+		if ($("#idTxtTitulo").val().length == 0) {
+			$("#idTxtTitulo").addClass("is-invalid");
+			$("#idTxtTitulo").removeClass("is-valid");
+			idTxtTitulo = false;
+		} else {
+			$("#idTxtTitulo").removeClass("is-invalid");
+			$("#idTxtTitulo").addClass("is-valid");
+			idTxtTitulo = true;
+		}
+
+		if ($("#idTxtAnio").val().length == 0) {
+			$("#idTxtAnio").addClass("is-invalid");
+			$("#idTxtAnio").removeClass("is-valid");
+			idTxtAgregarAnio = false;
+		} else {
+			$("#idTxtAnio").removeClass("is-invalid");
+			$("#idTxtAnio").addClass("is-valid");
+			idTxtAnio = true;
+		}
+
+		if ($("#idTxtAutor").val().length == 0) {
+			$("#idTxtAutor").addClass("is-invalid");
+			$("#idTxtAutor").removeClass("is-valid");
+			idTxtAutor = false;
+		} else {
+			$("#idTxtAutor").removeClass("is-invalid");
+			$("#idTxtAutor").addClass("is-valid");
+			idTxtAutor = true;
+		}
+
+		if ($("#idTxtImprenta").val().length == 0) {
+			$("#idTxtImprenta").addClass("is-invalid");
+			$("#idTxtImprenta").removeClass("is-valid");
+			idTxtImprenta = false;
+		} else {
+			$("#idTxtImprenta").removeClass("is-invalid");
+			$("#idTxtImprenta").addClass("is-valid");
+			idTxtImprenta = true;
+		}
+
+		if ($("#idTxtDisponibilidad").val().length == 0) {
+			$("#idTxtDisponibilidad").addClass("is-invalid");
+			$("#idTxtDisponibilidad").removeClass("is-valid");
+			idTxtDisponibilidad = false;
+		} else {
+			$("#idTxtDisponibilidad").removeClass("is-invalid");
+			$("#idTxtDisponibilidad").addClass("is-valid");
+			idTxtDisponibilidad = true;
+		}
+		return idTxtTitulo && idTxtAnio && idTxtAutor && idTxtImprenta && idTxtDisponibilidad;
+	}
+
+	dataLibro = {
+		"id": dataLibro.id,
+		"titulo": $("#idTxtTitulo").val(),
+		"anio": $("#idTxtAnio").val(),
+		"autor": $("#idTxtAutor").val(),
+		"imprenta": $("#idTxtImprenta").val(),
+		"disponibilidad": $("#idTxtDisponibilidad").val(),
+	}
+
+	if (validaFormEditarLibro()) {
+		console.log(dataLibro);
+		$.ajax({
+			// En data puedes utilizar un objeto JSON, un array o un query string
+			data: JSON.stringify(dataLibro),
+			//Cambiar a type: POST si necesario
+			type: "PATCH",
+			// Formato de datos que se espera en la respuesta
+			dataType: "json",
+			// URL a la que se enviará la solicitud Ajax
+			url: "/updateBook",
+			contentType: 'application/json'
+		})
+			.done(function(data, textStatus, jqXHR) {
+				swal({
+					text: data.mensaje,
+					icon: "success"
+				});
+				console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
+				console.log("Libros a refrescar", data.listaLibros);
+				table.bootstrapTable('load', data.listaLibros);
+				table.bootstrapTable('refresh');
+
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				swal({
+					text: "error",
+					icon: "error"
+				});
+				console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
+			});
+	}
+});
+
+//Delete Book
+function onClickEliminar(id) {
+	console.log("Id a eliminar: " + id);
+
+	dataLibro = {
+		"id": id
+	};
+}
+
+$("#idBtnEliminarLibro").click(function() {
+
+	console.log('id to delete: ' + dataLibro.id);
+
 	$.ajax({
 		//Cambiar a type: POST si necesario
-		type: "POST",
+		type: "DELETE",
 		// URL a la que se enviará la solicitud Ajax
-		url: " /deleteBook?idLibro=" + idLibro,
+		url: " /deleteBook?idLibro=" + dataLibro.id,
 	})
 		.done(function(data, textStatus, jqXHR) {
-			window.location.reload();
+			if (data.mensaje == "Eliminado Correctamente") {
+				swal({
+					text: data.mensaje,
+					icon: "success"
+				});
+			} else {
+				swal({
+					text: data.mensaje,
+					icon: "error"
+				});
+			}
+
+			console.log(data.mensaje);
+			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
+			console.log("Libros a refrescar", data.listaLibros);
+			table.bootstrapTable('load', data.listaLibros);
+			table.bootstrapTable('refresh');
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);

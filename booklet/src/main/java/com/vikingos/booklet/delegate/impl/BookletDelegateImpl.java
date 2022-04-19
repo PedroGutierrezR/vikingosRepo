@@ -13,7 +13,7 @@ public class BookletDelegateImpl implements BookletDelegate {
 
 	@Autowired
 	private BookletService bookletService;
-	
+
 	@Override
 	public int createBook(Libro libro) {
 		return bookletService.createBook(libro);
@@ -32,8 +32,7 @@ public class BookletDelegateImpl implements BookletDelegate {
 
 	@Override
 	public int updateBook(Libro libro) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bookletService.updateBook(libro);
 	}
 
 	@Override
@@ -43,9 +42,8 @@ public class BookletDelegateImpl implements BookletDelegate {
 	}
 
 	@Override
-	public void deleteBook(int idLibro) {
-		// TODO Auto-generated method stub
-		bookletService.deleteBook(idLibro);
+	public int deleteBook(int idLibro) {
+		return bookletService.deleteBook(idLibro);
 	}
 
 }
