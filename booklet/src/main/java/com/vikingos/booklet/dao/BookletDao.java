@@ -11,6 +11,6 @@ public interface BookletDao {
 	public Libro getBook(Libro libro);
 	public int updateBook(Libro libro);
 	public int updateDisponibilidad(Libro libro);
-	public void deleteBook(int idLibro);
+	public int deleteBook(int idLibro);
 	
 }

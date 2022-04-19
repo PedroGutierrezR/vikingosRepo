@@ -1,6 +1,5 @@
 package com.vikingos.booklet.dao.impl;
 
-import java.sql.Connection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,14 +17,14 @@ public class BookletDaoImpl implements BookletDao {
 
 	@Override
 	public List<Libro> getAllBooks() {
-		String sql = "SELECT id_libro, titulo, anio, autor, imprenta, disponibilidad FROM libro";
+		String sql = "SELECT id_libro, titulo, anio, autor, imprenta, disponibilidad FROM libro ORDER BY id_libro";
 		return jdbcTemplate.query(sql, new LibroMapper());
 	}
 
 	@Override
 	public int createBook(Libro libro) {
 		String sql = "INSERT INTO libro (id_libro,titulo,anio,autor,imprenta,disponibilidad) VALUES (?,?,?,?,?,?)";
-		int lastId = getLastId() + 1;
+		int lastId = (getLastId() + 1);
 		return jdbcTemplate.update(sql, lastId, libro.getTitulo(), libro.getAnio(), libro.getAutor(), libro.getImprenta(), libro.getDisponibilidad());
 	}
 
@@ -36,7 +35,8 @@ public class BookletDaoImpl implements BookletDao {
 
 	@Override
 	public int updateBook(Libro libro) {
-		return 0;
+		String sql = "UPDATE libro SET titulo = ?, anio = ?, autor = ?, imprenta = ?, disponibilidad = ? WHERE id_libro = ?";
+		return jdbcTemplate.update(sql, libro.getTitulo(), libro.getAnio(), libro.getAutor(), libro.getImprenta(), libro.getDisponibilidad(), libro.getId());
 	}
 
 	@Override
@@ -45,15 +45,17 @@ public class BookletDaoImpl implements BookletDao {
 	}
 
 	@Override
-	public void deleteBook(int idLibro) {
+	public int deleteBook(int idLibro) {
 		String sql = "DELETE FROM libro where id_libro = ? " ;
-		jdbcTemplate.update(sql, idLibro);
+		return jdbcTemplate.update(sql, idLibro);
 	}
 
 	private int getLastId() {
-		String sql = "SELECT id_libro, titulo, anio, autor, imprenta, disponibilidad FROM libro";
+		String sql = "SELECT id_libro, titulo, anio, autor, imprenta, disponibilidad FROM libro ORDER BY id_libro";
 		List<Libro> listaLibros = jdbcTemplate.query(sql, new LibroMapper());
-		return listaLibros.get(listaLibros.size() -1 ).getId();
+		if(listaLibros.size() > 0) {
+			return listaLibros.get(listaLibros.size() - 1).getId();
+		}
+		return 0;
 	}
-
 }
