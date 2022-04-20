@@ -135,9 +135,15 @@
 										<div class="form-group">
 											<label for="idTxtAgregarDisponibilidad">Disponibilidad</label>
 											<div class="form-inline">
-												<input type="text" class="form-control"
-													id="idTxtAgregarDisponibilidad"
-													placeholder="Ingrese Disponibilidad" required>
+											
+											<input type="radio"
+												id="idTxtAgregarDisponible" value="Disponible" name="disponibilidad" checked>
+												<label for="idTxtAgregarDisponible" class="mx-2">Disponible</label>
+										
+											<input type="radio"
+												id="idTxtAgregarNoDisponible" value="No disponible" name="disponibilidad">
+												<label for="idTxtAgregarNoDisponible" class="mx-2">No disponible</label>
+												
 												<div class="valid-feedback">Correcto!</div>
 												<div class="invalid-feedback">Debe ingresar una
 													descripción válida</div>
@@ -230,9 +236,15 @@
 									<div class="form-group">
 										<label for="idTxtDisponibilidad">Disponibilidad</label>
 										<div class="form-inline">
-											<input type="text" class="form-control"
-												id="idTxtDisponibilidad"
-												placeholder="Ingrese Disponibilidad" required>
+											
+											<input type="radio"
+												id="idTxtDisponible" value="Disponible" name="disponibilidad">
+												<label for="idTxtDisponible" class="mx-2">Disponible</label>
+										
+											<input type="radio"
+												id="idTxtNoDisponible" value="No disponible" name="disponibilidad">
+												<label for="idTxtNoDisponible" class="mx-2">No disponible</label>
+										
 											<div class="valid-feedback">Correcto!</div>
 											<div class="invalid-feedback">Debe ingresar una
 												descripción válida</div>

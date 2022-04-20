@@ -49,8 +49,8 @@ $(document).ready(function() {
 				//Aqui defines el boton y en tu caso tendras que ponerle el onClick, 
 				//recuerda que row tiene el objeto del renglon actual, 
 				//en este ejemplo agrege funcionPorDefinir y le envio el row.id
-				console.log(JSON.stringify(row));
-				console.log($.param(row))
+				//console.log(JSON.stringify(row));
+				//console.log($.param(row))
 				return [
 					"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarLibro' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 					"<i class='bi bi-pencil'></i>",
@@ -72,7 +72,6 @@ $(document).ready(function() {
 			var idTxtAgregarAnio = false;
 			var idTxtAgregarAutor = false;
 			var idTxtAgregarImprenta = false;
-			var idTxtAgregarDisponibilidad = false;
 
 			if ($("#idTxtAgregarTitulo").val().length == 0) {
 				$("#idTxtAgregarTitulo").addClass("is-invalid");
@@ -114,16 +113,7 @@ $(document).ready(function() {
 				idTxtAgregarImprenta = true;
 			}
 
-			if ($("#idTxtAgregarDisponibilidad").val().length == 0) {
-				$("#idTxtAgregarDisponibilidad").addClass("is-invalid");
-				$("#idTxtAgregarDisponibilidad").removeClass("is-valid");
-				idTxtAgregarDisponibilidad = false;
-			} else {
-				$("#idTxtAgregarDisponibilidad").removeClass("is-invalid");
-				$("#idTxtAgregarDisponibilidad").addClass("is-valid");
-				idTxtAgregarDisponibilidad = true;
-			}
-			return idTxtAgregarTitulo && idTxtAgregarAnio && idTxtAgregarAutor && idTxtAgregarImprenta && idTxtAgregarDisponibilidad;
+			return idTxtAgregarTitulo && idTxtAgregarAnio && idTxtAgregarAutor && idTxtAgregarImprenta;
 		}
 
 		let dataLibro = {
@@ -131,9 +121,14 @@ $(document).ready(function() {
 			"anio": $("#idTxtAgregarAnio").val(),
 			"autor": $("#idTxtAgregarAutor").val(),
 			"imprenta": $("#idTxtAgregarImprenta").val(),
-			"disponibilidad": $("#idTxtAgregarDisponibilidad").val(),
+			"disponibilidad": $("#idTxtAgregarDisponible").val(),
 		}
 
+		if ($('#idTxtAgregarNoDisponible').is(':checked')) {
+			console.log("Entré");
+			dataLibro.disponibilidad = $("#idTxtAgregarNoDisponible").val();
+		}
+		
 		console.log(dataLibro);
 
 		if (validaFormNuevoLibro()) {
@@ -156,7 +151,6 @@ $(document).ready(function() {
 						icon: "success"
 					});
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-					console.log("Cursos a refrescar", data.listaLibros);
 					table.bootstrapTable('load', data.listaLibros);
 					table.bootstrapTable('refresh');
 
@@ -188,9 +182,6 @@ $(document).ready(function() {
 		$("#idTxtAgregarImprenta").removeClass("is-valid");
 		$("#idTxtAgregarImprenta").removeClass("is-invalid");
 
-		$("#idTxtAgregarDisponibilidad").val("");
-		$("#idTxtAgregarDisponibilidad").removeClass("is-valid");
-		$("#idTxtAgregarDisponibilidad").removeClass("is-invalid");
 	});
 
 });
@@ -204,30 +195,43 @@ function onClickEditar(row) {
 	dataLibro = JSON.parse(row);
 
 	//Limpiar campos del modal
-	$("#idTxtTitulo").val("");
-	$("#idTxtTitulo").attr("placeholder", "Actualizar: " + dataLibro.titulo);
+	$("#idTxtTitulo").val(dataLibro.titulo);
 	$("#idTxtTitulo").removeClass("is-valid");
 	$("#idTxtTitulo").removeClass("is-invalid");
 
-	$("#idTxtAnio").val("");
-	$("#idTxtAnio").attr("placeholder", "Actualizar: " + dataLibro.anio);
+	$("#idTxtAnio").val(dataLibro.anio);
 	$("#idTxtAnio").removeClass("is-valid");
 	$("#idTxtAnio").removeClass("is-invalid");
 
-	$("#idTxtAutor").val("");
-	$("#idTxtAutor").attr("placeholder", "Actualizar: " + dataLibro.autor);
+	$("#idTxtAutor").val(dataLibro.autor);
 	$("#idTxtAutor").removeClass("is-valid");
 	$("#idTxtAutor").removeClass("is-invalid");
 
-	$("#idTxtImprenta").val("");
-	$("#idTxtImprenta").attr("placeholder", "Actualizar: " + dataLibro.imprenta);
+	$("#idTxtImprenta").val(dataLibro.imprenta);
 	$("#idTxtImprenta").removeClass("is-valid");
 	$("#idTxtImprenta").removeClass("is-invalid");
 
-	$("#idTxtDisponibilidad").val("");
-	$("#idTxtDisponibilidad").attr("placeholder", "Actualizar: " + dataLibro.disponibilidad);
-	$("#idTxtDisponibilidad").removeClass("is-valid");
-	$("#idTxtDisponibilidad").removeClass("is-invalid");
+	$("#idTxtDisponible").removeClass("is-valid");
+	$("#idTxtDisponible").removeClass("is-invalid");
+	$("#idTxtNoDisponible").removeClass("is-valid");
+	$("#idTxtNoDisponible").removeClass("is-invalid");
+
+	if (dataLibro.disponibilidad === "Disponible") {
+		console.log("Hola: " + dataLibro.disponibilidad);
+		$("#idTxtNoDisponible").prop('checked', false);
+		$("#idTxtDisponible").prop('checked', true);
+	} else if (dataLibro.disponibilidad === "No disponible") {
+		console.log("Hola: " + dataLibro.disponibilidad);
+		$("#idTxtDisponible").prop('checked', false);
+		$("#idTxtNoDisponible").prop('checked', true);
+	}
+
+	$("#idTxtDisponible").change(function() {
+		dataLibro.disponibilidad = $("#idTxtDisponible").val();
+	});
+	$("#idTxtNoDisponible").change(function() {
+		dataLibro.disponibilidad = $("#idTxtNoDisponible").val();
+	});
 
 	console.log(dataLibro);
 
@@ -241,7 +245,6 @@ $("#idBtnEditarLibro").click(function() {
 		var idTxtAnio = false;
 		var idTxtAutor = false;
 		var idTxtImprenta = false;
-		var idTxtDisponibilidad = false;
 
 		if ($("#idTxtTitulo").val().length == 0) {
 			$("#idTxtTitulo").addClass("is-invalid");
@@ -283,16 +286,7 @@ $("#idBtnEditarLibro").click(function() {
 			idTxtImprenta = true;
 		}
 
-		if ($("#idTxtDisponibilidad").val().length == 0) {
-			$("#idTxtDisponibilidad").addClass("is-invalid");
-			$("#idTxtDisponibilidad").removeClass("is-valid");
-			idTxtDisponibilidad = false;
-		} else {
-			$("#idTxtDisponibilidad").removeClass("is-invalid");
-			$("#idTxtDisponibilidad").addClass("is-valid");
-			idTxtDisponibilidad = true;
-		}
-		return idTxtTitulo && idTxtAnio && idTxtAutor && idTxtImprenta && idTxtDisponibilidad;
+		return idTxtTitulo && idTxtAnio && idTxtAutor && idTxtImprenta;
 	}
 
 	dataLibro = {
@@ -301,7 +295,7 @@ $("#idBtnEditarLibro").click(function() {
 		"anio": $("#idTxtAnio").val(),
 		"autor": $("#idTxtAutor").val(),
 		"imprenta": $("#idTxtImprenta").val(),
-		"disponibilidad": $("#idTxtDisponibilidad").val(),
+		"disponibilidad": dataLibro.disponibilidad
 	}
 
 	if (validaFormEditarLibro()) {
