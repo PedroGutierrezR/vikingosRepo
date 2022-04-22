@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@SequenceGenerator(name = "bodega_id_seq", initialValue = 1, sequenceName = "bodega_id_seq")
+@SequenceGenerator(name = "bodega_id_seq", initialValue = 1, sequenceName = "bodega_id_seq", allocationSize = 1)
 public class Bodega {
 
 	@Id

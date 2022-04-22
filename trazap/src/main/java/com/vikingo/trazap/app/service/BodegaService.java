@@ -1,10 +1,10 @@
 package com.vikingo.trazap.app.service;
 
-import com.vikingo.trazap.app.dto.BodegaDto;
 import com.vikingo.trazap.app.repository.model.Bodega;
+import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
 public interface BodegaService {
 
-	public BodegaDto add(Bodega bodega);
-	
+	public ResponseServiceObject findAll();
+	public ResponseServiceObject save(Bodega bodega);
 }

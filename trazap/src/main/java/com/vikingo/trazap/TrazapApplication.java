@@ -1,5 +1,7 @@
 package com.vikingo.trazap;
 
+import java.util.Iterator;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,27 @@ public class TrazapApplication {
 	@Bean
 	public CommandLineRunner createBodega() {
 		return (args) -> {
-			Bodega bodega = new Bodega();
-			bodega.setDescripcion("Mi Bodega");
-			bodegaRepository.save(bodega);
-			logger.info(bodega.toString());
+			Bodega bodega1 = new Bodega();
+			Bodega bodega2 = new Bodega();
+			bodega1.setDescripcion("Mi Bodega 1");
+			bodega2.setDescripcion("Mi Bodega 2");
+			bodegaRepository.save(bodega1);
+			bodegaRepository.save(bodega2);
+			logger.info(bodega1.toString());
+			logger.info(bodega2.toString());
+		};
+	}
+	
+	@Bean
+	public CommandLineRunner findAllBodegas() {
+		return (args) -> {
+//			Bodega bodega = new Bodega();
+			Iterator<Bodega> iteratorBodega = bodegaRepository.findAll().iterator();
+			
+			while(iteratorBodega.hasNext()) {
+				logger.info(iteratorBodega.next().toString());
+			}
+			
 		};
 	}
 	
