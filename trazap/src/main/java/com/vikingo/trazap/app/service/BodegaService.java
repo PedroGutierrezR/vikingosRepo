@@ -7,4 +7,5 @@ public interface BodegaService {
 
 	public ResponseServiceObject findAll();
 	public ResponseServiceObject save(Bodega bodega);
+
 }

@@ -10,25 +10,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vikingo.trazap.app.delegate.BodegaDelegate;
-import com.vikingo.trazap.app.repository.model.Bodega;
+import com.vikingo.trazap.app.delegate.EstadoTrazabilidadDelegate;
+import com.vikingo.trazap.app.repository.model.EstadoTrazabilidad;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
 @RestController
-@RequestMapping("/bodegas")
-public class BodegaController {
+@RequestMapping("/estadoTrazabilidad")
+public class EstadoTrazabilidadController {
 
 	@Autowired
-	private BodegaDelegate bodegaDelegate;
+	private EstadoTrazabilidadDelegate estadoTrazabilidadDelegate;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseServiceObject> getBodegas(){
-		return new ResponseEntity<ResponseServiceObject>(bodegaDelegate.findAll(), HttpStatus.OK);
+	public ResponseEntity<ResponseServiceObject> getEstadoTrazabilidad(){
+		return new ResponseEntity<ResponseServiceObject>(estadoTrazabilidadDelegate.findAll(), HttpStatus.OK);
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseServiceObject> createBodega(@RequestBody Bodega bodega){
-		return new ResponseEntity<ResponseServiceObject>(bodegaDelegate.save(bodega), HttpStatus.OK);
+	public ResponseEntity<ResponseServiceObject> createCategoriaProducto(@RequestBody EstadoTrazabilidad estadoTrazabilidad){
+		return new ResponseEntity<ResponseServiceObject>(estadoTrazabilidadDelegate.save(estadoTrazabilidad), HttpStatus.OK);
 	}
 	
 }
