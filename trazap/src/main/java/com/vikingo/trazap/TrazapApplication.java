@@ -18,39 +18,39 @@ public class TrazapApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(TrazapApplication.class);
 	
-	@Autowired
-	private BodegaRepository bodegaRepository;
+//	@Autowired
+//	private BodegaRepository bodegaRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(TrazapApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner createBodega() {
-		return (args) -> {
-			Bodega bodega1 = new Bodega();
-			Bodega bodega2 = new Bodega();
-			bodega1.setDescripcion("Mi Bodega 1");
-			bodega2.setDescripcion("Mi Bodega 2");
-			bodegaRepository.save(bodega1);
-			bodegaRepository.save(bodega2);
-			logger.info(bodega1.toString());
-			logger.info(bodega2.toString());
-		};
-	}
-	
-	@Bean
-	public CommandLineRunner findAllBodegas() {
-		return (args) -> {
-//			Bodega bodega = new Bodega();
-			Iterator<Bodega> iteratorBodega = bodegaRepository.findAll().iterator();
-			
-			while(iteratorBodega.hasNext()) {
-				logger.info(iteratorBodega.next().toString());
-			}
-			
-		};
-	}
+//	@Bean
+//	public CommandLineRunner createBodega() {
+//		return (args) -> {
+//			Bodega bodega1 = new Bodega();
+//			Bodega bodega2 = new Bodega();
+//			bodega1.setDescripcion("Mi Bodega 1");
+//			bodega2.setDescripcion("Mi Bodega 2");
+//			bodegaRepository.save(bodega1);
+//			bodegaRepository.save(bodega2);
+//			logger.info(bodega1.toString());
+//			logger.info(bodega2.toString());
+//		};
+//	}
+//	
+//	@Bean
+//	public CommandLineRunner findAllBodegas() {
+//		return (args) -> {
+////			Bodega bodega = new Bodega();
+//			Iterator<Bodega> iteratorBodega = bodegaRepository.findAll().iterator();
+//			
+//			while(iteratorBodega.hasNext()) {
+//				logger.info(iteratorBodega.next().toString());
+//			}
+//			
+//		};
+//	}
 	
 	
 }
