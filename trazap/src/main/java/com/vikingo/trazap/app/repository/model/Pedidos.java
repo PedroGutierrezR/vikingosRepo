@@ -28,9 +28,9 @@ public class Pedidos {
 	private LocalDate fecha_ingreso;
 	private LocalDate fecha_recibido;
 	
-	@Override
-	public String toString() {
-		return "Pedidos [idPedido=" + idPedido + ", fechas_ingreso=" + fecha_ingreso + ",fecha_recibido=" + fecha_recibido +"]";
+//	@Override
+//	public String toString() {
+//		return "Pedidos [idPedido=" + idPedido + ", fechas_ingreso=" + fecha_ingreso + ",fecha_recibido=" + fecha_recibido +"]";
 
-}
+//}
 }

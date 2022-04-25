@@ -24,9 +24,9 @@ public class TipoProducto {
 	private int idTipoProducto;
 	private String descripcion;
 
-	@Override
-	public String toString() {
-		return "TipoProducto [idTipoProducto=" + idTipoProducto + ", descripcion=" + descripcion + "]";
+//	@Override
+//	public String toString() {
+//		return "TipoProducto [idTipoProducto=" + idTipoProducto + ", descripcion=" + descripcion + "]";
 
-	}
+//	}
 }
