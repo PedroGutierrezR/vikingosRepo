@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vikingo.trazap.app.model.request.EstadoTrazabilidadRequest;
 import com.vikingo.trazap.app.repository.EstadoTrazabilidadRepository;
 import com.vikingo.trazap.app.repository.model.EstadoTrazabilidad;
 import com.vikingo.trazap.app.service.EstadoTrazabilidadService;
@@ -63,6 +64,12 @@ public class EstadoTrazabilidadServiceImpl implements EstadoTrazabilidadService 
 		responseServiceObject.setMessageList(messageList);
 		
 		return responseServiceObject;
+	}
+
+	@Override
+	public ResponseServiceObject save(int idBodega, EstadoTrazabilidadRequest estadoTrazabilidadRequest) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.vikingo.trazap.app.delegate.BodegaDelegate;
-import com.vikingo.trazap.app.repository.model.Bodega;
+import com.vikingo.trazap.app.exceptions.ServiceException;
+import com.vikingo.trazap.app.model.request.BodegaRequest;
 import com.vikingo.trazap.app.service.BodegaService;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
@@ -20,8 +21,18 @@ public class BodegaDelegateImpl implements BodegaDelegate {
 	}
 
 	@Override
-	public ResponseServiceObject save(Bodega bodega) {
-		return bodegaService.save(bodega);
+	public ResponseServiceObject save(int idBodega, BodegaRequest bodegaRequest) {
+		return bodegaService.save(idBodega, bodegaRequest);
+	}
+	
+	@Override
+	public ResponseServiceObject save(BodegaRequest bodegaRequest) {
+		return bodegaService.save(bodegaRequest);
+	}
+
+	@Override
+	public ResponseServiceObject findByid(Integer idBodega) throws ServiceException {
+		return bodegaService.findByid(idBodega);
 	}
 
 }

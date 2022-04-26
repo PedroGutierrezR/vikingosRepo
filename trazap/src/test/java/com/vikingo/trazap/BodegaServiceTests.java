@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.vikingo.trazap.app.model.request.BodegaRequest;
 import com.vikingo.trazap.app.repository.model.Bodega;
 import com.vikingo.trazap.app.service.BodegaService;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessage;
@@ -54,14 +55,14 @@ public class BodegaServiceTests {
 		messageList.add(responseServiceMessage);
 		
 		responseServiceObject.setMessageList(messageList);
-	}
+	} 
 	
 	@Test
 	public void saveBodega() {
 		
 		generatemockResponse(bodegaMock1, "201", ResponseServiceMessageType.OK);
 		
-		Bodega bodega = new Bodega();
+		BodegaRequest bodega = new BodegaRequest();
 		bodega.setDescripcion("Bodega uno");
 		
 		when(bodegaService.save(bodega)).thenReturn(responseServiceObject);
@@ -72,6 +73,7 @@ public class BodegaServiceTests {
 		//assertThat(respuesta).isEqualTo(responseServiceObject);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void findAllBodega() {
 		
