@@ -118,7 +118,7 @@ public class BodegaServiceImpl implements BodegaService {
 			
 			return responseServiceObject;
 		} catch (NoSuchElementException e) {
-			throw new ServiceException("No existen registros");
+			throw new ServiceException("No existen registros");	
 		} catch (Exception e) {
 			throw new ServiceException("Error en el servicio");
 		}
