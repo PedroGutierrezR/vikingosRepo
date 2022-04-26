@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vikingo.trazap.app.model.request.CategoriaProductoRequest;
 import com.vikingo.trazap.app.repository.CategoriaProductoRepository;
 import com.vikingo.trazap.app.repository.model.CategoriaProducto;
 import com.vikingo.trazap.app.service.CategoriaProductoService;
@@ -63,6 +64,12 @@ public class CategoriaProductoServiceImpl implements CategoriaProductoService {
 		responseServiceObject.setMessageList(messageList);
 		
 		return responseServiceObject;
+	}
+
+	@Override
+	public ResponseServiceObject save(int idCategoriaProducto, CategoriaProductoRequest categoriaProductoRequest) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
