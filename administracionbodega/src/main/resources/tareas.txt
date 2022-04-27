@@ -1,0 +1,11 @@
+Asignación de tareas:
+
+1.la creacion de las clases bodega y materiales. su respectiva logica
+ desde el delegate hasta el controller.(jaime)
+ 
+ 2.login con spring security.(Pedro)
+ 
+ 3. creación de una BBDD y su conexión con el proyecto.(el profe planteo estya posibilidad
+ al finalizar la clase).(jaime) 
+ 
+ NOTA: decidí dejar el modelo de packges que utilizamos en trzap para reforzar esta estructura.
