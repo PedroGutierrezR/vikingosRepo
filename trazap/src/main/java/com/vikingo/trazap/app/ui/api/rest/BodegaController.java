@@ -42,5 +42,5 @@ public class BodegaController {
 	public ResponseEntity<ResponseServiceObject> getBodegas(@PathVariable Integer idBodega) throws ServiceException {
 		return new ResponseEntity<ResponseServiceObject>(bodegaDelegate.findByid(idBodega), HttpStatus.OK);
 	}
-	
+
 }

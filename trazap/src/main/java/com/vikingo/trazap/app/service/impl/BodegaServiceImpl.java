@@ -87,9 +87,9 @@ public class BodegaServiceImpl implements BodegaService {
 		responseServiceObject.setBody(bodegaRepository.save(bodega));
 		
 		responseServiceMessage.setTimestamp(new Date());
-		responseServiceMessage.setCode(messageManager.getRosourceMessageKey("com.vikingo.message.CREATED.code"));// 201 = create ok
+		responseServiceMessage.setCode("201");// 201 = create ok
 		responseServiceMessage.setType(ResponseServiceMessageType.OK);
-		responseServiceMessage.setMessage(messageManager.getRosourceMessageKey("com.vikingo.message.CREATED.desc"));
+		responseServiceMessage.setMessage("Servicio ha finalizado correctamente");
 		
 		messageList.add(responseServiceMessage);
 		
@@ -108,9 +108,9 @@ public class BodegaServiceImpl implements BodegaService {
 			responseServiceObject.setBody(bodega);
 			
 			responseServiceMessage.setTimestamp(new Date());
-			responseServiceMessage.setCode(messageManager.getRosourceMessageKey("com.vikingo.message.OK.code"));// 201 = create ok
+			responseServiceMessage.setCode("200");
 			responseServiceMessage.setType(ResponseServiceMessageType.OK);
-			responseServiceMessage.setMessage(messageManager.getRosourceMessageKey("com.vikingo.message.OK.desc"));
+			responseServiceMessage.setMessage("Servicio ha finalizado correctamente");
 			
 			messageList.add(responseServiceMessage);
 			
