@@ -1,1 +1,0 @@
-package com.vikingos.administracionbodega.repository.model;
