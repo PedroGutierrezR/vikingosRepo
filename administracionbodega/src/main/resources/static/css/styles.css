@@ -13,3 +13,7 @@ table {
     background-color: #eeeeee;
 }
 
+#btnLogout {
+	border-radius: 7px;
+	padding: 8px;
+}
