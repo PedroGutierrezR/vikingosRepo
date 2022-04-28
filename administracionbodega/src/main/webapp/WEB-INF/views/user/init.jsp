@@ -124,7 +124,7 @@
 										<label for="idTxtAgregarNombreBodega">Nombre</label>
 										<div class="form-inline">
 											<input type="text" class="form-control"
-												id="idTxtAgregarTitulo" placeholder="Ingrese Nombre"
+												id="idTxtAgregarNombreBodega" placeholder="Ingrese Nombre"
 												required>
 											<div class="valid-feedback">Correcto!</div>
 											<div class="invalid-feedback">Debe ingresar una
