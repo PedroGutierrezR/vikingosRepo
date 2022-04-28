@@ -13,10 +13,10 @@ $(document).ready(function() {
 			contentType: 'application/json'
 		})
 			.done(function(data, textStatus, jqXHR) {
-//				swal({
-//					text: data.messageList[0].message,
-//					icon: "success"
-				});
+				//				swal({
+				//					text: data.messageList[0].message,
+				//					icon: "success"
+				//				});
 				table.bootstrapTable({
 					data: data.body,
 					pagination: true,
@@ -71,7 +71,7 @@ $(document).ready(function() {
 
 	});
 
-//Desde aqui para abajo nada nuevo
+	//Desde aqui para abajo nada nuevo
 	$("#idBtnGuardarLibro").click(function() {
 
 		const validaFormNuevoLibro = () => {
@@ -192,192 +192,193 @@ $(document).ready(function() {
 
 	});
 
-// Global variable
-let dataLibro;
+	// Global variable
+	let dataLibro;
 
-//Edit Book
-function onClickEditar(row) {
+	//Edit Book
+	function onClickEditar(row) {
 
-	dataLibro = JSON.parse(row);
+		dataLibro = JSON.parse(row);
 
-	//Limpiar campos del modal
-	$("#idTxtTitulo").val(dataLibro.titulo);
-	$("#idTxtTitulo").removeClass("is-valid");
-	$("#idTxtTitulo").removeClass("is-invalid");
+		//Limpiar campos del modal
+		$("#idTxtTitulo").val(dataLibro.titulo);
+		$("#idTxtTitulo").removeClass("is-valid");
+		$("#idTxtTitulo").removeClass("is-invalid");
 
-	$("#idTxtAnio").val(dataLibro.anio);
-	$("#idTxtAnio").removeClass("is-valid");
-	$("#idTxtAnio").removeClass("is-invalid");
+		$("#idTxtAnio").val(dataLibro.anio);
+		$("#idTxtAnio").removeClass("is-valid");
+		$("#idTxtAnio").removeClass("is-invalid");
 
-	$("#idTxtAutor").val(dataLibro.autor);
-	$("#idTxtAutor").removeClass("is-valid");
-	$("#idTxtAutor").removeClass("is-invalid");
+		$("#idTxtAutor").val(dataLibro.autor);
+		$("#idTxtAutor").removeClass("is-valid");
+		$("#idTxtAutor").removeClass("is-invalid");
 
-	$("#idTxtImprenta").val(dataLibro.imprenta);
-	$("#idTxtImprenta").removeClass("is-valid");
-	$("#idTxtImprenta").removeClass("is-invalid");
+		$("#idTxtImprenta").val(dataLibro.imprenta);
+		$("#idTxtImprenta").removeClass("is-valid");
+		$("#idTxtImprenta").removeClass("is-invalid");
 
-	$("#idTxtDisponible").removeClass("is-valid");
-	$("#idTxtDisponible").removeClass("is-invalid");
-	$("#idTxtNoDisponible").removeClass("is-valid");
-	$("#idTxtNoDisponible").removeClass("is-invalid");
+		$("#idTxtDisponible").removeClass("is-valid");
+		$("#idTxtDisponible").removeClass("is-invalid");
+		$("#idTxtNoDisponible").removeClass("is-valid");
+		$("#idTxtNoDisponible").removeClass("is-invalid");
 
-	if (dataLibro.disponibilidad === "Disponible") {
-		console.log("Hola: " + dataLibro.disponibilidad);
-		$("#idTxtNoDisponible").prop('checked', false);
-		$("#idTxtDisponible").prop('checked', true);
-	} else if (dataLibro.disponibilidad === "No disponible") {
-		console.log("Hola: " + dataLibro.disponibilidad);
-		$("#idTxtDisponible").prop('checked', false);
-		$("#idTxtNoDisponible").prop('checked', true);
-	}
-
-	$("#idTxtDisponible").change(function() {
-		dataLibro.disponibilidad = $("#idTxtDisponible").val();
-	});
-	$("#idTxtNoDisponible").change(function() {
-		dataLibro.disponibilidad = $("#idTxtNoDisponible").val();
-	});
-
-	console.log(dataLibro);
-
-}
-
-$("#idBtnEditarLibro").click(function() {
-
-	const validaFormEditarLibro = () => {
-
-		var idTxtTitulo = false;
-		var idTxtAnio = false;
-		var idTxtAutor = false;
-		var idTxtImprenta = false;
-
-		if ($("#idTxtTitulo").val().length == 0) {
-			$("#idTxtTitulo").addClass("is-invalid");
-			$("#idTxtTitulo").removeClass("is-valid");
-			idTxtTitulo = false;
-		} else {
-			$("#idTxtTitulo").removeClass("is-invalid");
-			$("#idTxtTitulo").addClass("is-valid");
-			idTxtTitulo = true;
+		if (dataLibro.disponibilidad === "Disponible") {
+			console.log("Hola: " + dataLibro.disponibilidad);
+			$("#idTxtNoDisponible").prop('checked', false);
+			$("#idTxtDisponible").prop('checked', true);
+		} else if (dataLibro.disponibilidad === "No disponible") {
+			console.log("Hola: " + dataLibro.disponibilidad);
+			$("#idTxtDisponible").prop('checked', false);
+			$("#idTxtNoDisponible").prop('checked', true);
 		}
 
-		if ($("#idTxtAnio").val().length == 0) {
-			$("#idTxtAnio").addClass("is-invalid");
-			$("#idTxtAnio").removeClass("is-valid");
-			idTxtAgregarAnio = false;
-		} else {
-			$("#idTxtAnio").removeClass("is-invalid");
-			$("#idTxtAnio").addClass("is-valid");
-			idTxtAnio = true;
-		}
+		$("#idTxtDisponible").change(function() {
+			dataLibro.disponibilidad = $("#idTxtDisponible").val();
+		});
+		$("#idTxtNoDisponible").change(function() {
+			dataLibro.disponibilidad = $("#idTxtNoDisponible").val();
+		});
 
-		if ($("#idTxtAutor").val().length == 0) {
-			$("#idTxtAutor").addClass("is-invalid");
-			$("#idTxtAutor").removeClass("is-valid");
-			idTxtAutor = false;
-		} else {
-			$("#idTxtAutor").removeClass("is-invalid");
-			$("#idTxtAutor").addClass("is-valid");
-			idTxtAutor = true;
-		}
-
-		if ($("#idTxtImprenta").val().length == 0) {
-			$("#idTxtImprenta").addClass("is-invalid");
-			$("#idTxtImprenta").removeClass("is-valid");
-			idTxtImprenta = false;
-		} else {
-			$("#idTxtImprenta").removeClass("is-invalid");
-			$("#idTxtImprenta").addClass("is-valid");
-			idTxtImprenta = true;
-		}
-
-		return idTxtTitulo && idTxtAnio && idTxtAutor && idTxtImprenta;
-	}
-
-	dataLibro = {
-		"id": dataLibro.id,
-		"titulo": $("#idTxtTitulo").val(),
-		"anio": $("#idTxtAnio").val(),
-		"autor": $("#idTxtAutor").val(),
-		"imprenta": $("#idTxtImprenta").val(),
-		"disponibilidad": dataLibro.disponibilidad
-	}
-
-	if (validaFormEditarLibro()) {
 		console.log(dataLibro);
+
+	}
+
+	$("#idBtnEditarLibro").click(function() {
+
+		const validaFormEditarLibro = () => {
+
+			var idTxtTitulo = false;
+			var idTxtAnio = false;
+			var idTxtAutor = false;
+			var idTxtImprenta = false;
+
+			if ($("#idTxtTitulo").val().length == 0) {
+				$("#idTxtTitulo").addClass("is-invalid");
+				$("#idTxtTitulo").removeClass("is-valid");
+				idTxtTitulo = false;
+			} else {
+				$("#idTxtTitulo").removeClass("is-invalid");
+				$("#idTxtTitulo").addClass("is-valid");
+				idTxtTitulo = true;
+			}
+
+			if ($("#idTxtAnio").val().length == 0) {
+				$("#idTxtAnio").addClass("is-invalid");
+				$("#idTxtAnio").removeClass("is-valid");
+				idTxtAgregarAnio = false;
+			} else {
+				$("#idTxtAnio").removeClass("is-invalid");
+				$("#idTxtAnio").addClass("is-valid");
+				idTxtAnio = true;
+			}
+
+			if ($("#idTxtAutor").val().length == 0) {
+				$("#idTxtAutor").addClass("is-invalid");
+				$("#idTxtAutor").removeClass("is-valid");
+				idTxtAutor = false;
+			} else {
+				$("#idTxtAutor").removeClass("is-invalid");
+				$("#idTxtAutor").addClass("is-valid");
+				idTxtAutor = true;
+			}
+
+			if ($("#idTxtImprenta").val().length == 0) {
+				$("#idTxtImprenta").addClass("is-invalid");
+				$("#idTxtImprenta").removeClass("is-valid");
+				idTxtImprenta = false;
+			} else {
+				$("#idTxtImprenta").removeClass("is-invalid");
+				$("#idTxtImprenta").addClass("is-valid");
+				idTxtImprenta = true;
+			}
+
+			return idTxtTitulo && idTxtAnio && idTxtAutor && idTxtImprenta;
+		}
+
+		dataLibro = {
+			"id": dataLibro.id,
+			"titulo": $("#idTxtTitulo").val(),
+			"anio": $("#idTxtAnio").val(),
+			"autor": $("#idTxtAutor").val(),
+			"imprenta": $("#idTxtImprenta").val(),
+			"disponibilidad": dataLibro.disponibilidad
+		}
+
+		if (validaFormEditarLibro()) {
+			console.log(dataLibro);
+			$.ajax({
+				// En data puedes utilizar un objeto JSON, un array o un query string
+				data: JSON.stringify(dataLibro),
+				//Cambiar a type: POST si necesario
+				type: "PATCH",
+				// Formato de datos que se espera en la respuesta
+				dataType: "json",
+				// URL a la que se enviará la solicitud Ajax
+				url: "/updateBook",
+				contentType: 'application/json'
+			})
+				.done(function(data, textStatus, jqXHR) {
+					swal({
+						text: data.mensaje,
+						icon: "success"
+					});
+					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
+					console.log("Libros a refrescar", data.listaLibros);
+					table.bootstrapTable('load', data.listaLibros);
+					table.bootstrapTable('refresh');
+
+				})
+				.fail(function(jqXHR, textStatus, errorThrown) {
+					swal({
+						text: "error",
+						icon: "error"
+					});
+					console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
+				});
+		}
+	});
+
+	//Delete Book
+	function onClickEliminar(id) {
+		console.log("Id a eliminar: " + id);
+
+		dataLibro = {
+			"id": id
+		};
+	}
+
+	$("#idBtnEliminarLibro").click(function() {
+
+		console.log('id to delete: ' + dataLibro.id);
+
 		$.ajax({
-			// En data puedes utilizar un objeto JSON, un array o un query string
-			data: JSON.stringify(dataLibro),
 			//Cambiar a type: POST si necesario
-			type: "PATCH",
-			// Formato de datos que se espera en la respuesta
-			dataType: "json",
+			type: "DELETE",
 			// URL a la que se enviará la solicitud Ajax
-			url: "/updateBook",
-			contentType: 'application/json'
+			url: " /deleteBook?idLibro=" + dataLibro.id,
 		})
 			.done(function(data, textStatus, jqXHR) {
-				swal({
-					text: data.mensaje,
-					icon: "success"
-				});
+				if (data.mensaje == "Eliminado Correctamente") {
+					swal({
+						text: data.mensaje,
+						icon: "success"
+					});
+				} else {
+					swal({
+						text: data.mensaje,
+						icon: "error"
+					});
+				}
+
+				console.log(data.mensaje);
 				console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 				console.log("Libros a refrescar", data.listaLibros);
 				table.bootstrapTable('load', data.listaLibros);
 				table.bootstrapTable('refresh');
-
 			})
 			.fail(function(jqXHR, textStatus, errorThrown) {
-				swal({
-					text: "error",
-					icon: "error"
-				});
 				console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
 			});
-	}
-});
 
-//Delete Book
-function onClickEliminar(id) {
-	console.log("Id a eliminar: " + id);
-
-	dataLibro = {
-		"id": id
-	};
-}
-
-$("#idBtnEliminarLibro").click(function() {
-
-	console.log('id to delete: ' + dataLibro.id);
-
-	$.ajax({
-		//Cambiar a type: POST si necesario
-		type: "DELETE",
-		// URL a la que se enviará la solicitud Ajax
-		url: " /deleteBook?idLibro=" + dataLibro.id,
-	})
-		.done(function(data, textStatus, jqXHR) {
-			if (data.mensaje == "Eliminado Correctamente") {
-				swal({
-					text: data.mensaje,
-					icon: "success"
-				});
-			} else {
-				swal({
-					text: data.mensaje,
-					icon: "error"
-				});
-			}
-
-			console.log(data.mensaje);
-			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-			console.log("Libros a refrescar", data.listaLibros);
-			table.bootstrapTable('load', data.listaLibros);
-			table.bootstrapTable('refresh');
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
-		});
-
+	});
 });

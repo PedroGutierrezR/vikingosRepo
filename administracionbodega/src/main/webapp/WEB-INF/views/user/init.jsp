@@ -13,7 +13,7 @@
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-
+<link rel="stylesheet" href="../css/styles.css">
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -45,26 +45,50 @@
 <body>
 	<!-- Navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container">
-			<a class="navbar-brand" href="#">Navbar</a>
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Administración Bodega</a>
 			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-				aria-controls="navbarNavAltMarkup" aria-expanded="false"
+				data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+				aria-controls="navbarNavDarkDropdown" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav">
-					<a class="nav-link active" aria-current="page" href="#">Home</a> <a id="listarBodegas"
-						class="nav-link" href="#">Listar Bodegas</a> <a class="nav-link"
-						href="#">Pricing</a>
-				</div>
+
+			<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDarkDropdownMenuLink1" role="button"
+						data-bs-toggle="dropdown" aria-expanded="false"> Materiales </a>
+						<ul class="dropdown-menu dropdown-menu-dark"
+							aria-labelledby="navbarDarkDropdownMenuLink">
+							<li><a class="dropdown-item" id="listarMateriales" href="#">Listar
+									Materiales </a></li>
+							<li><a class="dropdown-item" id="agregarMateriales" href="#">Agregar
+									Materiales</a></li>
+						</ul></li>
+				</ul>
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDarkDropdownMenuLink" role="button"
+						data-bs-toggle="dropdown" aria-expanded="false">Bodegas </a>
+						<ul class="dropdown-menu dropdown-menu-dark"
+							aria-labelledby="navbarDarkDropdownMenuLink">
+							<li><a class="dropdown-item" id="listarBodegas" href="#">Listar
+									Bodegas </a></li>
+							<li><a class="dropdown-item" id="agregarBodegas" href="#" data-toggle="modal"
+				data-target="#modalNuevaBodega">Agregar
+									Bodegas</a></li>
+						</ul></li>
+				</ul>
 			</div>
-			<div class="text-right">
-				<h6 class="text-light">
+
+			<div class="text-right row">
+				<div class="text-light mr-3">
 					Usuario Conectado:
 					<c:out value="${user}"></c:out>
-				</h6>
+				</div>
 				<div>
 					<form action="logout" method="get">
 						<input class="" type="submit" value="Desconectar">
@@ -75,29 +99,52 @@
 	</nav>
 	<!-- Main -->
 	<main class="container my-5">
-	<table id="myTableBodega"></table>
-<!-- 		<section class="my-5">
-			<form action="#" method="get">
-				<div class="mb-3">
-					<label for="exampleInputEmail1" class="form-label">Precio</label> <input
-						name="precio" type="number" class="form-control"
-						id="exampleInputEmail1">
+		<table id="myTableBodega"></table>
+		
+		<!-- Modal Agregar Bodega-->
+		<div class="modal fade" id="modalNuevaBodega" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg"
+				role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Nueva
+							Bodega</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form class="needs-validation" novalidate>
+							<div class=form-row>
+								<div class="col-md-4 mb-3">
+									<div class="form-group">
+										<label for="idTxtAgregarNombreBodega">Nombre</label>
+										<div class="form-inline">
+											<input type="text" class="form-control"
+												id="idTxtAgregarTitulo" placeholder="Ingrese Nombre"
+												required>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Cerrar</button>
+						<button type="button" class="btn btn-dark"
+							id="idBtnGuardarBodega">Guardar</button>
+					</div>
 				</div>
-				<div class="mb-3">
-					<label for="exampleInputEmpresa1" class="form-label">Nombre
-						Material</label> <input name="nombre" type="text" class="form-control"
-						id="exampleInputEmpresa1">
-				</div>
-				<div class="mb-3">
-					<label for="exampleInputRut1" class="form-label">Nombre
-						Bodega</label> <input name="bodega" type="text" class="form-control"
-						id="exampleInputRut1">
-				</div>
-				<div align="right">
-					<button type="submit" class="btn btn-primary btn-lg">Agregar</button>
-				</div>
-			</form>
-		</section> -->
+			</div>
+		</div>
+
 	</main>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
