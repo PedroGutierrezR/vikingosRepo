@@ -17,6 +17,7 @@ $(document).ready(function() {
 				//					text: data.messageList[0].message,
 				//					icon: "success"
 				//				});
+				
 				table.bootstrapTable({
 					data: data.body,
 					pagination: true,
@@ -52,10 +53,10 @@ $(document).ready(function() {
 							//console.log(JSON.stringify(row));
 							//console.log($.param(row))
 							return [
-								"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarLibro' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
+								"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarBodega' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 								"<i class='bi bi-pencil'></i>",
 								"</a>  ",
-								"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarLibro' onclick='onClickEliminar(\"" + row.id + "\");' title='Eliminar'>",
+								"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarBodega' onclick='onClickEliminar(\"" + row.id + "\");' title='Eliminar'>",
 								'<i class="fa fa-trash"></i>',
 								'</a>'
 							].join('');
@@ -72,35 +73,35 @@ $(document).ready(function() {
 	});
 
 	//Desde aqui para abajo nada nuevo
-	$("#idBtnGuardarLibro").click(function() {
+	$("#idBtnGuardarBodega").click(function() {
 
-		const validaFormNuevoLibro = () => {
+		const validaFormNuevaBodega = () => {
 
-			var idTxtAgregarTitulo = false;
-			var idTxtAgregarAnio = false;
-			var idTxtAgregarAutor = false;
-			var idTxtAgregarImprenta = false;
+			var idTxtAgregarNombreBodega = false;
+			var idTxtAgregarFecha = false;
+			//var idTxtAgregarAutor = false;
+			//var idTxtAgregarImprenta = false;
 
-			if ($("#idTxtAgregarTitulo").val().length == 0) {
-				$("#idTxtAgregarTitulo").addClass("is-invalid");
-				$("#idTxtAgregarTitulo").removeClass("is-valid");
-				idTxtAgregarTitulo = false;
+			if ($("#idTxtAgregarNombreBodega").val().length == 0) {
+				$("#idTxtAgregarNombreBodega").addClass("is-invalid");
+				$("#idTxtAgregarNombreBodega").removeClass("is-valid");
+				idTxtAgregarNombreBodega = false;
 			} else {
-				$("#idTxtAgregarTitulo").removeClass("is-invalid");
-				$("#idTxtAgregarTitulo").addClass("is-valid");
-				idTxtAgregarTitulo = true;
+				$("#idTxtAgregarNombreBodega").removeClass("is-invalid");
+				$("#idTxtAgregarNombreBodega").addClass("is-valid");
+				idTxtAgregarNombreBodega = true;
 			}
 
-			if ($("#idTxtAgregarAnio").val().length == 0) {
-				$("#idTxtAgregarAnio").addClass("is-invalid");
-				$("#idTxtAgregarAnio").removeClass("is-valid");
-				idTxtAgregarAnio = false;
+			if ($("#idTxtAgregarFecha").val().length == 0) {
+				$("#idTxtAgregarFecha").addClass("is-invalid");
+				$("#idTxtAgregarFecha").removeClass("is-valid");
+				idTxtAgregarFecha = false;
 			} else {
-				$("#idTxtAgregarAnio").removeClass("is-invalid");
-				$("#idTxtAgregarAnio").addClass("is-valid");
-				idTxtAgregarAnio = true;
+				$("#idTxtAgregarFecha").removeClass("is-invalid");
+				$("#idTxtAgregarFecha").addClass("is-valid");
+				idTxtAgregarFecha = true;
 			}
-
+		/*
 			if ($("#idTxtAgregarAutor").val().length == 0) {
 				$("#idTxtAgregarAutor").addClass("is-invalid");
 				$("#idTxtAgregarAutor").removeClass("is-valid");
@@ -120,37 +121,37 @@ $(document).ready(function() {
 				$("#idTxtAgregarImprenta").addClass("is-valid");
 				idTxtAgregarImprenta = true;
 			}
-
-			return idTxtAgregarTitulo && idTxtAgregarAnio && idTxtAgregarAutor && idTxtAgregarImprenta;
+	*/
+			return idTxtAgregarNombreBodega & idTxtAgregarFecha;
 		}
 
-		let dataLibro = {
-			"titulo": $("#idTxtAgregarTitulo").val(),
-			"anio": $("#idTxtAgregarAnio").val(),
-			"autor": $("#idTxtAgregarAutor").val(),
-			"imprenta": $("#idTxtAgregarImprenta").val(),
-			"disponibilidad": $("#idTxtAgregarDisponible").val(),
+		let dataBodega = {
+			"nombre_bodega": $("#idTxtAgregarNombreBodega").val(),
+			"fecha_ingreso": $("#idTxtAgregarFecha").val(),
+			//"autor": $("#idTxtAgregarAutor").val(),
+			//"imprenta": $("#idTxtAgregarImprenta").val(),
+			//"disponibilidad": $("#idTxtAgregarDisponible").val(),
 		}
 
-		if ($('#idTxtAgregarNoDisponible').is(':checked')) {
-			console.log("Entré");
-			dataLibro.disponibilidad = $("#idTxtAgregarNoDisponible").val();
-		}
+		//if ($('#idTxtAgregarNoDisponible').is(':checked')) {
+			//console.log("Entré");
+			//dataLibro.disponibilidad = $("#idTxtAgregarNoDisponible").val();
+		//}
 
-		console.log(dataLibro);
+		console.log(dataBodega);
 
-		if (validaFormNuevoLibro()) {
+		if (validaFormNuevaBodega()) {
 			console.log("Todo bien");
 
 			$.ajax({
 				// En data puedes utilizar un objeto JSON, un array o un query string
-				data: JSON.stringify(dataLibro),
+				data: JSON.stringify(dataBodega),
 				//Cambiar a type: POST si necesario
-				type: "PUT",
+				type: "POST",
 				// Formato de datos que se espera en la respuesta
 				dataType: "json",
 				// URL a la que se enviará la solicitud Ajax
-				url: "/addBook",
+				url: "/bodegas",
 				contentType: 'application/json'
 			})
 				.done(function(data, textStatus, jqXHR) {
@@ -159,7 +160,7 @@ $(document).ready(function() {
 						icon: "success"
 					});
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-					table.bootstrapTable('load', data.listaLibros);
+					table.bootstrapTable('load', data.listarBodegas);
 					table.bootstrapTable('refresh');
 
 				})
@@ -173,15 +174,15 @@ $(document).ready(function() {
 
 	});
 
-	$('#modalNuevoLibro').on('show.bs.modal', function() {
-		$("#idTxtAgregarTitulo").val("");
-		$("#idTxtAgregarTitulo").removeClass("is-valid");
-		$("#idTxtAgregarTitulo").removeClass("is-invalid");
+	$('#modalNuevaBodega').on('show.bs.modal', function() {
+		$("#idTxtAgregarNombreBodega").val("");
+		$("#idTxtAgregarNombreBodega").removeClass("is-valid");
+		$("#idTxtAgregarNombreBodega").removeClass("is-invalid");
 
-		$("#idTxtAgregarAnio").val("");
-		$("#idTxtAgregarAnio").removeClass("is-valid");
-		$("#idTxtAgregarAnio").removeClass("is-invalid");
-
+		$("#idTxtAgregarFecha").val("");
+		$("#idTxtAgregarFecha").removeClass("is-valid");
+		$("#idTxtAgregarFecha").removeClass("is-invalid");
+/*
 		$("#idTxtAgregarAutor").val("");
 		$("#idTxtAgregarAutor").removeClass("is-valid");
 		$("#idTxtAgregarAutor").removeClass("is-invalid");
@@ -189,11 +190,11 @@ $(document).ready(function() {
 		$("#idTxtAgregarImprenta").val("");
 		$("#idTxtAgregarImprenta").removeClass("is-valid");
 		$("#idTxtAgregarImprenta").removeClass("is-invalid");
-
+	*/
 	});
 
 	// Global variable
-	let dataLibro;
+/*	let dataLibro;
 
 	//Edit Book
 	function onClickEditar(row) {
@@ -265,6 +266,7 @@ $(document).ready(function() {
 			if ($("#idTxtAnio").val().length == 0) {
 				$("#idTxtAnio").addClass("is-invalid");
 				$("#idTxtAnio").removeClass("is-valid");
+				 
 				idTxtAgregarAnio = false;
 			} else {
 				$("#idTxtAnio").removeClass("is-invalid");
@@ -381,4 +383,6 @@ $(document).ready(function() {
 			});
 
 	});
+	
+	*/
 });

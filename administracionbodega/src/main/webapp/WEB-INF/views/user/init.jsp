@@ -132,6 +132,21 @@
 										</div>
 									</div>
 								</div>
+							 <div class="col-md-4 mb-3">
+				                <div class="form-group">
+				                    <label for="idTxtAgregarFecha">Fecha ingreso</label>
+				                    <div class="form-inline">
+				                        <input type="date" class="form-control" id="idTxtAgregarFecha" placeholder="Ingrese Fecha de ingreso" required>
+				                        <div class="valid-feedback">
+                        					Correcto!
+                    					</div>
+					                    <div class="invalid-feedback">
+					                        Debe ingresar una fecha válida
+					                    </div>
+				                    </div>
+				                </div>
+				            </div>	
+							
 							</div>
 						</form>
 					</div>
