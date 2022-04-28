@@ -85,13 +85,13 @@
 			</div>
 
 			<div class="text-right row">
-				<div class="text-light mr-3">
-					Usuario Conectado:
+				<div class="text-light mr-4">
+					<h4>Bienvenido:</h4>
 					<c:out value="${user}"></c:out>
 				</div>
-				<div>
+				<div class="my-auto">
 					<form action="logout" method="get">
-						<input class="" type="submit" value="Desconectar">
+						<input id="btnLogout" class="btn-primary" type="submit" value="Desconectar">
 					</form>
 				</div>
 			</div>
@@ -107,9 +107,9 @@
 			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-lg"
 				role="document">
-				<div class="modal-content">
+				<div class="modal-content  bg-dark">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle">Nueva
+						<h5 class="modal-title text-light" id="exampleModalLongTitle">Nueva
 							Bodega</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -153,7 +153,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-dark"
+						<button type="button" class="btn btn-light"
 							id="idBtnGuardarBodega">Guardar</button>
 					</div>
 				</div>
