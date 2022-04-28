@@ -37,7 +37,8 @@ public class BodegaController {
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseServiceObject> createBodega(@RequestBody BodegaRequest bodegaRequest){
-		return new ResponseEntity<ResponseServiceObject>(bodegaDelegate.save(bodegaRequest), HttpStatus.OK);
+		bodegaDelegate.save(bodegaRequest);
+		return getBodegas();
 	}
 
 	@GetMapping(path = "{idBodega}", produces = MediaType.APPLICATION_JSON_VALUE)

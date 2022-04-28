@@ -156,11 +156,11 @@ $(document).ready(function() {
 			})
 				.done(function(data, textStatus, jqXHR) {
 					swal({
-						text: data.mensaje,
+						text: data.messageList[0].message,
 						icon: "success"
 					});
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-					table.bootstrapTable('load', data.listarBodegas);
+					table.bootstrapTable('load', data.body);
 					table.bootstrapTable('refresh');
 
 				})
