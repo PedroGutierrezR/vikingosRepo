@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 public class Materiales {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prodcuto_id_seq")
-	@Column(name = "id_prodcuto")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "producto_id_seq")
+	@Column(name = "id_producto")
 	private int idProducto;
 	private int precio_producto;
 	private String nombre_producto;
