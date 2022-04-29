@@ -362,3 +362,6 @@ $("#idBtnEliminarMaterial").click(function() {
 		});
 
 });
+
+
+//esta funcionando el listar y eliminar materiales
