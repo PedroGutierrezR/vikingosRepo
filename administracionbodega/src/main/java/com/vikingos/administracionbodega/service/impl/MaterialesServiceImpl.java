@@ -56,8 +56,10 @@ public class MaterialesServiceImpl implements MaterialesService {
 		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
 		
 		Materiales materiales = new Materiales();
-		materiales.setNombre_producto(materialesRequest.getNombre_producto());
-		materiales.setPrecio_producto(materialesRequest.getPrecio_producto());
+		materiales.setNombreProducto(materialesRequest.getNombreProducto());
+		materiales.setPrecioProducto(materialesRequest.getPrecioProducto());
+		materiales.setFechaIngreso(materialesRequest.getFechaIngreso());
+		materiales.setBodega(materialesRequest.getBodega());
 		
 		responseServiceObject.setBody(materialesRepository.save(materiales));
 		
@@ -80,8 +82,10 @@ public class MaterialesServiceImpl implements MaterialesService {
 		
 		Materiales materiales = new Materiales();
 		materiales.setIdProducto(idProducto);
-		materiales.setNombre_producto(materialesRequest.getNombre_producto());
-		materiales.setPrecio_producto(materialesRequest.getPrecio_producto());
+		materiales.setNombreProducto(materialesRequest.getNombreProducto());
+		materiales.setPrecioProducto(materialesRequest.getPrecioProducto());
+		materiales.setFechaIngreso(materialesRequest.getFechaIngreso());
+		materiales.setBodega(materialesRequest.getBodega());
 
 		responseServiceObject.setBody(materialesRepository.save(materiales));
 		
@@ -123,4 +127,10 @@ public class MaterialesServiceImpl implements MaterialesService {
 		}
 
 	}
+
+	@Override
+	public void deleteById(MaterialesRequest materialesRequest) {
+		materialesRepository.deleteById(materialesRequest.getIdProducto());
+	}
+
 }

@@ -1,10 +1,14 @@
 package com.vikingos.administracionbodega.repository.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +27,10 @@ public class Materiales {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "producto_id_seq")
 	@Column(name = "id_producto")
 	private int idProducto;
-	private int precio_producto;
-	private String nombre_producto;
-	
+	private int precioProducto;
+	private String nombreProducto;
+	private LocalDate fechaIngreso;
+	@ManyToOne
+	@JoinColumn(name = "id_bodega")
+	private Bodega bodega;
 }
