@@ -11,7 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.vikingos.administracionbodega.repository.BodegaRepository;
+import com.vikingos.administracionbodega.repository.MaterialesRepository;
 import com.vikingos.administracionbodega.repository.model.Bodega;
+import com.vikingos.administracionbodega.repository.model.Materiales;
 
 @SpringBootApplication
 public class AdministracionbodegaApplication {
@@ -20,6 +22,8 @@ public class AdministracionbodegaApplication {
 
 	@Autowired
 	private BodegaRepository bodegaRepository;
+	@Autowired
+	private MaterialesRepository materialesRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(AdministracionbodegaApplication.class, args);
@@ -40,6 +44,29 @@ public class AdministracionbodegaApplication {
 			bodegaRepository.save(bodega2);
 			logger.info(bodega1.toString());
 			logger.info(bodega2.toString());
+		};
+	}
+	
+	@Bean
+	public CommandLineRunner createMateriales() {
+		return (args) -> {
+			
+			Materiales material1 = new Materiales();			
+			material1.setNombreProducto("producto 1");
+			material1.setPrecioProducto(10000);
+			material1.setFechaIngreso(LocalDate.now());
+	
+			Materiales material2 = new Materiales();
+			material2.setNombreProducto("producto 2");
+			material2.setPrecioProducto(20000);
+			material2.setFechaIngreso(LocalDate.now());
+
+			
+			materialesRepository.save(material1);
+			materialesRepository.save(material2);
+			
+			logger.info(material1.toString());
+			logger.info(material2.toString());
 		};
 	}
 
