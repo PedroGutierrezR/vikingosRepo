@@ -65,7 +65,7 @@
 							<li><a class="dropdown-item" id="listarMateriales" href="#">Listar
 									Materiales </a></li>
 							<li><a class="dropdown-item" id="agregarMateriales" href="#"
-							data-toggle="modal" data-target="#modalNuevaMaterial">Agregar Materiales</a></li>
+							data-toggle="modal" data-target="#modalNuevoMaterial">Agregar Materiales</a></li>
 						</ul></li>
 				</ul>
 				<ul class="navbar-nav">
@@ -267,10 +267,10 @@
 							<div class=form-row>
 								<div class="col-md-4 mb-3">
 									<div class="form-group">
-										<label for="agregarMateriales">Nombre</label>
+										<label for="agregarMaterial">Nombre</label>
 										<div class="form-inline">
 											<input type="text" class="form-control"
-												id="agregarMateriales" placeholder="Ingrese Nombre"
+												id="agregarMaterial" placeholder="Ingrese Nombre"
 												required>
 											<div class="valid-feedback">Correcto!</div>
 											<div class="invalid-feedback">Debe ingresar una
@@ -282,7 +282,7 @@
 									<div class="form-group">
 										<label for="agregarPrecio">Precio</label>
 										<div class="form-inline">
-											<input type="date" class="form-control"
+											<input type="number" class="form-control"
 												id="agregarPrecio"
 												placeholder="Ingrese precio" required>
 											<div class="valid-feedback">Correcto!</div>

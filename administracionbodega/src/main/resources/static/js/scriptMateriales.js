@@ -77,19 +77,18 @@ $(document).ready(function() {
 
 		const validaFormNuevoMaterial = () => {
 
-			var agregarMateriales = false;
+			var agregarMaterial = false;
 			var agregarPrecio = false;
 			var agregarFecha = false;
-			//var idTxtAgregarImprenta = false;
 
-			if ($("#agregarMateriales").val().length == 0) {
-				$("#agregarMateriales").addClass("is-invalid");
-				$("#agregarMateriales").removeClass("is-valid");
+			if ($("#agregarMaterial").val().length == 0) {
+				$("#agregarMaterial").addClass("is-invalid");
+				$("#agregarMaterial").removeClass("is-valid");
 				agregarMateriales = false;
 			} else {
-				$("#agregarMateriales").removeClass("is-invalid");
-				$("#agregarMateriales").addClass("is-valid");
-				agregarMateriales = true;
+				$("#agregarMaterial").removeClass("is-invalid");
+				$("#agregarMaterial").addClass("is-valid");
+				agregarMaterial = true;
 			}
 			if ($("#agregarPrecio").val().length == 0) {
 				$("#agregarPrecio").addClass("is-invalid");
@@ -109,42 +108,15 @@ $(document).ready(function() {
 				$("#agregarFecha").addClass("is-valid");
 				agregarFecha = true;
 			}
-			/*
-				if ($("#idTxtAgregarAutor").val().length == 0) {
-					$("#idTxtAgregarAutor").addClass("is-invalid");
-					$("#idTxtAgregarAutor").removeClass("is-valid");
-					idTxtAgregarAutor = false;
-				} else {
-					$("#idTxtAgregarAutor").removeClass("is-invalid");
-					$("#idTxtAgregarAutor").addClass("is-valid");
-					idTxtAgregarAutor = true;
-				}
-	
-				if ($("#idTxtAgregarImprenta").val().length == 0) {
-					$("#idTxtAgregarImprenta").addClass("is-invalid");
-					$("#idTxtAgregarImprenta").removeClass("is-valid");
-					idTxtAgregarImprenta = false;
-				} else {
-					$("#idTxtAgregarImprenta").removeClass("is-invalid");
-					$("#idTxtAgregarImprenta").addClass("is-valid");
-					idTxtAgregarImprenta = true;
-				}
-		*/
-			return agregarMateriales && agregarPrecio && agregarFecha;
+			
+			return agregarMaterial & agregarPrecio & agregarFecha;
 		}
 
 		let dataMaterial = {
-			"nombreProducto": $("#agregarMateriales").val(),
-			"precioProducto": $("#agregarProducto").val(),
+			"nombreProducto": $("#agregarMaterial").val(),
+			"precioProducto": $("#agregarPrecio").val(),
 			"fechaIngreso": $("#agregarFecha").val(),
-			//"imprenta": $("#idTxtAgregarImprenta").val(),
-			//"disponibilidad": $("#idTxtAgregarDisponible").val(),
 		}
-
-		//if ($('#idTxtAgregarNoDisponible').is(':checked')) {
-		//console.log("Entré");
-		//dataLibro.disponibilidad = $("#idTxtAgregarNoDisponible").val();
-		//}
 
 		console.log(dataMaterial);
 
@@ -183,9 +155,9 @@ $(document).ready(function() {
 	});
 
 	$('#modalNuevoMaterial').on('show.bs.modal', function() {
-		$("#agregarMateriales").val("");
-		$("#agregarMateriales").removeClass("is-valid");
-		$("#agregarMateriales").removeClass("is-invalid");
+		$("#agregarMaterial").val("");
+		$("#agregarMaterial").removeClass("is-valid");
+		$("#agregarMaterial").removeClass("is-invalid");
 
 		$("#agregarPrecio").val("");
 		$("#agregarPrecio").removeClass("is-valid");
