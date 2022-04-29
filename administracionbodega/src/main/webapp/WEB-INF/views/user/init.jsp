@@ -341,7 +341,7 @@
 										<label for="editarMateriales">Nombre</label>
 										<div class="form-inline">
 											<input type="text" class="form-control"
-												id="editarMarteriales" placeholder="" required>
+												id="editarMateriales" placeholder="" required>
 											<div class="valid-feedback">Correcto!</div>
 											<div class="invalid-feedback">Debe ingresar una
 												descripción válida</div>
