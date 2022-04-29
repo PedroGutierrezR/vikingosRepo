@@ -1,15 +1,13 @@
-const table = $("#myTableBodega")
-
 $(document).ready(function() {
 
-	$("#listarBodegas").click(function() {
-
+	$("#listarMateriales").click(function() {
+		
 		$.ajax({
 			type: "GET",
 			// Formato de datos que se espera en la respuesta
 			dataType: "json",
 			// URL a la que se enviará la solicitud Ajax
-			url: "/bodegas",
+			url: "/materiales",
 			contentType: 'application/json'
 		})
 			.done(function(data, textStatus, jqXHR) {
@@ -18,7 +16,7 @@ $(document).ready(function() {
 				//					icon: "success"
 				//				});
 
-				table.bootstrapTable({
+				tableMateriales.bootstrapTable({
 					data: data.body,
 					pagination: true,
 					search: true,
@@ -53,10 +51,10 @@ $(document).ready(function() {
 							//console.log(JSON.stringify(row));
 							//console.log($.param(row))
 							return [
-								"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarBodega' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
+								"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarMaterial' onclick='onClickEditarMaterial(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 								"<i class='bi bi-pencil'></i>",
 								"</a>  ",
-								"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarBodega' onclick='onClickEliminar(\"" + row.idBodega + "\");' title='Eliminar'>",
+								"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarMaterial' onclick='onClickEliminarMaterial(\"" + row.idBodega + "\");' title='Eliminar'>",
 								'<i class="fa fa-trash"></i>',
 								'</a>'
 							].join('');
@@ -72,7 +70,7 @@ $(document).ready(function() {
 
 	});
 
-	$("#idBtnGuardarBodega").click(function() {
+	$("#idBtnGuardarMateriales").click(function() {
 
 		const validaFormNuevaBodega = () => {
 
@@ -124,7 +122,7 @@ $(document).ready(function() {
 			return idTxtAgregarNombreBodega & idTxtAgregarFecha;
 		}
 
-		let dataBodega = {
+		let dataMateriales = {
 			"nombre_bodega": $("#idTxtAgregarNombreBodega").val(),
 			"fecha_ingreso": $("#idTxtAgregarFecha").val(),
 			//"autor": $("#idTxtAgregarAutor").val(),
@@ -137,20 +135,20 @@ $(document).ready(function() {
 		//dataLibro.disponibilidad = $("#idTxtAgregarNoDisponible").val();
 		//}
 
-		console.log(dataBodega);
+		console.log(dataMateriales);
 
 		if (validaFormNuevaBodega()) {
 			console.log("Todo bien");
 
 			$.ajax({
 				// En data puedes utilizar un objeto JSON, un array o un query string
-				data: JSON.stringify(dataBodega),
+				data: JSON.stringify(dataMateriales),
 				//Cambiar a type: POST si necesario
 				type: "POST",
 				// Formato de datos que se espera en la respuesta
 				dataType: "json",
 				// URL a la que se enviará la solicitud Ajax
-				url: "/bodegas",
+				url: "/materiales",
 				contentType: 'application/json'
 			})
 				.done(function(data, textStatus, jqXHR) {
@@ -159,8 +157,8 @@ $(document).ready(function() {
 						icon: "success"
 					});
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-					table.bootstrapTable('load', data.body);
-					table.bootstrapTable('refresh');
+					tableMateriales.bootstrapTable('load', data.body);
+					tableMateriales.bootstrapTable('refresh');
 
 				})
 				.fail(function(jqXHR, textStatus, errorThrown) {
@@ -173,7 +171,7 @@ $(document).ready(function() {
 
 	});
 
-	$('#modalNuevaBodega').on('show.bs.modal', function() {
+	$('#modalNuevoMaterial').on('show.bs.modal', function() {
 		$("#idTxtAgregarNombreBodega").val("");
 		$("#idTxtAgregarNombreBodega").removeClass("is-valid");
 		$("#idTxtAgregarNombreBodega").removeClass("is-invalid");
@@ -195,129 +193,74 @@ $(document).ready(function() {
 });
 
 // Global variable
-let dataBodega;
+let dataMaterial;
 
 //Edit Bodega
-function onClickEditar(row) {
+function onClickEditarMaterial(row) {
 	console.log(row);
-	dataBodega = JSON.parse(row);
+	dataMaterial = JSON.parse(row);
 
 	//Limpiar campos del modal
-	$("#idTxtEditarNombreBodega").val(dataBodega.nombre_bodega);
+	$("#idTxtEditarNombreBodega").val(dataMaterial.nombre_bodega);
 	$("#idTxtEditarNombreBodega").removeClass("is-valid");
 	$("#idTxtEditarNombreBodega").removeClass("is-invalid");
 
-	$("#idTxtEditarFecha").val(dataBodega.fecha_ingreso);
+	$("#idTxtEditarFecha").val(dataMaterial.fecha_ingreso);
 	$("#idTxtEditarFecha").removeClass("is-valid");
 	$("#idTxtEditarFecha").removeClass("is-invalid");
 
-	/*	$("#idTxtAutor").val(dataLibro.autor);
-		$("#idTxtAutor").removeClass("is-valid");
-		$("#idTxtAutor").removeClass("is-invalid");
-
-		$("#idTxtImprenta").val(dataLibro.imprenta);
-		$("#idTxtImprenta").removeClass("is-valid");
-		$("#idTxtImprenta").removeClass("is-invalid");
-
-		$("#idTxtDisponible").removeClass("is-valid");
-		$("#idTxtDisponible").removeClass("is-invalid");
-		$("#idTxtNoDisponible").removeClass("is-valid");
-		$("#idTxtNoDisponible").removeClass("is-invalid");
-
-		if (dataLibro.disponibilidad === "Disponible") {
-			console.log("Hola: " + dataLibro.disponibilidad);
-			$("#idTxtNoDisponible").prop('checked', false);
-			$("#idTxtDisponible").prop('checked', true);
-		} else if (dataLibro.disponibilidad === "No disponible") {
-			console.log("Hola: " + dataLibro.disponibilidad);
-			$("#idTxtDisponible").prop('checked', false);
-			$("#idTxtNoDisponible").prop('checked', true);
-		}
-
-		$("#idTxtDisponible").change(function() {
-			dataLibro.disponibilidad = $("#idTxtDisponible").val();
-		});
-		$("#idTxtNoDisponible").change(function() {
-			dataLibro.disponibilidad = $("#idTxtNoDisponible").val();
-		});
-*/
-	console.log(dataBodega);
+	console.log(dataMaterial);
 
 }
 
-$("#idBtnEditarBodega").click(function() {
+$("#idBtnEditarMaterial").click(function() {
 
 	const validaFormEditarBodega = () => {
 
-		var idTxtEditarNombreBodega = false;
-		var idTxtEditarFecha = false;
-		//var idTxtAutor = false;
-		//var idTxtImprenta = false;
+		var idTxtEditarNombreMaterial = false;
+		var idTxtEditarFechaMaterial = false;
 
-		if ($("#idTxtEditarNombreBodega").val().length == 0) {
-			$("#idTxtEditarNombreBodega").addClass("is-invalid");
-			$("#idTxtEditarNombreBodega").removeClass("is-valid");
-			idTxtEditarNombreBodega = false;
+		if ($("#idTxtEditarNombreMaterial").val().length == 0) {
+			$("#idTxtEditarNombreMaterial").addClass("is-invalid");
+			$("#idTxtEditarNombreMaterial").removeClass("is-valid");
+			idTxtEditarNombreMaterial = false;
 		} else {
-			$("#idTxtEditarNombreBodega").removeClass("is-invalid");
-			$("#idTxtEditarNombreBodega").addClass("is-valid");
-			idTxtEditarNombreBodega = true;
+			$("#idTxtEditarNombreMaterial").removeClass("is-invalid");
+			$("#idTxtEditarNombreMaterial").addClass("is-valid");
+			idTxtEditarNombreMaterial = true;
 		}
 
-		if ($("#idTxtEditarFecha").val().length == 0) {
-			$("#idTxtEditarFecha").addClass("is-invalid");
-			$("#idTxtEditarFecha").removeClass("is-valid");
+		if ($("#idTxtEditarFechaMaterial").val().length == 0) {
+			$("#idTxtEditarFechaMaterial").addClass("is-invalid");
+			$("#idTxtEditarFechaMaterial").removeClass("is-valid");
 
-			idTxtEditarFecha = false;
+			idTxtEditarFechaMaterial = false;
 		} else {
-			$("#idTxtEditarFecha").removeClass("is-invalid");
-			$("#idTxtEditarFecha").addClass("is-valid");
-			idTxtEditarFecha = true;
+			$("#idTxtEditarFechaMaterial").removeClass("is-invalid");
+			$("#idTxtEditarFechaMaterial").addClass("is-valid");
+			idTxtEditarFechaMaterial = true;
 		}
 
-		/*	if ($("#idTxtAutor").val().length == 0) {
-				$("#idTxtAutor").addClass("is-invalid");
-				$("#idTxtAutor").removeClass("is-valid");
-				idTxtAutor = false;
-			} else {
-				$("#idTxtAutor").removeClass("is-invalid");
-				$("#idTxtAutor").addClass("is-valid");
-				idTxtAutor = true;
-			}
-
-			if ($("#idTxtImprenta").val().length == 0) {
-				$("#idTxtImprenta").addClass("is-invalid");
-				$("#idTxtImprenta").removeClass("is-valid");
-				idTxtImprenta = false;
-			} else {
-				$("#idTxtImprenta").removeClass("is-invalid");
-				$("#idTxtImprenta").addClass("is-valid");
-				idTxtImprenta = true;
-			}
-	*/
-		return idTxtEditarNombreBodega && idTxtEditarFecha;
+		return idTxtEditarNombreMaterial && idTxtEditarFechaMaterial;
 	}
 
-	dataBodega = {
-		"idBodega": dataBodega.idBodega,
-		"nombre_bodega": $("#idTxtEditarNombreBodega").val(),
+	dataMaterial = {
+		"idBodega": dataMateriales.idMaterial,
+		"nombre_material": $("#idTxtEditarNombreBodega").val(),
 		"fecha_ingreso": $("#idTxtEditarFecha").val(),
-		//"autor": $("#idTxtAutor").val(),
-		//"imprenta": $("#idTxtImprenta").val(),
-		//"disponibilidad": dataLibro.disponibilidad
 	}
 
 	if (validaFormEditarBodega()) {
-		console.log(dataBodega);
+		console.log(dataMaterial);
 		$.ajax({
 			// En data puedes utilizar un objeto JSON, un array o un query string
-			data: JSON.stringify(dataBodega),
+			data: JSON.stringify(dataMaterial),
 			//Cambiar a type: POST si necesario
 			type: "PUT",
 			// Formato de datos que se espera en la respuesta
 			dataType: "json",
 			// URL a la que se enviará la solicitud Ajax
-			url: "/bodegas",
+			url: "/materiales",
 			contentType: 'application/json'
 		})
 			.done(function(data, textStatus, jqXHR) {
@@ -327,8 +270,8 @@ $("#idBtnEditarBodega").click(function() {
 				});
 				console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 				console.log("Bodegas a refrescar", data.body);
-				table.bootstrapTable('load', data.body);
-				table.bootstrapTable('refresh');
+				tableMateriales.bootstrapTable('load', data.body);
+				tableMateriales.bootstrapTable('refresh');
 
 			})
 			.fail(function(jqXHR, textStatus, errorThrown) {
@@ -343,27 +286,27 @@ $("#idBtnEditarBodega").click(function() {
 
 
 //Delete Bodega
-function onClickEliminar(id) {
+function onClickEliminarMaterial(id) {
 	console.log("Id a eliminar: " + id);
 
-	dataBodega = {
+	dataMaterial = {
 		"idBodega": id
 	};
 }
 
-$("#idBtnEliminarBodega").click(function() {
+$("#idBtnEliminarMaterial").click(function() {
 
-	console.log('id to delete: ' + dataBodega.idBodega);
+	console.log('id to delete: ' + dataMaterial.idMaterial);
 
 	$.ajax({
 		// En data puedes utilizar un objeto JSON, un array o un query string
-		data: JSON.stringify(dataBodega),
+		data: JSON.stringify(dataMaterial),
 		//Cambiar a type: POST si necesario
 		type: "DELETE",
 		// Formato de datos que se espera en la respuesta
 		dataType: "json",
 		// URL a la que se enviará la solicitud Ajax
-		url: "/bodegas",
+		url: "/materiales",
 		contentType: 'application/json'
 	})
 		.done(function(data, textStatus, jqXHR) {
@@ -373,8 +316,8 @@ $("#idBtnEliminarBodega").click(function() {
 			});
 			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 			console.log("Bodegas a refrescar", data.body);
-			table.bootstrapTable('load', data.body);
-			table.bootstrapTable('refresh');
+			tableMateriales.bootstrapTable('load', data.body);
+			tableMateriales.bootstrapTable('refresh');
 
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {

@@ -51,7 +51,7 @@ public class BodegaController {
 
 	@DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseServiceObject> deleteBodega(@RequestBody BodegaRequest bodegaRequest){
-		bodegaDelegate.save(bodegaRequest);
+		bodegaDelegate.deleteById(bodegaRequest);
 		return getBodegas();
 	}
 	
