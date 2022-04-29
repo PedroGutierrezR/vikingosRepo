@@ -57,8 +57,8 @@ public class BodegaServiceImpl implements BodegaService{
 		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
 		
 		Bodega bodega = new Bodega();
-		bodega.setNombre_bodega(bodegaRequest.getNombre_bodega());
-		bodega.setFecha_ingreso(bodegaRequest.getFecha_ingreso());
+		bodega.setNombreBodega(bodegaRequest.getNombreBodega());
+		bodega.setFechaIngreso(bodegaRequest.getFechaIngreso());
 		
 		responseServiceObject.setBody(bodegaRepository.save(bodega));
 		
@@ -81,8 +81,8 @@ public class BodegaServiceImpl implements BodegaService{
 		
 		Bodega bodega = new Bodega();
 		bodega.setIdBodega(idBodega);
-		bodega.setNombre_bodega(bodegaRequest.getNombre_bodega());
-		bodega.setFecha_ingreso(bodegaRequest.getFecha_ingreso());
+		bodega.setNombreBodega(bodegaRequest.getNombreBodega());
+		bodega.setFechaIngreso(bodegaRequest.getFechaIngreso());
 
 		responseServiceObject.setBody(bodegaRepository.save(bodega));
 		
@@ -124,10 +124,9 @@ public class BodegaServiceImpl implements BodegaService{
 		}
 
 	}
-//no funciona, arreglar
+
 	@Override
 	public void deleteById(BodegaRequest bodegaRequest) {
-		System.out.println(bodegaRequest.getIdBodega());
 		bodegaRepository.deleteById(bodegaRequest.getIdBodega());
 	
 	}

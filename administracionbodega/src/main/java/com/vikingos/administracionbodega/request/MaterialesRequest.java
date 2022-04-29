@@ -1,5 +1,9 @@
 package com.vikingos.administracionbodega.request;
 
+import java.time.LocalDate;
+
+import com.vikingos.administracionbodega.repository.model.Bodega;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +13,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MaterialesRequest {
 	
-	public int precio_producto;
-	public String nombre_producto;
+	private int idProducto;
+	private int precioProducto;
+	private String nombreProducto;
+	private LocalDate fechaIngreso;
+	private Bodega bodega;
+	
 }

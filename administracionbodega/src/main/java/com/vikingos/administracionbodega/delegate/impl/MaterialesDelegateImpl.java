@@ -35,5 +35,10 @@ public class MaterialesDelegateImpl implements MaterialesDelegate {
 		return materialesService.findByid(idProducto);
 	}
 
+	@Override
+	public void deleteById(MaterialesRequest materialesRequest) {
+		materialesService.deleteById(materialesRequest);
+	}
+
 	
 }

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class BodegaRequest {
 
 	private Integer idBodega;
-	private String nombre_bodega;
-	private LocalDate fecha_ingreso;
+	private String nombreBodega;
+	private LocalDate fechaIngreso;
 	
 }

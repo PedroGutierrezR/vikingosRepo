@@ -14,10 +14,6 @@ $(document).ready(function() {
 			contentType: 'application/json'
 		})
 			.done(function(data, textStatus, jqXHR) {
-				//				swal({
-				//					text: data.messageList[0].message,
-				//					icon: "success"
-				//				});
 
 				tableBodega.bootstrapTable({
 					data: data.body,
@@ -31,12 +27,12 @@ $(document).ready(function() {
 						title: 'ID',
 						width: '40px'
 					}, {
-						field: 'nombre_bodega',
+						field: 'nombreBodega',
 						title: 'Nombre',
 						width: '180px'
 					},
 					{
-						field: 'fecha_ingreso',
+						field: 'fechaIngreso',
 						title: 'Fecha Ingreso',
 						width: '180px'
 					},
@@ -79,8 +75,6 @@ $(document).ready(function() {
 
 			var idTxtAgregarNombreBodega = false;
 			var idTxtAgregarFecha = false;
-			//var idTxtAgregarAutor = false;
-			//var idTxtAgregarImprenta = false;
 
 			if ($("#idTxtAgregarNombreBodega").val().length == 0) {
 				$("#idTxtAgregarNombreBodega").addClass("is-invalid");
@@ -101,42 +95,13 @@ $(document).ready(function() {
 				$("#idTxtAgregarFecha").addClass("is-valid");
 				idTxtAgregarFecha = true;
 			}
-			/*
-				if ($("#idTxtAgregarAutor").val().length == 0) {
-					$("#idTxtAgregarAutor").addClass("is-invalid");
-					$("#idTxtAgregarAutor").removeClass("is-valid");
-					idTxtAgregarAutor = false;
-				} else {
-					$("#idTxtAgregarAutor").removeClass("is-invalid");
-					$("#idTxtAgregarAutor").addClass("is-valid");
-					idTxtAgregarAutor = true;
-				}
-	
-				if ($("#idTxtAgregarImprenta").val().length == 0) {
-					$("#idTxtAgregarImprenta").addClass("is-invalid");
-					$("#idTxtAgregarImprenta").removeClass("is-valid");
-					idTxtAgregarImprenta = false;
-				} else {
-					$("#idTxtAgregarImprenta").removeClass("is-invalid");
-					$("#idTxtAgregarImprenta").addClass("is-valid");
-					idTxtAgregarImprenta = true;
-				}
-		*/
 			return idTxtAgregarNombreBodega & idTxtAgregarFecha;
 		}
 
 		let dataBodega = {
-			"nombre_bodega": $("#idTxtAgregarNombreBodega").val(),
-			"fecha_ingreso": $("#idTxtAgregarFecha").val(),
-			//"autor": $("#idTxtAgregarAutor").val(),
-			//"imprenta": $("#idTxtAgregarImprenta").val(),
-			//"disponibilidad": $("#idTxtAgregarDisponible").val(),
+			"nombreBodega": $("#idTxtAgregarNombreBodega").val(),
+			"fechaIngreso": $("#idTxtAgregarFecha").val(),
 		}
-
-		//if ($('#idTxtAgregarNoDisponible').is(':checked')) {
-		//console.log("Entré");
-		//dataLibro.disponibilidad = $("#idTxtAgregarNoDisponible").val();
-		//}
 
 		console.log(dataBodega);
 
@@ -182,15 +147,7 @@ $(document).ready(function() {
 		$("#idTxtAgregarFecha").val("");
 		$("#idTxtAgregarFecha").removeClass("is-valid");
 		$("#idTxtAgregarFecha").removeClass("is-invalid");
-		/*
-				$("#idTxtAgregarAutor").val("");
-				$("#idTxtAgregarAutor").removeClass("is-valid");
-				$("#idTxtAgregarAutor").removeClass("is-invalid");
-		
-				$("#idTxtAgregarImprenta").val("");
-				$("#idTxtAgregarImprenta").removeClass("is-valid");
-				$("#idTxtAgregarImprenta").removeClass("is-invalid");
-			*/
+
 	});
 
 });
@@ -203,11 +160,11 @@ function onClickEditar(row) {
 	dataBodega = JSON.parse(row);
 
 	//Limpiar campos del modal
-	$("#idTxtEditarNombreBodega").val(dataBodega.nombre_bodega);
+	$("#idTxtEditarNombreBodega").val(dataBodega.nombreBodega);
 	$("#idTxtEditarNombreBodega").removeClass("is-valid");
 	$("#idTxtEditarNombreBodega").removeClass("is-invalid");
 
-	$("#idTxtEditarFecha").val(dataBodega.fecha_ingreso);
+	$("#idTxtEditarFecha").val(dataBodega.fechaIngreso);
 	$("#idTxtEditarFecha").removeClass("is-valid");
 	$("#idTxtEditarFecha").removeClass("is-invalid");
 	console.log(dataBodega);
@@ -247,8 +204,8 @@ $("#idBtnEditarBodega").click(function() {
 	
 	dataBodega = {
 		"idBodega": dataBodega.idBodega,
-		"nombre_bodega": $("#idTxtEditarNombreBodega").val(),
-		"fecha_ingreso": $("#idTxtEditarFecha").val(),
+		"nombreBodega": $("#idTxtEditarNombreBodega").val(),
+		"fechaIngreso": $("#idTxtEditarFecha").val(),
 	}
 
 	if (validaFormEditarBodega()) {

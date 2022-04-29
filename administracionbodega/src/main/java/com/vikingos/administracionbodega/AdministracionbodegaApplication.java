@@ -12,8 +12,6 @@ import org.springframework.context.annotation.Bean;
 
 import com.vikingos.administracionbodega.repository.BodegaRepository;
 import com.vikingos.administracionbodega.repository.model.Bodega;
-import com.vikingos.administracionbodega.request.BodegaRequest;
-import com.vikingos.administracionbodega.service.BodegaService;
 
 @SpringBootApplication
 public class AdministracionbodegaApplication {
@@ -34,10 +32,10 @@ public class AdministracionbodegaApplication {
 			Bodega bodega1 = new Bodega();
 			Bodega bodega2 = new Bodega();
 			
-			bodega1.setNombre_bodega("Mi bodega 1");
-			bodega1.setFecha_ingreso(LocalDate.now());
-			bodega2.setNombre_bodega("Mi bodega 2");
-			bodega2.setFecha_ingreso(LocalDate.now());
+			bodega1.setNombreBodega("Mi bodega 1");
+			bodega1.setFechaIngreso(LocalDate.now());
+			bodega2.setNombreBodega("Mi bodega 2");
+			bodega2.setFechaIngreso(LocalDate.now());
 			bodegaRepository.save(bodega1);
 			bodegaRepository.save(bodega2);
 			logger.info(bodega1.toString());

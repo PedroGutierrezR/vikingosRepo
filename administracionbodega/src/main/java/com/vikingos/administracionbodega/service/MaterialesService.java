@@ -11,4 +11,6 @@ public interface MaterialesService {
 	public ResponseServiceObject save(int idProducto, MaterialesRequest materialesRequest);
 	public ResponseServiceObject save(MaterialesRequest materialesRequest);
 	public ResponseServiceObject findByid(Integer idProducto) throws ServiceException;
+	public void deleteById(MaterialesRequest materialesRequest);
+	
 }
