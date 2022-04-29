@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BodegaRequest {
 
+	private Integer idBodega;
 	private String nombre_bodega;
 	private LocalDate fecha_ingreso;
 	

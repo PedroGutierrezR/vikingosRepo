@@ -30,8 +30,9 @@ public class BodegaController {
 		return new ResponseEntity<ResponseServiceObject>(bodegaDelegate.findAll(), HttpStatus.OK);
 	}
 	
-	@PutMapping(path = "{idBodega}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseServiceObject> updateBodega(@PathVariable int idBodega, @RequestBody BodegaRequest bodegaRequest){
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseServiceObject> updateBodega(@RequestBody BodegaRequest bodegaRequest){
+		int idBodega = bodegaRequest.getIdBodega();
 		return new ResponseEntity<ResponseServiceObject>(bodegaDelegate.save(idBodega, bodegaRequest), HttpStatus.OK);
 	} 
 	
