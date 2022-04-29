@@ -61,7 +61,7 @@ $(document).ready(function() {
 								"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarMaterial' onclick='onClickEditarMaterial(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 								"<i class='bi bi-pencil'></i>",
 								"</a>  ",
-								"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarMaterial' onclick='onClickEliminarMaterial(\"" + row.idBodega + "\");' title='Eliminar'>",
+								"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarMaterial' onclick='onClickEliminarMaterial(\"" + row.idProducto + "\");' title='Eliminar'>",
 								'<i class="fa fa-trash"></i>',
 								'</a>'
 							].join('');
