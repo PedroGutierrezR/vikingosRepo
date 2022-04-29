@@ -61,7 +61,7 @@ $(document).ready(function() {
 								"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarMaterial' onclick='onClickEditarMaterial(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 								"<i class='bi bi-pencil'></i>",
 								"</a>  ",
-								"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarMaterial' onclick='onClickEliminarMaterial(\"" + row.idBodega + "\");' title='Eliminar'>",
+								"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarMaterial' onclick='onClickEliminarMaterial(\"" + row.idProducto + "\");' title='Eliminar'>",
 								'<i class="fa fa-trash"></i>',
 								'</a>'
 							].join('');
@@ -134,7 +134,7 @@ $(document).ready(function() {
 					idTxtAgregarImprenta = true;
 				}
 		*/
-			return agregarMateriales & agregarPrecio & agregarFecha;
+			return agregarMateriales && agregarPrecio && agregarFecha;
 		}
 
 		let dataMaterial = {
@@ -216,7 +216,7 @@ let dataMaterial;
 
 //Edit Bodega
 function onClickEditarMaterial(row) {
-	console.log(row);
+	//console.log(row);
 	dataMaterial = JSON.parse(row);
 
 	//Limpiar campos del modal
@@ -238,7 +238,7 @@ function onClickEditarMaterial(row) {
 
 $("#idBtnEditarMaterial").click(function() {
 
-	const validaFormNuevoMaterial = () => {
+	const validaFormEditarMaterial = () => {
 
 		var editarMateriales = false;
 		var editarPrecio = false;
@@ -273,7 +273,7 @@ $("#idBtnEditarMaterial").click(function() {
 			editarFecha = true;
 		}
 
-		return editarMateriales && editarPrecio && editarFecha;
+		return editarMateriales & editarPrecio & editarFecha;
 	}
 
 	dataMaterial = {
@@ -283,7 +283,7 @@ $("#idBtnEditarMaterial").click(function() {
 		"fechaIngreso": $("#editarFecha").val(),
 	}
 
-	if (validaFormNuevoMaterial()) {
+	if (validaFormEditarMaterial()) {
 		console.log(dataMaterial);
 		$.ajax({
 			// En data puedes utilizar un objeto JSON, un array o un query string
@@ -362,3 +362,6 @@ $("#idBtnEliminarMaterial").click(function() {
 		});
 
 });
+
+
+//esta funcionando el listar y eliminar materiales

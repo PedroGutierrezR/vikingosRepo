@@ -399,7 +399,7 @@
 						</button>
 					</div>
 					<div class="modal-body text-center">
-						<h2 class="modal-body text-light">¿Está seguro de eliminar la bodega?</h2>
+						<h2 class="modal-body text-light">¿Está seguro de eliminar el producto?</h2>
 						<input type="hidden" id="idEliminar" value="">
 					</div>
 					<div class="modal-footer">
