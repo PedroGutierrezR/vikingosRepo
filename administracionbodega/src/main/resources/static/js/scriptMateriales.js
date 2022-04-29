@@ -13,10 +13,6 @@ $(document).ready(function() {
 			contentType: 'application/json'
 		})
 			.done(function(data, textStatus, jqXHR) {
-				//				swal({
-				//					text: data.messageList[0].message,
-				//					icon: "success"
-				//				});
 
 				tableMateriales.bootstrapTable({
 					data: data.body,
@@ -198,15 +194,7 @@ $(document).ready(function() {
 		$("#agregarFecha").val("");
 		$("#agregarFecha").removeClass("is-valid");
 		$("#agregarFecha").removeClass("is-invalid");
-		/*
-				$("#idTxtAgregarAutor").val("");
-				$("#idTxtAgregarAutor").removeClass("is-valid");
-				$("#idTxtAgregarAutor").removeClass("is-invalid");
-		
-				$("#idTxtAgregarImprenta").val("");
-				$("#idTxtAgregarImprenta").removeClass("is-valid");
-				$("#idTxtAgregarImprenta").removeClass("is-invalid");
-			*/
+	
 	});
 
 });
@@ -273,7 +261,7 @@ $("#idBtnEditarMaterial").click(function() {
 			editarFecha = true;
 		}
 
-		return editarMateriales & editarPrecio & editarFecha;
+		return editarMateriales && editarPrecio && editarFecha;
 	}
 
 	dataMaterial = {
@@ -302,7 +290,7 @@ $("#idBtnEditarMaterial").click(function() {
 					icon: "success"
 				});
 				console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-				console.log("Prodcutos a refrescar", data.body);
+				console.log("Productos a refrescar", data.body);
 				tableMateriales.bootstrapTable('load', data.body);
 				tableMateriales.bootstrapTable('refresh');
 
