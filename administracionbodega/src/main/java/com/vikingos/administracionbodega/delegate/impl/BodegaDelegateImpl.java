@@ -10,11 +10,11 @@ import com.vikingos.administracionbodega.service.BodegaService;
 import com.vikingos.administracionbodega.service.response.ResponseServiceObject;
 
 @Component("bodegaDelegate")
- class BodegaDelegateImpl implements BodegaDelegate {
+class BodegaDelegateImpl implements BodegaDelegate {
 
 	@Autowired
 	private BodegaService bodegaService;
-	
+
 	@Override
 	public ResponseServiceObject findAll() {
 		return bodegaService.findAll();
@@ -24,7 +24,7 @@ import com.vikingos.administracionbodega.service.response.ResponseServiceObject;
 	public ResponseServiceObject save(int idBodega, BodegaRequest bodegaRequest) {
 		return bodegaService.save(idBodega, bodegaRequest);
 	}
-	
+
 	@Override
 	public ResponseServiceObject save(BodegaRequest bodegaRequest) {
 		return bodegaService.save(bodegaRequest);
@@ -33,6 +33,11 @@ import com.vikingos.administracionbodega.service.response.ResponseServiceObject;
 	@Override
 	public ResponseServiceObject findByid(Integer idBodega) throws ServiceException {
 		return bodegaService.findByid(idBodega);
+	}
+
+	@Override
+	public void deleteById(BodegaRequest bodegaRequest) {
+		bodegaService.deleteById(bodegaRequest);
 	}
 
 }

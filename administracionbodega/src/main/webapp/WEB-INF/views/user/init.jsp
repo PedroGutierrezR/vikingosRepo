@@ -101,7 +101,7 @@
 	<!-- Main -->
 	<main class="container my-5">
 		<table id="myTableBodega"></table>
-
+		<table id="myTableMateriales"></table>
 		<!-- Modal Agregar Bodega-->
 		<div class="modal fade" id="modalNuevaBodega" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -215,7 +215,7 @@
 			</div>
 		</div>
 
-		<!-- Modal Eliminar Libro-->
+		<!-- Modal Eliminar Bodega-->
 		<div class="modal fade" id="modalEliminarBodega" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
 			aria-hidden="true">
@@ -229,14 +229,13 @@
 						</button>
 					</div>
 					<div class="modal-body text-center">
-						<h2 class="modal-body text-light">>¿Está seguro de eliminar el libro?</h2>
+						<h2 class="modal-body text-light">¿Está seguro de eliminar la bodega?</h2>
 						<input type="hidden" id="idEliminar" value="">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-light"
-							id=idBtnEliminarBodega>Eliminar</button>
+						<button type="button" class="btn btn-light" id=idBtnEliminarBodega>Eliminar</button>
 					</div>
 				</div>
 			</div>
@@ -247,6 +246,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-	<script type="text/javascript" src="../js/script.js"></script>
+	<script type="text/javascript" src="../js/scriptBodega.js"></script>
+	<script type="text/javascript" src="../js/scriptMateriales.js"></script>
 </body>
 </html>
