@@ -1,7 +1,9 @@
+//const tableMateriales = $("#myTableMateriales");
+
 $(document).ready(function() {
 
 	$("#listarMateriales").click(function() {
-		
+
 		$.ajax({
 			type: "GET",
 			// Formato de datos que se espera en la respuesta
@@ -24,17 +26,22 @@ $(document).ready(function() {
 					pageList: [5, 10],
 					locale: "es-ES",
 					columns: [{
-						field: 'idBodega',
+						field: 'idProducto',
 						title: 'ID',
 						width: '40px'
 					}, {
-						field: 'nombre_bodega',
+						field: 'nombreProducto',
 						title: 'Nombre',
 						width: '180px'
 					},
 					{
-						field: 'fecha_ingreso',
-						title: 'Fecha Ingreso',
+						field: 'precioProducto',
+						title: 'Precio producto',
+						width: '180px'
+					},
+					{
+						field: 'fechaIngreso',
+						title: 'Fecha de Ingreso',
 						width: '180px'
 					},
 					{
@@ -70,33 +77,41 @@ $(document).ready(function() {
 
 	});
 
-	$("#idBtnGuardarMateriales").click(function() {
+	$("#idBtnGuardarMaterial").click(function() {
 
-		const validaFormNuevaBodega = () => {
+		const validaFormNuevoMaterial = () => {
 
-			var idTxtAgregarNombreBodega = false;
-			var idTxtAgregarFecha = false;
-			//var idTxtAgregarAutor = false;
+			var agregarMateriales = false;
+			var agregarPrecio = false;
+			var agregarFecha = false;
 			//var idTxtAgregarImprenta = false;
 
-			if ($("#idTxtAgregarNombreBodega").val().length == 0) {
-				$("#idTxtAgregarNombreBodega").addClass("is-invalid");
-				$("#idTxtAgregarNombreBodega").removeClass("is-valid");
-				idTxtAgregarNombreBodega = false;
+			if ($("#agregarMateriales").val().length == 0) {
+				$("#agregarMateriales").addClass("is-invalid");
+				$("#agregarMateriales").removeClass("is-valid");
+				agregarMateriales = false;
 			} else {
-				$("#idTxtAgregarNombreBodega").removeClass("is-invalid");
-				$("#idTxtAgregarNombreBodega").addClass("is-valid");
-				idTxtAgregarNombreBodega = true;
+				$("#agregarMateriales").removeClass("is-invalid");
+				$("#agregarMateriales").addClass("is-valid");
+				agregarMateriales = true;
 			}
-
-			if ($("#idTxtAgregarFecha").val().length == 0) {
-				$("#idTxtAgregarFecha").addClass("is-invalid");
-				$("#idTxtAgregarFecha").removeClass("is-valid");
-				idTxtAgregarFecha = false;
+			if ($("#agregarPrecio").val().length == 0) {
+				$("#agregarPrecio").addClass("is-invalid");
+				$("#agregarPrecio").removeClass("is-valid");
+				agregarPrecio = false;
 			} else {
-				$("#idTxtAgregarFecha").removeClass("is-invalid");
-				$("#idTxtAgregarFecha").addClass("is-valid");
-				idTxtAgregarFecha = true;
+				$("#agregarPrecio").removeClass("is-invalid");
+				$("#agregarPrecio").addClass("is-valid");
+				agregarPrecio = true;
+			}
+			if ($("#agregarFecha").val().length == 0) {
+				$("#agregarFecha").addClass("is-invalid");
+				$("#agregarFecha").removeClass("is-valid");
+				agregarFecha = false;
+			} else {
+				$("#agregarFecha").removeClass("is-invalid");
+				$("#agregarFecha").addClass("is-valid");
+				agregarFecha = true;
 			}
 			/*
 				if ($("#idTxtAgregarAutor").val().length == 0) {
@@ -119,13 +134,13 @@ $(document).ready(function() {
 					idTxtAgregarImprenta = true;
 				}
 		*/
-			return idTxtAgregarNombreBodega & idTxtAgregarFecha;
+			return agregarMateriales & agregarPrecio & agregarFecha;
 		}
 
-		let dataMateriales = {
-			"nombre_bodega": $("#idTxtAgregarNombreBodega").val(),
-			"fecha_ingreso": $("#idTxtAgregarFecha").val(),
-			//"autor": $("#idTxtAgregarAutor").val(),
+		let dataMaterial = {
+			"nombreProducto": $("#agregarMateriales").val(),
+			"precioProducto": $("#agregarProducto").val(),
+			"fechaIngreso": $("#agregarFecha").val(),
 			//"imprenta": $("#idTxtAgregarImprenta").val(),
 			//"disponibilidad": $("#idTxtAgregarDisponible").val(),
 		}
@@ -135,14 +150,14 @@ $(document).ready(function() {
 		//dataLibro.disponibilidad = $("#idTxtAgregarNoDisponible").val();
 		//}
 
-		console.log(dataMateriales);
+		console.log(dataMaterial);
 
-		if (validaFormNuevaBodega()) {
+		if (validaFormNuevoMaterial()) {
 			console.log("Todo bien");
 
 			$.ajax({
 				// En data puedes utilizar un objeto JSON, un array o un query string
-				data: JSON.stringify(dataMateriales),
+				data: JSON.stringify(dataMaterial),
 				//Cambiar a type: POST si necesario
 				type: "POST",
 				// Formato de datos que se espera en la respuesta
@@ -172,13 +187,17 @@ $(document).ready(function() {
 	});
 
 	$('#modalNuevoMaterial').on('show.bs.modal', function() {
-		$("#idTxtAgregarNombreBodega").val("");
-		$("#idTxtAgregarNombreBodega").removeClass("is-valid");
-		$("#idTxtAgregarNombreBodega").removeClass("is-invalid");
+		$("#agregarMateriales").val("");
+		$("#agregarMateriales").removeClass("is-valid");
+		$("#agregarMateriales").removeClass("is-invalid");
 
-		$("#idTxtAgregarFecha").val("");
-		$("#idTxtAgregarFecha").removeClass("is-valid");
-		$("#idTxtAgregarFecha").removeClass("is-invalid");
+		$("#agregarPrecio").val("");
+		$("#agregarPrecio").removeClass("is-valid");
+		$("#agregarPrecio").removeClass("is-invalid");
+
+		$("#agregarFecha").val("");
+		$("#agregarFecha").removeClass("is-valid");
+		$("#agregarFecha").removeClass("is-invalid");
 		/*
 				$("#idTxtAgregarAutor").val("");
 				$("#idTxtAgregarAutor").removeClass("is-valid");
@@ -201,13 +220,17 @@ function onClickEditarMaterial(row) {
 	dataMaterial = JSON.parse(row);
 
 	//Limpiar campos del modal
-	$("#idTxtEditarNombreBodega").val(dataMaterial.nombre_bodega);
-	$("#idTxtEditarNombreBodega").removeClass("is-valid");
-	$("#idTxtEditarNombreBodega").removeClass("is-invalid");
+	$("#editarMateriales").val(dataMaterial.nombreProducto);
+	$("#editarMateriales").removeClass("is-valid");
+	$("#editarMateriales").removeClass("is-invalid");
 
-	$("#idTxtEditarFecha").val(dataMaterial.fecha_ingreso);
-	$("#idTxtEditarFecha").removeClass("is-valid");
-	$("#idTxtEditarFecha").removeClass("is-invalid");
+	$("#editarPrecio").val(dataMaterial.precioProducto);
+	$("#editarPrecio").removeClass("is-valid");
+	$("#editarPrecio").removeClass("is-invalid");
+
+	$("#editarFecha").val(dataMaterial.fechaIngreso);
+	$("#editarFecha").removeClass("is-valid");
+	$("#editarFecha").removeClass("is-invalid");
 
 	console.log(dataMaterial);
 
@@ -215,42 +238,52 @@ function onClickEditarMaterial(row) {
 
 $("#idBtnEditarMaterial").click(function() {
 
-	const validaFormEditarBodega = () => {
+	const validaFormNuevoMaterial = () => {
 
-		var idTxtEditarNombreMaterial = false;
-		var idTxtEditarFechaMaterial = false;
+		var editarMateriales = false;
+		var editarPrecio = false;
+		var editarFecha = false;
 
-		if ($("#idTxtEditarNombreMaterial").val().length == 0) {
-			$("#idTxtEditarNombreMaterial").addClass("is-invalid");
-			$("#idTxtEditarNombreMaterial").removeClass("is-valid");
-			idTxtEditarNombreMaterial = false;
+		if ($("#editarMateriales").val().length == 0) {
+			$("#editarMateriales").addClass("is-invalid");
+			$("#editarMateriales").removeClass("is-valid");
+			editarMateriales = false;
 		} else {
-			$("#idTxtEditarNombreMaterial").removeClass("is-invalid");
-			$("#idTxtEditarNombreMaterial").addClass("is-valid");
-			idTxtEditarNombreMaterial = true;
+			$("#editarMateriales").removeClass("is-invalid");
+			$("#editarMarteriales").addClass("is-valid");
+			editarMateriales = true;
 		}
 
-		if ($("#idTxtEditarFechaMaterial").val().length == 0) {
-			$("#idTxtEditarFechaMaterial").addClass("is-invalid");
-			$("#idTxtEditarFechaMaterial").removeClass("is-valid");
-
-			idTxtEditarFechaMaterial = false;
+		if ($("#editarPrecio").val().length == 0) {
+			$("#editarPrecio").addClass("is-invalid");
+			$("#editarPrecio").removeClass("is-valid");
+			editarPrecio = false;
 		} else {
-			$("#idTxtEditarFechaMaterial").removeClass("is-invalid");
-			$("#idTxtEditarFechaMaterial").addClass("is-valid");
-			idTxtEditarFechaMaterial = true;
+			$("#editarPrecio").removeClass("is-invalid");
+			$("#editarPrecio").addClass("is-valid");
+			editarPrecio = true;
+		}
+		if ($("#editarFecha").val().length == 0) {
+			$("#editarFecha").addClass("is-invalid");
+			$("#editarFecha").removeClass("is-valid");
+			editarFecha = false;
+		} else {
+			$("#editarFecha").removeClass("is-invalid");
+			$("#editarFecha").addClass("is-valid");
+			editarFecha = true;
 		}
 
-		return idTxtEditarNombreMaterial && idTxtEditarFechaMaterial;
+		return editarMateriales && editarPrecio && editarFecha;
 	}
 
 	dataMaterial = {
-		"idBodega": dataMateriales.idMaterial,
-		"nombre_material": $("#idTxtEditarNombreBodega").val(),
-		"fecha_ingreso": $("#idTxtEditarFecha").val(),
+		"idProducto": dataMaterial.idProducto,
+		"nombreProducto": $("#editarMateriales").val(),
+		"precioProducto": $("#editarPrecio").val(),
+		"fechaIngreso": $("#editarFecha").val(),
 	}
 
-	if (validaFormEditarBodega()) {
+	if (validaFormNuevoMaterial()) {
 		console.log(dataMaterial);
 		$.ajax({
 			// En data puedes utilizar un objeto JSON, un array o un query string
@@ -269,7 +302,7 @@ $("#idBtnEditarMaterial").click(function() {
 					icon: "success"
 				});
 				console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-				console.log("Bodegas a refrescar", data.body);
+				console.log("Prodcutos a refrescar", data.body);
 				tableMateriales.bootstrapTable('load', data.body);
 				tableMateriales.bootstrapTable('refresh');
 
@@ -290,13 +323,13 @@ function onClickEliminarMaterial(id) {
 	console.log("Id a eliminar: " + id);
 
 	dataMaterial = {
-		"idBodega": id
+		"idProducto": id
 	};
 }
 
 $("#idBtnEliminarMaterial").click(function() {
 
-	console.log('id to delete: ' + dataMaterial.idMaterial);
+	console.log('id to delete: ' + dataMaterial.idProducto);
 
 	$.ajax({
 		// En data puedes utilizar un objeto JSON, un array o un query string
@@ -315,7 +348,7 @@ $("#idBtnEliminarMaterial").click(function() {
 				icon: "success"
 			});
 			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-			console.log("Bodegas a refrescar", data.body);
+			console.log("Prodcutos a refrescar", data.body);
 			tableMateriales.bootstrapTable('load', data.body);
 			tableMateriales.bootstrapTable('refresh');
 
