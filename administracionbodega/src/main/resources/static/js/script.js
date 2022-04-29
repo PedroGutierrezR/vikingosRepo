@@ -194,23 +194,23 @@ $(document).ready(function() {
 	});
 
 	// Global variable
-/*	let dataLibro;
+	let dataBodega;
 
 	//Edit Book
 	function onClickEditar(row) {
 
-		dataLibro = JSON.parse(row);
+		dataBodega = JSON.parse(row);
 
 		//Limpiar campos del modal
-		$("#idTxtTitulo").val(dataLibro.titulo);
-		$("#idTxtTitulo").removeClass("is-valid");
-		$("#idTxtTitulo").removeClass("is-invalid");
+		$("#idTxtModificarBodega").val(dataBodega.nombre_bodega);
+		$("#idTxtModificarBodega").removeClass("is-valid");
+		$("#idTxtModificarBodega").removeClass("is-invalid");
 
-		$("#idTxtAnio").val(dataLibro.anio);
-		$("#idTxtAnio").removeClass("is-valid");
-		$("#idTxtAnio").removeClass("is-invalid");
+		$("#idTxtModificarFecha").val(dataBodega.fecha_ingreso);
+		$("#idTxtModificarFecha").removeClass("is-valid");
+		$("#idTxtModificarFecha").removeClass("is-invalid");
 
-		$("#idTxtAutor").val(dataLibro.autor);
+	/*	$("#idTxtAutor").val(dataLibro.autor);
 		$("#idTxtAutor").removeClass("is-valid");
 		$("#idTxtAutor").removeClass("is-invalid");
 
@@ -239,42 +239,42 @@ $(document).ready(function() {
 		$("#idTxtNoDisponible").change(function() {
 			dataLibro.disponibilidad = $("#idTxtNoDisponible").val();
 		});
-
-		console.log(dataLibro);
+*/
+		console.log(dataBodega);
 
 	}
 
-	$("#idBtnEditarLibro").click(function() {
+	$("#idBtnEditarNombreBodega").click(function() {
 
-		const validaFormEditarLibro = () => {
+		const validaFormEditarBodega = () => {
 
-			var idTxtTitulo = false;
-			var idTxtAnio = false;
-			var idTxtAutor = false;
-			var idTxtImprenta = false;
+			var idTxtEditarNombreBodega = false;
+			var idTxtEditarFecha = false;
+			//var idTxtAutor = false;
+			//var idTxtImprenta = false;
 
-			if ($("#idTxtTitulo").val().length == 0) {
-				$("#idTxtTitulo").addClass("is-invalid");
-				$("#idTxtTitulo").removeClass("is-valid");
-				idTxtTitulo = false;
+			if ($("#idTxtEditarNombreBodega").val().length == 0) {
+				$("#idTxtEditarNombreBodega").addClass("is-invalid");
+				$("#idTxtEditarNombreBodega").removeClass("is-valid");
+				idTxtEditarNombreBodega = false;
 			} else {
-				$("#idTxtTitulo").removeClass("is-invalid");
-				$("#idTxtTitulo").addClass("is-valid");
-				idTxtTitulo = true;
+				$("#idTxtEditarNombreBodega").removeClass("is-invalid");
+				$("#idTxtEditarNombreBodega").addClass("is-valid");
+				idTxtEditarNombreBodega = true;
 			}
 
-			if ($("#idTxtAnio").val().length == 0) {
-				$("#idTxtAnio").addClass("is-invalid");
-				$("#idTxtAnio").removeClass("is-valid");
+			if ($("#idTxEditarFecha").val().length == 0) {
+				$("#idTxEditarFecha").addClass("is-invalid");
+				$("#idTxtEditarFecha").removeClass("is-valid");
 				 
-				idTxtAgregarAnio = false;
+				idTxtEditarFecha = false;
 			} else {
-				$("#idTxtAnio").removeClass("is-invalid");
-				$("#idTxtAnio").addClass("is-valid");
-				idTxtAnio = true;
+				$("#idTxtEditarFecha").removeClass("is-invalid");
+				$("#idTxtEditarFecha").addClass("is-valid");
+				idTxtEditarFecha = true;
 			}
 
-			if ($("#idTxtAutor").val().length == 0) {
+		/*	if ($("#idTxtAutor").val().length == 0) {
 				$("#idTxtAutor").addClass("is-invalid");
 				$("#idTxtAutor").removeClass("is-valid");
 				idTxtAutor = false;
@@ -293,21 +293,21 @@ $(document).ready(function() {
 				$("#idTxtImprenta").addClass("is-valid");
 				idTxtImprenta = true;
 			}
-
-			return idTxtTitulo && idTxtAnio && idTxtAutor && idTxtImprenta;
+	*/
+			return idTxtEditarNombreBodega && idTxtEditarFecha;
 		}
 
-		dataLibro = {
-			"id": dataLibro.id,
-			"titulo": $("#idTxtTitulo").val(),
-			"anio": $("#idTxtAnio").val(),
-			"autor": $("#idTxtAutor").val(),
-			"imprenta": $("#idTxtImprenta").val(),
-			"disponibilidad": dataLibro.disponibilidad
+		dataBodega = {
+			"idBodega": dataBodega.id,
+			"nombre_bodega": $("#idTxtEditarNombreBodega").val(),
+			"fecha_ingreso": $("#idTxtEditarFecha").val(),
+			//"autor": $("#idTxtAutor").val(),
+			//"imprenta": $("#idTxtImprenta").val(),
+			//"disponibilidad": dataLibro.disponibilidad
 		}
 
-		if (validaFormEditarLibro()) {
-			console.log(dataLibro);
+		if (validaFormEditarBodega()) {
+			console.log(dataBodega);
 			$.ajax({
 				// En data puedes utilizar un objeto JSON, un array o un query string
 				data: JSON.stringify(dataLibro),
@@ -316,7 +316,7 @@ $(document).ready(function() {
 				// Formato de datos que se espera en la respuesta
 				dataType: "json",
 				// URL a la que se enviará la solicitud Ajax
-				url: "/updateBook",
+				url: "/bodegas",
 				contentType: 'application/json'
 			})
 				.done(function(data, textStatus, jqXHR) {
@@ -325,8 +325,8 @@ $(document).ready(function() {
 						icon: "success"
 					});
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-					console.log("Libros a refrescar", data.listaLibros);
-					table.bootstrapTable('load', data.listaLibros);
+					console.log("Bodegas a refrescar", data.listarBodegas);
+					table.bootstrapTable('load', data.listarBodegas);
 					table.bootstrapTable('refresh');
 
 				})
@@ -340,24 +340,25 @@ $(document).ready(function() {
 		}
 	});
 
-	//Delete Book
+
+	//Delete Bodega
 	function onClickEliminar(id) {
 		console.log("Id a eliminar: " + id);
 
-		dataLibro = {
-			"id": id
+		dataBodega = {
+			"idBodega": id
 		};
 	}
 
-	$("#idBtnEliminarLibro").click(function() {
+	$("#idBtnEliminarBodega").click(function() {
 
-		console.log('id to delete: ' + dataLibro.id);
+		console.log('id to delete: ' + dataBodega.id);
 
 		$.ajax({
 			//Cambiar a type: POST si necesario
 			type: "DELETE",
 			// URL a la que se enviará la solicitud Ajax
-			url: " /deleteBook?idLibro=" + dataLibro.id,
+			url: " /bodegas" + dataBodega.id,
 		})
 			.done(function(data, textStatus, jqXHR) {
 				if (data.mensaje == "Eliminado Correctamente") {
@@ -374,8 +375,8 @@ $(document).ready(function() {
 
 				console.log(data.mensaje);
 				console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-				console.log("Libros a refrescar", data.listaLibros);
-				table.bootstrapTable('load', data.listaLibros);
+				console.log("Bodegas a refrescar", data.listarbodegas);
+				table.bootstrapTable('load', data.listarBodegas);
 				table.bootstrapTable('refresh');
 			})
 			.fail(function(jqXHR, textStatus, errorThrown) {
@@ -384,5 +385,4 @@ $(document).ready(function() {
 
 	});
 	
-	*/
 });
