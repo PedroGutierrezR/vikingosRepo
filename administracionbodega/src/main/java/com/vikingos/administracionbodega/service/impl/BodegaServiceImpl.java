@@ -124,4 +124,11 @@ public class BodegaServiceImpl implements BodegaService{
 		}
 
 	}
+//no funciona, arreglar
+	@Override
+	public void deleteById(BodegaRequest bodegaRequest) {
+		System.out.println(bodegaRequest.getIdBodega());
+		bodegaRepository.deleteById(bodegaRequest.getIdBodega());
+	
+	}
 }

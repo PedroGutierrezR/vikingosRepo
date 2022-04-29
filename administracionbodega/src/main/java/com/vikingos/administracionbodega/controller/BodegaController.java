@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +34,8 @@ public class BodegaController {
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseServiceObject> updateBodega(@RequestBody BodegaRequest bodegaRequest){
 		int idBodega = bodegaRequest.getIdBodega();
-		return new ResponseEntity<ResponseServiceObject>(bodegaDelegate.save(idBodega, bodegaRequest), HttpStatus.OK);
+		bodegaDelegate.save(idBodega, bodegaRequest);
+		return getBodegas();
 	} 
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -47,4 +49,10 @@ public class BodegaController {
 		return new ResponseEntity<ResponseServiceObject>(bodegaDelegate.findByid(idBodega), HttpStatus.OK);
 	}
 
+	@DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseServiceObject> deleteBodega(@RequestBody BodegaRequest bodegaRequest){
+		bodegaDelegate.save(bodegaRequest);
+		return getBodegas();
+	}
+	
 }

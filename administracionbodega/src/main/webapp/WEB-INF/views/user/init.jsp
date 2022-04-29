@@ -215,7 +215,7 @@
 			</div>
 		</div>
 
-		<!-- Modal Eliminar Libro-->
+		<!-- Modal Eliminar Bodega-->
 		<div class="modal fade" id="modalEliminarBodega" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
 			aria-hidden="true">
@@ -229,7 +229,7 @@
 						</button>
 					</div>
 					<div class="modal-body text-center">
-						<h2 class="modal-body text-light">>¿Está seguro de eliminar el libro?</h2>
+						<h2 class="modal-body text-light">¿Está seguro de eliminar el libro?</h2>
 						<input type="hidden" id="idEliminar" value="">
 					</div>
 					<div class="modal-footer">
