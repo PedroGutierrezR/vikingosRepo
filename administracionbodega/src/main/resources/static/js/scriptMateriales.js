@@ -13,7 +13,7 @@ $(document).ready(function() {
 			contentType: 'application/json'
 		})
 			.done(function(data, textStatus, jqXHR) {
-
+			console.log(data);
 				tableMateriales.bootstrapTable({
 					data: data.body,
 					pagination: true,
@@ -38,6 +38,11 @@ $(document).ready(function() {
 					{
 						field: 'fechaIngreso',
 						title: 'Fecha de Ingreso',
+						width: '180px'
+					},
+					{
+						field: 'bodega.nombreBodega',
+						title: 'Nombre Bodega',
 						width: '180px'
 					},
 					{
@@ -84,7 +89,7 @@ $(document).ready(function() {
 			if ($("#agregarMaterial").val().length == 0) {
 				$("#agregarMaterial").addClass("is-invalid");
 				$("#agregarMaterial").removeClass("is-valid");
-				agregarMateriales = false;
+				agregarMaterial = false;
 			} else {
 				$("#agregarMaterial").removeClass("is-invalid");
 				$("#agregarMaterial").addClass("is-valid");
@@ -174,7 +179,7 @@ $(document).ready(function() {
 // Global variable
 let dataMaterial;
 
-//Edit Bodega
+//Edit Material
 function onClickEditarMaterial(row) {
 	//console.log(row);
 	dataMaterial = JSON.parse(row);
@@ -210,7 +215,7 @@ $("#idBtnEditarMaterial").click(function() {
 			editarMateriales = false;
 		} else {
 			$("#editarMateriales").removeClass("is-invalid");
-			$("#editarMarteriales").addClass("is-valid");
+			$("#editarMateriales").addClass("is-valid");
 			editarMateriales = true;
 		}
 

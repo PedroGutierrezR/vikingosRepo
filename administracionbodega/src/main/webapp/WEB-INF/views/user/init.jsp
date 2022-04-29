@@ -65,7 +65,8 @@
 							<li><a class="dropdown-item" id="listarMateriales" href="#">Listar
 									Materiales </a></li>
 							<li><a class="dropdown-item" id="agregarMateriales" href="#"
-							data-toggle="modal" data-target="#modalNuevoMaterial">Agregar Materiales</a></li>
+								data-toggle="modal" data-target="#modalNuevoMaterial">Agregar
+									Materiales</a></li>
 						</ul></li>
 				</ul>
 				<ul class="navbar-nav">
@@ -229,7 +230,8 @@
 						</button>
 					</div>
 					<div class="modal-body text-center">
-						<h2 class="modal-body text-light">¿Está seguro de eliminar la bodega?</h2>
+						<h2 class="modal-body text-light">¿Está seguro de eliminar la
+							bodega?</h2>
 						<input type="hidden" id="idEliminar" value="">
 					</div>
 					<div class="modal-footer">
@@ -269,9 +271,8 @@
 									<div class="form-group">
 										<label for="agregarMaterial">Nombre</label>
 										<div class="form-inline">
-											<input type="text" class="form-control"
-												id="agregarMaterial" placeholder="Ingrese Nombre"
-												required>
+											<input type="text" class="form-control" id="agregarMaterial"
+												placeholder="Ingrese Nombre" required>
 											<div class="valid-feedback">Correcto!</div>
 											<div class="invalid-feedback">Debe ingresar una
 												descripción válida</div>
@@ -282,8 +283,7 @@
 									<div class="form-group">
 										<label for="agregarPrecio">Precio</label>
 										<div class="form-inline">
-											<input type="number" class="form-control"
-												id="agregarPrecio"
+											<input type="number" class="form-control" id="agregarPrecio"
 												placeholder="Ingrese precio" required>
 											<div class="valid-feedback">Correcto!</div>
 											<div class="invalid-feedback">Debe ingresar precio
@@ -293,10 +293,9 @@
 								</div>
 								<div class="col-md-4 mb-3">
 									<div class="form-group">
-										<label for="aregarFecha">Fecha ingreso</label>
+										<label for="agregarFecha">Fecha ingreso</label>
 										<div class="form-inline">
-											<input type="date" class="form-control"
-												id="agregarFecha"
+											<input type="date" class="form-control" id="agregarFecha"
 												placeholder="Ingrese Fecha de ingreso" required>
 											<div class="valid-feedback">Correcto!</div>
 											<div class="invalid-feedback">Debe ingresar una fecha
@@ -304,7 +303,19 @@
 										</div>
 									</div>
 								</div>
-
+								<div class="col-md-4 mb-3">
+									<div class="form-group">
+										<label for="aregarFecha">Nombre Bodega</label>
+										<div class="form-inline">
+											<select class="form-control" id="idSelBodega">
+												<option id="option1" value="-1">-Seleccione Bodega-</option>
+											</select> 
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una fecha
+												válida</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</form>
 					</div>
@@ -340,8 +351,8 @@
 									<div class="form-group">
 										<label for="editarMateriales">Nombre</label>
 										<div class="form-inline">
-											<input type="text" class="form-control"
-												id="editarMateriales" placeholder="" required>
+											<input type="text" class="form-control" id="editarMateriales"
+												placeholder="" required>
 											<div class="valid-feedback">Correcto!</div>
 											<div class="invalid-feedback">Debe ingresar una
 												descripción válida</div>
@@ -399,13 +410,15 @@
 						</button>
 					</div>
 					<div class="modal-body text-center">
-						<h2 class="modal-body text-light">¿Está seguro de eliminar el producto?</h2>
+						<h2 class="modal-body text-light">¿Está seguro de eliminar el
+							producto?</h2>
 						<input type="hidden" id="idEliminar" value="">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-light" id=idBtnEliminarMaterial>Eliminar</button>
+						<button type="button" class="btn btn-light"
+							id=idBtnEliminarMaterial>Eliminar</button>
 					</div>
 				</div>
 			</div>

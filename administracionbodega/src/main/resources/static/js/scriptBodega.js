@@ -14,7 +14,8 @@ $(document).ready(function() {
 			contentType: 'application/json'
 		})
 			.done(function(data, textStatus, jqXHR) {
-
+				console.log(data.body[0].nombreBodega)
+				actualizarBodegaSelect(data);
 				tableBodega.bootstrapTable({
 					data: data.body,
 					pagination: true,
@@ -127,7 +128,7 @@ $(document).ready(function() {
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 					tableBodega.bootstrapTable('load', data.body);
 					tableBodega.bootstrapTable('refresh');
-
+			
 				})
 				.fail(function(jqXHR, textStatus, errorThrown) {
 					console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
@@ -287,3 +288,11 @@ $("#idBtnEliminarBodega").click(function() {
 		});
 
 });
+
+function actualizarBodegaSelect (data){
+	for (i = 0; i < data.body.length; i++){
+		$("#option1").after(`<option value="${data.body[i].idBodega}">${data.body[i].nombreBodega}</option>`);
+		console.log(data.body[i].nombreBodega)
+	}
+	
+}
