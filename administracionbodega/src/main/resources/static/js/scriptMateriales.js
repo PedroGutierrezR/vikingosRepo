@@ -1,5 +1,3 @@
-//const tableMateriales = $("#myTableMateriales");
-
 $(document).ready(function() {
 
 	$("#listarMateriales").click(function() {
@@ -13,7 +11,7 @@ $(document).ready(function() {
 			contentType: 'application/json'
 		})
 			.done(function(data, textStatus, jqXHR) {
-
+			console.log(data);
 				tableMateriales.bootstrapTable({
 					data: data.body,
 					pagination: true,
@@ -38,6 +36,11 @@ $(document).ready(function() {
 					{
 						field: 'fechaIngreso',
 						title: 'Fecha de Ingreso',
+						width: '180px'
+					},
+					{
+						field: 'bodega.nombreBodega',
+						title: 'Nombre Bodega',
 						width: '180px'
 					},
 					{
@@ -80,11 +83,12 @@ $(document).ready(function() {
 			var agregarMaterial = false;
 			var agregarPrecio = false;
 			var agregarFecha = false;
-
+			var agregarBodega = false;
+		
 			if ($("#agregarMaterial").val().length == 0) {
 				$("#agregarMaterial").addClass("is-invalid");
 				$("#agregarMaterial").removeClass("is-valid");
-				agregarMateriales = false;
+				agregarMaterial = false;
 			} else {
 				$("#agregarMaterial").removeClass("is-invalid");
 				$("#agregarMaterial").addClass("is-valid");
@@ -108,14 +112,26 @@ $(document).ready(function() {
 				$("#agregarFecha").addClass("is-valid");
 				agregarFecha = true;
 			}
+			if ($("#idSelBodega").val().length == 0) {
+				$("#idSelBodega").addClass("is-invalid");
+				$("#idSelBodega").removeClass("is-valid");
+				agregarBodega = false;
+			} else {
+				$("#idSelBodega").removeClass("is-invalid");
+				$("#idSelBodega").addClass("is-valid");
+				agregarBodega = true;
+			}
 			
-			return agregarMaterial & agregarPrecio & agregarFecha;
+			return agregarMaterial & agregarPrecio & agregarFecha & agregarBodega;
 		}
 
 		let dataMaterial = {
 			"nombreProducto": $("#agregarMaterial").val(),
 			"precioProducto": $("#agregarPrecio").val(),
 			"fechaIngreso": $("#agregarFecha").val(),
+			"bodega": {
+				"idBodega": $("#idSelBodega").val()
+			}
 		}
 
 		console.log(dataMaterial);
@@ -174,7 +190,7 @@ $(document).ready(function() {
 // Global variable
 let dataMaterial;
 
-//Edit Bodega
+//Edit Material
 function onClickEditarMaterial(row) {
 	//console.log(row);
 	dataMaterial = JSON.parse(row);
@@ -210,7 +226,7 @@ $("#idBtnEditarMaterial").click(function() {
 			editarMateriales = false;
 		} else {
 			$("#editarMateriales").removeClass("is-invalid");
-			$("#editarMarteriales").addClass("is-valid");
+			$("#editarMateriales").addClass("is-valid");
 			editarMateriales = true;
 		}
 

@@ -4,7 +4,7 @@ const tableMateriales = $("#myTableMateriales");
 $(document).ready(function() {
 
 	$("#listarBodegas").click(function() {
-		
+
 		$.ajax({
 			type: "GET",
 			// Formato de datos que se espera en la respuesta
@@ -14,7 +14,6 @@ $(document).ready(function() {
 			contentType: 'application/json'
 		})
 			.done(function(data, textStatus, jqXHR) {
-
 				tableBodega.bootstrapTable({
 					data: data.body,
 					pagination: true,
@@ -201,7 +200,7 @@ $("#idBtnEditarBodega").click(function() {
 
 		return idTxtEditarNombreBodega && idTxtEditarFecha;
 	}
-	
+
 	dataBodega = {
 		"idBodega": dataBodega.idBodega,
 		"nombreBodega": $("#idTxtEditarNombreBodega").val(),
@@ -287,3 +286,32 @@ $("#idBtnEliminarBodega").click(function() {
 		});
 
 });
+
+function getBodegas() {
+	$.ajax({
+		type: "GET",
+		// Formato de datos que se espera en la respuesta
+		dataType: "json",
+		// URL a la que se enviará la solicitud Ajax
+		url: "/bodegas",
+		contentType: 'application/json'
+	})
+		.done(function(data, textStatus, jqXHR) {
+			actualizarBodegaSelect(data);
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
+		});
+}
+
+function actualizarBodegaSelect(data) {
+	let elementos = document.getElementsByTagName("option");
+	console.log(elementos);
+	if (elementos.length == 1) {
+		for (i = 0; i < data.body.length; i++) {
+
+			$("#option1").after(`<option value="${data.body[i].idBodega}">${data.body[i].nombreBodega}</option>`);
+			console.log(data.body[i].nombreBodega)
+		}
+	}
+}
