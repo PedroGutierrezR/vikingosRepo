@@ -13,11 +13,6 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public String login(ModelMap modelMap, HttpSession session) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(!auth.getName().equals("anonymousUser")) {
-			modelMap.put("user", auth.getName());
-			return "user/init";
-		}
 		return "login";
 	}
 	

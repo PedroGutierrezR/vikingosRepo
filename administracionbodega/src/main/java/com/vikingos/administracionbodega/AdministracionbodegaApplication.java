@@ -11,11 +11,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.vikingos.administracionbodega.repository.BodegaRepository;
 import com.vikingos.administracionbodega.repository.MaterialesRepository;
+import com.vikingos.administracionbodega.repository.RolRepository;
+import com.vikingos.administracionbodega.repository.UsuarioRepository;
 import com.vikingos.administracionbodega.repository.model.Bodega;
 import com.vikingos.administracionbodega.repository.model.Materiales;
+import com.vikingos.administracionbodega.repository.model.Rol;
+import com.vikingos.administracionbodega.repository.model.Usuario;
 
 @SpringBootApplication
 public class AdministracionbodegaApplication {
@@ -26,6 +31,12 @@ public class AdministracionbodegaApplication {
 	private BodegaRepository bodegaRepository;
 	@Autowired
 	private MaterialesRepository materialesRepository;
+	@Autowired
+	UsuarioRepository usuarioRepository;
+	@Autowired
+	RolRepository rolRepository;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(AdministracionbodegaApplication.class, args);
@@ -75,6 +86,50 @@ public class AdministracionbodegaApplication {
 			for (Bodega bodega : bodegas) {
 				System.out.println("Dentro del syso" + bodega.toString());
 			}
+		};
+	}
+	
+	@Bean
+	public CommandLineRunner createUser() {
+		return (args) -> {
+			
+			Rol rolAdmin = new Rol();
+			rolAdmin.setDescripcion("ADMIN");
+			Rol rolUser = new Rol();
+			rolUser.setDescripcion("USER");
+			rolRepository.save(rolAdmin);
+			rolRepository.save(rolUser);
+			
+			Usuario usuario = new Usuario();
+			usuario.setEmail("pedro@gmail.com");
+			usuario.setNombre("pedro");
+			usuario.setPassword(passwordEncoder.encode("1234"));
+			usuario.setRol(rolUser);	
+
+			Usuario usuario2 = new Usuario();
+			usuario2.setEmail("jaime@gmail.com");
+			usuario2.setNombre("Jaime");
+			usuario2.setPassword(passwordEncoder.encode("4321"));
+			usuario2.setRol(rolAdmin);
+			
+			usuarioRepository.save(usuario);
+			usuarioRepository.save(usuario2);
+			
+			logger.info(usuario.toString());
+			logger.info(usuario2.toString());
+	
+		};
+	}
+	
+	@Bean
+	public CommandLineRunner findByEmailUsuario() {
+		return(args) -> {
+			List<Usuario> listaUsuarios = usuarioRepository.findByEmail("pedro@gmail.com");
+			
+			for(Usuario usuario: listaUsuarios) {
+				System.out.println("Usuario by Email" + usuario.toString());
+			}
+			
 		};
 	}
 	
