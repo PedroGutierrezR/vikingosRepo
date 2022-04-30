@@ -11,7 +11,7 @@ $(document).ready(function() {
 			contentType: 'application/json'
 		})
 			.done(function(data, textStatus, jqXHR) {
-			console.log(data);
+				console.log(data);
 				tableMateriales.bootstrapTable({
 					data: data.body,
 					pagination: true,
@@ -84,7 +84,7 @@ $(document).ready(function() {
 			var agregarPrecio = false;
 			var agregarFecha = false;
 			var agregarBodega = false;
-		
+
 			if ($("#agregarMaterial").val().length == 0) {
 				$("#agregarMaterial").addClass("is-invalid");
 				$("#agregarMaterial").removeClass("is-valid");
@@ -112,7 +112,7 @@ $(document).ready(function() {
 				$("#agregarFecha").addClass("is-valid");
 				agregarFecha = true;
 			}
-			if ($("#idSelBodega").val().length == 0) {
+			if ($("#idSelBodega").val().length <= 0) {
 				$("#idSelBodega").addClass("is-invalid");
 				$("#idSelBodega").removeClass("is-valid");
 				agregarBodega = false;
@@ -121,7 +121,7 @@ $(document).ready(function() {
 				$("#idSelBodega").addClass("is-valid");
 				agregarBodega = true;
 			}
-			
+
 			return agregarMaterial & agregarPrecio & agregarFecha & agregarBodega;
 		}
 
@@ -183,7 +183,11 @@ $(document).ready(function() {
 		$("#agregarFecha").val("");
 		$("#agregarFecha").removeClass("is-valid");
 		$("#agregarFecha").removeClass("is-invalid");
-	
+
+		$("#idSelBodega").val("-1");
+		$("#idSelBodega").removeClass("is-valid");
+		$("#idSelBodega").removeClass("is-invalid");
+
 	});
 
 });
@@ -193,7 +197,9 @@ let dataMaterial;
 
 //Edit Material
 function onClickEditarMaterial(row) {
-	//console.log(row);
+
+	getBodegas();
+
 	dataMaterial = JSON.parse(row);
 
 	//Limpiar campos del modal
@@ -209,6 +215,10 @@ function onClickEditarMaterial(row) {
 	$("#editarFecha").removeClass("is-valid");
 	$("#editarFecha").removeClass("is-invalid");
 
+
+	$("#idSelEditBodega").val(dataMaterial.bodega);
+	$("#idSelEditBodega").removeClass("is-valid");
+	$("#idSelEditBodega").removeClass("is-invalid");
 	console.log(dataMaterial);
 
 }
@@ -220,6 +230,7 @@ $("#idBtnEditarMaterial").click(function() {
 		var editarMateriales = false;
 		var editarPrecio = false;
 		var editarFecha = false;
+		var idSelEditBodega = false;
 
 		if ($("#editarMateriales").val().length == 0) {
 			$("#editarMateriales").addClass("is-invalid");
@@ -249,8 +260,17 @@ $("#idBtnEditarMaterial").click(function() {
 			$("#editarFecha").addClass("is-valid");
 			editarFecha = true;
 		}
+		if ($("#idSelEditBodega").val().length <= 0) {
+			$("#idSelEditBodega").addClass("is-invalid");
+			$("#idSelEditBodega").removeClass("is-valid");
+			idSelEditBodega = false;
+		} else {
+			$("#idSelEditBodega").removeClass("is-invalid");
+			$("#idSelEditBodega").addClass("is-valid");
+			idSelEditBodega = true;
+		}
 
-		return editarMateriales && editarPrecio && editarFecha;
+		return editarMateriales && editarPrecio && editarFecha && idSelEditBodega;
 	}
 
 	dataMaterial = {
@@ -258,10 +278,13 @@ $("#idBtnEditarMaterial").click(function() {
 		"nombreProducto": $("#editarMateriales").val(),
 		"precioProducto": $("#editarPrecio").val(),
 		"fechaIngreso": $("#editarFecha").val(),
+		"bodega": {
+			"idBodega": $("#idSelEditBodega").val()
+		}
 	}
-
+	console.log(dataMaterial);
 	if (validaFormEditarMaterial()) {
-		console.log(dataMaterial);
+
 		$.ajax({
 			// En data puedes utilizar un objeto JSON, un array o un query string
 			data: JSON.stringify(dataMaterial),
@@ -340,5 +363,3 @@ $("#idBtnEliminarMaterial").click(function() {
 
 });
 
-
-//esta funcionando el listar y eliminar materiales

@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vikingos.administracionbodega.exception.ServiceException;
+import com.vikingos.administracionbodega.repository.BodegaRepository;
 import com.vikingos.administracionbodega.repository.MaterialesRepository;
+import com.vikingos.administracionbodega.repository.model.Bodega;
 import com.vikingos.administracionbodega.repository.model.Materiales;
 import com.vikingos.administracionbodega.request.MaterialesRequest;
 import com.vikingos.administracionbodega.service.MaterialesService;
@@ -22,6 +24,8 @@ public class MaterialesServiceImpl implements MaterialesService {
 
 	@Autowired
 	private MaterialesRepository materialesRepository;
+	@Autowired
+	private BodegaRepository bodegaRepository;
 	@Autowired
 	private ResponseServiceObject responseServiceObject;
 	@Autowired
@@ -53,16 +57,24 @@ public class MaterialesServiceImpl implements MaterialesService {
 	@Override
 	public ResponseServiceObject save(MaterialesRequest materialesRequest) {
 		
+		Materiales material = new Materiales();
+		material.setNombreProducto(materialesRequest.getNombreProducto());
+		material.setPrecioProducto(materialesRequest.getPrecioProducto());
+		material.setFechaIngreso(materialesRequest.getFechaIngreso());
+	
+		List<Bodega> bodegas = new ArrayList<Bodega>();
+		Iterable<Bodega> iterableBodegas = bodegaRepository.findAll();
+		iterableBodegas.forEach(bodegas::add);
+		
+		for (Bodega bodega : bodegas) {
+			if(bodega.getIdBodega() == materialesRequest.getBodega().getIdBodega()) {
+				material.setBodega(bodega);
+			}
+		}
+		
 		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
 		
-		Materiales materiales = new Materiales();
-		materiales.setNombreProducto(materialesRequest.getNombreProducto());
-		materiales.setPrecioProducto(materialesRequest.getPrecioProducto());
-		materiales.setFechaIngreso(materialesRequest.getFechaIngreso());
-		System.out.println(materialesRequest.getBodega().getIdBodega());
-		materiales.setBodega(materialesRequest.getBodega());
-		
-		responseServiceObject.setBody(materialesRepository.save(materiales));
+		responseServiceObject.setBody(materialesRepository.save(material));
 		
 		responseServiceMessage.setTimestamp(new Date());
 		responseServiceMessage.setCode("201");// 201 = create ok
@@ -81,14 +93,23 @@ public class MaterialesServiceImpl implements MaterialesService {
 		
 		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
 		
-		Materiales materiales = new Materiales();
-		materiales.setIdProducto(idProducto);
-		materiales.setNombreProducto(materialesRequest.getNombreProducto());
-		materiales.setPrecioProducto(materialesRequest.getPrecioProducto());
-		materiales.setFechaIngreso(materialesRequest.getFechaIngreso());
-		materiales.setBodega(materialesRequest.getBodega());
+		Materiales material = new Materiales();
+		material.setIdProducto(idProducto);
+		material.setNombreProducto(materialesRequest.getNombreProducto());
+		material.setPrecioProducto(materialesRequest.getPrecioProducto());
+		material.setFechaIngreso(materialesRequest.getFechaIngreso());
+	
+		List<Bodega> bodegas = new ArrayList<Bodega>();
+		Iterable<Bodega> iterableBodegas = bodegaRepository.findAll();
+		iterableBodegas.forEach(bodegas::add);
+		
+		for (Bodega bodega : bodegas) {
+			if(bodega.getIdBodega() == materialesRequest.getBodega().getIdBodega()) {
+				material.setBodega(bodega);
+			}
+		}
 
-		responseServiceObject.setBody(materialesRepository.save(materiales));
+		responseServiceObject.setBody(materialesRepository.save(material));
 		
 		responseServiceMessage.setTimestamp(new Date());
 		responseServiceMessage.setCode("201");// 201 = create ok

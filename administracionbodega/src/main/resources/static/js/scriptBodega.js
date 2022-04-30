@@ -298,6 +298,7 @@ function getBodegas() {
 	})
 		.done(function(data, textStatus, jqXHR) {
 			actualizarBodegaSelect(data);
+			
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
@@ -307,10 +308,10 @@ function getBodegas() {
 function actualizarBodegaSelect(data) {
 	let elementos = document.getElementsByTagName("option");
 	console.log(elementos);
-	if (elementos.length == 1) {
+	if (elementos.length == 2) {
 		for (i = 0; i < data.body.length; i++) {
 
-			$("#option1").after(`<option value="${data.body[i].idBodega}">${data.body[i].nombreBodega}</option>`);
+			$(".option1").after(`<option value="${data.body[i].idBodega}">${data.body[i].nombreBodega}</option>`);
 			console.log(data.body[i].nombreBodega)
 		}
 	}
