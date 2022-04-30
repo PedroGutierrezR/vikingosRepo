@@ -65,7 +65,7 @@
 							<li><a class="dropdown-item" id="listarMateriales" href="#">Listar
 									Materiales </a></li>
 							<li><a class="dropdown-item" id="agregarMateriales" href="#"
-								data-toggle="modal" data-target="#modalNuevoMaterial">Agregar
+								data-toggle="modal" data-target="#modalNuevoMaterial" onclick='getBodegas()'>Agregar
 									Materiales</a></li>
 						</ul></li>
 				</ul>
@@ -305,7 +305,7 @@
 								</div>
 								<div class="col-md-4 mb-3">
 									<div class="form-group">
-										<label for="aregarFecha">Nombre Bodega</label>
+										<label for="idSelBodega">Nombre Bodega</label>
 										<div class="form-inline">
 											<select class="form-control" id="idSelBodega">
 												<option id="option1" value="-1">-Seleccione Bodega-</option>

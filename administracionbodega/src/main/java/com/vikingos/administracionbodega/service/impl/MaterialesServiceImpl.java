@@ -59,6 +59,7 @@ public class MaterialesServiceImpl implements MaterialesService {
 		materiales.setNombreProducto(materialesRequest.getNombreProducto());
 		materiales.setPrecioProducto(materialesRequest.getPrecioProducto());
 		materiales.setFechaIngreso(materialesRequest.getFechaIngreso());
+		System.out.println(materialesRequest.getBodega().getIdBodega());
 		materiales.setBodega(materialesRequest.getBodega());
 		
 		responseServiceObject.setBody(materialesRepository.save(materiales));

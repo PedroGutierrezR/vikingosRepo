@@ -1,5 +1,3 @@
-//const tableMateriales = $("#myTableMateriales");
-
 $(document).ready(function() {
 
 	$("#listarMateriales").click(function() {
@@ -85,7 +83,8 @@ $(document).ready(function() {
 			var agregarMaterial = false;
 			var agregarPrecio = false;
 			var agregarFecha = false;
-
+			var agregarBodega = false;
+		
 			if ($("#agregarMaterial").val().length == 0) {
 				$("#agregarMaterial").addClass("is-invalid");
 				$("#agregarMaterial").removeClass("is-valid");
@@ -113,14 +112,26 @@ $(document).ready(function() {
 				$("#agregarFecha").addClass("is-valid");
 				agregarFecha = true;
 			}
+			if ($("#idSelBodega").val().length == 0) {
+				$("#idSelBodega").addClass("is-invalid");
+				$("#idSelBodega").removeClass("is-valid");
+				agregarBodega = false;
+			} else {
+				$("#idSelBodega").removeClass("is-invalid");
+				$("#idSelBodega").addClass("is-valid");
+				agregarBodega = true;
+			}
 			
-			return agregarMaterial & agregarPrecio & agregarFecha;
+			return agregarMaterial & agregarPrecio & agregarFecha & agregarBodega;
 		}
 
 		let dataMaterial = {
 			"nombreProducto": $("#agregarMaterial").val(),
 			"precioProducto": $("#agregarPrecio").val(),
 			"fechaIngreso": $("#agregarFecha").val(),
+			"bodega": {
+				"idBodega": $("#idSelBodega").val()
+			}
 		}
 
 		console.log(dataMaterial);
