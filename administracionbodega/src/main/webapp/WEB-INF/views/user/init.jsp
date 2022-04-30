@@ -308,7 +308,7 @@
 										<label for="idSelBodega">Nombre Bodega</label>
 										<div class="form-inline">
 											<select class="form-control" id="idSelBodega">
-												<option id="option1" value="-1">-Seleccione Bodega-</option>
+												<option class="option1" value="-1">-Seleccione Bodega-</option>
 											</select> 
 											<div class="valid-feedback">Correcto!</div>
 											<div class="invalid-feedback">Debe ingresar una fecha
@@ -380,6 +380,19 @@
 											<div class="valid-feedback">Correcto!</div>
 											<div class="invalid-feedback">Debe ingresar una
 												descripción válida</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 mb-3">
+									<div class="form-group">
+										<label for="idSelEditBodega">Nombre Bodega</label>
+										<div class="form-inline">
+											<select class="form-control" id="idSelEditBodega">
+												<option class="option1" value="-1">-Seleccione Bodega-</option>
+											</select> 
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una fecha
+												válida</div>
 										</div>
 									</div>
 								</div>
