@@ -1,6 +1,8 @@
 package com.vikingos.administracionbodega;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,11 +30,11 @@ public class AdministracionbodegaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AdministracionbodegaApplication.class, args);
 	}
-
+	
 	@Bean
-	public CommandLineRunner createBodega() {
+	public CommandLineRunner createMateriales() {
 		return (args) -> {
-
+			
 			Bodega bodega1 = new Bodega();
 			Bodega bodega2 = new Bodega();
 			
@@ -44,23 +46,17 @@ public class AdministracionbodegaApplication {
 			bodegaRepository.save(bodega2);
 			logger.info(bodega1.toString());
 			logger.info(bodega2.toString());
-		};
-	}
-	
-	@Bean
-	public CommandLineRunner createMateriales() {
-		return (args) -> {
 			
 			Materiales material1 = new Materiales();			
 			material1.setNombreProducto("producto 1");
 			material1.setPrecioProducto(10000);
 			material1.setFechaIngreso(LocalDate.now());
-	
+			material1.setBodega(bodega1);
 			Materiales material2 = new Materiales();
 			material2.setNombreProducto("producto 2");
 			material2.setPrecioProducto(20000);
 			material2.setFechaIngreso(LocalDate.now());
-
+			material2.setBodega(bodega2);
 			
 			materialesRepository.save(material1);
 			materialesRepository.save(material2);
@@ -70,4 +66,16 @@ public class AdministracionbodegaApplication {
 		};
 	}
 
+	@Bean
+	public CommandLineRunner findAll() {
+		return (args) -> {
+			List<Bodega> bodegas = new ArrayList<Bodega>();
+			Iterable<Bodega> iterableBodegas = bodegaRepository.findAll();
+			iterableBodegas.forEach(bodegas::add);
+			for (Bodega bodega : bodegas) {
+				System.out.println("Dentro del syso" + bodega.toString());
+			}
+		};
+	}
+	
 }

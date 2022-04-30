@@ -302,7 +302,7 @@ function getBodegas() {
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
 		});
-}
+} 
 
 function actualizarBodegaSelect(data) {
 	let elementos = document.getElementsByTagName("option");

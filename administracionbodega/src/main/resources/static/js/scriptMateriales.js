@@ -39,7 +39,7 @@ $(document).ready(function() {
 						width: '180px'
 					},
 					{
-						field: 'bodega.nombreBodega',
+						field: 'bodega',
 						title: 'Nombre Bodega',
 						width: '180px'
 					},
@@ -158,6 +158,7 @@ $(document).ready(function() {
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 					tableMateriales.bootstrapTable('load', data.body);
 					tableMateriales.bootstrapTable('refresh');
+					console.log(data.body)
 
 				})
 				.fail(function(jqXHR, textStatus, errorThrown) {

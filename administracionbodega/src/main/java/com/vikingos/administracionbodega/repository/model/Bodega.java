@@ -32,6 +32,13 @@ public class Bodega {
 	private String nombreBodega;
 	private LocalDate fechaIngreso;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_bodega")
+	@JoinColumn(name = "bodega_id")
 	private List<Materiales> materiales;
+	
+	@Override
+	public String toString() {
+		return "Bodega [idBodega=" + idBodega + ", nombreBodega=" + nombreBodega + ", fechaIngreso=" + fechaIngreso
+				+ "]";
+	}
+	
 }
