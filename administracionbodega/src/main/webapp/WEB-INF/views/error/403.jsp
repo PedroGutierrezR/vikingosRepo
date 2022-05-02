@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="../css/403.css">
 <link rel="stylesheet" href="assets/css/styles.css" />
-<title>Insert title here</title>
+<title>403 Forbidden</title>
 </head>
 <body>
 	<h1>403</h1> 
