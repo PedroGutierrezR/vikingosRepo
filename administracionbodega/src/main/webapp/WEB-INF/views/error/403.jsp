@@ -39,9 +39,6 @@
 		</p>
 	</div>
 
-	<a class="avatar" href="https://codepen.io/leenalavanya/"
-		title="If you liked this pen, don't forget to heart, share and follow ❤"><img
-		src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/157344/profile/profile-512.jpg?1535437978" /></a>
 	<script type="text/javascript" src="../js/403.js"></script>
 </body>
 </html>

@@ -112,7 +112,11 @@ $(document).ready(function() {
 				$("#agregarFecha").addClass("is-valid");
 				agregarFecha = true;
 			}
-			if ($("#idSelBodega").val().length <= 0) {
+			if ($("#idSelBodega").val() == null) {
+				$("#idSelBodega").addClass("is-invalid");
+				$("#idSelBodega").removeClass("is-valid");
+				agregarBodega = false;
+			} else if ($("#idSelBodega").val() <= 0) {
 				$("#idSelBodega").addClass("is-invalid");
 				$("#idSelBodega").removeClass("is-valid");
 				agregarBodega = false;
@@ -187,7 +191,7 @@ $(document).ready(function() {
 		$("#idSelBodega").val("-1");
 		$("#idSelBodega").removeClass("is-valid");
 		$("#idSelBodega").removeClass("is-invalid");
-
+		
 	});
 
 });
@@ -197,9 +201,7 @@ let dataMaterial;
 
 //Edit Material
 function onClickEditarMaterial(row) {
-
-	getBodegas();
-
+	listarBodegas();
 	dataMaterial = JSON.parse(row);
 
 	//Limpiar campos del modal
@@ -215,8 +217,7 @@ function onClickEditarMaterial(row) {
 	$("#editarFecha").removeClass("is-valid");
 	$("#editarFecha").removeClass("is-invalid");
 
-
-	$("#idSelEditBodega").val(dataMaterial.bodega);
+	$("#idSelEditBodega").val("-1");
 	$("#idSelEditBodega").removeClass("is-valid");
 	$("#idSelEditBodega").removeClass("is-invalid");
 	console.log(dataMaterial);
@@ -260,7 +261,11 @@ $("#idBtnEditarMaterial").click(function() {
 			$("#editarFecha").addClass("is-valid");
 			editarFecha = true;
 		}
-		if ($("#idSelEditBodega").val().length <= 0) {
+		if ($("#idSelEditBodega").val() == null) {
+			$("#idSelEditBodega").addClass("is-invalid");
+			$("#idSelEditBodega").removeClass("is-valid");
+			idSelEditBodega = false;
+		} else if ($("#idSelEditBodega").val() <= 0) {
 			$("#idSelEditBodega").addClass("is-invalid");
 			$("#idSelEditBodega").removeClass("is-valid");
 			idSelEditBodega = false;
@@ -348,7 +353,7 @@ $("#idBtnEliminarMaterial").click(function() {
 				icon: "success"
 			});
 			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-			console.log("Prodcutos a refrescar", data.body);
+			console.log("Productos a refrescar", data.body);
 			tableMateriales.bootstrapTable('load', data.body);
 			tableMateriales.bootstrapTable('refresh');
 
