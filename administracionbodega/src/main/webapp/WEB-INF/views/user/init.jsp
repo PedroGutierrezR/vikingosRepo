@@ -69,20 +69,6 @@
 									Materiales</a></li>
 						</ul></li>
 				</ul>
-				<ul class="navbar-nav">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDarkDropdownMenuLink" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false">Bodegas </a>
-						<ul class="dropdown-menu dropdown-menu-dark"
-							aria-labelledby="navbarDarkDropdownMenuLink">
-							<li><a class="dropdown-item" id="listarBodegas" href="#">Listar
-									Bodegas </a></li>
-							<li><a class="dropdown-item" id="agregarBodegas" href="#"
-								data-toggle="modal" data-target="#modalNuevaBodega">Agregar
-									Bodegas</a></li>
-						</ul></li>
-				</ul>
 			</div>
 
 			<div class="text-right row">
@@ -99,152 +85,7 @@
 			</div>
 		</div>
 	</nav>
-	<!-- Main -->
-	<main class="container my-5">
-		<table id="myTableBodega"></table>
-		<table id="myTableMateriales"></table>
-		<!-- Modal Agregar Bodega-->
-		<div class="modal fade" id="modalNuevaBodega" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalCenterTitle"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered modal-lg"
-				role="document">
-				<div class="modal-content  bg-dark">
-					<div class="modal-header">
-						<h5 class="modal-title text-light" id="exampleModalLongTitle">Nueva
-							Bodega</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form class="needs-validation" novalidate>
-							<div class=form-row>
-								<div class="col-md-4 mb-3">
-									<div class="form-group">
-										<label for="idTxtAgregarNombreBodega">Nombre</label>
-										<div class="form-inline">
-											<input type="text" class="form-control"
-												id="idTxtAgregarNombreBodega" placeholder="Ingrese Nombre"
-												required>
-											<div class="valid-feedback">Correcto!</div>
-											<div class="invalid-feedback">Debe ingresar una
-												descripción válida</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-4 mb-3">
-									<div class="form-group">
-										<label for="idTxtAgregarFecha">Fecha ingreso</label>
-										<div class="form-inline">
-											<input type="date" class="form-control"
-												id="idTxtAgregarFecha"
-												placeholder="Ingrese Fecha de ingreso" required>
-											<div class="valid-feedback">Correcto!</div>
-											<div class="invalid-feedback">Debe ingresar una fecha
-												válida</div>
-										</div>
-									</div>
-								</div>
 
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-light"
-							id="idBtnGuardarBodega">Guardar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!--modal editar bodega -->
-		<div class="modal fade" id="modalEditarBodega" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalCenterTitle"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered modal-lg"
-				role="document">
-				<div class="modal-content bg-dark">
-					<div class="modal-header">
-						<h5 class="modal-title text-light" id="exampleModalLongTitle">Editar
-							Bodega</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form class="needs-validation" novalidate>
-							<div class=form-row>
-								<div class="col-md-4 mb-3">
-									<div class="form-group">
-										<label for="idTxtEditarNombreBodega">Nombre</label>
-										<div class="form-inline">
-											<input type="text" class="form-control"
-												id="idTxtEditarNombreBodega" placeholder="" required>
-											<div class="valid-feedback">Correcto!</div>
-											<div class="invalid-feedback">Debe ingresar una
-												descripción válida</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-4 mb-3">
-									<div class="form-group">
-										<label for="idTxtEditarFecha">Fecha</label>
-										<div class="form-inline">
-											<input type="date" class="form-control" id="idTxtEditarFecha"
-												placeholder="" required>
-											<div class="valid-feedback">Correcto!</div>
-											<div class="invalid-feedback">Debe ingresar una
-												descripción válida</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-primary"
-							id="idBtnEditarBodega">Guardar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Modal Eliminar Bodega-->
-		<div class="modal fade" id="modalEliminarBodega" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalCenterTitle"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered modal-lg"
-				role="document">
-				<div class="modal-content bg-dark">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body text-center">
-						<h2 class="modal-body text-light">¿Está seguro de eliminar la
-							bodega?</h2>
-						<input type="hidden" id="idEliminar" value="">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-light" id=idBtnEliminarBodega>Eliminar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</main>
-	<!--  
 	<!-- Main -->
 	<main class="container my-5">
 		<table id="myTableBodega"></table>
@@ -311,8 +152,7 @@
 												<option class="option1" value="-1">-Seleccione Bodega-</option>
 											</select> 
 											<div class="valid-feedback">Correcto!</div>
-											<div class="invalid-feedback">Debe ingresar una fecha
-												válida</div>
+											<div class="invalid-feedback">Debe ingresar una bodega</div>
 										</div>
 									</div>
 								</div>
@@ -391,8 +231,7 @@
 												<option class="option1" value="-1">-Seleccione Bodega-</option>
 											</select> 
 											<div class="valid-feedback">Correcto!</div>
-											<div class="invalid-feedback">Debe ingresar una fecha
-												válida</div>
+											<div class="invalid-feedback">Debe ingresar una bodega</div>
 										</div>
 									</div>
 								</div>

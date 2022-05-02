@@ -119,6 +119,7 @@ $(document).ready(function() {
 				contentType: 'application/json'
 			})
 				.done(function(data, textStatus, jqXHR) {
+					getBodegas(data);
 					swal({
 						text: data.messageList[0].message,
 						icon: "success"
@@ -126,11 +127,10 @@ $(document).ready(function() {
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 					tableBodega.bootstrapTable('load', data.body);
 					tableBodega.bootstrapTable('refresh');
-
 				})
 				.fail(function(jqXHR, textStatus, errorThrown) {
 					console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
-				});
+				})
 
 		} else {
 			console.log("Nada");
@@ -221,6 +221,7 @@ $("#idBtnEditarBodega").click(function() {
 			contentType: 'application/json'
 		})
 			.done(function(data, textStatus, jqXHR) {
+				getBodegas(data);
 				swal({
 					text: data.messageList[0].message,
 					icon: "success"
@@ -267,6 +268,7 @@ $("#idBtnEliminarBodega").click(function() {
 		contentType: 'application/json'
 	})
 		.done(function(data, textStatus, jqXHR) {
+			getBodegas(data);
 			swal({
 				text: data.messageList[0].message,
 				icon: "success"
@@ -287,8 +289,21 @@ $("#idBtnEliminarBodega").click(function() {
 
 });
 
-function getBodegas() {
+function getBodegas(data) {
+	let elementos = document.getElementsByTagName("option");
+	if (elementos.length == 2) {
+		for (i = 0; i < data.body.length; i++) {
+			$(".option1").after(`<option value="${data.body[i].idBodega}">${data.body[i].nombreBodega}</option>`);
+			console.log(data.body[i].nombreBodega)
+		}
+	}
+}
+
+function listarBodegas() {
 	$.ajax({
+		// En data puedes utilizar un objeto JSON, un array o un query string
+		data: JSON.stringify(dataBodega),
+		//Cambiar a type: POST si necesario
 		type: "GET",
 		// Formato de datos que se espera en la respuesta
 		dataType: "json",
@@ -297,22 +312,16 @@ function getBodegas() {
 		contentType: 'application/json'
 	})
 		.done(function(data, textStatus, jqXHR) {
-			actualizarBodegaSelect(data);
-			
+			let elementos = document.getElementsByTagName("option");
+			if (elementos.length == 2) {
+				for (i = 0; i < data.body.length; i++) {
+					$(".option1").after(`<option value="${data.body[i].idBodega}">${data.body[i].nombreBodega}</option>`);
+					console.log(data.body[i].nombreBodega)
+				}
+			}
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
-		});
-} 
-
-function actualizarBodegaSelect(data) {
-	let elementos = document.getElementsByTagName("option");
-	console.log(elementos);
-	if (elementos.length == 2) {
-		for (i = 0; i < data.body.length; i++) {
-
-			$(".option1").after(`<option value="${data.body[i].idBodega}">${data.body[i].nombreBodega}</option>`);
-			console.log(data.body[i].nombreBodega)
-		}
-	}
+		})
 }
+
