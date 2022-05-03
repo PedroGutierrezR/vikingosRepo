@@ -1,4 +1,4 @@
-package com.vikingo.trazap.app.ui.api.rest;
+package com.vikingo.trazap.app.ui.ws.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.vikingo.trazap.app.model.request;
+package com.vikingo.trazap.app.service.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoriaProductoRequest {
+public class AuthUserRequest {
 
-	private String descripcion;
+	private String email;
+	private String password;
 	
 }

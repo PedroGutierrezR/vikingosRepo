@@ -1,4 +1,4 @@
-package com.vikingo.trazap.app.ui.api.rest;
+package com.vikingo.trazap.app.ui.ws.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,25 +10,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vikingo.trazap.app.delegate.CategoriaProductoDelegate;
-import com.vikingo.trazap.app.repository.model.CategoriaProducto;
+import com.vikingo.trazap.app.delegate.PedidosDelegate;
+import com.vikingo.trazap.app.repository.model.Pedidos;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
 @RestController
-@RequestMapping("/categoriaProductos")
-public class CategoriaProductoController {
+@RequestMapping("/pedidos")
+public class PedidosController {
+
 
 	@Autowired
-	private CategoriaProductoDelegate categoriaProductoDelegate;
+	private PedidosDelegate pedidosDelegate;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseServiceObject> getCategoriaProducto(){
-		return new ResponseEntity<ResponseServiceObject>(categoriaProductoDelegate.findAll() ,HttpStatus.OK);
+	public ResponseEntity<ResponseServiceObject> getPedidos(){
+		return new ResponseEntity<ResponseServiceObject>(pedidosDelegate.findAll() ,HttpStatus.OK);
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseServiceObject> createCategoriaProducto(@RequestBody CategoriaProducto categoriaProducto){
-		return new ResponseEntity<ResponseServiceObject>(categoriaProductoDelegate.save(categoriaProducto), HttpStatus.OK);
+	public ResponseEntity<ResponseServiceObject> createPedidos(@RequestBody Pedidos pedidos){
+		return new ResponseEntity<ResponseServiceObject>(pedidosDelegate.save(pedidos), HttpStatus.OK);
 	}
-	
 }
