@@ -1,7 +1,7 @@
 package com.vikingo.trazap.app.service;
 
 import com.vikingo.trazap.app.exceptions.ServiceException;
-import com.vikingo.trazap.app.model.request.BodegaRequest;
+import com.vikingo.trazap.app.service.request.BodegaRequest;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
 public interface BodegaService {

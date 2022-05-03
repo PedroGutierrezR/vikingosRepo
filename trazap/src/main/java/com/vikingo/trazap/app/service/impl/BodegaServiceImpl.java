@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.vikingo.trazap.app.exceptions.ServiceException;
 import com.vikingo.trazap.app.messagemanager.MessageManager;
-import com.vikingo.trazap.app.model.request.BodegaRequest;
 import com.vikingo.trazap.app.repository.BodegaRepository;
 import com.vikingo.trazap.app.repository.model.Bodega;
 import com.vikingo.trazap.app.service.BodegaService;
+import com.vikingo.trazap.app.service.request.BodegaRequest;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessage;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessageType;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;

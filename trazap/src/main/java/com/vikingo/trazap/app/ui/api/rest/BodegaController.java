@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.vikingo.trazap.app.delegate.BodegaDelegate;
 import com.vikingo.trazap.app.exceptions.ServiceException;
-import com.vikingo.trazap.app.model.request.BodegaRequest;
+import com.vikingo.trazap.app.service.request.BodegaRequest;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
 @RestController

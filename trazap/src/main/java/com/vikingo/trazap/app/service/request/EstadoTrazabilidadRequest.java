@@ -1,4 +1,4 @@
-package com.vikingo.trazap.app.model.request;
+package com.vikingo.trazap.app.service.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

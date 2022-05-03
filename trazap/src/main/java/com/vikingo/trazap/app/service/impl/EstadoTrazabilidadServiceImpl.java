@@ -7,10 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vikingo.trazap.app.model.request.EstadoTrazabilidadRequest;
 import com.vikingo.trazap.app.repository.EstadoTrazabilidadRepository;
 import com.vikingo.trazap.app.repository.model.EstadoTrazabilidad;
 import com.vikingo.trazap.app.service.EstadoTrazabilidadService;
+import com.vikingo.trazap.app.service.request.EstadoTrazabilidadRequest;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessage;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessageType;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
