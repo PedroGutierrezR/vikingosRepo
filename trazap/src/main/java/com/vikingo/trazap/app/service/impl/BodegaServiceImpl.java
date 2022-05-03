@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vikingo.trazap.app.exceptions.ServiceException;
-import com.vikingo.trazap.app.messagemanager.MessageManager;
 import com.vikingo.trazap.app.repository.BodegaRepository;
 import com.vikingo.trazap.app.repository.model.Bodega;
 import com.vikingo.trazap.app.service.BodegaService;
@@ -27,8 +26,6 @@ public class BodegaServiceImpl implements BodegaService {
 	private ResponseServiceObject responseServiceObject;
 	@Autowired
 	private ResponseServiceMessage responseServiceMessage;
-	@Autowired
-	private MessageManager messageManager;
 	
 	@Override
 	public ResponseServiceObject findAll() {

@@ -1,4 +1,4 @@
-package com.vikingo.trazap.app.ui.api.rest;
+package com.vikingo.trazap.app.ui.ws.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,25 +10,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vikingo.trazap.app.delegate.EstadoTrazabilidadDelegate;
-import com.vikingo.trazap.app.repository.model.EstadoTrazabilidad;
+import com.vikingo.trazap.app.delegate.TipoProductoDelegate;
+import com.vikingo.trazap.app.repository.model.TipoProducto;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
 @RestController
-@RequestMapping("/estadoTrazabilidad")
-public class EstadoTrazabilidadController {
+@RequestMapping("/tipoProductos")
+public class TipoProductoController {
 
 	@Autowired
-	private EstadoTrazabilidadDelegate estadoTrazabilidadDelegate;
+	private TipoProductoDelegate tipoProductoDelegate;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseServiceObject> getEstadoTrazabilidad(){
-		return new ResponseEntity<ResponseServiceObject>(estadoTrazabilidadDelegate.findAll(), HttpStatus.OK);
+	public ResponseEntity<ResponseServiceObject> getTipoProducto(){
+		return new ResponseEntity<ResponseServiceObject>(tipoProductoDelegate.findAll() ,HttpStatus.OK);
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseServiceObject> createCategoriaProducto(@RequestBody EstadoTrazabilidad estadoTrazabilidad){
-		return new ResponseEntity<ResponseServiceObject>(estadoTrazabilidadDelegate.save(estadoTrazabilidad), HttpStatus.OK);
+	public ResponseEntity<ResponseServiceObject> createTipoProducto(@RequestBody TipoProducto tipoProducto){
+		return new ResponseEntity<ResponseServiceObject>(tipoProductoDelegate.save(tipoProducto), HttpStatus.OK);
 	}
 	
 }
