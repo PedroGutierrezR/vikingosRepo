@@ -28,8 +28,6 @@ public class Producto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "producto_id_seq")
 	@Column(name = "id_producto")
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "producto_id")
 	private int idProducto;
 	private String descripcion;
 	@ManyToOne
@@ -41,11 +39,15 @@ public class Producto {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "producto_id")
 	private List<ProductosBodega> productosBodegas;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "producto_id")
+	private List<ProductoProveedor> productoProveedorList;
 	
 	@Override
 	public String toString() {
 		return "Producto [idProducto=" + idProducto + ", descripcion=" + descripcion + ", categoriaProducto="
-				+ categoriaProducto.getDescripcion() + ", tipoProducto=" + tipoProducto.getDescripcion() + ", productosBodegas=" + productosBodegas + "]";
+				+ categoriaProducto + ", tipoProducto=" + tipoProducto + ", productosBodegas=" + productosBodegas
+				+ ", productoProveedorList=" + productoProveedorList + "]";
 	}
-	
+
 }
