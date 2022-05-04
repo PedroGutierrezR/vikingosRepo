@@ -1,10 +1,16 @@
 package com.vikingo.trazap.app.repository.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
@@ -23,6 +29,9 @@ public class Bodega {
 	@Column(name = "id_bodega")
 	private int idBodega;
 	private String descripcion;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "bodega_id")
+	private List<ProductosBodega> productosBodegas;
 	
 	@Override
 	public String toString() {

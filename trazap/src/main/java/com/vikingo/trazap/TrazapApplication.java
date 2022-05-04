@@ -13,10 +13,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.vikingo.trazap.app.repository.BodegaRepository;
+import com.vikingo.trazap.app.repository.CategoriaProductoRepository;
+import com.vikingo.trazap.app.repository.DetallePedidoRepository;
+import com.vikingo.trazap.app.repository.ProductoRepository;
+import com.vikingo.trazap.app.repository.ProductosBodegaRepository;
 import com.vikingo.trazap.app.repository.RolRepository;
+import com.vikingo.trazap.app.repository.TipoProductoRepository;
 import com.vikingo.trazap.app.repository.UsuarioRepository;
 import com.vikingo.trazap.app.repository.model.Bodega;
+import com.vikingo.trazap.app.repository.model.CategoriaProducto;
+import com.vikingo.trazap.app.repository.model.Producto;
+import com.vikingo.trazap.app.repository.model.ProductosBodega;
 import com.vikingo.trazap.app.repository.model.Rol;
+import com.vikingo.trazap.app.repository.model.TipoProducto;
 import com.vikingo.trazap.app.repository.model.Usuario;
 
 @SpringBootApplication
@@ -30,6 +39,16 @@ public class TrazapApplication {
 	private UsuarioRepository usuarioRepository;
 	@Autowired
 	private RolRepository rolRepository;
+	@Autowired
+	private ProductoRepository productoRepository;
+	@Autowired
+	private DetallePedidoRepository detallePedidoRepository;
+	@Autowired
+	private ProductosBodegaRepository productosBodegaRepository;
+	@Autowired
+	private CategoriaProductoRepository categoriaProductoRepository;
+	@Autowired
+	private TipoProductoRepository tipoProductoRepository;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -39,22 +58,42 @@ public class TrazapApplication {
 	}
 
 	@Bean
+	public CommandLineRunner createProducto() {
+		return (args) -> {
+			Producto producto = new Producto();
+			CategoriaProducto categoriaProducto = new CategoriaProducto();
+			TipoProducto tipoProducto = new TipoProducto();
+			
+			categoriaProducto.setDescripcion("Limpieza");
+			categoriaProductoRepository.save(categoriaProducto);
+			
+			tipoProducto.setDescripcion("Jabón");
+			tipoProductoRepository.save(tipoProducto);
+			
+			producto.setDescripcion("piel sensible");
+			producto.setCategoriaProducto(categoriaProducto);
+			producto.setTipoProducto(tipoProducto);
+			
+			productoRepository.save(producto);
+			logger.info(producto.toString());
+			
+		};
+	}
+	
+	@Bean
 	public CommandLineRunner createBodega() {
 		return (args) -> {
-			Bodega bodega1 = new Bodega();
-			Bodega bodega2 = new Bodega();
+			
+			Bodega bodega1 = new Bodega();	
 			bodega1.setDescripcion("Mi Bodega original 1");
-			bodega2.setDescripcion("Mi Bodega original 2");
-			bodegaRepository.save(bodega1);
-			bodegaRepository.save(bodega2);
-			logger.info(bodega1.toString());
-			logger.info(bodega2.toString());
-			bodega1.setDescripcion("Mi Bodega 11");	
 			bodegaRepository.save(bodega1);
 			logger.info(bodega1.toString());
-			bodega2.setDescripcion("Mi Bodega 22");	
-			bodegaRepository.save(bodega2);
-			logger.info(bodega2.toString());
+			
+			ProductosBodega productosBodega = new ProductosBodega();
+			productosBodega.setBodega(bodega1);
+			productosBodegaRepository.save(productosBodega);
+			logger.info(productosBodega.toString());
+			
 		};
 	}
 	
