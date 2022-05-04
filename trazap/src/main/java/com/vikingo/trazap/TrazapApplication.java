@@ -50,6 +50,7 @@ public class TrazapApplication {
 	@Autowired
 	private TipoProductoRepository tipoProductoRepository;
 	
+	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	

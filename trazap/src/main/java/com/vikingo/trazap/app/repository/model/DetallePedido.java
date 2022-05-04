@@ -1,5 +1,7 @@
 package com.vikingo.trazap.app.repository.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,5 +30,7 @@ public class DetallePedido {
 	@JoinColumn(name = "pedido_id")
 	private Pedidos pedidos;
 	private int cantidad;
-	
+	@ManyToOne
+	@JoinColumn(name = "poveedor_producto_id")
+	private List<ProductoProveedor> productoProveedor;
 }

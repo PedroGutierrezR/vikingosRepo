@@ -28,6 +28,8 @@ public class Producto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "producto_id_seq")
 	@Column(name = "id_producto")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "producto_id")
 	private int idProducto;
 	private String descripcion;
 	@ManyToOne
