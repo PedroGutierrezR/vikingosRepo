@@ -1,5 +1,7 @@
 package com.vikingo.trazap.app.repository.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,8 +27,10 @@ public class EstadoTrazabilidad {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estado_trazabilidad_id_seq")
 	@Column(name = "id_estado_trazabilidad")
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "estado_trazabilidad_id")
 	private int idEstadoTrazabilidad;
 	private String descripcion;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "estado_trazabilidad_id")
+	private List<Trazabilidad> trazabilidadList;
+	
 }

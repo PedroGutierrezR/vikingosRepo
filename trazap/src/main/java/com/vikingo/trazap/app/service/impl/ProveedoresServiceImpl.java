@@ -7,18 +7,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vikingo.trazap.app.repository.ProveedoresRepository;
-import com.vikingo.trazap.app.repository.model.Proveedores;
-import com.vikingo.trazap.app.service.ProveedoresService;
+import com.vikingo.trazap.app.repository.ProveedorRepository;
+import com.vikingo.trazap.app.repository.model.Proveedor;
+import com.vikingo.trazap.app.service.ProveedorService;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessage;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessageType;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
-@Service("proveedoresService")
-public class ProveedoresServiceImpl implements ProveedoresService{
+@Service("proveedorService")
+public class ProveedoresServiceImpl implements ProveedorService{
 
 	@Autowired
-	private ProveedoresRepository proveedoresRepository;
+	private ProveedorRepository proveedorRepository;
 	@Autowired
 	private ResponseServiceObject responseServiceObject;
 	@Autowired
@@ -27,9 +27,9 @@ public class ProveedoresServiceImpl implements ProveedoresService{
 	@Override
 	public ResponseServiceObject findAll() {
 		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
-		List<Proveedores> proveedoresList = new ArrayList<Proveedores>();
+		List<Proveedor> proveedoresList = new ArrayList<Proveedor>();
 		
-		Iterable<Proveedores> iterableProveedores = proveedoresRepository.findAll();
+		Iterable<Proveedor> iterableProveedores = proveedorRepository.findAll();
 		
 		iterableProveedores.forEach(proveedoresList::add);
 		
@@ -48,10 +48,10 @@ public class ProveedoresServiceImpl implements ProveedoresService{
 	}
 
 	@Override
-	public ResponseServiceObject save(Proveedores proveedores) {
+	public ResponseServiceObject save(Proveedor proveedores) {
 		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
 		
-		responseServiceObject.setBody(proveedoresRepository.save(proveedores));
+		responseServiceObject.setBody(proveedorRepository.save(proveedores));
 		
 		responseServiceMessage.setTimestamp(new Date());
 		responseServiceMessage.setCode("201");// 201 = create ok

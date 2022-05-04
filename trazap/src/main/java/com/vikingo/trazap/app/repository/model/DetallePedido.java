@@ -1,7 +1,5 @@
 package com.vikingo.trazap.app.repository.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,11 +24,18 @@ public class DetallePedido {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "detalle_pedido_id_seq")
 	@Column(name = "id_detalle_pedido")
 	private int idDetallePedido;
+	private int cantidad;
 	@ManyToOne
 	@JoinColumn(name = "pedido_id")
 	private Pedidos pedidos;
-	private int cantidad;
 	@ManyToOne
-	@JoinColumn(name = "poveedor_producto_id")
-	private List<ProductoProveedor> productoProveedor;
+	@JoinColumn(name = "proveedor_producto_id")
+	private ProductoProveedor productoProveedor;
+	
+	@Override
+	public String toString() {
+		return "DetallePedido [idDetallePedido=" + idDetallePedido + ", pedidos=" + pedidos + ", cantidad=" + cantidad
+				+ ", productoProveedor=" + productoProveedor + "]";
+	}
+	
 }

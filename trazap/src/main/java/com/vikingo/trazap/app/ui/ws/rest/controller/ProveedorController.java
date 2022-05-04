@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vikingo.trazap.app.delegate.ProveedoresDelegate;
-import com.vikingo.trazap.app.repository.model.Proveedores;
+import com.vikingo.trazap.app.delegate.ProveedorDelegate;
+import com.vikingo.trazap.app.repository.model.Proveedor;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
 
 
 @RestController
 @RequestMapping("/proveedores")
-public class ProveedoresController {
+public class ProveedorController {
 
 
 		@Autowired
-		private ProveedoresDelegate proveedoresDelegate;
+		private ProveedorDelegate proveedoresDelegate;
 		
 		@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<ResponseServiceObject> getProveedores(){
@@ -30,7 +30,7 @@ public class ProveedoresController {
 		}
 		
 		@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<ResponseServiceObject> createProveedores(@RequestBody Proveedores proveedores){
+		public ResponseEntity<ResponseServiceObject> createProveedores(@RequestBody Proveedor proveedores){
 			return new ResponseEntity<ResponseServiceObject>(proveedoresDelegate.save(proveedores), HttpStatus.OK);
 		}
 }
