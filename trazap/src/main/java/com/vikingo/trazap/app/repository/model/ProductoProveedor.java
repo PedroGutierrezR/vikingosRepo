@@ -1,8 +1,5 @@
 package com.vikingo.trazap.app.repository.model;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -18,24 +16,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@SequenceGenerator(name = "pedidos_id_seq", initialValue = 1, sequenceName = "pedidos_id_seq", allocationSize = 1)
-public class Pedidos {
+@SequenceGenerator(name = "producto_proveedor_id_seq", initialValue = 1, sequenceName = "producto_proveedor_id_seq", allocationSize = 1)
+public class ProductoProveedor {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pedidos_id_seq")
-	@Column(name = "id_pedido")
-	private int idPedido;
-	private LocalDate fecha_ingreso;
-	private LocalDate fecha_recibido;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "producto_proveedor_id_seq")
+	@Column(name = "id_producto_proveedor")
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "pedido_id")
-	private List<DetallePedido> detallePedidos;
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name ="pedido_id")
-	private List<Trazabilidad> trazabilidad;
+	@JoinColumn(name = "producto_proveedor_id")
+	private int idProductoPoveedor;
+	@ManyToOne
+	@JoinColumn(name = "proveedor_id")
+	private int idProveedor;
+	@ManyToOne
+	@JoinColumn(name = "producto_id")
+	private int idProducto;
+	
 }
