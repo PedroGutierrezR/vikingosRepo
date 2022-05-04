@@ -1,10 +1,14 @@
 package com.vikingo.trazap.app.repository.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
@@ -21,6 +25,8 @@ public class EstadoTrazabilidad {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estado_trazabilidad_id_seq")
 	@Column(name = "id_estado_trazabilidad")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "estado_trazabilidad_id")
 	private int idEstadoTrazabilidad;
 	private String descripcion;
 }
