@@ -20,35 +20,36 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
   rel="stylesheet"
 />
-<title>Insert title here</title>
+<title>Login</title>
 </head>
-<body>
+<body style="background-color: #F0F8FF;" >
 	<!-- Section: Design Block -->
 <section class="">
   <!-- Jumbotron -->
-  <div id="main-div" class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+  <div id="main-div" class="m-5 text-center shadow-sm rounded" style="background-color: #B0C4DE; padding-top: 100px; padding-bottom: 100px;">
     <div class="container">
       <div class="row gx-lg-5 align-items-center">
         <div class="col-lg-6 mb-5 mb-lg-0">
-          <h1 class="my-5 display-3 fw-bold ls-tight">
-            Trazap <br />
-            <span class="text-primary">Vikingos</span>
+          <h1 class="my-1 display-2 fw-bold ls-tight text-primary">
+            TRAZAP
           </h1>
+          <h2 class="fw-bold display-4" style="color: #F8F8FF;">Sistema de administración</h2>
+          <h3 class="text-center text-primary">Proyecto Vikingos</h3>
         </div>
 
         <div class="col-lg-6 mb-5 mb-lg-0">
-          <div class="card">
+          <div class="card shadow" style="background-color: #F0F8FF;">
             <div class="card-body py-5 px-md-5">
               <form method="post" action="login">
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3" class="form-control" name="username" />
+                  <input type="email" id="form3Example3" class="form-control" name="username" style="background-color: #F8F8FF;"/>
                   <label class="form-label" for="form3Example3">Email address</label>
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4" class="form-control" name="password"/>
+                  <input type="password" id="form3Example4" class="form-control" name="password" style="background-color: #F8F8FF;"/>
                   <label class="form-label" for="form3Example4">Password</label>
                 </div>
 
@@ -63,8 +64,10 @@
       </div>
     </div>
   </div>
+
   <!-- Jumbotron -->
 </section>
+
 <!-- Section: Design Block -->
 <!-- MDB -->
 <script
