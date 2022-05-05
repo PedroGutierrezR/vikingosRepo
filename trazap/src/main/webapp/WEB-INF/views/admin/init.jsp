@@ -4,12 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Administrador - init</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+<title>Trazap Administrador</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet" />
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
@@ -18,14 +20,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
-
 <script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-	integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 	crossorigin="anonymous"></script>
 
 <link rel="stylesheet"
@@ -38,18 +35,88 @@
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
 <script
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#idTblUsuarios').bootstrapTable({
+			url : '',
+			pagination : true,
+			search : true,
+			pageSize : 5,
+			pageList : [ 5, 10, 15 ],
+			locale : "es-ES",
+			columns : [ {
+				field : 'nombre',
+				title : 'Nombre',
+				sortable : true,
+				width : '200px'
+			}, {
+				field : 'email',
+				title : 'Email',
+				sortable : true,
+				width : '400px'
+			} ]
+		});
+
+		$.ajax({
+			type : "GET",
+			url : "/ws/usuarios",
+			dataType : "json",
+			success : function(data) {
+				//si todo sale bien, se agrega la funcionalidad
+				//console.log(data);
+				$('#idTblUsuarios').bootstrapTable('load', data.body);
+			},
+			error : function(dataError) {
+				console.log(dataError);
+			},
+			async : true,
+		});
+
+		/*$('#idBtnBuscarPokemones').click(function(){
+		    $.ajax({
+		        type:"GET",
+		        url:"https://pokeapi.co/api/v2/pokemon?offset=200&limit=200",
+		        dataType:"json",
+		        success: function(data) {
+		            $('#idTblPokeApi').bootstrapTable('load', data.results);
+		        },
+		        error: function(dataError) {
+		            console.log(dataError);
+		        },
+		        async: true,
+		    });
+
+		    console.log("Termino");
+		});
+		 */
+
+	});
+</script>
 </head>
-<body>
+<body style="background-color: #F0F8FF;">
+
+	<header class="col-lg-12"
+		style="background-color: #B0C4DE; padding-top: 20px; padding-bottom: 20px;">
+		<h1 class="text-center fw-bold"
+			style="color: #F8F8FF; font-size: 50px;">Bienvenido a TRAZAP</h1>
+		<div class="container text-center text-primary">
+			<h4>Usted ha ingresado como administrador</h4>
+		</div>
+	</header>
 	<div class="container">
-		SE HA LOGEADO EL ADMINISTRADOR
-		<form action="/logout" method="get">
-			<input type="submit" value="Salir" />
-			<table class="table table-hover" id="idTblUsuarios"
-				name="tblUsuarios">
-			</table>
-			<button type="button" id="idBtnAgregarUsuario"
-				class="btn btn-outline-danger btn-lg">Agregar Usuario</button>
-		</form>
+		<div class="col-lg-12" style="padding-top: 30px;">
+			<form action="/logout" method="get">
+				<table class="table table-hover" id="idTblUsuarios"
+					name="tblUsuarios" style="background-color: #FFFFFF;">
+				</table>
+				<button type="submit"
+					class="btn btn-primary mb-4 float-right shadow-sm"
+					style="margin-left: 5px;">Salir</button>
+				<button type="submit"
+					class="btn btn-primary mb-4 float-right shadow-sm"
+					id="idBtnAgregarUsuario">Agregar Usuario</button>
+			</form>
+    </div>
 	</div>
 <script type="text/javascript" src="../assets/js/admin.js"></script>
 </body>
