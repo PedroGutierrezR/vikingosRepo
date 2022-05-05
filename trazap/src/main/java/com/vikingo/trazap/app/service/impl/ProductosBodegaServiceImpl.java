@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.vikingo.trazap.app.exceptions.ServiceException;
 import com.vikingo.trazap.app.repository.ProductosBodegaRepository;
@@ -16,6 +17,7 @@ import com.vikingo.trazap.app.service.response.ResponseServiceMessage;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessageType;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
+@Service("productosBodegaService")
 public class ProductosBodegaServiceImpl implements ProductosBodegaService {
 
 	@Autowired

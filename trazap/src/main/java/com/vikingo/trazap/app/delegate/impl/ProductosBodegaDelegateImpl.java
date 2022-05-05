@@ -22,8 +22,8 @@ public class ProductosBodegaDelegateImpl implements ProductosBodegaDelegate {
 	}
 
 	@Override
-	public ResponseServiceObject save(int idProductosBodega, ProductosBodegaRequest productosBodegaRequest) {
-		return productosBodegaService.save(idProductosBodega, productosBodegaRequest);
+	public ResponseServiceObject save(int idProductoBodega, ProductosBodegaRequest productosBodegaRequest) {
+		return productosBodegaService.save(idProductoBodega, productosBodegaRequest);
 	}
 	
 	@Override
@@ -32,7 +32,7 @@ public class ProductosBodegaDelegateImpl implements ProductosBodegaDelegate {
 	}
 
 	@Override
-	public ResponseServiceObject findByid(Integer idProductosBodega) throws ServiceException {
-		return productosBodegaService.findByid(idProductosBodega);
+	public ResponseServiceObject findByid(Integer idProductoBodega) throws ServiceException {
+		return productosBodegaService.findByid(idProductoBodega);
 	}
 }

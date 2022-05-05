@@ -18,7 +18,7 @@ import com.vikingo.trazap.app.service.request.ProductosBodegaRequest;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
 @RestController
-@RequestMapping("/productosBodega")
+@RequestMapping("/productosBodegaDelegate")
 public class ProductosBodegaController {
 
 	@Autowired
