@@ -20,12 +20,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
-
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-	crossorigin="anonymous"></script>
-
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
@@ -37,12 +31,10 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
-
 <script
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
 <script
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
-
 <script>
 	$(document).ready(function() {
 		$('#idTblUsuarios').bootstrapTable({
@@ -124,7 +116,8 @@
 					class="btn btn-primary mb-4 float-right shadow-sm"
 					id="idBtnAgregarUsuario">Agregar Usuario</button>
 			</form>
-		</div>
+    </div>
 	</div>
+<script type="text/javascript" src="../assets/js/admin.js"></script>
 </body>
 </html>
