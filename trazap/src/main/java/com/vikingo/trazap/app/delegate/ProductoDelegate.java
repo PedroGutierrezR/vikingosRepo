@@ -10,5 +10,6 @@ public interface ProductoDelegate {
 	public ResponseServiceObject save(ProductoRequest productoRequest);
 	public ResponseServiceObject save(int idProducto, ProductoRequest productoRequest);
 	public ResponseServiceObject findByid(Integer idProducto) throws ServiceException;
+	public void deleteById(ProductoRequest productoRequest);
 	
 }
