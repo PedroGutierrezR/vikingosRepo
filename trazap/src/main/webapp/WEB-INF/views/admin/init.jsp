@@ -142,8 +142,29 @@
 				<div class="container">
 					<table class="table table-hover" id="idTablaProductos">
 					</table>
-					<button type="button" id="idBtnAgregarUsuario"
-						class="btn btn-outline-danger btn-lg">Agregar Producto</button>
+				</div>
+			</div>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+				data-bs-target="#modalAgregarProducto">Agregar Producto</button>
+		</div>
+		<!-- Modal Agregar Producto-->
+		<!-- Modal -->
+		<div class="modal fade" id="modalAgregarProducto" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">...</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-dark"
+							data-bs-dismiss="modal">Cerrar</button>
+						<button type="button" class="btn btn-danger">Guardar</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -157,8 +178,7 @@
 
 				<div class="col-lg-12 col-12 text-center mb-5">
 					<h6 data-aos="fade-up">Administra:</h6>
-					<h2 data-aos="fade-up" data-aos-delay="200">Nuestros
-						Proveedores</h2>
+					<h2 data-aos="fade-up" data-aos-delay="200">Proveedores</h2>
 					<div class="container">
 						<table class="table table-hover" id="idTablaProveedores">
 						</table>
@@ -182,7 +202,8 @@
 						<table class="table table-hover" id="idTablaTrazabilidad">
 						</table>
 						<button type="button" id="idBtnAgregarUsuario"
-							class="btn btn-outline-danger btn-lg">Agregar Trazabilidad</button>
+							class="btn btn-outline-danger btn-lg">Agregar
+							Trazabilidad</button>
 					</div>
 				</div>
 			</div>
