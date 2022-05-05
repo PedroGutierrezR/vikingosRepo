@@ -89,8 +89,8 @@
 			</div>
 			<div class="ms-5">
 				<form action="/logout" method="get">
-					<input style="border-radius: 8px;" id="btnLogout" class="btn-white px-3 py-1" type="submit"
-						value="salir">
+					<input style="border-radius: 8px;" id="btnLogout"
+						class="btn-white px-3 py-1" type="submit" value="salir">
 				</form>
 			</div>
 		</div>
@@ -140,11 +140,10 @@
 			<div class="row">
 				<h2 class="mb-3 text-dark" data-aos="fade-up">Productos</h2>
 				<div class="container">
-					<table class="table table-hover" id="idTblUsuarios"
-						name="tblUsuarios">
+					<table class="table table-hover" id="idTablaProductos">
 					</table>
 					<button type="button" id="idBtnAgregarUsuario"
-						class="btn btn-outline-danger btn-lg">Agregar Usuario</button>
+						class="btn btn-outline-danger btn-lg">Agregar Producto</button>
 				</div>
 			</div>
 		</div>
@@ -157,63 +156,14 @@
 			<div class="row">
 
 				<div class="col-lg-12 col-12 text-center mb-5">
-					<h6 data-aos="fade-up">Get A Perfect Body</h6>
-
-					<h2 data-aos="fade-up" data-aos-delay="200">Our Training
-						Classes</h2>
-				</div>
-
-				<div class="col-lg-4 col-md-6 col-12" data-aos="fade-up"
-					data-aos-delay="400">
-					<div class="class-thumb">
-						<img src="../assets/images/class/yoga-class.jpg" class="img-fluid"
-							alt="Class">
-
-						<div class="class-info">
-							<h3 class="mb-1">Yoga</h3>
-
-							<span><strong>Trained by</strong> - Bella</span> <span
-								class="class-price">$50</span>
-
-							<p class="mt-3">Lorem ipsum dolor sit amet, consectetur
-								adipiscing</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="mt-5 mt-lg-0 mt-md-0 col-lg-4 col-md-6 col-12"
-					data-aos="fade-up" data-aos-delay="500">
-					<div class="class-thumb">
-						<img src="../assets/images/class/crossfit-class.jpg"
-							class="img-fluid" alt="Class">
-
-						<div class="class-info">
-							<h3 class="mb-1">Areobic</h3>
-
-							<span><strong>Trained by</strong> - Mary</span> <span
-								class="class-price">$66</span>
-
-							<p class="mt-3">Lorem ipsum dolor sit amet, consectetur
-								adipiscing</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="mt-5 mt-lg-0 col-lg-4 col-md-6 col-12"
-					data-aos="fade-up" data-aos-delay="600">
-					<div class="class-thumb">
-						<img src="../assets/images/class/cardio-class.jpg"
-							class="img-fluid" alt="Class">
-
-						<div class="class-info">
-							<h3 class="mb-1">Cardio</h3>
-
-							<span><strong>Trained by</strong> - Cathe</span> <span
-								class="class-price">$75</span>
-
-							<p class="mt-3">Lorem ipsum dolor sit amet, consectetur
-								adipiscing</p>
-						</div>
+					<h6 data-aos="fade-up">Administra:</h6>
+					<h2 data-aos="fade-up" data-aos-delay="200">Nuestros
+						Proveedores</h2>
+					<div class="container">
+						<table class="table table-hover" id="idTablaProveedores">
+						</table>
+						<button type="button" id="idBtnAgregarUsuario"
+							class="btn btn-outline-danger btn-lg">Agregar Proveedor</button>
 					</div>
 				</div>
 
@@ -226,46 +176,15 @@
 	<section class="contact section" id="contact">
 		<div class="container">
 			<div class="row">
-
-				<div class="ml-auto col-lg-5 col-md-6 col-12">
-					<h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Feel
-						free to ask anything</h2>
-
-					<form action="#" method="post" class="contact-form webform"
-						data-aos="fade-up" data-aos-delay="400" role="form">
-						<input type="text" class="form-control" name="cf-name"
-							placeholder="Name"> <input type="email"
-							class="form-control" name="cf-email" placeholder="Email">
-
-						<textarea class="form-control" rows="5" name="cf-message"
-							placeholder="Message"></textarea>
-
-						<button type="submit" class="form-control" id="submit-button"
-							name="submit">Send Message</button>
-					</form>
-				</div>
-
-				<div class="mx-auto mt-4 mt-lg-0 mt-md-0 col-lg-5 col-md-6 col-12">
-					<h2 class="mb-4" data-aos="fade-up" data-aos-delay="600">
-						Where you can <span>find us</span>
-					</h2>
-
-					<p data-aos="fade-up" data-aos-delay="800">
-						<i class="fa fa-map-marker mr-1"></i> 120-240 Rio de Janeiro -
-						State of Rio de Janeiro, Brazil
-					</p>
-					<!-- How to change your own map point
-	1. Go to Google Maps
-	2. Click on your location point
-	3. Click "Share" and choose "Embed map" tab
-	4. Copy only URL and paste it within the src="" field below
--->
-					<div class="google-map" data-aos="fade-up" data-aos-delay="900">
-						<iframe src="" width="1920" height="250" frameborder="0"
-							style="border: 0;" allowfullscreen=""></iframe>
+				<div class="col-lg-5 col-md-6 col-12">
+					<h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Trazabilidad</h2>
+					<div class="container">
+						<table class="table table-hover" id="idTablaTrazabilidad">
+						</table>
+						<button type="button" id="idBtnAgregarUsuario"
+							class="btn btn-outline-danger btn-lg">Agregar Trazabilidad</button>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</section>

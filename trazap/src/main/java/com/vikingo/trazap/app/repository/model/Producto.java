@@ -14,6 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,22 +37,26 @@ public class Producto {
 	private String descripcion;
 	@ManyToOne
 	@JoinColumn(name = "categoria_producto_id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "descripcion")
+	@JsonIdentityReference(alwaysAsId = true)
 	private CategoriaProducto categoriaProducto;
 	@ManyToOne
 	@JoinColumn(name = "tipo_producto_id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "descripcion")
+	@JsonIdentityReference(alwaysAsId = true)
 	private TipoProducto tipoProducto;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "producto_id")
+	@JsonIgnore
 	private List<ProductosBodega> productosBodegas;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "producto_id")
+	@JsonIgnore
 	private List<ProductoProveedor> productoProveedorList;
 	
 	@Override
 	public String toString() {
-		return "Producto [idProducto=" + idProducto + ", descripcion=" + descripcion + ", categoriaProducto="
-				+ categoriaProducto + ", tipoProducto=" + tipoProducto + ", productosBodegas=" + productosBodegas
-				+ ", productoProveedorList=" + productoProveedorList + "]";
+		return "Producto [idProducto=" + idProducto + ", descripcion=" + descripcion + "]";
 	}
 
 }

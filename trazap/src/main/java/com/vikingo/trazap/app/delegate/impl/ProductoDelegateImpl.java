@@ -38,4 +38,9 @@ public class ProductoDelegateImpl implements ProductoDelegate {
 		return null;
 	}
 
+	@Override
+	public void deleteById(ProductoRequest productoRequest) {
+		productoService.deleteById(productoRequest);
+	}
+
 }
