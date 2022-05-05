@@ -348,6 +348,6 @@
 	<script src="../assets/js/jsadmin/aos.js"></script>
 	<script src="../assets/js/jsadmin/smoothscroll.js"></script>
 	<script src="../assets/js/jsadmin/custom.js"></script>
-	<script type="text/javascript" src="../assets/js/admin.js"></script>
+	<script type="text/javascript" src="../assets/js/producto.js"></script>
 </body>
 </html>

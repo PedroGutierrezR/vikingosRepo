@@ -23,7 +23,7 @@ public class InitAdminController {
 		Iterator<GrantedAuthority> itCredentials = (Iterator<GrantedAuthority>) auth.getAuthorities().iterator();
 		Object principal = auth.getPrincipal();
 		String name = auth.getName();
-		return "admin/in";
+		return "admin/init";
 	}
 	
 }
