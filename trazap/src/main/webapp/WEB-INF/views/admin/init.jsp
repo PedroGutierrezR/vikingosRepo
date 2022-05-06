@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +52,7 @@
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
 <script
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
@@ -146,7 +148,7 @@
 			</div>
 			<!-- Button trigger modal -->
 			<button type="button" class="btn btn-danger" data-bs-toggle="modal"
-				data-bs-target="#modalAgregarProducto">Agregar Producto</button>
+				data-bs-target="#modalAgregarProducto" onClick="getTipoProducto();getCategoria();">Agregar Producto</button>
 		</div>
 		<!-- Modal Agregar Producto-->
 		<!-- Modal -->
@@ -156,14 +158,60 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Close"></button>
+						<button type="button" class="btn-close mb-3"
+							data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					<div class="modal-body">...</div>
+					<div class="modal-body">
+						<form class="needs-validation" novalidate>
+							<div class=form-row>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idTxtAgregarDescripcion">Descripción</label>
+										<div class="form-inline">
+											<input type="text" class="form-control"
+												id="idTxtAgregarDescripcion"
+												placeholder="Ingrese Descripción" required>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelTipoProducto">Tipo</label> <select
+											class="form-control" id="idSelTipoProducto">
+											<option class="option1" value="-1">-Seleccione
+												Tipo-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelCategoriaProducto">Categoria</label> <select
+											class="form-control" id="idSelCategoriaProducto">
+											<option class="option2" value="-1">-Seleccione
+												Categoria-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-dark"
-							data-bs-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-danger">Guardar</button>
+						<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
+						<button id="idBtnGuardarProducto" type="button"
+							class="btn btn-danger">Guardar</button>
 					</div>
 				</div>
 			</div>

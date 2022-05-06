@@ -8,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vikingo.trazap.app.exceptions.ServiceException;
+import com.vikingo.trazap.app.repository.CategoriaProductoRepository;
 import com.vikingo.trazap.app.repository.ProductoRepository;
+import com.vikingo.trazap.app.repository.TipoProductoRepository;
+import com.vikingo.trazap.app.repository.model.CategoriaProducto;
 import com.vikingo.trazap.app.repository.model.Producto;
+import com.vikingo.trazap.app.repository.model.TipoProducto;
 import com.vikingo.trazap.app.service.ProductoService;
 import com.vikingo.trazap.app.service.request.ProductoRequest;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessage;
@@ -21,6 +25,10 @@ public class ProductoServiceImpl implements ProductoService {
 
 	@Autowired
 	private ProductoRepository productoRepository;
+	@Autowired
+	private TipoProductoRepository tipoProductoRepository;
+	@Autowired
+	private CategoriaProductoRepository categoriaProductoRepository;;
 	@Autowired
 	private ResponseServiceObject responseServiceObject;
 	@Autowired
@@ -51,12 +59,41 @@ public class ProductoServiceImpl implements ProductoService {
 
 	@Override
 	public ResponseServiceObject save(ProductoRequest productoRequest) {
+		
 		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
 
 		Producto producto = new Producto();
 		producto.setDescripcion(productoRequest.getDescripcion());
+		
+		List<TipoProducto> tipoProductos = new ArrayList<TipoProducto>();
+		Iterable<TipoProducto> iterableTipoProducto = tipoProductoRepository.findAll();
+		iterableTipoProducto.forEach(tipoProductos::add);
+		
+		for (TipoProducto tipoProducto : tipoProductos) {
+			if(tipoProducto.getIdTipoProducto() == productoRequest.getTipoProducto().getIdTipoProducto()) {
+				producto.setTipoProducto(tipoProducto);
+			}
+		}
+		
+		List<CategoriaProducto> categoriaProductos = new ArrayList<CategoriaProducto>();
+		Iterable<CategoriaProducto> iterableCategoriaProducto = categoriaProductoRepository.findAll();
+		iterableCategoriaProducto.forEach(categoriaProductos::add);
+		
+		for (CategoriaProducto categoriaProducto : categoriaProductos) {
+			if(categoriaProducto.getIdCategoriaProducto() == productoRequest.getCategoriaProducto().getIdCategoriaProducto()) {
+				producto.setCategoriaProducto(categoriaProducto);
+			}
+		}
+		
+		productoRepository.save(producto);
+		
+		List<Producto> productos = new ArrayList<Producto>();
 
-		responseServiceObject.setBody(productoRepository.save(producto));
+		Iterable<Producto> iterableProductos = productoRepository.findAll();
+
+		iterableProductos.forEach(productos::add);
+		
+		responseServiceObject.setBody(productos);
 
 		responseServiceMessage.setTimestamp(new Date());
 		responseServiceMessage.setCode("201");// 201 = create ok
