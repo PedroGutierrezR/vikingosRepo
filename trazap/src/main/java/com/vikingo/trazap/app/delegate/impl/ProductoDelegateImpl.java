@@ -22,8 +22,7 @@ public class ProductoDelegateImpl implements ProductoDelegate {
 
 	@Override
 	public ResponseServiceObject save(ProductoRequest productoRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		return productoService.save(productoRequest);
 	}
 
 	@Override

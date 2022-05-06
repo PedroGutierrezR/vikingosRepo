@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +52,7 @@
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
 <script
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
@@ -142,8 +144,75 @@
 				<div class="container">
 					<table class="table table-hover" id="idTablaProductos">
 					</table>
-					<button type="button" id="idBtnAgregarUsuario"
-						class="btn btn-outline-danger btn-lg">Agregar Producto</button>
+				</div>
+			</div>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+				data-bs-target="#modalAgregarProducto" onClick="getTipoProducto();getCategoria();">Agregar Producto</button>
+		</div>
+		<!-- Modal Agregar Producto-->
+		<!-- Modal -->
+		<div class="modal fade" id="modalAgregarProducto" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
+						<button type="button" class="btn-close mb-3"
+							data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form class="needs-validation" novalidate>
+							<div class=form-row>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idTxtAgregarDescripcion">Descripción</label>
+										<div class="form-inline">
+											<input type="text" class="form-control"
+												id="idTxtAgregarDescripcion"
+												placeholder="Ingrese Descripción" required>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelTipoProducto">Tipo</label> <select
+											class="form-control" id="idSelTipoProducto">
+											<option class="option1" value="-1">-Seleccione
+												Tipo-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelCategoriaProducto">Categoria</label> <select
+											class="form-control" id="idSelCategoriaProducto">
+											<option class="option2" value="-1">-Seleccione
+												Categoria-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
+						<button id="idBtnGuardarProducto" type="button"
+							class="btn btn-danger">Guardar</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -157,8 +226,7 @@
 
 				<div class="col-lg-12 col-12 text-center mb-5">
 					<h6 data-aos="fade-up">Administra:</h6>
-					<h2 data-aos="fade-up" data-aos-delay="200">Nuestros
-						Proveedores</h2>
+					<h2 data-aos="fade-up" data-aos-delay="200">Proveedores</h2>
 					<div class="container">
 						<table class="table table-hover" id="idTablaProveedor">
 						</table>
@@ -182,7 +250,8 @@
 						<table class="table table-hover" id="idTablaTrazabilidad">
 						</table>
 						<button type="button" id="idBtnAgregarUsuario"
-							class="btn btn-outline-danger btn-lg">Agregar Trazabilidad</button>
+							class="btn btn-outline-danger btn-lg">Agregar
+							Trazabilidad</button>
 					</div>
 				</div>
 			</div>

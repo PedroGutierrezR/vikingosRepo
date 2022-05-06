@@ -29,14 +29,14 @@ public class TipoProducto {
 	@Column(name = "id_tipo_producto")
 	private int idTipoProducto;
 	private String descripcion;
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "tipo_producto_id")
 	private List<Producto> productos;
 	
 	@Override
 	public String toString() {
 		return "TipoProducto [idTipoProducto=" + idTipoProducto + ", descripcion=" + descripcion + ", productos="
-				+ productos + "]";
+				+ (productos != null ? "Cantidad Productos: " + productos.size() : "Sin productos") + "]";
 	}
 
 }

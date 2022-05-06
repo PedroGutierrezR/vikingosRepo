@@ -139,6 +139,8 @@ public class TrazapApplication {
 			Producto producto = new Producto();
 			CategoriaProducto categoriaProducto = new CategoriaProducto();
 			TipoProducto tipoProducto = new TipoProducto();
+			CategoriaProducto categoriaProducto2 = new CategoriaProducto();
+			TipoProducto tipoProducto2 = new TipoProducto();
 			
 			categoriaProducto.setDescripcion("Limpieza");
 			categoriaProductoRepository.save(categoriaProducto);
@@ -146,7 +148,13 @@ public class TrazapApplication {
 			tipoProducto.setDescripcion("Jabón");
 			tipoProductoRepository.save(tipoProducto);
 			
-			producto.setDescripcion("piel sensible");
+			categoriaProducto2.setDescripcion("Alimento no perecible");
+			categoriaProductoRepository.save(categoriaProducto);
+			
+			tipoProducto2.setDescripcion("Arroz");
+			tipoProductoRepository.save(tipoProducto);	
+			
+			producto.setDescripcion("Liquido");
 			producto.setCategoriaProducto(categoriaProducto);
 			producto.setTipoProducto(tipoProducto);
 			
