@@ -160,9 +160,9 @@
 					<h2 data-aos="fade-up" data-aos-delay="200">Nuestros
 						Proveedores</h2>
 					<div class="container">
-						<table class="table table-hover" id="idTablaProveedores">
+						<table class="table table-hover" id="idTablaProveedor">
 						</table>
-						<button type="button" id="idBtnAgregarUsuario"
+						<button type="button" id="idBtnAgregarProveedor"
 							class="btn btn-outline-danger btn-lg">Agregar Proveedor</button>
 					</div>
 				</div>
