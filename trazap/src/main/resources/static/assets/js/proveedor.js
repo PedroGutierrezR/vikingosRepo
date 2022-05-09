@@ -1,6 +1,6 @@
 let tablaProveedor = $('#idTablaProveedor');
 $(document).ready(function() {
-
+/*
 		$.ajax({
 			type: "GET",
 			// Formato de datos que se espera en la respuesta
@@ -65,7 +65,7 @@ $(document).ready(function() {
 			.fail(function(jqXHR, textStatus, errorThrown) {
 				console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
 			});
-
+*/
 });
 
 	$("#idBtnAgregarProveedor").click(function() {

@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html;"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 
 <title>Trazap - Admin</title>
 
-<meta charset="UTF-8">
+
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -142,7 +142,9 @@
 			</div>
 			<!-- Button trigger modal -->
 			<button type="button" class="btn btn-danger" data-bs-toggle="modal"
-				data-bs-target="#modalAgregarProducto" onClick="getTipoProducto();getCategoria();">Agregar Producto</button>
+				data-bs-target="#modalAgregarProducto"
+				onClick="getTipoProducto();getCategoria();">Agregar
+				Producto</button>
 		</div>
 		<!-- Modal Agregar Producto-->
 		<!-- Modal -->
@@ -177,8 +179,7 @@
 									<div class="form-group">
 										<label for="idSelTipoProducto">Tipo</label> <select
 											class="form-control" id="idSelTipoProducto">
-											<option class="option1" value="-1">-Seleccione
-												Tipo-</option>
+											<option id="option1" value="-1">-Seleccione Tipo-</option>
 										</select>
 										<div class="valid-feedback">Correcto!</div>
 										<div class="invalid-feedback">Debe ingresar un curso
@@ -191,7 +192,7 @@
 									<div class="form-group">
 										<label for="idSelCategoriaProducto">Categoria</label> <select
 											class="form-control" id="idSelCategoriaProducto">
-											<option class="option2" value="-1">-Seleccione
+											<option id="option2" value="-1">-Seleccione
 												Categoria-</option>
 										</select>
 										<div class="valid-feedback">Correcto!</div>
