@@ -82,12 +82,6 @@
 					<li class="nav-item"><a href="#contact"
 						class="nav-link smoothScroll">Trazabilidad</a></li>
 				</ul>
-
-				<ul class="social-icon ml-lg-3">
-					<li><a href="#" class="fa fa-facebook"></a></li>
-					<li><a href="#" class="fa fa-twitter"></a></li>
-					<li><a href="#" class="fa fa-instagram"></a></li>
-				</ul>
 			</div>
 			<div class="ms-5">
 				<form action="/logout" method="get">
@@ -244,12 +238,12 @@
 	<section class="contact section" id="contact">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-5 col-md-6 col-12">
-					<h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Trazabilidad</h2>
+				<div class="col-lg-12 col-12 text-center mb-5">
+					<h2 class="mb-4 pb-2" data-aos="fade-up">Trazabilidad</h2>
 					<div class="container">
 						<table class="table table-hover" id="idTablaTrazabilidad">
 						</table>
-						<button type="button" id="idBtnAgregarUsuario"
+						<button type="button" id="idBtnAgregarTrazabilidad"
 							class="btn btn-outline-danger btn-lg">Agregar
 							Trazabilidad</button>
 					</div>

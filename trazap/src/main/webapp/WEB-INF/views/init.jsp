@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 
-<title>Trazap - Proveedor</title>
+<title>Trazap - User</title>
 
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -53,7 +53,7 @@
 <script
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-</head>...
+</head>
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
 	<!-- MENU BAR -->
@@ -72,7 +72,16 @@
 				<ul class="navbar-nav ml-lg-auto">
 					<li class="nav-item"><a href="#home"
 						class="nav-link smoothScroll">Home</a></li>
-						
+
+					<li class="nav-item"><a href="#about"
+						class="nav-link smoothScroll">Productos</a></li>
+
+				<!--POR EL MOMENTO LOGIN USUARIO QUEDARA SIN LA VISTA DE PROVEEDOR,
+				PARA DIFERENCIARLO CON ADMIN Y PROVEEDOR
+				
+					<li class="nav-item"><a href="#class"
+						class="nav-link smoothScroll">Proveedor</a></li> -->
+
 					<li class="nav-item"><a href="#contact"
 						class="nav-link smoothScroll">Trazabilidad</a></li>
 				</ul>
@@ -86,8 +95,6 @@
 		</div>
 	</nav>
 
-	<!-- TRAZAP PROVEEDOR SOLO QUEDARA CON LA VISTA DE TRAZABILIDAD PARA PODER DIFERENCIAR DE FORMA CLARA
-	LOS ROLES DE ADMIN, USUARIO Y PROVEEDOR EN EL SISTEMA-->
 
 	<!-- HERO -->
 	<section
@@ -121,9 +128,116 @@
 	<section class="feature" id="feature">
 		<div class="container">
 			<h2 class="mb-3 text-white" data-aos="fade-up">Área de
-				proveedor</h2>
+				usuario</h2>
 		</div>
 	</section>
+
+
+	<!-- ABOUT -->
+	<section class="about section" id="about">
+		<div class="container">
+			<div class="row">
+				<h2 class="mb-3 text-dark" data-aos="fade-up">Productos</h2>
+				<div class="container">
+					<table class="table table-hover" id="idTablaProductos">
+					</table>
+				</div>
+			</div>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+				data-bs-target="#modalAgregarProducto" onClick="getTipoProducto();getCategoria();">Agregar Producto</button>
+		</div>
+		<!-- Modal Agregar Producto-->
+		<!-- Modal -->
+		<div class="modal fade" id="modalAgregarProducto" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
+						<button type="button" class="btn-close mb-3"
+							data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form class="needs-validation" novalidate>
+							<div class=form-row>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idTxtAgregarDescripcion">Descripción</label>
+										<div class="form-inline">
+											<input type="text" class="form-control"
+												id="idTxtAgregarDescripcion"
+												placeholder="Ingrese Descripción" required>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelTipoProducto">Tipo</label> <select
+											class="form-control" id="idSelTipoProducto">
+											<option class="option1" value="-1">-Seleccione
+												Tipo-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelCategoriaProducto">Categoria</label> <select
+											class="form-control" id="idSelCategoriaProducto">
+											<option class="option2" value="-1">-Seleccione
+												Categoria-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
+						<button id="idBtnGuardarProducto" type="button"
+							class="btn btn-danger">Guardar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- POR EL MOMENTO USUARIO QUEDARA SIN LA VISTA DE PROVEEDOR PARA DIFERENCIARLO DE
+	ADMIN Y PROVEEDOR 
+	<section class="class section" id="class">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-12 col-12 text-center mb-5">
+					<h6 data-aos="fade-up">Administra:</h6>
+					<h2 data-aos="fade-up" data-aos-delay="200">Proveedores</h2>
+					<div class="container">
+						<table class="table table-hover" id="idTablaProveedor">
+						</table>
+						<button type="button" id="idBtnAgregarProveedor"
+							class="btn btn-outline-danger btn-lg">Agregar Proveedor</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section> -->
+
+
 	<!-- CONTACT -->
 	<section class="contact section" id="contact">
 		<div class="container">
@@ -220,7 +334,8 @@
 	<script src="../assets/js/jsadmin/aos.js"></script>
 	<script src="../assets/js/jsadmin/smoothscroll.js"></script>
 	<script src="../assets/js/jsadmin/custom.js"></script>
-<!--<script type="text/javascript" src="../assets/js/producto.js"></script>
+	<script type="text/javascript" src="../assets/js/producto.js"></script>
+	<!-- POR EL MOMENTO USUARIO QUEDARA SIN ACCESO AL JS DE PROVEEDOR
 	<script type="text/javascript" src="../assets/js/proveedor.js"></script>-->
 	<script type="text/javascript" src="../assets/js/trazabilidad.js"></script>
 </body>
