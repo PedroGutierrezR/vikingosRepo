@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.vikingo.trazap.app.delegate.ProductoDelegate;
 import com.vikingo.trazap.app.exceptions.ServiceException;
 import com.vikingo.trazap.app.service.request.ProductoRequest;
@@ -27,7 +26,7 @@ public class ProductoController {
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseServiceObject> getProductos(){
-		return new ResponseEntity<ResponseServiceObject>(productoDelegate.findAll(), HttpStatus.OK);
+		return new ResponseEntity<ResponseServiceObject>(productoDelegate.findAll(),HttpStatus.OK);
 	}
 	
 	@PutMapping(path = "{idProducto}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -47,7 +46,7 @@ public class ProductoController {
 	
 	@DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseServiceObject> deleteProducto(@RequestBody ProductoRequest productoRequest){
-		return getProductos();
+		return new ResponseEntity<ResponseServiceObject>(productoDelegate.deleteById(productoRequest), HttpStatus.OK);
 	}
 	
 }

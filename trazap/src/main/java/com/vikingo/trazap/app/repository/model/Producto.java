@@ -1,7 +1,6 @@
 package com.vikingo.trazap.app.repository.model;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +15,6 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AllArgsConstructor;
@@ -37,21 +35,19 @@ public class Producto {
 	private String descripcion;
 	@ManyToOne
 	@JoinColumn(name = "categoria_producto_id")
-	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "descripcion")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCategoriaProducto")
 	@JsonIdentityReference(alwaysAsId = true)
 	private CategoriaProducto categoriaProducto;
 	@ManyToOne
 	@JoinColumn(name = "tipo_producto_id")
-	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "descripcion")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idTipoProducto")
 	@JsonIdentityReference(alwaysAsId = true)
 	private TipoProducto tipoProducto;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "producto_id")
-	@JsonIgnore
 	private List<ProductosBodega> productosBodegas;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "producto_id")
-	@JsonIgnore
 	private List<ProductoProveedor> productoProveedorList;
 	
 	@Override

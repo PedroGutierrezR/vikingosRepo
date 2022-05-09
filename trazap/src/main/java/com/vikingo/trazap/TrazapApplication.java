@@ -137,6 +137,8 @@ public class TrazapApplication {
 			logger.info(proveedor.toString());
 			
 			Producto producto = new Producto();
+			Producto producto2 = new Producto();
+			Producto producto3 = new Producto();
 			CategoriaProducto categoriaProducto = new CategoriaProducto();
 			TipoProducto tipoProducto = new TipoProducto();
 			CategoriaProducto categoriaProducto2 = new CategoriaProducto();
@@ -149,21 +151,33 @@ public class TrazapApplication {
 			tipoProductoRepository.save(tipoProducto);
 			
 			categoriaProducto2.setDescripcion("Alimento no perecible");
-			categoriaProductoRepository.save(categoriaProducto);
+			categoriaProductoRepository.save(categoriaProducto2);
 			
 			tipoProducto2.setDescripcion("Arroz");
-			tipoProductoRepository.save(tipoProducto);	
+			tipoProductoRepository.save(tipoProducto2);	
 			
 			producto.setDescripcion("Liquido");
 			producto.setCategoriaProducto(categoriaProducto);
 			producto.setTipoProducto(tipoProducto);
-			
+			producto2.setDescripcion("Barra");
+			producto2.setCategoriaProducto(categoriaProducto);
+			producto2.setTipoProducto(tipoProducto);
+			producto3.setDescripcion("Concentrado");
+			producto3.setCategoriaProducto(categoriaProducto);
+			producto3.setTipoProducto(tipoProducto);			
 			productoRepository.save(producto);
+			productoRepository.save(producto2);
+			productoRepository.save(producto3);
 			logger.info(producto.toString());
 			
 			Bodega bodega1 = new Bodega();	
-			bodega1.setDescripcion("Mi Bodega original 1");
+			bodega1.setDescripcion("Mi Bodega 1");
 			bodegaRepository.save(bodega1);
+			logger.info(bodega1.toString());
+
+			Bodega bodega2 = new Bodega();	
+			bodega2.setDescripcion("Mi Bodega 2");
+			bodegaRepository.save(bodega2);
 			logger.info(bodega1.toString());
 			
 			ProductosBodega productosBodega = new ProductosBodega();
@@ -171,6 +185,13 @@ public class TrazapApplication {
 			productosBodega.setProducto(producto);
 			productosBodega.setStock(1000);
 			productosBodegaRepository.save(productosBodega);
+			logger.info(productosBodega.toString());
+			
+			ProductosBodega productosBodega2 = new ProductosBodega();
+			productosBodega2.setBodega(bodega2);
+			productosBodega2.setProducto(producto2);
+			productosBodega2.setStock(2000);
+			productosBodegaRepository.save(productosBodega2);
 			logger.info(productosBodega.toString());
 			
 			ProductoProveedor productoProveedor = new ProductoProveedor();

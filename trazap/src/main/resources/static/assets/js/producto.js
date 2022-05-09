@@ -1,4 +1,4 @@
-let tablaProductos = $('#idTablaProductos');
+const tablaProductos = $('#idTablaProductos');
 $(document).ready(function() {
 
 	$.ajax({
@@ -27,14 +27,14 @@ $(document).ready(function() {
 					title: 'Descripcion',
 					width: '180px'
 				}, {
-					field: 'categoriaProducto',
+					field: 'categoriaProducto.descripcion',
 					title: 'Categoria',
 					width: '180px'
 				}, {
-					field: 'tipoProducto',
+					field: 'tipoProducto.descripcion',
 					title: 'Tipo',
 					width: '180px'
-				},
+				},	
 				{
 					field: '',
 					title: 'Accion',
@@ -114,11 +114,11 @@ $(document).ready(function() {
 
 		let dataProducto = {
 			"descripcion": $("#idTxtAgregarDescripcion").val(),
-			"tipoProducto": {
-				"idTipoProducto": $("#idSelTipoProducto").val()
-			},
 			"categoriaProducto": {
-				"idCategoriaProducto": $("#idSelCategoriaProducto").val()
+				"idCategoriaProducto": Number($("#idSelCategoriaProducto").val())
+			},
+			"tipoProducto": {
+				"idTipoProducto":  Number($("#idSelTipoProducto").val())
 			}
 		}
 
@@ -130,13 +130,10 @@ $(document).ready(function() {
 			$.ajax({
 				// En data puedes utilizar un objeto JSON, un array o un query string
 				data: JSON.stringify(dataProducto),
-				//Cambiar a type: POST si necesario
 				type: "POST",
-				// Formato de datos que se espera en la respuesta
 				dataType: "json",
-				// URL a la que se enviará la solicitud Ajax
 				url: "/productos",
-				contentType: 'application/json'
+				contentType: 'application/json;charset=UTF-8'
 			})
 				.done(function(data, textStatus, jqXHR) {
 					swal({
@@ -170,10 +167,13 @@ function getTipoProducto() {
 		.done(function(data, textStatus, jqXHR) {
 			console.log("perfect");
 			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-			
-			for (i = 0; i < data.body.length; i++) {
-				$(".option1").after(`<option value="${data.body[i].idTipoProducto}">${data.body[i].descripcion}</option>`);
-				console.log(data.body[i].descripcion)
+
+			if ($("#option1").val() === "-1") {
+				$("#option1").val("1");
+				data.body.forEach((d) => {
+					$("#option1").after(`<option value="${d.idTipoProducto}">${d.descripcion}</option>`);
+					console.log(d.descripcion)
+				});
 			}
 
 		})
@@ -184,6 +184,7 @@ function getTipoProducto() {
 }
 
 function getCategoria() {
+
 	$.ajax({
 		type: "GET",
 		dataType: "json",
@@ -193,12 +194,16 @@ function getCategoria() {
 		.done(function(data2, textStatus, jqXHR) {
 			console.log("perfect");
 			console.log("La solicitud se ha completado correctamente.", data2, textStatus, jqXHR);
-			for (i = 0; i < data2.body.length; i++) {
-				$(".option2").after(`<option value="${data2.body[i].idCategoriaProducto}">${data2.body[i].descripcion}</option>`);
-				console.log(data2.body[i].descripcion)
+			if ($("#option2").val() === "-1") {
+				$("#option2").val("1");
+				data2.body.forEach((d) => {
+					$("#option2").after(`<option value="${d.idCategoriaProducto}">${d.descripcion}</option>`);
+					console.log(d.descripcion)
+				});
 			}
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
 		})
+
 }

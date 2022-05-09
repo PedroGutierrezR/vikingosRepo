@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,9 +37,13 @@ public class Trazabilidad {
 	private String codigoTrazabilidad;
 	@ManyToOne
 	@JoinColumn(name = "pedido_id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPedido")
+	@JsonIdentityReference(alwaysAsId = true)
 	private Pedidos pedidos;
 	@ManyToOne
 	@JoinColumn(name = "estado_trazabilidad_id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idEstadoTrazabilidad")
+	@JsonIdentityReference(alwaysAsId = true)
 	private EstadoTrazabilidad estadoTrazabilidad;
 	
 	@Override

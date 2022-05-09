@@ -14,6 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,9 +35,13 @@ public class ProductoProveedor {
 	private int idProductoPoveedor;
 	@ManyToOne
 	@JoinColumn(name = "proveedor_id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPoveedor")
+	@JsonIdentityReference(alwaysAsId = true)
 	private Proveedor proveedor;
 	@ManyToOne
 	@JoinColumn(name = "producto_id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idProducto")
+	@JsonIdentityReference(alwaysAsId = true)
 	private Producto producto;
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "proveedor_producto_id")

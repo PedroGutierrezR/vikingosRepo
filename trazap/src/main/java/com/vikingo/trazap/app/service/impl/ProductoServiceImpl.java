@@ -19,6 +19,7 @@ import com.vikingo.trazap.app.service.request.ProductoRequest;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessage;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessageType;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
+import com.vikingo.trazap.app.service.response.producto.ProductoResponse;
 
 @Service("productoService")
 public class ProductoServiceImpl implements ProductoService {
@@ -36,14 +37,26 @@ public class ProductoServiceImpl implements ProductoService {
 
 	@Override
 	public ResponseServiceObject findAll() {
-
+	
 		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
+		
+		//Productos
 		List<Producto> productos = new ArrayList<Producto>();
-
 		Iterable<Producto> iterableProductos = productoRepository.findAll();
-
 		iterableProductos.forEach(productos::add);
-
+		//set a productoResponse
+		List<ProductoResponse> response = new ArrayList<ProductoResponse>();
+		for(Producto producto: productos) {
+			ProductoResponse productoResponse = new ProductoResponse();
+			productoResponse.setIdProducto(producto.getIdProducto());
+			productoResponse.setDescripcion(producto.getDescripcion());
+			productoResponse.setCategoriaProducto(producto.getCategoriaProducto());
+			productoResponse.setProductoProveedorList(producto.getProductoProveedorList());
+			productoResponse.setProductosBodegas(producto.getProductosBodegas());
+			productoResponse.setTipoProducto(producto.getTipoProducto());
+			response.add(productoResponse);
+		}
+		
 		responseServiceMessage.setTimestamp(new Date());
 		responseServiceMessage.setCode("200");
 		responseServiceMessage.setType(ResponseServiceMessageType.OK);
@@ -51,7 +64,7 @@ public class ProductoServiceImpl implements ProductoService {
 
 		messageList.add(responseServiceMessage);
 
-		responseServiceObject.setBody(productos);
+		responseServiceObject.setBody(response);
 		responseServiceObject.setMessageList(messageList);
 
 		return responseServiceObject;
@@ -87,13 +100,24 @@ public class ProductoServiceImpl implements ProductoService {
 		
 		productoRepository.save(producto);
 		
+		//Productos
 		List<Producto> productos = new ArrayList<Producto>();
-
 		Iterable<Producto> iterableProductos = productoRepository.findAll();
-
 		iterableProductos.forEach(productos::add);
+		//set a productoResponse
+		List<ProductoResponse> response = new ArrayList<ProductoResponse>();
+		for(Producto iProducto: productos) {
+			ProductoResponse productoResponse = new ProductoResponse();
+			productoResponse.setIdProducto(iProducto.getIdProducto());
+			productoResponse.setDescripcion(iProducto.getDescripcion());
+			productoResponse.setCategoriaProducto(iProducto.getCategoriaProducto());
+			productoResponse.setProductoProveedorList(iProducto.getProductoProveedorList());
+			productoResponse.setProductosBodegas(iProducto.getProductosBodegas());
+			productoResponse.setTipoProducto(iProducto.getTipoProducto());
+			response.add(productoResponse);
+		}
 		
-		responseServiceObject.setBody(productos);
+		responseServiceObject.setBody(response);
 
 		responseServiceMessage.setTimestamp(new Date());
 		responseServiceMessage.setCode("201");// 201 = create ok
@@ -136,8 +160,28 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	@Override
-	public void deleteById(ProductoRequest productoRequest) {
+	public ResponseServiceObject deleteById(ProductoRequest productoRequest) {
+		
 		productoRepository.deleteById(productoRequest.getIdProducto());
+		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
+		List<Producto> productos = new ArrayList<Producto>();
+
+		Iterable<Producto> iterableProductos = productoRepository.findAll();
+
+		iterableProductos.forEach(productos::add);
+		
+		responseServiceObject.setBody(productos);
+
+		responseServiceMessage.setTimestamp(new Date());
+		responseServiceMessage.setCode("201");// 201 = create ok
+		responseServiceMessage.setType(ResponseServiceMessageType.OK);
+		responseServiceMessage.setMessage("Servicio ha finalizado correctamente");
+
+		messageList.add(responseServiceMessage);
+
+		responseServiceObject.setMessageList(messageList);
+
+		return responseServiceObject;
 	}
 
 }

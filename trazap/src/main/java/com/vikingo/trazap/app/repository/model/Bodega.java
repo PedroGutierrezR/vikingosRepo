@@ -29,7 +29,7 @@ public class Bodega {
 	@Column(name = "id_bodega")
 	private int idBodega;
 	private String descripcion;
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "bodega_id")
 	private List<ProductosBodega> productosBodegas;
 	

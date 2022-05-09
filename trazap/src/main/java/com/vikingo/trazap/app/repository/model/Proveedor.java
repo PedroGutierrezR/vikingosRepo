@@ -1,6 +1,5 @@
 package com.vikingo.trazap.app.repository.model;
 
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
