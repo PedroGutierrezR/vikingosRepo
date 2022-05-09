@@ -48,6 +48,7 @@ public class ProveedorController {
 			return new ResponseEntity<ResponseServiceObject>(proveedorDelegate.findByid(idProveedor), HttpStatus.OK);
 		}
 		
+		
 		@DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<ResponseServiceObject> deleteProveedor(@RequestBody ProveedorRequest proveedorRequest){
 			return getProveedor();

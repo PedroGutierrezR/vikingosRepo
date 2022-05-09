@@ -16,7 +16,6 @@ public class ProductoProveedorDelegateImpl implements ProductoProveedorDelegate{
 
 	@Override
 	public ResponseServiceObject findAll() {
-		// TODO Auto-generated method stub
 		return productoProveedorService.findAll();
 	}
 

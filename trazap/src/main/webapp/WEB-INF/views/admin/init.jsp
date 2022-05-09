@@ -74,13 +74,10 @@
 						class="nav-link smoothScroll">Home</a></li>
 
 					<li class="nav-item"><a href="#about"
-						class="nav-link smoothScroll">Productos</a></li>
-
-					<li class="nav-item"><a href="#class"
-						class="nav-link smoothScroll">Proveedor</a></li>
+						class="nav-link smoothScroll" id="listarProductos">Productos</a></li>
 
 					<li class="nav-item"><a href="#contact"
-						class="nav-link smoothScroll">Trazabilidad</a></li>
+						class="nav-link smoothScroll" id="listarTrazabilidad">Trazabilidad</a></li>
 				</ul>
 			</div>
 			<div class="ms-5">
@@ -212,28 +209,6 @@
 			</div>
 		</div>
 	</section>
-
-
-	<!-- CLASS -->
-	<section class="class section" id="class">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-lg-12 col-12 text-center mb-5">
-					<h6 data-aos="fade-up">Administra:</h6>
-					<h2 data-aos="fade-up" data-aos-delay="200">Proveedores</h2>
-					<div class="container">
-						<table class="table table-hover" id="idTablaProveedor">
-						</table>
-						<button type="button" id="idBtnAgregarProveedor"
-							class="btn btn-outline-danger btn-lg">Agregar Proveedor</button>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
-
 
 	<!-- CONTACT -->
 	<section class="contact section" id="contact">

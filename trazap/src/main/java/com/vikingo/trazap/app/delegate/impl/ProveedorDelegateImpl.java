@@ -34,8 +34,7 @@ public class ProveedorDelegateImpl implements ProveedorDelegate{
 
 	@Override
 	public ResponseServiceObject findByid(Integer idProveedor) throws ServiceException {
-		// TODO Auto-generated method stub
-		return null;
+		return proveedorService.findByid(idProveedor);
 	}
 
 	@Override
