@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vikingo.trazap.app.exceptions.ServiceException;
+import com.vikingo.trazap.app.repository.ProductoRepository;
 import com.vikingo.trazap.app.repository.ProveedorRepository;
+import com.vikingo.trazap.app.repository.model.Producto;
 //7import com.vikingo.trazap.app.repository.model.Producto;
 import com.vikingo.trazap.app.repository.model.Proveedor;
 import com.vikingo.trazap.app.service.ProveedorService;
@@ -23,6 +25,8 @@ public class ProveedoresServiceImpl implements ProveedorService{
 
 	@Autowired
 	private ProveedorRepository proveedorRepository;
+	@Autowired
+	private ProductoRepository productoRepository;
 	@Autowired
 	private ResponseServiceObject responseServiceObject;
 	@Autowired
@@ -93,7 +97,19 @@ public class ProveedoresServiceImpl implements ProveedorService{
 
 	@Override
 	public ResponseServiceObject findByid(Integer idProveedor) throws ServiceException {
-		// TODO Auto-generated method stub
+		
+		List<Producto> productos = new ArrayList<Producto>();
+		Iterable<Producto> iterableProductos = productoRepository.findAll();
+		iterableProductos.forEach(productos::add);
+		
+		List<Producto> productosFiltrados = new ArrayList<Producto>();
+		
+//		for (Producto producto : productos) {
+//			if(producto) {
+//				
+//			}
+//		}
+		
 		return null;
 	}
 

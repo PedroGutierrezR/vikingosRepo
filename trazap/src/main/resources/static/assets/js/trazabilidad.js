@@ -1,89 +1,90 @@
-let tablaTrazabilidad = $('#idTablaTrazabilidad');
+const tablaTrazabilidad = $('#idTablaTrazabilidad');
 $(document).ready(function() {
-
-	$.ajax({
-		type: "GET",
-		// Formato de datos que se espera en la respuesta
-		dataType: "json",
-		// URL a la que se enviará la solicitud Ajax
-		url: "/trazabilidad",
-		contentType: 'application/json'
-	})
-		.done(function(data, textStatus, jqXHR) {
-			console.log(data);
-			tablaTrazabilidad.bootstrapTable({
-				data: data.body,
-				pagination: true,
-				search: true,
-				pageSize: 5,
-				pageList: [5, 10],
-				locale: "es-ES",
-				columns: [{
-					field: 'idTrazabilidad',
-					title: 'ID',
-					width: '40px'
-				}, {
-					field: 'fechaInicioPreparacion',
-					title: 'Fecha Inicio',
-					width: '180px'
-				}, {
-					field: 'fechaFinPreparacion',
-					title: 'Fecha Fin',
-					width: '180px'
-				}, {
-					field: 'fechaEstimadaEnvio',
-					title: 'Fecha Estimada',
-					width: '180px'
-				},{
-					field: 'fechaEnvio',
-					title: 'Fecha Envio',
-					width: '180px'
-				},
-				{
-					field: 'codigoTrazabilidad',
-					title: 'Codigo',
-					width: '180px'
-				},{
-					field: 'pedido',
-					title: 'Pedido',
-					width: '180px'
-				},
-				{
-					field: 'estadoTrazabilidad',
-					title: 'Estado Trazabilidad',
-					width: '180px'
-				},
-				{
-					field: '',
-					title: 'Accion',
-					align: 'center',
-					valign: 'middle',
-					width: '150px',
-					clickToSelect: false,
-					formatter: function(value, row, index) {
-						//Aqui defines el boton y en tu caso tendras que ponerle el onClick, 
-						//recuerda que row tiene el objeto del renglon actual, 
-						//en este ejemplo agrege funcionPorDefinir y le envio el row.id
-						//console.log(JSON.stringify(row));
-						//console.log($.param(row))
-						return [
-							"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarTrazabilidad' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
-							"<i class='bi bi-pencil'></i>",
-							"</a>  ",
-							"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarTrazabilidad' onclick='onClickEliminar(\"" + row.idTrazabilidad + "\");' title='Eliminar'>",
-							'<i class="fa fa-trash"></i>',
-							'</a>'
-						].join('');
-					}
-				}
-				]
-			});
-
+	
+	$("#listarTrazabilidad").click(function() {
+		$.ajax({
+			type: "GET",
+			// Formato de datos que se espera en la respuesta
+			dataType: "json",
+			// URL a la que se enviará la solicitud Ajax
+			url: "/trazabilidad",
+			contentType: 'application/json'
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
-		});
+			.done(function(data, textStatus, jqXHR) {
+				console.log(data);
+				tablaTrazabilidad.bootstrapTable({
+					data: data.body,
+					pagination: true,
+					search: true,
+					pageSize: 5,
+					pageList: [5, 10],
+					locale: "es-ES",
+					columns: [{
+						field: 'idTrazabilidad',
+						title: 'ID',
+						width: '40px'
+					}, {
+						field: 'fechaInicioPreparacion',
+						title: 'Fecha Inicio',
+						width: '180px'
+					}, {
+						field: 'fechaFinPreparacion',
+						title: 'Fecha Fin',
+						width: '180px'
+					}, {
+						field: 'fechaEstimadaEnvio',
+						title: 'Fecha Estimada',
+						width: '180px'
+					}, {
+						field: 'fechaEnvio',
+						title: 'Fecha Envio',
+						width: '180px'
+					},
+					{
+						field: 'codigoTrazabilidad',
+						title: 'Codigo',
+						width: '180px'
+					}, {
+						field: 'pedidos',
+						title: 'Pedido',
+						width: '180px'
+					},
+					{
+						field: 'estadoTrazabilidad',
+						title: 'Estado Trazabilidad',
+						width: '180px'
+					},
+					{
+						field: '',
+						title: 'Accion',
+						align: 'center',
+						valign: 'middle',
+						width: '150px',
+						clickToSelect: false,
+						formatter: function(value, row, index) {
+							//Aqui defines el boton y en tu caso tendras que ponerle el onClick, 
+							//recuerda que row tiene el objeto del renglon actual, 
+							//en este ejemplo agrege funcionPorDefinir y le envio el row.id
+							//console.log(JSON.stringify(row));
+							//console.log($.param(row))
+							return [
+								"<a class='like' href='#' data-toggle='modal' data-target='#modalEditarTrazabilidad' onclick='onClickEditar(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
+								"<i class='bi bi-pencil'></i>",
+								"</a>  ",
+								"<a class='remove' href='#'data-toggle='modal' data-target='#modalEliminarTrazabilidad' onclick='onClickEliminar(\"" + row.idTrazabilidad + "\");' title='Eliminar'>",
+								'<i class="fa fa-trash"></i>',
+								'</a>'
+							].join('');
+						}
+					}
+					]
+				});
 
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
+			});
+	});
 	$("#idBtnGuardarTrazabilidad").click(function() {
 
 		const validaFormNuevaTrazabilidad = () => {
@@ -134,7 +135,7 @@ $(document).ready(function() {
 			if ($("#idTxtAgregarFechaEnvio").val() == null) {
 				$("#idTxtAgregarFechaEnvio").addClass("is-invalid");
 				$("#idTxtAgregarFechaEnvio").removeClass("is-valid");
-				idTxtAgregarFechaEnvio  = false;
+				idTxtAgregarFechaEnvio = false;
 			} else if ($("#idTxtAgregarFechaEnvio").val() <= 0) {
 				$("#idTxtAgregarFechaEnvio").addClass("is-invalid");
 				$("#idTxtAgregarFechaEnvio").removeClass("is-valid");
@@ -147,15 +148,15 @@ $(document).ready(function() {
 			if ($("#idTxtAgregarCodigoTrazabilidad").val() == null) {
 				$("#idTxtAgregarCodigoTrazabilidad").addClass("is-invalid");
 				$("#idTxtAgregarCodigoTrazabilidad").removeClass("is-valid");
-				idTxtAgregarCodigoTrazabilidad  = false;
+				idTxtAgregarCodigoTrazabilidad = false;
 			} else if ($("#idTxtAgregarCodigoTrazabilidad").val() <= 0) {
 				$("#idTxtAgregarCodigoTrazabilidad").addClass("is-invalid");
 				$("#idTxtAgregarCodigoTrazabilidad").removeClass("is-valid");
-				idTxtAgregarCodigoTrazabilidad  = false;
+				idTxtAgregarCodigoTrazabilidad = false;
 			} else {
 				$("#idTxtAgregarCodigoTrazabilidad").removeClass("is-invalid");
 				$("#idTxtAgregarCodigoTrazabilidad").addClass("is-valid");
-				idTxtAgregarCodigoTrazabilidad  = true;
+				idTxtAgregarCodigoTrazabilidad = true;
 			}
 			if ($("#idTxtAgregarPedido").val() == null) {
 				$("#idTxtAgregarPedido").addClass("is-invalid");
@@ -173,18 +174,18 @@ $(document).ready(function() {
 			if ($("#idTxtAgregarEstadoTrazabilidad").val() == null) {
 				$("#idTxtAgregarEstadoTrazabilidad").addClass("is-invalid");
 				$("#idTxtAgregarEstadoTrazabilidad").removeClass("is-valid");
-				idTxtAgregarEstadoTrazabilidad  = false;
+				idTxtAgregarEstadoTrazabilidad = false;
 			} else if ($("#idTxtAgregarEstadoTrazabilidad").val() <= 0) {
 				$("#idTxtAgregarEstadoTrazabilidad").addClass("is-invalid");
 				$("#idTxtAgregarEstadoTrazabilidad").removeClass("is-valid");
-				idTxtAgregarEstadoTrazabilidad  = false;
+				idTxtAgregarEstadoTrazabilidad = false;
 			} else {
 				$("#idTxtAgregarEstadoTrazabilidad").removeClass("is-invalid");
 				$("#idTxtAgregarEstadoTrazabilidad").addClass("is-valid");
-				idTxtAgregarEstadoTrazabilidad  = true;
+				idTxtAgregarEstadoTrazabilidad = true;
 			}
-			
-			return idTxtAgregarFechaInicioPreparacion && idTxtAgregarFechaInicioPreparacion && idTxtAgregarFechaFinPreparacion && idTxtAgregarFechaEstimadaEnvio && idTxtAgregarFechaEnvio && idTxtAgregarCodigoTrazabilidad  && idTxtAgregarPedido && idTxtAgregarEstadoTrazabilidad;
+
+			return idTxtAgregarFechaInicioPreparacion && idTxtAgregarFechaInicioPreparacion && idTxtAgregarFechaFinPreparacion && idTxtAgregarFechaEstimadaEnvio && idTxtAgregarFechaEnvio && idTxtAgregarCodigoTrazabilidad && idTxtAgregarPedido && idTxtAgregarEstadoTrazabilidad;
 		}
 
 		let dataTrazabilidad = {
@@ -195,8 +196,8 @@ $(document).ready(function() {
 			"codigoTrazabilidad": $("#idTxtAgregarCodigoTrazabilidad").val(),
 			"pedido": $("#idTxtAgregarPedido").val(),
 			"estadoTrazabilidad": $("#idTxtAgregarEstadoTrazabilidad").val(),
-			}
-			
+		}
+
 		console.log(dataTrazabilidad);
 
 		if (validaFormNuevaTrazabilidad()) {
@@ -245,7 +246,7 @@ function getTipoTrazabilidad() {
 		.done(function(data, textStatus, jqXHR) {
 			console.log("perfect");
 			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-			
+
 			for (i = 0; i < data.body.length; i++) {
 				$(".option1").after(`<option value="${data.body[i].idTipoProducto}">${data.body[i].descripcion}</option>`);
 				console.log(data.body[i].descripcion)
