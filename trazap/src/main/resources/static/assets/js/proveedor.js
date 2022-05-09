@@ -68,7 +68,7 @@ $(document).ready(function() {
 
 });
 
-	$("#idBtnGuardarProveedor").click(function() {
+	$("#idBtnAgregarProveedor").click(function() {
 
 		const validaFormNuevoProveedor = () => {
 
