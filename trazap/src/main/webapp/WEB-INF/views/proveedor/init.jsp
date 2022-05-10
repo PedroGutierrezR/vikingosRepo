@@ -133,14 +133,144 @@
 					<div class="container">
 						<table class="table table-hover" id="idTablaTrazabilidad">
 						</table>
-						<button type="button" id="idBtnAgregarUsuario"
-							class="btn btn-outline-danger btn-lg">Agregar
-							Trazabilidad</button>
+					</div>
+				</div>
+						<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+				data-bs-target="#modalAgregarTrazabilidad"
+				onClick="getTrazabilidad;">Agregar trazabilidad</button>
+					</div>
+				</div>
+	
+		<!-- Modal Agregar Producto-->
+		<!-- Modal -->
+		<div class="modal fade" id="modalAgregarTrazabilidad" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
+						<button type="button" class="btn-close mb-3"
+							data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form class="needs-validation" novalidate>
+							<div class=form-row>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idTxtAgregarFechaInicioPreparacion">Fecha inicio</label>
+										<div class="form-inline">
+											<input type="date" class="form-control"
+												id="idTxtAgregarFechaInicioPreparacion"
+												placeholder="Ingrese fecha" required>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idTxtAgregarFechaFinPreparacion">Fecha final</label>
+										<div class="form-inline">
+											<input type="date" class="form-control"
+												id="idTxtAgregarFechaFinPreparacion"
+												placeholder="Ingrese fecha" required>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idTxtAgregarFechaEstimadaEnvio"">Fecha estimada</label>
+										<div class="form-inline">
+											<input type="date" class="form-control"
+												id="idTxtAgregarFechaEstimadaEnvio"
+												placeholder="Ingrese fecha" required>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+								</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idTxtAgregarFechaEnvio">Fecha envio</label>
+										<div class="form-inline">
+											<input type="date" class="form-control"
+												id="idTxtAgregarFechaEnvio"
+												placeholder="Ingrese fecha" required>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+								</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idTxtAgregarCodigoTrazabilidad">codigo trazabilidad</label>
+										<div class="form-inline">
+											<input type="number" class="form-control"
+												id="idTxtAgregarCodigoTrazabilidad"
+												placeholder="Ingrese codigo" required>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+								</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idTxtAgregarPedido">pedido</label>
+										<div class="form-inline">
+											<input type="number" class="form-control"
+												id="idTxtAgregarPedido"
+												placeholder="Ingrese datos" required>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+								</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idTxtAgregarEstadoTrazabilidad">Estado trazabilidad</label>
+										<div class="form-inline">
+											<input type="number" class="form-control"
+												id="idTxtAgregarEstadoTrazabilidad"
+												placeholder="Ingrese estado" required>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar un curso
+											válido</div>
+									</div>
+								</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
+						<button id="idBtnGuardarProducto" type="button"
+							class="btn btn-danger">Guardar</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	
 
 
 	<!-- FOOTER -->
