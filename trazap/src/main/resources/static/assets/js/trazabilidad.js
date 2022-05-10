@@ -69,7 +69,7 @@ $(document).ready(function() {
 							//console.log(JSON.stringify(row));
 							//console.log($.param(row))
 							return [
-								"<a class='like' data-bs-toggle='modal' data-bs-target='#modalEditarTrazabilidad' onclick='onClickEditarTrazabilidad(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
+								"<a class='like' data-bs-toggle='modal' data-bs-target='#modalEditarTrazabilidad' onclick='onClickEditarTrazabilidad(\"" + JSON.stringify(row).split('"').join('\\"') + "\");getPedidos(editarOption1);getEstadoTrazabilidad(editarOption2);' title='Like'>",
 								"<i class='bi bi-pencil'></i>",
 								"</a>  ",
 								"<a class='remove' data-bs-toggle='modal' data-bs-target='#modalEliminarTrazabilidad' onclick='onClickEliminarTrazabilidad(\"" + row.idTrazabilidad + "\");' title='Eliminar'>",
@@ -204,7 +204,7 @@ $(document).ready(function() {
 				"idPedido": Number($("#idTxtAgregarPedido").val())
 				},
 			"estadoTrazabilidad": { 
-			 "idEstadoTrazabilidad": Number($("#idTxtAgregarEstadoTrazabilidad").val()),
+			 "idEstadoTrazabilidad": Number($("#idTxtAgregarEstadoTrazabilidad").val())
 		}
 	}
 
@@ -265,69 +265,17 @@ $(document).ready(function() {
 		$("#idTxtAgregarCodigoTrazabilidad").removeClass("is-valid");
 		$("#idTxtAgregarCodigoTrazabilidad").removeClass("is-invalid");
 		
-		$("#idTxtAgregarPedido").val("");
+		$("#idTxtAgregarPedido").val("-1");
 		$("#idTxtAgregarPedido").removeClass("is-valid");
 		$("#idTxtAgregarPedido").removeClass("is-invalid");
 		
-		$("#idTxtAgregarEstadoTrazabilidad").val("");
+		$("#idTxtAgregarEstadoTrazabilidad").val("-1");
 		$("#idTxtAgregarEstadoTrazabilidad").removeClass("is-valid");
 		$("#idTxtAgregarEstadoTrazabilidad").removeClass("is-invalid");
 		
 	});
 
 });
-
-/*
-
-function getPedidos() {
-
-	$.ajax({
-		type: "GET",
-		dataType: "json",
-		url: "/pedidos",
-		contentType: 'application/json'
-	})
-		.done(function(data, textStatus, jqXHR) {
-			console.log("perfect");
-			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-
-			for (i = 0; i < data.body.length; i++) {
-				$(".option1").after(`<option value="${data.body[i].idPedido}">${data.body[i].descripcion}</option>`);
-				console.log(data.body[i].descripcion)
-				});		
-			}
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
-		})
-}
-	
-function getEstadoTrazabilidad() {
-	$.ajax({
-		type: "GET",
-		dataType: "json",
-		url: "/estadoTrazabilidad",
-		contentType: 'application/json'
-	})
-		.done(function(data2, textStatus, jqXHR) {
-			console.log("perfect");
-			console.log("La solicitud se ha completado correctamente.", data2, textStatus, jqXHR);
-			for (i = 0; i < data2.body.length; i++) {
-				$(".option2").after(`<option value="${data2.body[i].idEstadoTrazabilidad}">${data2.body[i].descripcion}</option>`);
-				console.log(data2.body[i].descripcion)
-				});
-			}
-		})
-		
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
-		})
-}
-
-*/
-
-// Global variable
-//let dataTrazabilidad;
 
 //Edit Material
 function onClickEditarTrazabilidad(row) {
@@ -355,11 +303,11 @@ function onClickEditarTrazabilidad(row) {
 	$("#idTxtEditarCodigoTrazabilidad").removeClass("is-valid");
 	$("#idTxtEditarCodigoTrazabilidad").removeClass("is-invalid");
 	
-	$("#idTxtEditarPedido").val("");
+	$("#idTxtEditarPedido").val("-1");
 	$("#idTxtEditarPedido").removeClass("is-valid");
 	$("#idTxtEditarPedido").removeClass("is-invalid");
 	
-	$("#idTxtEditarEstadoTrazabilidad").val("");
+	$("#idTxtEditarEstadoTrazabilidad").val("-1");
 	$("#idTxtEditarEstadoTrazabilidad").removeClass("is-valid");
 	$("#idTxtEditarEstadoTrazabilidad").removeClass("is-invalid");
 	
@@ -504,14 +452,13 @@ $("#idBtnEditarTrazabilidad").click(function() {
 			"fechaEnvio": $("#idTxtEditarFechaEnvio").val(),
 			"codigoTrazabilidad": $("#idTxtEditarCodigoTrazabilidad").val(),
 		"pedidos": {
-				"idPedido": Number($("#idTxtAgregarPedido").val())
+				"idPedido": Number($("#idTxtEditarPedido").val())
 				},
 			"estadoTrazabilidad": { 
-			 "idEstadoTrazabilidad": Number($("#idTxtAgregarEstadoTrazabilidad").val()),	
+			 "idEstadoTrazabilidad": Number($("#idTxtEditarEstadoTrazabilidad").val())
 		}
 	}
 
-//	console.log(dataTrazabilidad);
 	if (validaFormEditarTrazabilidad()) {
 	console.log("todo bien");
 		
@@ -531,7 +478,6 @@ $("#idBtnEditarTrazabilidad").click(function() {
 					text: data.messageList[0].message,
 					icon: "success"
 				});
-				$('#modalEditarTrazabilidad').modal('hide');
 				console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 				console.log("Productos a refrescar", data.body);
 				tablaTrazabilidad.bootstrapTable('load', data.body);
@@ -547,6 +493,63 @@ $("#idBtnEditarTrazabilidad").click(function() {
 			});
 	}
 });
+function getPedidos(option) {
+
+	let optionParam = document.querySelector(`#${option.id}`)
+
+	$.ajax({
+		type: "GET",
+		dataType: "json",
+		url: "/pedidos",
+		contentType: 'application/json'
+	})
+		.done(function(data, textStatus, jqXHR) {
+			console.log("perfect");
+			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
+
+			if ($(optionParam).val() === "-1") {
+				$(optionParam).val("0")
+				data.body.forEach((d) => {
+					$(optionParam).after(`<option value="${d.idPedido}">${d.fechaIngreso}</option>`);
+					console.log(d.idPedido)
+				});
+			}
+
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
+		})
+
+}
+
+function getEstadoTrazabilidad(option) {
+
+	let optionParam = document.querySelector(`#${option.id}`)
+
+	$.ajax({
+		type: "GET",
+		dataType: "json",
+		url: "/estadoTrazabilidad",
+		contentType: 'application/json'
+	})
+		.done(function(data2, textStatus, jqXHR) {
+			console.log("perfect");
+			console.log("La solicitud se ha completado correctamente.", data2, textStatus, jqXHR);
+			if ($(optionParam).val() === "-1") {
+				$(optionParam).val("0")
+				data2.body.forEach((d) => {
+					$(optionParam).after(`<option value="${d.idEstadoTrazabilidad}">${d.descripcion}</option>`);
+					console.log(d.idEstadoTrazabilidad)
+				});
+			}
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
+		})
+
+}
+
+
 
 let dataTrazabilidad;
 //Delete Bodega
