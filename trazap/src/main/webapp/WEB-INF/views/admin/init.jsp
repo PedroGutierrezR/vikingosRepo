@@ -15,19 +15,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
-
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
-<script
-	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
-<script
-	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -48,7 +35,19 @@
 	href="../assets/css/cssadmin/tooplate-gymso-style.css">
 <link rel="stylesheet"
 	href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
 
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
+<script
+	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+<script
+	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
@@ -67,10 +66,10 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-lg-auto">
 
-					<li class="nav-item"><a title="click para ver productos" href="#productos"
+					<li class="nav-item"><a href="#productos" title="click para ver productos" 
 						class="nav-link smoothScroll" id="listarProductos">Productos</a></li>
 
-					<li class="nav-item"><a title="click para ver trazabilidad" href="#trazabilidad"
+					<li class="nav-item"><a href="#trazabilidad" title="click para ver trazabilidad" 
 						class="nav-link smoothScroll" id="listarTrazabilidad">Trazabilidad</a></li>
 				</ul>
 			</div>
@@ -110,11 +109,11 @@
 	</section>
 
 	<!-- PRODUCTOS -->
-	<section id="sectionProducto" class="about section" id="productos">
+	<section class="about section sectionProducto" id="productos">
 		<div class="container">
 			<div class="row">
 				<h2 class="mb-3 text-dark" data-aos="fade-up">Productos</h2>
-				<div class="container">
+		<div class="container">
 					<table class="table table-hover" id="idTablaProductos">
 					</table>
 				</div>
@@ -288,7 +287,7 @@
 	</section>
 
 	<!-- TRAZABILIDAD -->
-	<section id="sectiontrazabilidad" class="contact section" id="trazabilidad">
+	<section class="contact section sectiontrazabilidad" id="trazabilidad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-12 text-start mb-5">

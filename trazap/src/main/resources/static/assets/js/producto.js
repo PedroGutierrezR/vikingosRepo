@@ -1,8 +1,8 @@
 const tablaProductos = $('#idTablaProductos');
 $(document).ready(function() {
-	$("#sectionProducto").hide();
+	$(".sectionProducto").hide();
 	$("#listarProductos").click(function() {
-		$("#sectionProducto").show();
+		$(".sectionProducto").show();
 		$.ajax({
 			type: "GET",
 			// Formato de datos que se espera en la respuesta
