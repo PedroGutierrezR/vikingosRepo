@@ -12,13 +12,12 @@ import com.vikingo.trazap.app.exceptions.ServiceException;
 import com.vikingo.trazap.app.repository.DetallePedidoRepository;
 import com.vikingo.trazap.app.repository.model.DetallePedido;
 import com.vikingo.trazap.app.service.DetallePedidoService;
-import com.vikingo.trazap.app.service.request.BodegaRequest;
 import com.vikingo.trazap.app.service.request.DetallePedidoRequest;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessage;
 import com.vikingo.trazap.app.service.response.ResponseServiceMessageType;
 import com.vikingo.trazap.app.service.response.ResponseServiceObject;
 
-@Service("detallePedido")
+@Service("detallePedidoService")
 public class DetallePedidoServiceImpl implements DetallePedidoService {
 
 	@Autowired
