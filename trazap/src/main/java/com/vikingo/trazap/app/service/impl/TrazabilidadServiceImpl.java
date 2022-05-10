@@ -81,8 +81,12 @@ public class TrazabilidadServiceImpl implements TrazabilidadService{
 		
 		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
 		Trazabilidad trazabilidad = new Trazabilidad();
-		trazabilidad.setIdTrazabilidad(trazabilidadRequest.getIdTrazabilidad());
-
+		trazabilidad.setCodigoTrazabilidad(trazabilidadRequest.getCodigoTrazabilidad());
+		trazabilidad.setFechaEnvio(trazabilidadRequest.getFechaEnvio());
+		trazabilidad.setFechaEstimadaEnvio(trazabilidadRequest.getFechaEstimadaEnvio());;
+		trazabilidad.setFechaFinPreparacion(trazabilidadRequest.getFechaFinPreparacion());
+		trazabilidad.setFechaInicioPreparacion(trazabilidadRequest.getFechaInicioPreparacion());
+		
 		List<Pedidos> pedido = new ArrayList<Pedidos>();
 		Iterable<Pedidos> iterablePedidos = pedidosRepository.findAll();
 		iterablePedidos.forEach(pedido::add);
