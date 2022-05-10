@@ -306,8 +306,6 @@
 		</div>					
 	</section>
 	
-
-
 	<!-- SCRIPTS -->
 	<script src="../assets/js/jsadmin/aos.js"></script>
 	<script src="../assets/js/jsadmin/smoothscroll.js"></script>
