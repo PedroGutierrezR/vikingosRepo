@@ -70,20 +70,12 @@
 
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-lg-auto">
-					<li class="nav-item"><a href="#home"
-						class="nav-link smoothScroll">Home</a></li>
 
-					<li class="nav-item"><a href="#about"
-						class="nav-link smoothScroll">Productos</a></li>
+					<li class="nav-item"><a href="#productos" title="click para ver productos" 
+						class="nav-link smoothScroll" id="listarProductos">Productos</a></li>
 
-				<!--POR EL MOMENTO LOGIN USUARIO QUEDARA SIN LA VISTA DE PROVEEDOR,
-				PARA DIFERENCIARLO CON ADMIN Y PROVEEDOR
-				
-					<li class="nav-item"><a href="#class"
-						class="nav-link smoothScroll">Proveedor</a></li> -->
-
-					<li class="nav-item"><a href="#contact"
-						class="nav-link smoothScroll">Trazabilidad</a></li>
+					<li class="nav-item"><a href="#trazabilidad" title="click para ver trazabilidad" 
+						class="nav-link smoothScroll" id="listarTrazabilidad">Trazabilidad</a></li>
 				</ul>
 			</div>
 			<div class="ms-5">
@@ -114,9 +106,6 @@
 						<h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Trazap
 							- Vikingos</h1>
 
-						<a href="#about" class="btn custom-btn bordered mt-3"
-							data-aos="fade-up" data-aos-delay="700">Comencemos</a>
-
 					</div>
 				</div>
 
@@ -124,28 +113,21 @@
 		</div>
 	</section>
 
-
-	<section class="feature" id="feature">
-		<div class="container">
-			<h2 class="mb-3 text-white" data-aos="fade-up">Área de
-				usuario</h2>
-		</div>
-	</section>
-
-
-	<!-- ABOUT -->
-	<section class="about section" id="about">
+	<!-- PRODUCTOS -->
+	<section class="about section sectionProducto" id="productos">
 		<div class="container">
 			<div class="row">
 				<h2 class="mb-3 text-dark" data-aos="fade-up">Productos</h2>
-				<div class="container">
+		<div class="container">
 					<table class="table table-hover" id="idTablaProductos">
 					</table>
 				</div>
 			</div>
 			<!-- Button trigger modal -->
 			<button type="button" class="btn btn-danger" data-bs-toggle="modal"
-				data-bs-target="#modalAgregarProducto" onClick="getTipoProducto();getCategoria();">Agregar Producto</button>
+				data-bs-target="#modalAgregarProducto"
+				onClick="getTipoProducto(option1);getCategoria(option2);">Agregar
+				Producto</button>
 		</div>
 		<!-- Modal Agregar Producto-->
 		<!-- Modal -->
@@ -180,12 +162,10 @@
 									<div class="form-group">
 										<label for="idSelTipoProducto">Tipo</label> <select
 											class="form-control" id="idSelTipoProducto">
-											<option class="option1" value="-1">-Seleccione
-												Tipo-</option>
+											<option id="option1" value="-1">-Seleccione Tipo-</option>
 										</select>
 										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar un curso
-											válido</div>
+										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
 									</div>
 								</div>
 							</div>
@@ -194,12 +174,11 @@
 									<div class="form-group">
 										<label for="idSelCategoriaProducto">Categoria</label> <select
 											class="form-control" id="idSelCategoriaProducto">
-											<option class="option2" value="-1">-Seleccione
+											<option id="option2" value="-1">-Seleccione
 												Categoria-</option>
 										</select>
 										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar un curso
-											válido</div>
+										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
 									</div>
 								</div>
 							</div>
@@ -213,130 +192,128 @@
 				</div>
 			</div>
 		</div>
-	</section>
-
-
-	<!-- POR EL MOMENTO USUARIO QUEDARA SIN LA VISTA DE PROVEEDOR PARA DIFERENCIARLO DE
-	ADMIN Y PROVEEDOR 
-	<section class="class section" id="class">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-lg-12 col-12 text-center mb-5">
-					<h6 data-aos="fade-up">Administra:</h6>
-					<h2 data-aos="fade-up" data-aos-delay="200">Proveedores</h2>
-					<div class="container">
-						<table class="table table-hover" id="idTablaProveedor">
-						</table>
-						<button type="button" id="idBtnAgregarProveedor"
-							class="btn btn-outline-danger btn-lg">Agregar Proveedor</button>
+		<!-- Modal Eliminar Producto-->
+		<div class="modal fade" id="modalEliminarProducto" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg"
+				role="document">
+				<div class="modal-content bg-dark">
+					<div class="modal-header">
+						<button type="button" class="close"
+							onclick="$('#modalEliminarProducto').modal('hide');"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body text-center">
+						<h2 class="modal-body text-light">¿Está seguro de eliminar el
+							producto?</h2>
+						<input type="hidden" id="idEliminar" value="">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							onclick="$('#modalEliminarProducto').modal('hide');">Cerrar</button>
+						<button type="button" class="btn btn-light"
+							id=idBtnEliminarProducto>Eliminar</button>
 					</div>
 				</div>
-
 			</div>
 		</div>
-	</section> -->
 
+		<!--modal editar producto -->
+		<div class="modal fade" id="modalEditarProducto" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg"
+				role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Editar
+							Producto</h5>
+						<button type="button" class="close" onclick="$('#modalEditarProducto').modal('hide');"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form class="needs-validation" novalidate>
+							<div class=form-row>
+								<div class="col-md-4 mb-3">
+									<div class="form-group">
+										<label for="idTxtEditarDescripcionProducto">Nombre</label>
+										<div class="form-inline">
+											<input type="text" class="form-control"
+												id="idTxtEditarDescripcionProducto" placeholder="" required>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelEditarTipoProducto">Tipo</label> <select
+											class="form-control" id="idSelEditarTipoProducto">
+											<option id="editarOption1" value="-1">-Seleccione Tipo-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelEditarCategoriaProducto">Categoria</label> <select
+											class="form-control" id="idSelEditarCategoriaProducto">
+											<option id="editarOption2" value="-1">-Seleccione
+												Categoria-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							onclick="$('#modalEditarProducto').modal('hide');">Cerrar</button>
+						<button type="button" class="btn btn-primary"
+							id="idBtnEditarProducto">Guardar</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-	<!-- CONTACT -->
-	<section class="contact section" id="contact">
+	</section>
+
+	<!-- TRAZABILIDAD -->
+	<section class="contact section sectiontrazabilidad" id="trazabilidad">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-5 col-md-6 col-12">
-					<h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Trazabilidad</h2>
+				<div class="col-lg-12 col-12 text-start mb-5">
+					<h2 class="mb-4 pb-2" data-aos="fade-up">Trazabilidad</h2>
 					<div class="container">
 						<table class="table table-hover" id="idTablaTrazabilidad">
 						</table>
-						<button type="button" id="idBtnAgregarUsuario"
-							class="btn btn-outline-danger btn-lg">Agregar
-							Trazabilidad</button>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>					
 	</section>
+	
 
-
-	<!-- FOOTER -->
-	<footer class="site-footer">
-		<div class="container">
-			<div class="row">
-
-				<div class="ml-auto col-lg-4 col-md-5">
-					<p class="copyright-text">Copyright &copy; 2022 Trazap</p>
-				</div>
-
-				<div
-					class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
-					<p class="mr-4">
-						<i class="fa fa-envelope-o mr-1"></i> <a href="#">vikingos@trazap.com</a>
-					</p>
-
-					<p>
-						<i class="fa fa-phone mr-1"></i> 010-020-0840
-					</p>
-				</div>
-
-			</div>
-		</div>
-	</footer>
-
-	<!-- Modal -->
-	<div class="modal fade" id="membershipForm" tabindex="-1" role="dialog"
-		aria-labelledby="membershipFormLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-
-			<div class="modal-content">
-				<div class="modal-header">
-
-					<h2 class="modal-title" id="membershipFormLabel">Membership
-						Form</h2>
-
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-
-				<div class="modal-body">
-					<form class="membership-form webform" role="form">
-						<input type="text" class="form-control" name="cf-name"
-							placeholder="John Doe"> <input type="email"
-							class="form-control" name="cf-email"
-							placeholder="Johndoe@gmail.com"> <input type="tel"
-							class="form-control" name="cf-phone" placeholder="123-456-7890"
-							pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-
-						<textarea class="form-control" rows="3" name="cf-message"
-							placeholder="Additional Message"></textarea>
-
-						<button type="submit" class="form-control" id="submit-button"
-							name="submit">Submit Button</button>
-
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input"
-								id="signup-agree"> <label
-								class="custom-control-label text-small text-muted"
-								for="signup-agree">I agree to the <a href="#">Terms
-									&amp;Conditions</a>
-							</label>
-						</div>
-					</form>
-				</div>
-
-				<div class="modal-footer"></div>
-
-			</div>
-		</div>
-	</div>
 
 	<!-- SCRIPTS -->
 	<script src="../assets/js/jsadmin/aos.js"></script>
 	<script src="../assets/js/jsadmin/smoothscroll.js"></script>
 	<script src="../assets/js/jsadmin/custom.js"></script>
 	<script type="text/javascript" src="../assets/js/producto.js"></script>
-	<!-- POR EL MOMENTO USUARIO QUEDARA SIN ACCESO AL JS DE PROVEEDOR
-	<script type="text/javascript" src="../assets/js/proveedor.js"></script>-->
+	<script type="text/javascript" src="../assets/js/proveedor.js"></script>
 	<script type="text/javascript" src="../assets/js/trazabilidad.js"></script>
 </body>
 </html>

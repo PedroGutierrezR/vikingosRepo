@@ -297,7 +297,7 @@
 						</table>
 						<button type="button" id="idBtnGuardarTrazabilidad"
 							class="btn btn-outline-danger btn-lg" data-bs-target="#modalNuevaTrazabilidad"
-							data-bs-toggle="modal">Agregar
+							data-bs-toggle="modal" onClick="getPedidos(option1);getEstadoTrazabilidad(option2)">Agregar
 							Trazabilidad</button>
 					</div>
 				</div>
@@ -518,10 +518,10 @@
 							<div class="form-row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="#idTxtEditarPedido">Pedido</label>
-										<div class="form-inline">
-											<input type="number" class="form-control"
-												id="#idTxtEditarPedido" placeholder="" required>
+										<label for="idTxtEditarPedido">Pedido</label> <select
+											class="form-control" id="idTxtEditarPedido">
+											<option id="editarOption1" value="-1">-Seleccione Tipo-</option>
+										</select>
 										<div class="valid-feedback">Correcto!</div>
 										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
 									</div>
@@ -531,10 +531,10 @@
 							<div class="form-row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="idTxtEditarEstadoTrazabilidad">Estado Trazabilidad</label>
-										<div class="form-inline">
-											<input type="number" class="form-control"
-												id="idTxtEditarEstadoTrazabilidad" placeholder="" required>
+										<label for="idTxtEditarEstadoTrazabilidad">Estado trazabilidad</label> <select
+											class="form-control" id="idTxtEditarEstadoTrazabilidad">
+											<option id="editarOption2" value="-1">-Seleccione Tipo-</option>
+										</select>
 										<div class="valid-feedback">Correcto!</div>
 										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
 									</div>
@@ -583,8 +583,6 @@
 		</div>
 	</section>
 	
-
-
 	<!-- SCRIPTS -->
 	<script src="../assets/js/jsadmin/aos.js"></script>
 	<script src="../assets/js/jsadmin/smoothscroll.js"></script>
