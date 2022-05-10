@@ -135,11 +135,51 @@ public class ProductoServiceImpl implements ProductoService {
 	public ResponseServiceObject save(int idProducto, ProductoRequest productoRequest) {
 		
 		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
+
 		Producto producto = new Producto();
 		producto.setIdProducto(idProducto);
 		producto.setDescripcion(productoRequest.getDescripcion());
-
-		responseServiceObject.setBody(productoRepository.save(producto));
+		
+		List<TipoProducto> tipoProductos = new ArrayList<TipoProducto>();
+		Iterable<TipoProducto> iterableTipoProducto = tipoProductoRepository.findAll();
+		iterableTipoProducto.forEach(tipoProductos::add);
+		
+		for (TipoProducto tipoProducto : tipoProductos) {
+			if(tipoProducto.getIdTipoProducto() == productoRequest.getTipoProducto().getIdTipoProducto()) {
+				producto.setTipoProducto(tipoProducto);
+			}
+		}
+		
+		List<CategoriaProducto> categoriaProductos = new ArrayList<CategoriaProducto>();
+		Iterable<CategoriaProducto> iterableCategoriaProducto = categoriaProductoRepository.findAll();
+		iterableCategoriaProducto.forEach(categoriaProductos::add);
+		
+		for (CategoriaProducto categoriaProducto : categoriaProductos) {
+			if(categoriaProducto.getIdCategoriaProducto() == productoRequest.getCategoriaProducto().getIdCategoriaProducto()) {
+				producto.setCategoriaProducto(categoriaProducto);
+			}
+		}
+		
+		productoRepository.save(producto);
+		
+		//Productos
+		List<Producto> productos = new ArrayList<Producto>();
+		Iterable<Producto> iterableProductos = productoRepository.findAll();
+		iterableProductos.forEach(productos::add);
+		//set a productoResponse
+		List<ProductoResponse> response = new ArrayList<ProductoResponse>();
+		for(Producto iProducto: productos) {
+			ProductoResponse productoResponse = new ProductoResponse();
+			productoResponse.setIdProducto(iProducto.getIdProducto());
+			productoResponse.setDescripcion(iProducto.getDescripcion());
+			productoResponse.setCategoriaProducto(iProducto.getCategoriaProducto());
+			productoResponse.setProductoProveedorList(iProducto.getProductoProveedorList());
+			productoResponse.setProductosBodegas(iProducto.getProductosBodegas());
+			productoResponse.setTipoProducto(iProducto.getTipoProducto());
+			response.add(productoResponse);
+		}
+		
+		responseServiceObject.setBody(response);
 
 		responseServiceMessage.setTimestamp(new Date());
 		responseServiceMessage.setCode("201");// 201 = create ok
@@ -163,14 +203,27 @@ public class ProductoServiceImpl implements ProductoService {
 	public ResponseServiceObject deleteById(ProductoRequest productoRequest) {
 		
 		productoRepository.deleteById(productoRequest.getIdProducto());
-		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
-		List<Producto> productos = new ArrayList<Producto>();
-
-		Iterable<Producto> iterableProductos = productoRepository.findAll();
-
-		iterableProductos.forEach(productos::add);
 		
-		responseServiceObject.setBody(productos);
+		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
+		
+		//Productos
+		List<Producto> productos = new ArrayList<Producto>();
+		Iterable<Producto> iterableProductos = productoRepository.findAll();
+		iterableProductos.forEach(productos::add);
+		//set a productoResponse
+		List<ProductoResponse> response = new ArrayList<ProductoResponse>();
+		for(Producto iProducto: productos) {
+			ProductoResponse productoResponse = new ProductoResponse();
+			productoResponse.setIdProducto(iProducto.getIdProducto());
+			productoResponse.setDescripcion(iProducto.getDescripcion());
+			productoResponse.setCategoriaProducto(iProducto.getCategoriaProducto());
+			productoResponse.setProductoProveedorList(iProducto.getProductoProveedorList());
+			productoResponse.setProductosBodegas(iProducto.getProductosBodegas());
+			productoResponse.setTipoProducto(iProducto.getTipoProducto());
+			response.add(productoResponse);
+		}
+		
+		responseServiceObject.setBody(response);
 
 		responseServiceMessage.setTimestamp(new Date());
 		responseServiceMessage.setCode("201");// 201 = create ok

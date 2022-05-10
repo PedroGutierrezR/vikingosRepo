@@ -1,7 +1,8 @@
 const tablaTrazabilidad = $('#idTablaTrazabilidad');
 $(document).ready(function() {
-	
+	$("#sectiontrazabilidad").hide();
 	$("#listarTrazabilidad").click(function() {
+		$("#sectiontrazabilidad").show();
 		$.ajax({
 			type: "GET",
 			// Formato de datos que se espera en la respuesta
