@@ -258,17 +258,27 @@ public class TrazapApplication {
 	public CommandLineRunner createUsers() {
 		return (args) -> {
 			Usuario usuarioAdmin = new Usuario();
-			Rol rol = new Rol();
+			Usuario usuarioUser = new Usuario();
+			Rol rolAdmin = new Rol();
+			Rol rolUser = new Rol();
+			rolAdmin.setDescripcion("ADMIN");
+			rolUser.setDescripcion("USER");
 			
-			rol.setDescripcion("ADMIN");
+			rolRepository.save(rolAdmin);
+			rolRepository.save(rolUser);
 			
-			rolRepository.save(rol);
-			
-			usuarioAdmin.setNombre("Pedro Gutierrez");
-			usuarioAdmin.setEmail("pedro@gmail.com");
+			usuarioAdmin.setNombre("Pepito Los Palotes");
+			usuarioAdmin.setEmail("pepito@gmail.com");
 			usuarioAdmin.setPassword(passwordEncoder.encode("1234"));
-			usuarioAdmin.setRol(rol);
+			usuarioAdmin.setRol(rolAdmin);
 			usuarioRepository.save(usuarioAdmin);
+			
+			usuarioUser.setNombre("Juana La Cubana");
+			usuarioUser.setEmail("juana@gmail.com");
+			usuarioUser.setPassword(passwordEncoder.encode("1234"));
+			usuarioUser.setRol(rolUser);
+			usuarioRepository.save(usuarioUser);
+			
 		};
 	}
 	
@@ -288,7 +298,7 @@ public class TrazapApplication {
 	public CommandLineRunner findByUserName() {
 		return (args) -> {
 			
-			List<Usuario> listaUsuarios = usuarioRepository.findByEmail("pedro@gmail.com");
+			List<Usuario> listaUsuarios = usuarioRepository.findByEmail("juana@gmail.com");
 			
 			for (Usuario usuario : listaUsuarios) {
 				System.out.println("Usuario por email: " + usuario.toString());
