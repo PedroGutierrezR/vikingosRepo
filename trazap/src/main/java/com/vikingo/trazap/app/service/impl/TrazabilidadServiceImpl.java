@@ -8,11 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vikingo.trazap.app.exceptions.ServiceException;
-import com.vikingo.trazap.app.repository.EstadoTrazabilidadRepository;
-import com.vikingo.trazap.app.repository.PedidosRepository;
 import com.vikingo.trazap.app.repository.TrazabilidadRepository;
-import com.vikingo.trazap.app.repository.model.EstadoTrazabilidad;
-import com.vikingo.trazap.app.repository.model.Pedidos;
 import com.vikingo.trazap.app.repository.model.Trazabilidad;
 import com.vikingo.trazap.app.service.TrazabilidadService;
 import com.vikingo.trazap.app.service.request.TrazabilidadRequest;
@@ -26,10 +22,6 @@ public class TrazabilidadServiceImpl implements TrazabilidadService {
 
 	@Autowired
 	private TrazabilidadRepository trazabilidadRepository;
-	@Autowired
-	private EstadoTrazabilidadRepository estadoTrazabilidadRepository;
-	@Autowired
-	private PedidosRepository pedidosRepository;
 	@Autowired
 	private ResponseServiceObject responseServiceObject;
 	@Autowired
@@ -82,30 +74,8 @@ public class TrazabilidadServiceImpl implements TrazabilidadService {
 		trazabilidad.setCodigoTrazabilidad(trazabilidadRequest.getCodigoTrazabilidad());
 		trazabilidad.setFechaEnvio(trazabilidadRequest.getFechaEnvio());
 		trazabilidad.setFechaEstimadaEnvio(trazabilidadRequest.getFechaEstimadaEnvio());
-		;
 		trazabilidad.setFechaFinPreparacion(trazabilidadRequest.getFechaFinPreparacion());
 		trazabilidad.setFechaInicioPreparacion(trazabilidadRequest.getFechaInicioPreparacion());
-
-		List<Pedidos> pedido = new ArrayList<Pedidos>();
-		Iterable<Pedidos> iterablePedidos = pedidosRepository.findAll();
-		iterablePedidos.forEach(pedido::add);
-
-		for (Pedidos pedidos : pedido) {
-			if (pedidos.getIdPedido() == trazabilidadRequest.getPedidos().getIdPedido()) {
-				trazabilidad.setPedidos(pedidos);
-			}
-		}
-
-		List<EstadoTrazabilidad> estadoTrazabilidades = new ArrayList<EstadoTrazabilidad>();
-		Iterable<EstadoTrazabilidad> iterableEstadoTrazabilidad = estadoTrazabilidadRepository.findAll();
-		iterableEstadoTrazabilidad.forEach(estadoTrazabilidades::add);
-
-		for (EstadoTrazabilidad estadoTrazabilidad : estadoTrazabilidades) {
-			if (estadoTrazabilidad.getIdEstadoTrazabilidad() == trazabilidadRequest.getEstadoTrazabilidad()
-					.getIdEstadoTrazabilidad()) {
-				trazabilidad.setEstadoTrazabilidad(estadoTrazabilidad);
-			}
-		}
 
 		trazabilidadRepository.save(trazabilidad);
 
@@ -123,8 +93,6 @@ public class TrazabilidadServiceImpl implements TrazabilidadService {
 			trazabilidadResponse.setFechaEstimadaEnvio(iTrazabilidad.getFechaEstimadaEnvio());
 			trazabilidadResponse.setFechaEnvio(iTrazabilidad.getFechaEnvio());
 			trazabilidadResponse.setCodigoTrazabilidad(iTrazabilidad.getCodigoTrazabilidad());
-			trazabilidadResponse.setPedidos(iTrazabilidad.getPedidos());
-			trazabilidadResponse.setEstadoTrazabilidad(iTrazabilidad.getEstadoTrazabilidad());
 			response.add(trazabilidadResponse);
 		}
 
@@ -144,14 +112,37 @@ public class TrazabilidadServiceImpl implements TrazabilidadService {
 
 	@Override
 	public ResponseServiceObject save(int idTrazabilidad, TrazabilidadRequest trazabilidadRequest) {
-		// TODO Auto-generated method stub
+	
 		List<ResponseServiceMessage> messageList = new ArrayList<ResponseServiceMessage>();
 
 		Trazabilidad trazabilidad = new Trazabilidad();
 		trazabilidad.setIdTrazabilidad(idTrazabilidad);
+		trazabilidad.setCodigoTrazabilidad(trazabilidadRequest.getCodigoTrazabilidad());
+		trazabilidad.setFechaEnvio(trazabilidadRequest.getFechaEnvio());
+		trazabilidad.setFechaEstimadaEnvio(trazabilidadRequest.getFechaEstimadaEnvio());
+		trazabilidad.setFechaFinPreparacion(trazabilidadRequest.getFechaFinPreparacion());
 		trazabilidad.setFechaInicioPreparacion(trazabilidadRequest.getFechaInicioPreparacion());
+		
+		trazabilidadRepository.save(trazabilidad);
 
-		responseServiceObject.setBody(trazabilidadRepository.save(trazabilidad));
+		//Trazabilidad
+		List<Trazabilidad> trazabilidades = new ArrayList<Trazabilidad>();
+		Iterable<Trazabilidad> iterableTrazabilidades = trazabilidadRepository.findAll();
+		iterableTrazabilidades.forEach(trazabilidades::add);
+		// set a trazabilidadResponse
+		List<TrazabilidadResponse> response = new ArrayList<TrazabilidadResponse>();
+		for (Trazabilidad iTrazabilidad : trazabilidades) {
+			TrazabilidadResponse trazabilidadResponse = new TrazabilidadResponse();
+			trazabilidadResponse.setIdTrazabilidad(iTrazabilidad.getIdTrazabilidad());
+			trazabilidadResponse.setFechaInicioPreparacion(iTrazabilidad.getFechaInicioPreparacion());
+			trazabilidadResponse.setFechaFinPreparacion(iTrazabilidad.getFechaFinPreparacion());
+			trazabilidadResponse.setFechaEstimadaEnvio(iTrazabilidad.getFechaEstimadaEnvio());
+			trazabilidadResponse.setFechaEnvio(iTrazabilidad.getFechaEnvio());
+			trazabilidadResponse.setCodigoTrazabilidad(iTrazabilidad.getCodigoTrazabilidad());
+			response.add(trazabilidadResponse);
+		}
+
+		responseServiceObject.setBody(response);
 
 		responseServiceMessage.setTimestamp(new Date());
 		responseServiceMessage.setCode("201");// 201 = create ok

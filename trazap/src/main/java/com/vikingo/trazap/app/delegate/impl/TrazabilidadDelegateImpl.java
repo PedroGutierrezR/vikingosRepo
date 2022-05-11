@@ -31,8 +31,7 @@ public class TrazabilidadDelegateImpl implements TrazabilidadDelegate {
 
 	@Override
 	public ResponseServiceObject save(int idTrazabilidad,TrazabilidadRequest trazabilidadRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		return trazabilidadService.save(idTrazabilidad, trazabilidadRequest);
 	}
 
 	@Override

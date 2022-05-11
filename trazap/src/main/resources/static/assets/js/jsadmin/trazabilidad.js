@@ -1,5 +1,7 @@
 const tablaTrazabilidad = $('#idTablaTrazabilidad');
+
 $(document).ready(function() {
+
 	$(".sectiontrazabilidad").hide();
 	$("#listarTrazabilidad").click(function() {
 		$(".sectiontrazabilidad").show();
@@ -45,15 +47,6 @@ $(document).ready(function() {
 						field: 'codigoTrazabilidad',
 						title: 'Codigo',
 						width: '180px'
-					}, {
-						field: 'pedidos.idPedido',
-						title: 'Pedido',
-						width: '180px'
-					},
-					{
-						field: 'estadoTrazabilidad.idEstadoTrazabilidad',
-						title: 'Estado Trazabilidad',
-						width: '180px'
 					},
 					{
 						field: '',
@@ -69,7 +62,7 @@ $(document).ready(function() {
 							//console.log(JSON.stringify(row));
 							//console.log($.param(row))
 							return [
-								"<a class='like' data-bs-toggle='modal' data-bs-target='#modalEditarTrazabilidad' onclick='onClickEditarTrazabilidad(\"" + JSON.stringify(row).split('"').join('\\"') + "\");getPedidos(editarOption1);getEstadoTrazabilidad(editarOption2);' title='Like'>",
+								"<a class='like' data-bs-toggle='modal' data-bs-target='#modalEditarTrazabilidad' onclick='onClickEditarTrazabilidad(\"" + JSON.stringify(row).split('"').join('\\"') + "\");' title='Like'>",
 								"<i class='bi bi-pencil'></i>",
 								"</a>  ",
 								"<a class='remove' data-bs-toggle='modal' data-bs-target='#modalEliminarTrazabilidad' onclick='onClickEliminarTrazabilidad(\"" + row.idTrazabilidad + "\");' title='Eliminar'>",
@@ -85,6 +78,7 @@ $(document).ready(function() {
 			.fail(function(jqXHR, textStatus, errorThrown) {
 				console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
 			});
+
 	});
 	$("#idBtnAgregarTrazabilidad").click(function() {
 
@@ -95,14 +89,12 @@ $(document).ready(function() {
 			var idTxtAgregarFechaEstimadaEnvio = false;
 			var idTxtAgregarFechaEnvio = false;
 			var idTxtAgregarCodigoTrazabilidad = false;
-			var idTxtAgregarPedido = false;
-			var idTxtAgregarEstadoTrazabilidad = false;
 
 			if ($("#idTxtAgregarFechaInicioPreparacion").val() == null) {
 				$("#idTxtAgregarFechaInicioPreparacion").addClass("is-invalid");
 				$("#idTxtAgregarFechaInicioPreparacion").removeClass("is-valid");
 				idTxtAgregarFechaInicioPreparacion = false;
-			}else if ($("#idTxtAgregarFechaInicioPreparacion").val() <= 0) {
+			} else if ($("#idTxtAgregarFechaInicioPreparacion").val() <= 0) {
 				$("#idTxtAgregarFechaInicioPreparacion").addClass("is-invalid");
 				$("#idTxtAgregarFechaInicioPreparacion").removeClass("is-valid");
 				idTxtAgregarFechaInicioPreparacion = false;
@@ -115,7 +107,7 @@ $(document).ready(function() {
 				$("#idTxtAgregarFechaFinPreparacion").addClass("is-invalid");
 				$("#idTxtAgregarFechaFinPreparacion").removeClass("is-valid");
 				idTxtAgregarFechaFinPreparacion = false;
-			}else if ($("#idTxtAgregarFechaFinPreparacion").val() <= 0) {
+			} else if ($("#idTxtAgregarFechaFinPreparacion").val() <= 0) {
 				$("#idTxtAgregarFechaFinPreparacion").addClass("is-invalid");
 				$("#idTxtAgregarFechaFinPreparacion").removeClass("is-valid");
 				idTxtAgregarFechaFinPreparacion = false;
@@ -128,7 +120,7 @@ $(document).ready(function() {
 				$("#idTxtAgregarFechaEstimadaEnvio").addClass("is-invalid");
 				$("#idTxtAgregarFechaEstimadaEnvio").removeClass("is-valid");
 				idTxtAgregarFechaEstimadaEnvio = false;
-			}if ($("#idTxtAgregarFechaEstimadaEnvio").val() <= 0) {
+			} if ($("#idTxtAgregarFechaEstimadaEnvio").val() <= 0) {
 				$("#idTxtAgregarFechaEstimadaEnvio").addClass("is-invalid");
 				$("#idTxtAgregarFechaEstimadaEnvio").removeClass("is-valid");
 				idTxtAgregarFechaEstimadaEnvio = false;
@@ -141,7 +133,7 @@ $(document).ready(function() {
 				$("#idTxtAgregarFechaEnvio").addClass("is-invalid");
 				$("#idTxtAgregarFechaEnvio").removeClass("is-valid");
 				idTxtAgregarFechaEnvio = false;
-			}else if ($("#idTxtAgregarFechaEnvio").val() <= 0) {
+			} else if ($("#idTxtAgregarFechaEnvio").val() <= 0) {
 				$("#idTxtAgregarFechaEnvio").addClass("is-invalid");
 				$("#idTxtAgregarFechaEnvio").removeClass("is-valid");
 				idTxtAgregarFechaEnvio = false;
@@ -154,7 +146,7 @@ $(document).ready(function() {
 				$("#idTxtAgregarCodigoTrazabilidad").addClass("is-invalid");
 				$("#idTxtAgregarCodigoTrazabilidad").removeClass("is-valid");
 				idTxtAgregarCodigoTrazabilidad = false;
-			}if ($("#idTxtAgregarCodigoTrazabilidad").val() <= 0) {
+			} if ($("#idTxtAgregarCodigoTrazabilidad").val() <= 0) {
 				$("#idTxtAgregarCodigoTrazabilidad").addClass("is-invalid");
 				$("#idTxtAgregarCodigoTrazabilidad").removeClass("is-valid");
 				idTxtAgregarCodigoTrazabilidad = false;
@@ -163,55 +155,23 @@ $(document).ready(function() {
 				$("#idTxtAgregarCodigoTrazabilidad").addClass("is-valid");
 				idTxtAgregarCodigoTrazabilidad = true;
 			}
-			if ($("#idTxtAgregarPedido").val() == null) {
-				$("#idTxtAgregarPedido").addClass("is-invalid");
-				$("#idTxtAgregarPedido").removeClass("is-valid");
-				idTxtAgregarPedido = false;
-			}else if ($("#idTxtAgregarPedido").val() <= 0) {
-				$("#idTxtAgregarPedido").addClass("is-invalid");
-				$("#idTxtAgregarPedido").removeClass("is-valid");
-				idTxtAgregarPedido = false;
 
-			} else {
-				$("#idTxtAgregarPedido").removeClass("is-invalid");
-				$("#idTxtAgregarPedido").addClass("is-valid");
-				idTxtAgregarPedido = true;
-			}
-			if ($("#idTxtAgregarEstadoTrazabilidad").val() == null) {
-				$("#idTxtAgregarEstadoTrazabilidad").addClass("is-invalid");
-				$("#idTxtAgregarEstadoTrazabilidad").removeClass("is-valid");
-				idTxtAgregarEstadoTrazabilidad = false;
-			}else if ($("#idTxtAgregarEstadoTrazabilidad").val() <= 0) {
-				$("#idTxtAgregarEstadoTrazabilidad").addClass("is-invalid");
-				$("#idTxtAgregarEstadoTrazabilidad").removeClass("is-valid");
-				idTxtAgregarEstadoTrazabilidad = false;
-			} else {
-				$("#idTxtAgregarEstadoTrazabilidad").removeClass("is-invalid");
-				$("#idTxtAgregarEstadoTrazabilidad").addClass("is-valid");
-				idTxtAgregarEstadoTrazabilidad = true;
-			}
 
-			return idTxtAgregarFechaInicioPreparacion && idTxtAgregarFechaInicioPreparacion && idTxtAgregarFechaFinPreparacion && idTxtAgregarFechaEstimadaEnvio && idTxtAgregarFechaEnvio && idTxtAgregarCodigoTrazabilidad && idTxtAgregarPedido && idTxtAgregarEstadoTrazabilidad;
+			return idTxtAgregarFechaInicioPreparacion && idTxtAgregarFechaInicioPreparacion && idTxtAgregarFechaFinPreparacion && idTxtAgregarFechaEstimadaEnvio && idTxtAgregarFechaEnvio && idTxtAgregarCodigoTrazabilidad;
 		}
-
-		let dataTrazabilidad = {
-			"fechaInicioPreparacion": $("#idTxtAgregarFechaInicioPreparacion").val(),
-			"fechaFinPreparacion": $("#idTxtAgregarFechaFinPreparacion").val(),
-			"fechaEstimadaEnvio": $("#idTxtAgregarFechaEstimadaEnvio").val(),
-			"fechaEnvio": $("#idTxtAgregarFechaEnvio").val(),
-			"codigoTrazabilidad": $("#idTxtAgregarCodigoTrazabilidad").val(),
-			"pedidos": {
-				"idPedido": Number($("#idTxtAgregarPedido").val())
-				},
-			"estadoTrazabilidad": { 
-			 "idEstadoTrazabilidad": Number($("#idTxtAgregarEstadoTrazabilidad").val())
-		}
-	}
 
 		console.log(dataTrazabilidad);
 
 		if (validaFormNuevaTrazabilidad()) {
 			console.log("Todo bien");
+
+			let dataTrazabilidad = {
+				"fechaInicioPreparacion": $("#idTxtAgregarFechaInicioPreparacion").val(),
+				"fechaFinPreparacion": $("#idTxtAgregarFechaFinPreparacion").val(),
+				"fechaEstimadaEnvio": $("#idTxtAgregarFechaEstimadaEnvio").val(),
+				"fechaEnvio": $("#idTxtAgregarFechaEnvio").val(),
+				"codigoTrazabilidad": $("#idTxtAgregarCodigoTrazabilidad").val(),
+			}
 
 			$.ajax({
 				// En data puedes utilizar un objeto JSON, un array o un query string
@@ -222,14 +182,14 @@ $(document).ready(function() {
 				dataType: "json",
 				// URL a la que se enviará la solicitud Ajax
 				url: "/trazabilidad",
-				contentType: 'application/json;charset=UTF-8'
+				contentType: 'application/json'
 			})
 				.done(function(data, textStatus, jqXHR) {
 					swal({
 						text: data.messageList[0].message,
 						icon: "success"
 					});
-				
+
 					console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
 					tablaTrazabilidad.bootstrapTable('load', data.body);
 					tablaTrazabilidad.bootstrapTable('refresh');
@@ -243,7 +203,7 @@ $(document).ready(function() {
 		}
 
 	});
-	
+
 	$('#modalNuevaTrazabilidad').on('show.bs.modal', function() {
 		$("#idTxtAgregarFechaInicioPreparacion").val("");
 		$("#idTxtAgregarFechaInicioPreparacion").removeClass("is-valid");
@@ -260,28 +220,23 @@ $(document).ready(function() {
 		$("#idTxtAgregarFechaEnvio").val("");
 		$("#idTxtAgregarFechaEnvio").removeClass("is-valid");
 		$("#idTxtAgregarFechaEnvio").removeClass("is-invalid");
-		
+
 		$("#idTxtAgregarCodigoTrazabilidad").val("");
 		$("#idTxtAgregarCodigoTrazabilidad").removeClass("is-valid");
 		$("#idTxtAgregarCodigoTrazabilidad").removeClass("is-invalid");
-		
-		$("#idTxtAgregarPedido").val("-1");
-		$("#idTxtAgregarPedido").removeClass("is-valid");
-		$("#idTxtAgregarPedido").removeClass("is-invalid");
-		
-		$("#idTxtAgregarEstadoTrazabilidad").val("-1");
-		$("#idTxtAgregarEstadoTrazabilidad").removeClass("is-valid");
-		$("#idTxtAgregarEstadoTrazabilidad").removeClass("is-invalid");
-		
+
+
 	});
 
 });
 
+let dataTrazabilidad;
+
 //Edit Material
 function onClickEditarTrazabilidad(row) {
 	dataTrazabilidad = JSON.parse(row);
-		console.log(dataTrazabilidad);
-	
+	console.log(dataTrazabilidad);
+
 	//Limpiar campos del modal
 	$("#idTxtEditarFechaInicioPreparacion").val(dataTrazabilidad.fechaInicioPreparacion);
 	$("#idTxtEditarFechaInicioPreparacion").removeClass("is-valid");
@@ -292,28 +247,19 @@ function onClickEditarTrazabilidad(row) {
 	$("#idTxtEditarFechaFinPreparacion").removeClass("is-invalid");
 
 	$("#idTxtEditarFechaEstimadaEnvio").val(dataTrazabilidad.fechaEstimadaEnvio);
-	$("#idTxtEditarrFechaEstimadaEnvio").removeClass("is-valid");
+	$("#idTxtEditarFechaEstimadaEnvio").removeClass("is-valid");
 	$("#idTxtEditarFechaEstimadaEnvio").removeClass("is-invalid");
 
 	$("#idTxtEditarFechaEnvio").val(dataTrazabilidad.fechaEnvio);
 	$("#idTxtEditarFechaEnvio").removeClass("is-valid");
 	$("#idTxtEditarFechaEnvio").removeClass("is-invalid");
-	
+
 	$("#idTxtEditarCodigoTrazabilidad").val(dataTrazabilidad.codigoTrazabilidad);
 	$("#idTxtEditarCodigoTrazabilidad").removeClass("is-valid");
 	$("#idTxtEditarCodigoTrazabilidad").removeClass("is-invalid");
-	
-	$("#idTxtEditarPedido").val("-1");
-	$("#idTxtEditarPedido").removeClass("is-valid");
-	$("#idTxtEditarPedido").removeClass("is-invalid");
-	
-	$("#idTxtEditarEstadoTrazabilidad").val("-1");
-	$("#idTxtEditarEstadoTrazabilidad").removeClass("is-valid");
-	$("#idTxtEditarEstadoTrazabilidad").removeClass("is-invalid");
-	
-	
+
+
 	$('#modalEditarTrazabilidad').modal('show');
-	//console.log(dataTrazabilidad);
 
 }
 
@@ -326,14 +272,12 @@ $("#idBtnEditarTrazabilidad").click(function() {
 		var idTxtEditarFechaEstimadaEnvio = false;
 		var idTxtEditarFechaEnvio = false;
 		var idTxtEditarCodigoTrazabilidad = false;
-		var idTxtEditarPedido = false;
-		var idTxtEditarEstadoTrazabilidad = false;
 
 		if ($("#idTxtEditarFechaInicioPreparacion").val() == null) {
 			$("#idTxtEditarFechaInicioPreparacion").addClass("is-invalid");
 			$("#idTxtEditarFechaInicioPreparacion").removeClass("is-valid");
 			idTxtEditarFechaInicioPreparacion = false;
-		}if ($("#idTxtEditarFechaInicioPreparacion").val() <= 0) {
+		} if ($("#idTxtEditarFechaInicioPreparacion").val() <= 0) {
 			$("#idTxtEditarFechaInicioPreparacion").addClass("is-invalid");
 			$("#idTxtEditarFechaInicioPreparacion").removeClass("is-valid");
 			idTxtEditarFechaInicioPreparacion = false;
@@ -347,7 +291,7 @@ $("#idBtnEditarTrazabilidad").click(function() {
 			$("#idTxtEditarFechaFinPreparacion").addClass("is-invalid");
 			$("#idTxtEditarFechaFinPreparacion").removeClass("is-valid");
 			idTxtEditarFechaFinPreparacion = false;
-		}if ($("#idTxtEditarFechaFinPreparacion").val() <= 0) {
+		} if ($("#idTxtEditarFechaFinPreparacion").val() <= 0) {
 			$("#idTxtEditarFechaFinPreparacion").addClass("is-invalid");
 			$("#idTxtEditarFechaFinPreparacion").removeClass("is-valid");
 			idTxtEditarFechaFinPreparacion = false;
@@ -360,7 +304,7 @@ $("#idBtnEditarTrazabilidad").click(function() {
 			$("#idTxtEditarFechaEstimadaEnvio").addClass("is-invalid");
 			$("#idTxtEditarFechaEstimadaEnvio").removeClass("is-valid");
 			idTxtEditarFechaEstimadaEnvio = false;
-		}if ($("#idTxtEditarFechaEstimadaEnvio").val() <= 0) {
+		} if ($("#idTxtEditarFechaEstimadaEnvio").val() <= 0) {
 			$("#idTxtEditarFechaEstimadaEnvio").addClass("is-invalid");
 			$("#idTxtEditarFechaEstimadaEnvio").removeClass("is-valid");
 			idTxtEditarFechaEstimadaEnvio = false;
@@ -373,7 +317,7 @@ $("#idBtnEditarTrazabilidad").click(function() {
 			$("#idTxtEditarFechaEnvio").addClass("is-invalid");
 			$("#idTxtEditarFechaEnvio").removeClass("is-valid");
 			idTxtEditarFechaEnvio = false;
-		}if ($("#idTxtEditarFechaEnvio").val() <= 0) {
+		} if ($("#idTxtEditarFechaEnvio").val() <= 0) {
 			$("#idTxtEditarFechaEnvio").addClass("is-invalid");
 			$("#idTxtEditarFechaEnvio").removeClass("is-valid");
 			idTxtEditarFechaEnvio = false;
@@ -386,7 +330,7 @@ $("#idBtnEditarTrazabilidad").click(function() {
 			$("#idTxtEditarCodigoTrazabilidad").addClass("is-invalid");
 			$("#idTxtEditarCodigoTrazabilidad").removeClass("is-valid");
 			idTxtEditarCodigoTrazabilidad = false;
-		}if ($("#idTxtEditarCodigoTrazabilidad").val() <= 0) {
+		} if ($("#idTxtEditarCodigoTrazabilidad").val() <= 0) {
 			$("#idTxtEditarCodigoTrazabilidad").addClass("is-invalid");
 			$("#idTxtEditarCodigoTrazabilidad").removeClass("is-valid");
 			idTxtEditarCodigoTrazabilidad = false;
@@ -395,73 +339,23 @@ $("#idBtnEditarTrazabilidad").click(function() {
 			$("#idTxtEditarCodigoTrazabilidad").addClass("is-valid");
 			idTxtEditarCodigoTrazabilidad = true;
 		}
-		if ($("#idTxtEditarPedido").val() == null) {
-			$("#idTxtEditarPedido").addClass("is-invalid");
-			$("#idTxtEditarPedido").removeClass("is-valid");
-			idTxtEditarPedido = false;
-		}if ($("#idTxtEditarPedido").val() <= 0) {
-			$("#idTxtEditarPedido").addClass("is-invalid");
-			$("#idTxtEditarPedido").removeClass("is-valid");
-			idTxtEditarPedido = false;
-		} else {
-			$("#idTxtEditarPedido").removeClass("is-invalid");
-			$("#idTxtEditarPedido").addClass("is-valid");
-			idTxtEditarPedido = true;
-		}
-		
-		if ($("#idTxtEditarPedido").val() == null) {
-			$("#idTxtEditarPedido").addClass("is-invalid");
-			$("#idTxtEditarPedido").removeClass("is-valid");
-			idTxtEditarPedido = false;
-		}else if ($("#idSelEditarTipoProducto").val() <= 0) {
-			$("#idSelEditarTipoProducto").addClass("is-invalid");
-			$("#idSelEditarTipoProducto").removeClass("is-valid");
-			idSelEditarTipoProducto = false;
-		} else {
-			$("#idTxtEditarPedido").removeClass("is-invalid");
-			$("#idTxtEditarPedido").addClass("is-valid");
-			idTxtEditarPedido = true;
-		}
-		
-		if ($("#idTxtEditarEstadoTrazabilidad").val() == null) {
-			$("#idTxtEditarEstadoTrazabilidad").addClass("is-invalid");
-			$("#idTxtEditarEstadoTrazabilidad").removeClass("is-valid");
-			idTxtEditarEstadoTrazabilidad = false;
-		}else if ($("#idSelEditarTipoProducto").val() <= 0) {
-			$("#idSelEditarTipoProducto").addClass("is-invalid");
-			$("#idSelEditarTipoProducto").removeClass("is-valid");
-			idSelEditarTipoProducto = false;
-		} else {
-			$("#idTxtEditarEstadoTrazabilidad").removeClass("is-invalid");
-			$("#idTxtEditarEstadoTrazabilidad").addClass("is-valid");
-			idTxtEditarEstadoTrazabilidad = true;
-		}
-		
 
-		return idTxtEditarFechaInicioPreparacion && idTxtEditarFechaFinPreparacion && idTxtEditarFechaEstimadaEnvio && idTxtEditarFechaEnvio && idTxtEditarCodigoTrazabilidad && idTxtEditarPedido && idTxtEditarEstadoTrazabilidad;
+		return idTxtEditarFechaInicioPreparacion && idTxtEditarFechaFinPreparacion && idTxtEditarFechaEstimadaEnvio && idTxtEditarFechaEnvio && idTxtEditarCodigoTrazabilidad;
 	}
 
-			
-	let dataTrazabilidadId = dataTrazabilidad.idTrazabilidad;
+	if (validaFormEditarTrazabilidad()) {
+		console.log("todo bien");
 
-	dataTrazabilidad = {
-			"idTrazabilidad": dataTrazabilidad.idTrazabilidad,
+		let dataTrazabilidadId = dataTrazabilidad.idTrazabilidad;
+
+		dataTrazabilidad = {
 			"fechaInicioPreparacion": $("#idTxtEditarFechaInicioPreparacion").val(),
 			"fechaFinPreparacion": $("#idTxtEditarFechaFinPreparacion").val(),
 			"fechaEstimadaEnvio": $("#idTxtEditarFechaEstimadaEnvio").val(),
 			"fechaEnvio": $("#idTxtEditarFechaEnvio").val(),
 			"codigoTrazabilidad": $("#idTxtEditarCodigoTrazabilidad").val(),
-		"pedidos": {
-				"idPedido": Number($("#idTxtEditarPedido").val())
-				},
-			"estadoTrazabilidad": { 
-			 "idEstadoTrazabilidad": Number($("#idTxtEditarEstadoTrazabilidad").val())
 		}
-	}
 
-	if (validaFormEditarTrazabilidad()) {
-	console.log("todo bien");
-		
 		$.ajax({
 			// En data puedes utilizar un objeto JSON, un array o un query string
 			data: JSON.stringify(dataTrazabilidad),
@@ -493,65 +387,8 @@ $("#idBtnEditarTrazabilidad").click(function() {
 			});
 	}
 });
-function getPedidos(option) {
-
-	let optionParam = document.querySelector(`#${option.id}`)
-
-	$.ajax({
-		type: "GET",
-		dataType: "json",
-		url: "/pedidos",
-		contentType: 'application/json'
-	})
-		.done(function(data, textStatus, jqXHR) {
-			console.log("perfect");
-			console.log("La solicitud se ha completado correctamente.", data, textStatus, jqXHR);
-
-			if ($(optionParam).val() === "-1") {
-				$(optionParam).val("0")
-				data.body.forEach((d) => {
-					$(optionParam).after(`<option value="${d.idPedido}">${d.fechaIngreso}</option>`);
-					console.log(d.idPedido)
-				});
-			}
-
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
-		})
-
-}
-
-function getEstadoTrazabilidad(option) {
-
-	let optionParam = document.querySelector(`#${option.id}`)
-
-	$.ajax({
-		type: "GET",
-		dataType: "json",
-		url: "/estadoTrazabilidad",
-		contentType: 'application/json'
-	})
-		.done(function(data2, textStatus, jqXHR) {
-			console.log("perfect");
-			console.log("La solicitud se ha completado correctamente.", data2, textStatus, jqXHR);
-			if ($(optionParam).val() === "-1") {
-				$(optionParam).val("0")
-				data2.body.forEach((d) => {
-					$(optionParam).after(`<option value="${d.idEstadoTrazabilidad}">${d.descripcion}</option>`);
-					console.log(d.idEstadoTrazabilidad)
-				});
-			}
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
-		})
-
-}
 
 
-
-let dataTrazabilidad;
 //Delete Bodega
 function onClickEliminarTrazabilidad(id) {
 	console.log("Id a eliminar: " + id);

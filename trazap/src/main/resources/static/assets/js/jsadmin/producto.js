@@ -1,5 +1,22 @@
 const tablaProductos = $('#idTablaProductos');
+let dataCategoriaProducto;
 $(document).ready(function() {
+
+	$.ajax({
+		type: "GET",
+		dataType: "json",
+		url: "/categoriaProductos",
+		contentType: 'application/json'
+	})
+		.done(function(data2, textStatus, jqXHR) {
+			console.log("perfect");
+			console.log("La solicitud se ha completado correctamente.", data2, textStatus, jqXHR);
+			dataCategoriaProducto = data2;
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
+		})
+
 	$(".sectionProducto").hide();
 	$("#listarProductos").click(function() {
 		$(".sectionProducto").show();
@@ -109,20 +126,18 @@ $(document).ready(function() {
 			return idTxtAgregarDescripcion && idSelTipoProducto && idSelCategoriaProducto;
 		}
 
-		let dataProducto = {
-			"descripcion": $("#idTxtAgregarDescripcion").val(),
-			"categoriaProducto": {
-				"idCategoriaProducto": Number($("#idSelCategoriaProducto").val())
-			},
-			"tipoProducto": {
-				"idTipoProducto": Number($("#idSelTipoProducto").val())
-			}
-		}
-
-		console.log(dataProducto);
-
 		if (validaFormNuevoProducto()) {
 			console.log("Todo bien");
+
+			let dataProducto = {
+				"descripcion": $("#idTxtAgregarDescripcion").val(),
+				"categoriaProducto": {
+					"idCategoriaProducto": Number($("#idSelCategoriaProducto").val())
+				},
+				"tipoProducto": {
+					"idTipoProducto": Number($("#idSelTipoProducto").val())
+				}
+			}
 
 			$.ajax({
 				// En data puedes utilizar un objeto JSON, un array o un query string
@@ -282,20 +297,20 @@ $("#idBtnEditarProducto").click(function() {
 		return idTxtEditarDescripcionProducto && idSelEditarTipoProducto && idSelEditarCategoriaProducto;
 	}
 
-	let dataProductoId = dataProducto.idProducto;
-
-	dataProducto = {
-		"descripcion": $("#idTxtEditarDescripcionProducto").val(),
-		"categoriaProducto": {
-			"idCategoriaProducto": Number($("#idSelEditarCategoriaProducto").val())
-		},
-		"tipoProducto": {
-			"idTipoProducto": Number($("#idSelEditarTipoProducto").val())
-		}
-	}
-
 	if (validaFormEditarProducto()) {
 		console.log("Todo bien");
+
+		let dataProductoId = dataProducto.idProducto;
+
+		dataProducto = {
+			"descripcion": $("#idTxtEditarDescripcionProducto").val(),
+			"categoriaProducto": {
+				"idCategoriaProducto": Number($("#idSelEditarCategoriaProducto").val())
+			},
+			"tipoProducto": {
+				"idTipoProducto": Number($("#idSelEditarTipoProducto").val())
+			}
+		}
 
 		$.ajax({
 			// En data puedes utilizar un objeto JSON, un array o un query string
@@ -356,25 +371,11 @@ function getCategoria(option) {
 
 	let optionParam = document.querySelector(`#${option.id}`)
 
-	$.ajax({
-		type: "GET",
-		dataType: "json",
-		url: "/categoriaProductos",
-		contentType: 'application/json'
-	})
-		.done(function(data2, textStatus, jqXHR) {
-			console.log("perfect");
-			console.log("La solicitud se ha completado correctamente.", data2, textStatus, jqXHR);
-			if ($(optionParam).val() === "-1") {
-				$(optionParam).val("0")
-				data2.body.forEach((d) => {
-					$(optionParam).after(`<option value="${d.idCategoriaProducto}">${d.descripcion}</option>`);
-					console.log(d.descripcion)
-				});
-			}
-		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			console.log("La solicitud a fallado: ", errorThrown, textStatus, jqXHR);
-		})
-
+	if ($(optionParam).val() === "-1") {
+		$(optionParam).val("0")
+		dataCategoriaProducto.body.forEach((d) => {
+			$(optionParam).after(`<option value="${d.idCategoriaProducto}">${d.descripcion}</option>`);
+			console.log(d.descripcion)
+		});
+	}
 }

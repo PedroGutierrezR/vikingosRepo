@@ -66,11 +66,13 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-lg-auto">
 
-					<li class="nav-item"><a href="#productos" title="click para ver productos" 
-						class="nav-link smoothScroll" id="listarProductos">Productos</a></li>
+					<li class="nav-item"><a href="#productos"
+						title="click para ver productos" class="nav-link smoothScroll"
+						id="listarProductos">Productos</a></li>
 
-					<li class="nav-item"><a href="#trazabilidad" title="click para ver trazabilidad" 
-						class="nav-link smoothScroll" id="listarTrazabilidad">Trazabilidad</a></li>
+					<li class="nav-item"><a href="#trazabilidad"
+						title="click para ver trazabilidad" class="nav-link smoothScroll"
+						id="listarTrazabilidad">Trazabilidad</a></li>
 				</ul>
 			</div>
 			<div class="ms-5">
@@ -113,7 +115,7 @@
 		<div class="container">
 			<div class="row">
 				<h2 class="mb-3 text-dark" data-aos="fade-up">Productos</h2>
-		<div class="container">
+				<div class="container">
 					<table class="table table-hover" id="idTablaProductos">
 					</table>
 				</div>
@@ -160,7 +162,8 @@
 											<option id="option1" value="-1">-Seleccione Tipo-</option>
 										</select>
 										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+										<div class="invalid-feedback">Debe ingresar una
+											descripción válida</div>
 									</div>
 								</div>
 							</div>
@@ -173,7 +176,8 @@
 												Categoria-</option>
 										</select>
 										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+										<div class="invalid-feedback">Debe ingresar una
+											descripción válida</div>
 									</div>
 								</div>
 							</div>
@@ -226,7 +230,8 @@
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLongTitle">Editar
 							Producto</h5>
-						<button type="button" class="close" onclick="$('#modalEditarProducto').modal('hide');"
+						<button type="button" class="close"
+							onclick="$('#modalEditarProducto').modal('hide');"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -252,10 +257,12 @@
 									<div class="form-group">
 										<label for="idSelEditarTipoProducto">Tipo</label> <select
 											class="form-control" id="idSelEditarTipoProducto">
-											<option id="editarOption1" value="-1">-Seleccione Tipo-</option>
+											<option id="editarOption1" value="-1">-Seleccione
+												Tipo-</option>
 										</select>
 										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+										<div class="invalid-feedback">Debe ingresar una
+											descripción válida</div>
 									</div>
 								</div>
 							</div>
@@ -268,7 +275,8 @@
 												Categoria-</option>
 										</select>
 										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+										<div class="invalid-feedback">Debe ingresar una
+											descripción válida</div>
 									</div>
 								</div>
 							</div>
@@ -296,22 +304,23 @@
 						<table class="table table-hover" id="idTablaTrazabilidad">
 						</table>
 						<button type="button" id="idBtnGuardarTrazabilidad"
-							class="btn btn-outline-danger btn-lg" data-bs-target="#modalNuevaTrazabilidad"
-							data-bs-toggle="modal" onClick="getPedidos(option1);getEstadoTrazabilidad(option2)">Agregar
+							class="btn btn-outline-danger btn-lg"
+							data-bs-target="#modalNuevaTrazabilidad" data-bs-toggle="modal">Agregar
 							Trazabilidad</button>
 					</div>
 				</div>
 			</div>
-		</div>					
-					
-		<!-- Modal Agregar Producto-->
+		</div>
+
+		<!-- Modal Agregar trazabilidad-->
 		<!-- Modal -->
 		<div class="modal fade" id="modalNuevaTrazabilidad" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Nueva trazabilidad</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Nueva
+							trazabilidad</h5>
 						<button type="button" class="btn-close mb-3"
 							data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
@@ -320,7 +329,8 @@
 							<div class=form-row>
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="idTxtAgregarFechaInicioPreparacion">Fecha inicio</label>
+										<label for="idTxtAgregarFechaInicioPreparacion">Fecha
+											inicio</label>
 										<div class="form-inline">
 											<input type="date" class="form-control"
 												id="idTxtAgregarFechaInicioPreparacion"
@@ -335,31 +345,33 @@
 							<div class="form-row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="idTxtAgregarFechaFinPreparacion">Fecha final</label>
+										<label for="idTxtAgregarFechaFinPreparacion">Fecha
+											final</label>
 										<div class="form-inline">
 											<input type="date" class="form-control"
 												id="idTxtAgregarFechaFinPreparacion"
 												placeholder="Ingrese fecha" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar un curso
-											válido</div>
-									</div>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar un curso
+												válido</div>
+										</div>
 									</div>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="idTxtAgregarFechaEstimadaEnvio"">Fecha estimada</label>
+										<label for="idTxtAgregarFechaEstimadaEnvio"">Fecha
+											estimada</label>
 										<div class="form-inline">
 											<input type="date" class="form-control"
 												id="idTxtAgregarFechaEstimadaEnvio"
 												placeholder="Ingrese fecha" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar un curso
-											válido</div>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar un curso
+												válido</div>
+										</div>
 									</div>
-								</div>
 								</div>
 							</div>
 							<div class="form-row">
@@ -368,58 +380,29 @@
 										<label for="idTxtAgregarFechaEnvio">Fecha envio</label>
 										<div class="form-inline">
 											<input type="date" class="form-control"
-												id="idTxtAgregarFechaEnvio"
-												placeholder="Ingrese fecha" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar un curso
-											válido</div>
+												id="idTxtAgregarFechaEnvio" placeholder="Ingrese fecha"
+												required>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar un curso
+												válido</div>
+										</div>
 									</div>
-								</div>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="idTxtAgregarCodigoTrazabilidad">codigo trazabilidad</label>
+										<label for="idTxtAgregarCodigoTrazabilidad">codigo
+											trazabilidad</label>
 										<div class="form-inline">
 											<input type="text" class="form-control"
 												id="idTxtAgregarCodigoTrazabilidad"
 												placeholder="Ingrese codigo" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar un curso
-											válido</div>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar un curso
+												válido</div>
+										</div>
 									</div>
-								</div>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="col-md-4">
-									<div class="form-group">
-										<label for="idTxtAgregarPedido">pedido</label>
-										<div class="form-inline">
-											<input type="number" class="form-control"
-												id="idTxtAgregarPedido"
-												placeholder="Ingrese datos" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar un curso
-											válido</div>
-									</div>
-								</div>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="col-md-4">
-									<div class="form-group">
-										<label for="idTxtAgregarEstadoTrazabilidad">Estado trazabilidad</label>
-										<div class="form-inline">
-											<input type="number" class="form-control"
-												id="idTxtAgregarEstadoTrazabilidad"
-												placeholder="Ingrese estado" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar un curso
-											válido</div>
-									</div>
-								</div>
 								</div>
 							</div>
 						</form>
@@ -432,7 +415,7 @@
 				</div>
 			</div>
 		</div>
-		<!--modal editar producto -->
+		<!--modal editar trazabilidad -->
 		<div class="modal fade" id="modalEditarTrazabilidad" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
 			aria-hidden="true">
@@ -442,7 +425,8 @@
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLongTitle">Editar
 							Trazabilidad</h5>
-						<button type="button" class="close" onclick="$('#modalEditarTrazabilidad').modal('hide');"
+						<button type="button" class="close"
+							onclick="$('#modalEditarTrazabilidad').modal('hide');"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -452,10 +436,12 @@
 							<div class=form-row>
 								<div class="col-md-4 mb-3">
 									<div class="form-group">
-										<label for="idTxtEditarFechaInicioPreparacion">Fecha Inicio</label>
+										<label for="idTxtEditarFechaInicioPreparacion">Fecha
+											Inicio</label>
 										<div class="form-inline">
 											<input type="date" class="form-control"
-												id="idTxtEditarFechaInicioPreparacion" placeholder="" required>
+												id="idTxtEditarFechaInicioPreparacion" placeholder=""
+												required>
 											<div class="valid-feedback">Correcto!</div>
 											<div class="invalid-feedback">Debe ingresar una
 												descripción válida</div>
@@ -466,28 +452,32 @@
 							<div class="form-row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="idTxtEditarFechaFinPreparacion">Fecha final</label>
+										<label for="idTxtEditarFechaFinPreparacion">Fecha
+											final</label>
 										<div class="form-inline">
 											<input type="date" class="form-control"
 												id="idTxtEditarFechaFinPreparacion" placeholder="" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
 									</div>
 								</div>
-							</div>
 							</div>
 							<div class="form-row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="idTxtEditartFechaEstimadaEnvio">Fecha estimada</label>
+										<label for="idTxtEditarFechaEstimadaEnvio">Fecha
+											estimada</label>
 										<div class="form-inline">
 											<input type="date" class="form-control"
-												id="idTxtEditartFechaEstimadaEnvio" placeholder="" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+												id="idTxtEditarFechaEstimadaEnvio" placeholder="" required>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
 									</div>
 								</div>
-							</div>
 							</div>
 							<div class="form-row">
 								<div class="col-md-4">
@@ -496,11 +486,12 @@
 										<div class="form-inline">
 											<input type="date" class="form-control"
 												id="idTxtEditarFechaEnvio" placeholder="" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
 									</div>
 								</div>
-							</div>
 							</div>
 							<div class="form-row">
 								<div class="col-md-4">
@@ -509,51 +500,27 @@
 										<div class="form-inline">
 											<input type="text" class="form-control"
 												id="idTxtEditarCodigoTrazabilidad" placeholder="" required>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
 									</div>
 								</div>
-							</div>
-							</div>
-							<div class="form-row">
-								<div class="col-md-4">
-									<div class="form-group">
-										<label for="idTxtEditarPedido">Pedido</label> <select
-											class="form-control" id="idTxtEditarPedido">
-											<option id="editarOption1" value="-1">-Seleccione Tipo-</option>
-										</select>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
-									</div>
-								</div>
-							</div>
-							</div>
-							<div class="form-row">
-								<div class="col-md-4">
-									<div class="form-group">
-										<label for="idTxtEditarEstadoTrazabilidad">Estado trazabilidad</label> <select
-											class="form-control" id="idTxtEditarEstadoTrazabilidad">
-											<option id="editarOption2" value="-1">-Seleccione Tipo-</option>
-										</select>
-										<div class="valid-feedback">Correcto!</div>
-										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
-									</div>
-								</div>
-							</div>
 							</div>
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							onclick="$('#modalEditarTrazabilidad').modal('hide');">Cerrar</button>
-						<button type="button" class="btn btn-primary"
-							id="idBtnEditarTrazabilidad">Guardar</button>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								onclick="$('#modalEditarTrazabilidad').modal('hide');">Cerrar</button>
+							<button type="button" class="btn btn-primary"
+								id="idBtnEditarTrazabilidad">Guardar</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<!-- Modal Eliminar Producto-->
+
+		<!-- Modal Eliminar trazabilidad-->
 		<div class="modal fade" id="modalEliminarTrazabilidad" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
 			aria-hidden="true">
@@ -582,13 +549,13 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<!-- SCRIPTS -->
-	<script src="../assets/js/jsadmin/aos.js"></script>
-	<script src="../assets/js/jsadmin/smoothscroll.js"></script>
-	<script src="../assets/js/jsadmin/custom.js"></script>
-	<script type="text/javascript" src="../assets/js/producto.js"></script>
-	<script type="text/javascript" src="../assets/js/proveedor.js"></script>
-	<script type="text/javascript" src="../assets/js/trazabilidad.js"></script>
+	<script src="../assets/js/aos.js"></script>
+	<script src="../assets/js/smoothscroll.js"></script>
+	<script src="../assets/js/custom.js"></script>
+	<script type="text/javascript" src="../assets/js/jsadmin/producto.js"></script>
+	<script type="text/javascript"
+		src="../assets/js/jsadmin/trazabilidad.js"></script>
 </body>
 </html>
