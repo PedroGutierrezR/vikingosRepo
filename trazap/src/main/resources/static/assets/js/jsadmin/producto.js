@@ -126,8 +126,6 @@ $(document).ready(function() {
 			return idTxtAgregarDescripcion && idSelTipoProducto && idSelCategoriaProducto;
 		}
 
-		console.log(dataProducto);
-
 		if (validaFormNuevoProducto()) {
 			console.log("Todo bien");
 
