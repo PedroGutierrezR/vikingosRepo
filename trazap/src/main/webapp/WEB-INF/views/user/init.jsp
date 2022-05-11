@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-<title>Trazap - Admin</title>
+<title>Trazap - User</title>
 
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -51,6 +52,7 @@
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
 <script
 	src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
@@ -68,29 +70,18 @@
 
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-lg-auto">
-					<li class="nav-item"><a href="#home"
-						class="nav-link smoothScroll">Home</a></li>
 
-					<li class="nav-item"><a href="#about"
-						class="nav-link smoothScroll">Productos</a></li>
+					<li class="nav-item"><a href="#productos" title="click para ver productos" 
+						class="nav-link smoothScroll" id="listarProductos">Productos</a></li>
 
-					<li class="nav-item"><a href="#class"
-						class="nav-link smoothScroll">Proveedor</a></li>
-
-					<li class="nav-item"><a href="#contact"
-						class="nav-link smoothScroll">Trazabilidad</a></li>
-				</ul>
-
-				<ul class="social-icon ml-lg-3">
-					<li><a href="#" class="fa fa-facebook"></a></li>
-					<li><a href="#" class="fa fa-twitter"></a></li>
-					<li><a href="#" class="fa fa-instagram"></a></li>
+					<li class="nav-item"><a href="#trazabilidad" title="click para ver trazabilidad" 
+						class="nav-link smoothScroll" id="listarTrazabilidad">Trazabilidad</a></li>
 				</ul>
 			</div>
 			<div class="ms-5">
 				<form action="/logout" method="get">
-					<input style="border-radius: 8px;" id="btnLogout" class="btn-white px-3 py-1" type="submit"
-						value="salir">
+					<input style="border-radius: 8px;" id="btnLogout"
+						class="btn-white px-3 py-1" type="submit" value="salir">
 				</form>
 			</div>
 		</div>
@@ -115,9 +106,6 @@
 						<h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Trazap
 							- Vikingos</h1>
 
-						<a href="#about" class="btn custom-btn bordered mt-3"
-							data-aos="fade-up" data-aos-delay="700">Comencemos</a>
-
 					</div>
 				</div>
 
@@ -125,229 +113,204 @@
 		</div>
 	</section>
 
-
-	<section class="feature" id="feature">
-		<div class="container">
-			<h2 class="mb-3 text-white" data-aos="fade-up">Área de
-				administración</h2>
-		</div>
-	</section>
-
-
-	<!-- ABOUT -->
-	<section class="about section" id="about">
+	<!-- PRODUCTOS -->
+	<section class="about section sectionProducto" id="productos">
 		<div class="container">
 			<div class="row">
 				<h2 class="mb-3 text-dark" data-aos="fade-up">Productos</h2>
-				<div class="container">
-					<table class="table table-hover" id="idTblUsuarios"
-						name="tblUsuarios">
+		<div class="container">
+					<table class="table table-hover" id="idTablaProductos">
 					</table>
-					<button type="button" id="idBtnAgregarUsuario"
-						class="btn btn-outline-danger btn-lg">Agregar Usuario</button>
+				</div>
+			</div>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+				data-bs-target="#modalAgregarProducto"
+				onClick="getTipoProducto(option1);getCategoria(option2);">Agregar
+				Producto</button>
+		</div>
+		<!-- Modal Agregar Producto-->
+		<!-- Modal -->
+		<div class="modal fade" id="modalAgregarProducto" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
+						<button type="button" class="btn-close mb-3"
+							data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form class="needs-validation" novalidate>
+							<div class=form-row>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idTxtAgregarDescripcion">Descripción</label>
+										<div class="form-inline">
+											<input type="text" class="form-control"
+												id="idTxtAgregarDescripcion"
+												placeholder="Ingrese Descripción" required>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelTipoProducto">Tipo</label> <select
+											class="form-control" id="idSelTipoProducto">
+											<option id="option1" value="-1">-Seleccione Tipo-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelCategoriaProducto">Categoria</label> <select
+											class="form-control" id="idSelCategoriaProducto">
+											<option id="option2" value="-1">-Seleccione
+												Categoria-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
+						<button id="idBtnGuardarProducto" type="button"
+							class="btn btn-danger">Guardar</button>
+					</div>
 				</div>
 			</div>
 		</div>
+		<!-- Modal Eliminar Producto-->
+		<div class="modal fade" id="modalEliminarProducto" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg"
+				role="document">
+				<div class="modal-content bg-dark">
+					<div class="modal-header">
+						<button type="button" class="close"
+							onclick="$('#modalEliminarProducto').modal('hide');"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body text-center">
+						<h2 class="modal-body text-light">¿Está seguro de eliminar el
+							producto?</h2>
+						<input type="hidden" id="idEliminar" value="">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							onclick="$('#modalEliminarProducto').modal('hide');">Cerrar</button>
+						<button type="button" class="btn btn-light"
+							id=idBtnEliminarProducto>Eliminar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--modal editar producto -->
+		<div class="modal fade" id="modalEditarProducto" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg"
+				role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Editar
+							Producto</h5>
+						<button type="button" class="close" onclick="$('#modalEditarProducto').modal('hide');"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form class="needs-validation" novalidate>
+							<div class=form-row>
+								<div class="col-md-4 mb-3">
+									<div class="form-group">
+										<label for="idTxtEditarDescripcionProducto">Nombre</label>
+										<div class="form-inline">
+											<input type="text" class="form-control"
+												id="idTxtEditarDescripcionProducto" placeholder="" required>
+											<div class="valid-feedback">Correcto!</div>
+											<div class="invalid-feedback">Debe ingresar una
+												descripción válida</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelEditarTipoProducto">Tipo</label> <select
+											class="form-control" id="idSelEditarTipoProducto">
+											<option id="editarOption1user" value="-1">-Seleccione Tipo-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="idSelEditarCategoriaProducto">Categoria</label> <select
+											class="form-control" id="idSelEditarCategoriaProducto">
+											<option id="editarOption2user" value="-1">-Seleccione
+												Categoria-</option>
+										</select>
+										<div class="valid-feedback">Correcto!</div>
+										<div class="invalid-feedback">Debe ingresar una descripción	válida</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							onclick="$('#modalEditarProducto').modal('hide');">Cerrar</button>
+						<button type="button" class="btn btn-primary"
+							id="idBtnEditarProducto">Guardar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</section>
 
-
-	<!-- CLASS -->
-	<section class="class section" id="class">
+	<!-- TRAZABILIDAD -->
+	<section class="contact section sectiontrazabilidad" id="trazabilidad">
 		<div class="container">
 			<div class="row">
-
-				<div class="col-lg-12 col-12 text-center mb-5">
-					<h6 data-aos="fade-up">Get A Perfect Body</h6>
-
-					<h2 data-aos="fade-up" data-aos-delay="200">Our Training
-						Classes</h2>
-				</div>
-
-				<div class="col-lg-4 col-md-6 col-12" data-aos="fade-up"
-					data-aos-delay="400">
-					<div class="class-thumb">
-						<img src="../assets/images/class/yoga-class.jpg" class="img-fluid"
-							alt="Class">
-
-						<div class="class-info">
-							<h3 class="mb-1">Yoga</h3>
-
-							<span><strong>Trained by</strong> - Bella</span> <span
-								class="class-price">$50</span>
-
-							<p class="mt-3">Lorem ipsum dolor sit amet, consectetur
-								adipiscing</p>
-						</div>
+				<div class="col-lg-12 col-12 text-start mb-5">
+					<h2 class="mb-4 pb-2" data-aos="fade-up">Trazabilidad</h2>
+					<div class="container">
+						<table class="table table-hover" id="idTablaTrazabilidad">
+						</table>
 					</div>
 				</div>
-
-				<div class="mt-5 mt-lg-0 mt-md-0 col-lg-4 col-md-6 col-12"
-					data-aos="fade-up" data-aos-delay="500">
-					<div class="class-thumb">
-						<img src="../assets/images/class/crossfit-class.jpg"
-							class="img-fluid" alt="Class">
-
-						<div class="class-info">
-							<h3 class="mb-1">Areobic</h3>
-
-							<span><strong>Trained by</strong> - Mary</span> <span
-								class="class-price">$66</span>
-
-							<p class="mt-3">Lorem ipsum dolor sit amet, consectetur
-								adipiscing</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="mt-5 mt-lg-0 col-lg-4 col-md-6 col-12"
-					data-aos="fade-up" data-aos-delay="600">
-					<div class="class-thumb">
-						<img src="../assets/images/class/cardio-class.jpg"
-							class="img-fluid" alt="Class">
-
-						<div class="class-info">
-							<h3 class="mb-1">Cardio</h3>
-
-							<span><strong>Trained by</strong> - Cathe</span> <span
-								class="class-price">$75</span>
-
-							<p class="mt-3">Lorem ipsum dolor sit amet, consectetur
-								adipiscing</p>
-						</div>
-					</div>
-				</div>
-
 			</div>
-		</div>
+		</div>					
 	</section>
-
-
-	<!-- CONTACT -->
-	<section class="contact section" id="contact">
-		<div class="container">
-			<div class="row">
-
-				<div class="ml-auto col-lg-5 col-md-6 col-12">
-					<h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Feel
-						free to ask anything</h2>
-
-					<form action="#" method="post" class="contact-form webform"
-						data-aos="fade-up" data-aos-delay="400" role="form">
-						<input type="text" class="form-control" name="cf-name"
-							placeholder="Name"> <input type="email"
-							class="form-control" name="cf-email" placeholder="Email">
-
-						<textarea class="form-control" rows="5" name="cf-message"
-							placeholder="Message"></textarea>
-
-						<button type="submit" class="form-control" id="submit-button"
-							name="submit">Send Message</button>
-					</form>
-				</div>
-
-				<div class="mx-auto mt-4 mt-lg-0 mt-md-0 col-lg-5 col-md-6 col-12">
-					<h2 class="mb-4" data-aos="fade-up" data-aos-delay="600">
-						Where you can <span>find us</span>
-					</h2>
-
-					<p data-aos="fade-up" data-aos-delay="800">
-						<i class="fa fa-map-marker mr-1"></i> 120-240 Rio de Janeiro -
-						State of Rio de Janeiro, Brazil
-					</p>
-					<!-- How to change your own map point
-	1. Go to Google Maps
-	2. Click on your location point
-	3. Click "Share" and choose "Embed map" tab
-	4. Copy only URL and paste it within the src="" field below
--->
-					<div class="google-map" data-aos="fade-up" data-aos-delay="900">
-						<iframe src="" width="1920" height="250" frameborder="0"
-							style="border: 0;" allowfullscreen=""></iframe>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
-
-
-	<!-- FOOTER -->
-	<footer class="site-footer">
-		<div class="container">
-			<div class="row">
-
-				<div class="ml-auto col-lg-4 col-md-5">
-					<p class="copyright-text">Copyright &copy; 2022 Trazap</p>
-				</div>
-
-				<div
-					class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
-					<p class="mr-4">
-						<i class="fa fa-envelope-o mr-1"></i> <a href="#">vikingos@trazap.com</a>
-					</p>
-
-					<p>
-						<i class="fa fa-phone mr-1"></i> 010-020-0840
-					</p>
-				</div>
-
-			</div>
-		</div>
-	</footer>
-
-	<!-- Modal -->
-	<div class="modal fade" id="membershipForm" tabindex="-1" role="dialog"
-		aria-labelledby="membershipFormLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-
-			<div class="modal-content">
-				<div class="modal-header">
-
-					<h2 class="modal-title" id="membershipFormLabel">Membership
-						Form</h2>
-
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-
-				<div class="modal-body">
-					<form class="membership-form webform" role="form">
-						<input type="text" class="form-control" name="cf-name"
-							placeholder="John Doe"> <input type="email"
-							class="form-control" name="cf-email"
-							placeholder="Johndoe@gmail.com"> <input type="tel"
-							class="form-control" name="cf-phone" placeholder="123-456-7890"
-							pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-
-						<textarea class="form-control" rows="3" name="cf-message"
-							placeholder="Additional Message"></textarea>
-
-						<button type="submit" class="form-control" id="submit-button"
-							name="submit">Submit Button</button>
-
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input"
-								id="signup-agree"> <label
-								class="custom-control-label text-small text-muted"
-								for="signup-agree">I agree to the <a href="#">Terms
-									&amp;Conditions</a>
-							</label>
-						</div>
-					</form>
-				</div>
-
-				<div class="modal-footer"></div>
-
-			</div>
-		</div>
-	</div>
-
+	
 	<!-- SCRIPTS -->
-	<script src="../assets/js/jsadmin/aos.js"></script>
-	<script src="../assets/js/jsadmin/smoothscroll.js"></script>
-	<script src="../assets/js/jsadmin/custom.js"></script>
-	<script type="text/javascript" src="../assets/js/producto.js"></script>
+	<script src="../assets/js/aos.js"></script>
+	<script src="../assets/js/smoothscroll.js"></script>
+	<script src="../assets/js/custom.js"></script>
+	<script type="text/javascript" src="../assets/js/jsuser/productouser.js"></script>
+	<script type="text/javascript" src="../assets/js/jsuser/trazabilidaduser.js"></script>
 </body>
 </html>
